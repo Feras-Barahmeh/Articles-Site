@@ -1,0 +1,24 @@
+=======================================
+--------- My webside priject ----------
+=======================================
+
+** Front **
+
+## Navigation bar
+	- articles
+	- contact 
+	- about 
+	- projects
+	- sercices
+	- logo
+## layout
+	- personal pictuer
+	- Brief my
+	- links 
+		* codeforce
+		* githup
+		* linkedin
+		* twitter
+		* instigram
+## Services
+## Projects

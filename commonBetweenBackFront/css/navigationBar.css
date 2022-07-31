@@ -1,0 +1,57 @@
+/* Navigation to backend  */
+
+
+nav {
+    background-color: #161A34;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: -1px 0 14px #b9b7b7;
+}
+
+
+.logo img {
+    width: 60px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul li {
+    margin-left: 20px;
+    transition: all 1s;
+}
+
+
+nav ul li a {
+    color: white;
+}
+
+nav ul li:hover a {
+    color: #f3d33a;
+}
+
+nav ul li:hover a::after {
+    content: "";
+    display: block;
+    width: inherit;
+    position: relative;
+    height: 1px;
+    top: 10px;
+    background-color: white;
+}
+
+.profile-pictuer {
+    width: 50px;
+    height: 45px;
+    border-radius: 5px;
+}
+
+.dropbtn:hover {
+    color: #f3d33a;
+}

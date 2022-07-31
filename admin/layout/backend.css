@@ -1,0 +1,147 @@
+/* Start Dashbors */
+
+
+/* Start side Bar */
+
+.contant-index  {
+    height: 900px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+.contant-sidbar {
+    background-color: var(--bbackground-color);
+    width: 250px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: inset 2px 2px 18px white;
+}
+
+.name {
+    margin: 20px;
+}
+
+.name i {
+    margin-right: 10px;
+}
+
+.contant-sidbar  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    margin-top: 20px;
+}
+
+.contant-sidbar  ul li {
+    align-self: center;
+}
+
+.contant-sidbar  ul li:hover {
+    transform: perspective(100px) translateZ(10px)
+}
+
+.contant-sidbar  ul li i {
+    margin-right: 10px;
+}
+
+
+.contant-sidbar  ul a {
+    color: white;
+}
+
+
+.contant-sidbar  ul hr {
+    width: 71%;
+    align-self: center;
+    opacity: .6;
+}
+
+/* End Side Bar */
+
+/* Start Controllar Panel */
+.controle-panel {
+    width: 1200px;
+    height: 400px;
+    background-color: var(--bbackground-color);
+    align-self: center;
+    border-radius: 10px;
+    box-shadow: inset 2px 2px 20px white;
+    display: flex;
+    padding: 20px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.controle-panel div {
+    background-color: rgb(79, 21, 136);
+    width: 250px;
+    height: 130px;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+}
+
+.controle-panel div span {
+    display: flex;
+    width: fit-content;
+    left: 10px;
+    flex-direction: column;
+}
+
+.controle-panel div .vertical-line::after {
+    content: "";
+    min-height: 87px;
+    background-color: #777;
+    width: 2px;
+    top: -95px;
+    left: 73px;
+    position: relative;
+    border-radius: 3px;
+}
+
+
+.controle-panel div i {
+    font-size: 50px;
+    display: block;
+    width: fit-content;
+}
+
+
+
+.controle-panel div span a {
+    color: white;
+    font-size: 35px;
+    width: fit-content;
+    position: relative;
+    left: 10px;
+    margin-top: 10px;
+}
+
+.controle-panel div span a:hover {
+    color: var(--assistant);
+    transform: perspective(100px) translateZ(10px)  
+
+}
+
+.controle-panel div p {
+    display: block;
+    position: relative;
+    text-align: center;
+    left: 40px;
+    top: 40px;
+    font-size: 25px;
+    height: fit-content;
+}
+
+/* End Controllar Panel */
+
+
+/* End Dashbors */
