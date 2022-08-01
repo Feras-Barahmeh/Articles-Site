@@ -1,6 +1,6 @@
 <?php
 
-    $dsn = 'mysql:host=localhost;dbname=webside'; // Data Sourse name
+    $dsn = 'mysql:host=localhost;dbname=website'; // Data Sourse name
     $user = 'root';
     $password = '';
     $options = [

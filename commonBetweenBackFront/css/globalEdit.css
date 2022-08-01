@@ -13,6 +13,11 @@
     --bbackground-color: #161A34;
     --assistant: #f3d33a;
     --titels: cadetblue;
+    --sun-theam: white;
+    --danger: #ed6464;
+    --info: rgb(135, 222, 239);
+    --success: rgb(147, 227, 147);
+    --desine-one: #81ecec;
 }
 
 html {
@@ -21,11 +26,24 @@ html {
 
 body {
     background-color: #1C2148;
-    color: white;
+    color: var(--sun-theam);
 }
 
 ::selection {
     background: #7584d854;
+}
+
+input[type=file]::file-selector-button {
+    border: 2px solid var(--sun-theam);
+    padding: .2em .4em;
+    border-radius: .2em;
+    background-color: #5b55ad;
+    transition: 1s;
+}
+
+input[type=file]::file-selector-button:hover {
+    background-color: #81ecec;
+    border: 2px solid #00cec9;
 }
 
 ul {
@@ -43,9 +61,45 @@ a {
     margin-right: auto;
 }
 
+.alert {
+    text-align: center;
+    padding: 20px;
+    width: 900px;
+    border-radius: 10px;
+    transform: translate(30%, 100%);
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.danger {
+    background-color: var(--danger);
+}
+
+.info {
+    background-color: var(--info);
+    color: black;
+}
+
+.success {
+    background-color: var(--success);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.back-btn {
+    position: absolute;
+    text-align: center;
+    left: 40%;
+    top: 50%;
+    margin: 0;
+    padding: 10px;
+}
+
+
 
 /* Start Deopdown js */
-        /* Dropdown Button */
         .dropbtn {
             color: var(--therd-color);
             padding: 5px;
@@ -55,22 +109,18 @@ a {
             height: auto;
             cursor: pointer;
             z-index: 1000;
-            /* background-color: var(--bs-gray-700); */
             background-color: inherit;
         }
 
-        /* Dropdown button on hover & focus */
         .dropbtn:hover, .dropbtn:focus {
             background-color: inherit;
         }
 
-        /* The container <div> - needed to position the dropdown content */
         .dropdown {
             position: relative;
             display: inline-block;
         }
 
-        /* Dropdown Content (Hidden by Default) */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -103,7 +153,6 @@ a {
             top: -8px;
         }
 
-        /* Links inside the dropdown */
         .dropdown-content a {
             color: #2c2a1f;
             padding: 12px 0px;
@@ -113,15 +162,12 @@ a {
 
 
 
-        /* Change color of dropdown links on hover */
         .dropdown-content a:hover {background-color: #ddd}
 
-        /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
         .show {display:block;}
-        /* End Navegationbar */
 
 
-/* End Deopdown js */
+/* End Deopdown */
 
 
 
@@ -140,32 +186,66 @@ a {
 /* Start forms */
 
 .parent {
-    height: 600px;
+    height: 800px;
+    transform: translate(-50px, 20px);
 }
 
 .form {
     width: 40%;
     position: relative;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    bottom: -100px;
+    left: 35%;
 }
 
-.form div {
+.parent-input {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
 }
 
-.form div label {
-    margin-bottom: 10px;
-    font-weight: bold;
-    opacity: .7;
+.icon-in-input {
+    position: relative;
+    top: 52px;
+    z-index: 200;
+    width: fit-content;
+    left: 20px;
+    color: black;
 }
 
-.form div input {
-    padding: 13px 15px;
+.label-input {
+    font-weight: bold;
+    opacity: .7;
+    position: relative;
+    top: 30px;
+}
+
+.input {
+    padding: 13px 50px;
     border-radius: 7px;
     font-size: 15px;
+    margin-top: 15px;
 }
+
+.file-input {
+    background-color: var(--sun-theam);
+}
+
+.form-btn {
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: var(--assistant);
+    width: 150px;
+    height: 40px;
+    color: black;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+
+}
+
+.form-btn:hover {
+    cursor: pointer;
+    background-color: var(--sun-theam);
+    transform: perspective(100px) translateZ(10px);
+}
+
 /* End forms */

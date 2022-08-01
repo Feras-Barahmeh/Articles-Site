@@ -12,6 +12,7 @@
     $commfiles      = '../commonBetweenBackFront/';
     $commfilesCSS   = '../commonBetweenBackFront/css/';
     $commfilesImags =  '../commonBetweenBackFront/images/';
+    $commfilesuploaded =  '../commonBetweenBackFront/uploaded/';
     $commfilesPHP   = '../commonBetweenBackFront/php/';
 
     // Include Files

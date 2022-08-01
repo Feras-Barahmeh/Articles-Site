@@ -67,6 +67,15 @@
 /* End Side Bar */
 
 /* Start Controllar Panel */
+
+.contant-status-cards {
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    transform: translate(160px, 40px);
+    flex-wrap: wrap;
+}
+
 .controle-panel {
     width: 1200px;
     height: 400px;
@@ -80,23 +89,24 @@
     flex-wrap: wrap;
 }
 
-.controle-panel div {
+.status-card {
     background-color: rgb(79, 21, 136);
     width: 250px;
     height: 130px;
     border-radius: 10px;
     padding: 10px;
     display: flex;
+    margin-left: 20px;
 }
 
-.controle-panel div span {
+.status-card span {
     display: flex;
     width: fit-content;
     left: 10px;
     flex-direction: column;
 }
 
-.controle-panel div .vertical-line::after {
+.status-card.vertical-line::after {
     content: "";
     min-height: 87px;
     background-color: #777;
@@ -108,7 +118,7 @@
 }
 
 
-.controle-panel div i {
+.status-card i {
     font-size: 50px;
     display: block;
     width: fit-content;
@@ -116,7 +126,7 @@
 
 
 
-.controle-panel div span a {
+.status-card span a {
     color: white;
     font-size: 35px;
     width: fit-content;
@@ -125,13 +135,13 @@
     margin-top: 10px;
 }
 
-.controle-panel div span a:hover {
+.status-card span a:hover {
     color: var(--assistant);
     transform: perspective(100px) translateZ(10px)  
 
 }
 
-.controle-panel div p {
+.status-card p {
     display: block;
     position: relative;
     text-align: center;
