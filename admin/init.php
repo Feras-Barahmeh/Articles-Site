@@ -20,5 +20,12 @@
     include($fun . 'backendFunctions.php');
     include($commfilesPHP. 'functions.php');
     include($tpl . 'header.php');
-    include($tpl . 'nav.php');
+
+
+    if (!function_exists('SetNav')) {
+        function SetNav() {
+            global $tpl;
+            include($tpl . 'nav.php');
+        }
+    }
 

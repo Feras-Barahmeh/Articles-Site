@@ -26,8 +26,9 @@
                                     <a href="#">Profile</a>
                                     <a href="#">setting</a>
                                     <a href="#">Edit Profile</a>
-                                    <a href="index.php">To Dashbord</a>
+                                    <a href="dashbord.php">To Dashbord</a>
                                     <a href="#">promotion member</a>
+                                    <a href="logout.php">logout</a>
                                 </div>
                             </div>
                         </div>

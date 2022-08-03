@@ -8,7 +8,7 @@
             isset($_POST['password']) ? $password   = filter_var($_POST['password'], FILTER_SANITIZE_STRING)         : $password = NULL;
             isset($_POST['email']) ? $email         = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL)        : $email = NULL;
             isset($_POST['fullName']) ? $fullName   = filter_var($_POST['fullName'], FILTER_SANITIZE_STRING)         : $fullName = NULL;
-            isset($_POST['status']) ? $status       = filter_var($_POST['status'], FILTER_SANITIZE_NUMBER_INT)  : $status = NULL;
+            isset($_POST['permission']) ? $permission       = filter_var($_POST['permission'], FILTER_SANITIZE_NUMBER_INT)  : $permission = NULL;
             isset($_POST['imageName']) ? $imageName       = filter_var($_POST['imageName'], FILTER_SANITIZE_NUMBER_INT)  : $imageName = NULL;
 
             return [
@@ -17,7 +17,7 @@
                 'password'          => $password,
                 'fullName'          => $fullName,
                 'email'             => $email,
-                'status'            => $status,
+                'permission'            => $permission,
                 'imageName'         => $imageName,
             ];
         }
@@ -29,16 +29,16 @@
             global $db;
             $stmt = $db->prepare("INSERT INTO 
                                         users 
-                                            (userName, password, email, fullName, status, dataRegister, imageName)
+                                            (userName, password, email, fullName, permission, dataRegister, imageName)
                                         VALUES 
-                                            (:userName, :password, :email, :fullName, :status, NOW(), :imageName)
+                                            (:userName, :password, :email, :fullName, :permission, NOW(), :imageName)
                                 ");
             $stmt->execute([
                 'userName'  => $info['userName'],
                 'password'  => password_hash($info['password'], PASSWORD_DEFAULT),
                 'email'     => $info['email'],
                 'fullName'  => $info['fullName'],
-                'status'    => $info['status'],
+                'permission'    => $info['permission'],
                 'imageName' => Images::RenameName($infoImg['name']),
             ]);
 
@@ -71,9 +71,9 @@
                     array_push($ERRORS, 'To long name must be less than 26 Character');
                 }
             
-            // Start Status 
-                if ($info['status'] < 0 || $info['status'] > 2) {
-                    array_push($ERRORS, 'status Must between 0 to 2');
+            // Start permission 
+                if ($info['permission'] < 0 || $info['permission'] > 2) {
+                    array_push($ERRORS, 'permission Must between 0 to 2');
                 }
             // Start Email
                 if (strlen($info['email']) == 0) {

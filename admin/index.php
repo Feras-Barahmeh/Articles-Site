@@ -1,86 +1,70 @@
 <?php 
-// Start Global Defination
+
+// Start Global Definations 
     ob_start();
-    $TITLE = "Dashbord";
+    session_start();
+    $TITLE = 'login';
     include('init.php');
-// End Global Difination
 
 // Start Fork Functions
 
-    function StructerStatusCards() {
+    function logo() {
+        global $commfilesImags;
         ?>
-            <div class="contant-status-cards">
-                <div class="users-number status-card">
-                    <span class="vertical-line"> 
-                        <i class="fa-solid fa-users" aria-hidden="true"></i>
-                        <a href="#">11</a>
-                    </span>
-                    <p>Members</p>
-                </div>
-
-                <div class="Pending Memeber status-card">
-                    <span class="vertical-line">
-                        <i class="fa-solid fa-lock-open" aria-hidden="true"></i>
-                        <a href="#">12</a>
-                    </span>
-                    <p>Admins</p>
-                </div>
-
-                <div class="total-artical status-card">
-                    <span class="vertical-line">
-                        <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
-                        <a href="#">3</a>
-                    </span>
-                    <p>Articles</p>
-                </div>
-
-                <div class="comments status-card">
-                    <span class="vertical-line">
-                        <i class="fa-solid fa-comment"  aria-hidden="true"></i>
-                        <a href="#">44</a>
-                    </span>
-                    <p>Comments</p>
-                </div>
-            </div>
+            <img src="<?php echo $commfilesImags ?>/logos/logo3.jpg" alt="" class="logo-layout-img">
         <?php
     }
 
-    function SidBarStructer() {
+    function SetSession($userName) {
+        $fromDB = GlobalFunctions::FromTable('IdUser, password', 'admins', 'WHERE userName = \'' . $userName . '\'', 'fetch' );
+        unset($_SESSION['userName']);
+        $_SESSION['adminName'] = $userName;
+        $_SESSION['password'] = $fromDB['password'];
+        $_SESSION['adminID'] = $fromDB['IdUser'];
+
+    }
+
+// main Function
+    function LoginStructure() {
+        logo();
         ?>
-            <div class="contant-index">
-                <div class="contant-sidbar">
-                    <div class="name"><i class="fa fa-user" aria-hidden="true"></i> Feras</div>
-                    <ul>
-                        <li> <i class="fa-solid fa-house" aria-hidden="true"></i> <a href="#">Home</a></li> <hr>
-                        <li> <i class="fa-solid fa-gears"  aria-hidden="true"></i> <a href="#">Setting App</a></li> <hr>
-                        <li> <i class="fa-solid fa-newspaper" aria-hidden="true"></i><a href="#">Add Article</a></li> <hr>
-                        <li> <i class="fa-solid fa-plus" aria-hidden="true"></i> <a href="users.php?actionMember=add">Add Member</a></li> <hr>
-                    </ul>
-                </div>
+            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" class="form" method="POST" autocomplete="FALSE">
+                <!-- User Name -->
+                    <div class="parent-input width-input-login">
+                        <label for="userName" class="label-input text-center">User Name</label>
+                        <i class="fa-solid fa-user icon-in-input" aria-hidden="true"></i>
+                        <input type="text" name="userName" class="input" placeholder="User Name" required="">
+                    </div>
+
+                <!-- Password -->
+                    <div class="parent-input width-input-login">
+                        <label for="userName" class="label-input text-center">Password</label>
+                        <i class="fa-solid fa-lock icon-in-input" aria-hidden="true"></i>
+                        <input type="password" name="password" class="input" placeholder="password" required="">
+                    </div>
+
+                <input type="submit" value="Login" class="form-btn">
+            </form>
         <?php
     }
 
-    function ControlePanel() {
-        ?>
-                <div class="controle-panel">
 
+// Controller Function
+    LoginStructure();
 
-                </div>
-            </div>
-        <?php
+    if (PostRequests::IfPOST()) {
+        if ( ! GlobalFunctions::IfSetSession('adminName')) {
+
+                    $info = Users::GetInfoUserFromPOST();
+
+                    if ( GlobalFunctions::IfExsist('userName', 'admins', $info['userName'], 'string') ) {
+                        SetSession($info['userName']);
+                    } else {
+                        if (PostRequests::IfPOST())
+                            GlobalFunctions::AlertMassage("Not exist user name or Not permission to enter this page");
+                    }
+        }  else {
+            header("Location: dashbord.php");
+            exit();
+        }
     }
-
-// End Fork Functions
-
-    function BarStructer() { 
-        StructerStatusCards();
-        SidBarStructer();
-        ControlePanel();
-    }
-
-
-
-// Controllar functions
-    BarStructer();
-    include($tpl . 'footer.php');
-    ob_end_flush();

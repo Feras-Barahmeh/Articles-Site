@@ -1,3 +1,27 @@
+/* Start Login */
+.width-input-login {
+    width: 75% !important;
+}
+
+.logo-layout-img  {
+    margin: 30px 0 20px 0;
+    transform: translate(50%, 0);
+    left: 20%;
+    position: relative;
+    border-radius: 10px;
+    opacity: .6;
+}
+
+.login-layout {
+    height: fit-content;
+    width: 60%;
+    position: relative;
+    transform: translate(60%);
+    left: 20px;
+}
+
+/* End Login */
+
 /* Start Dashbors */
 
 
@@ -72,8 +96,10 @@
     display: flex;
     justify-content: space-evenly;
     position: absolute;
-    transform: translate(160px, 40px);
+    transform: translate(-50%, 40px);
+    left: 50%;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .controle-panel {
@@ -90,7 +116,7 @@
 }
 
 .status-card {
-    background-color: rgb(79, 21, 136);
+    background-color: #fa99aa;
     width: 250px;
     height: 130px;
     border-radius: 10px;
@@ -106,15 +132,15 @@
     flex-direction: column;
 }
 
-.status-card.vertical-line::after {
+.status-card .vertical-line::after {
     content: "";
     min-height: 87px;
     background-color: #777;
-    width: 2px;
+    width: 1px;
     top: -95px;
     left: 73px;
     position: relative;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 
 

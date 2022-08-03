@@ -46,6 +46,10 @@ input[type=file]::file-selector-button:hover {
     border: 2px solid #00cec9;
 }
 
+.input:focus {
+    outline: var(--desine-one);
+}
+
 ul {
     list-style: none;
 }
@@ -69,6 +73,7 @@ a {
     transform: translate(30%, 100%);
     font-size: 20px;
     margin-top: 20px;
+    z-index: 100;
 }
 
 .danger {
@@ -216,6 +221,7 @@ a {
     opacity: .7;
     position: relative;
     top: 30px;
+    margin-bottom: 5px;
 }
 
 .input {
@@ -223,6 +229,8 @@ a {
     border-radius: 7px;
     font-size: 15px;
     margin-top: 15px;
+    outline: none;
+    border: none;
 }
 
 .file-input {
@@ -239,7 +247,8 @@ a {
     color: black;
     transition-duration: .2s;
     transition-timing-function: ease-in-out;
-
+    border: none;
+    outline: none;
 }
 
 .form-btn:hover {

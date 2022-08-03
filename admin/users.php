@@ -11,6 +11,7 @@
     session_start();
     $TITLE = 'users';
     include ('init.php');
+    SetNav();
 // End Gloabal Difination
 
 
@@ -27,6 +28,7 @@
             }
         }
     }
+
 
 
 // Start Main Structures
@@ -75,7 +77,7 @@
                                 <div class="parent-input">
                                     <label for="userName" class="label-input">Rank</label>
                                     <i class="fa-solid fa-ranking-star icon-in-input" aria-hidden="true"></i>
-                                    <select name="status" id="status" class="input" required>
+                                    <select name="permission" id="permission" class="input" required>
                                         <option value="0">Member</option>
                                         <option value="1">Admin</option>
                                         <option value="2">Programer</option>

@@ -30,14 +30,14 @@
             }
 
             GlobalFunctions::AlertMassage($mass, $typeAlert);
-            ?> <br> <br> <?php
+            echo "<br><br>";
             GlobalFunctions::AlertMassage('You Will Redirect To ' . $url . 'After '. $sec . 'sec', 'info');
             GlobalFunctions::SitBackBtn();
             header('refresh:'.$sec . ';url='. $direct);
             exit();
         }
 
-        public static function FromTable($filed='*', $table, $condition=NULL,  $ordered = null, $typeOrders = 'DESC', $typeFetch = 'fetchAll', $limit = NULL) {
+        public static function FromTable($filed='*', $table, $condition=NULL, $typeFetch = 'fetchAll', $ordered = null, $typeOrders = 'DESC', $limit = NULL) {
             global $db;
             if($ordered === null) {
                 $stmt = $db->prepare("SELECT $filed FROM $table $condition $limit");
@@ -58,31 +58,67 @@
         public static function IfExsist($selector, $table, $ValueSelector, $debend='string') {
             $val = NULL;
             if ($debend === 'string') {
-                $val = GlobalFunctions::FromTable($selector, $table, 'WHERE ' . $selector . '= \'' . $ValueSelector . '\'', NULL, NULL, 'fetch');
+                $val = GlobalFunctions::FromTable($selector, $table, 'WHERE ' . $selector . '= \'' . $ValueSelector . '\'', 'fetch');
             } else {
-                $val = GlobalFunctions::FromTable($selector, $table, 'WHERE ' . $selector . '= ' . $ValueSelector, NULL, NULL, 'fetch')[$selector];
+                $val = GlobalFunctions::FromTable($selector, $table, 'WHERE ' . $selector . '= ' . $ValueSelector, 'fetch')[$selector];
             }
 
-            if (empty($val[$selector])) {
+            if (! empty($val)) {
                 return true;
             } else {
                 return false;
             }
         } 
 
+        public static function IfSetSession($nameSession = NULL) {
+            if ($nameSession === NULL) {
+                if (isset($_SESSION)) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            } else {
+
+                if (isset($_SESSION[$nameSession])) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+
     }
 
     class GetRequests {
         public static function IfGet() {
-            if(isset($_GET)) {
+            if(! empty($_GET)) {
                 return true;
+            } else {
+                return false;
             }
         }
 
         public static function GetValueGet($nameGet) {
             if (GetRequests::IfGet() && isset($_GET[$nameGet])) {
                 return $_GET[$nameGet];
-            } 
+            }  
+        }
+    }
+
+    class PostRequests {
+        public static function IfPOST() {
+            if(! empty($_POST) && isset($_POST)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public static function GetValuePOST($nameGet) {
+            if (PostRequests::IfPOST() && isset($_POST[$nameGet])) {
+                return $_POST[$nameGet];
+            }  
         }
     }
 
