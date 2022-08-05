@@ -3,27 +3,35 @@
     class Users {
         public static function GetInfoUserFromPOST() {
 
-            isset($_POST['IdUser']) ? $IdUser       = filter_var($_POST['IdUser'], FILTER_SANITIZE_NUMBER_INT)  : $IdUser = NULL;
-            isset($_POST['userName']) ? $userName   = filter_var($_POST['userName'], FILTER_SANITIZE_STRING)         : $userName = NULL;
-            isset($_POST['password']) ? $password   = filter_var($_POST['password'], FILTER_SANITIZE_STRING)         : $password = NULL;
-            isset($_POST['email']) ? $email         = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL)        : $email = NULL;
-            isset($_POST['fullName']) ? $fullName   = filter_var($_POST['fullName'], FILTER_SANITIZE_STRING)         : $fullName = NULL;
-            isset($_POST['permission']) ? $permission       = filter_var($_POST['permission'], FILTER_SANITIZE_NUMBER_INT)  : $permission = NULL;
-            isset($_POST['imageName']) ? $imageName       = filter_var($_POST['imageName'], FILTER_SANITIZE_NUMBER_INT)  : $imageName = NULL;
+            isset($_POST['IdUser']) ? $IdUser                = filter_var($_POST['IdUser'], FILTER_SANITIZE_NUMBER_INT)          : $IdUser          = NULL;
+            isset($_POST['userName']) ? $userName            = filter_var($_POST['userName'], FILTER_SANITIZE_STRING)            : $userName        = NULL;
+            isset($_POST['password']) ? $password            = filter_var($_POST['password'], FILTER_SANITIZE_STRING)            : $password        = NULL;
+            isset($_POST['email']) ? $email                  = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL)                : $email           = NULL;
+            isset($_POST['fullName']) ? $fullName            = filter_var($_POST['fullName'], FILTER_SANITIZE_STRING)            : $fullName        = NULL;
+            isset($_POST['permission']) ? $permission        = filter_var($_POST['permission'], FILTER_SANITIZE_NUMBER_INT)      : $permission      = NULL;
+            isset($_POST['age']) ? $age                          = filter_var($_POST['age'], FILTER_SANITIZE_NUMBER_INT)         : $age             = NULL;
+            isset($_POST['imageName']) ? $imageName          = filter_var($_POST['imageName'], FILTER_SANITIZE_NUMBER_INT)       : $imageName       = NULL;
+            isset($_POST['registerdPass']) ? $registerdPass  = $_POST['registerdPass']                                           : $registerdPass   = NULL;
+            isset($_POST['aboutYou']) ? $aboutYou            = filter_var($_POST['aboutYou'], FILTER_UNSAFE_RAW)                 : $aboutYou        = NULL;
+            isset($_POST['langAndTools']) ? $langAndTools    = filter_var($_POST['langAndTools'], FILTER_UNSAFE_RAW)             : $langAndTools    = NULL;
 
             return [
-                'IdUser'            => $IdUser,
-                'userName'          => $userName,
-                'password'          => $password,
-                'fullName'          => $fullName,
-                'email'             => $email,
+                'IdUser'                => $IdUser,
+                'userName'              => $userName,
+                'password'              => $password,
+                'fullName'              => $fullName,
+                'email'                 => $email,
                 'permission'            => $permission,
-                'imageName'         => $imageName,
+                'imageName'             => $imageName,
+                'registerdPass'         => $registerdPass,
+                'aboutYou'              => $aboutYou,
+                'langAndTools'          => $langAndTools,
+                'age'                   => $age,
             ];
         }
 
 
-        public static function InsertInDB() {
+        public static function InsertToDB() {
             $info = Users::GetInfoUserFromPOST();
             $infoImg = Images::FileInfo();
             global $db;
@@ -39,21 +47,59 @@
                 'email'     => $info['email'],
                 'fullName'  => $info['fullName'],
                 'permission'    => $info['permission'],
-                'imageName' => Images::RenameName($infoImg['name']),
+                'imageName' =>  Images::RenameName($infoImg['name']),
             ]);
 
             if ($stmt) {
-                Images::controllerUplodeProcess();
+                Images::controllerUplodeProcess('users');
                 GlobalFunctions::Redirect('Sucsses Add User', 'back', 'success', 1000); 
             } else {
                 echo "Found sum errore";
             }
         }
+
+
+        public static function UpdateToDB($nameTable) {
+            $info = Users::GetInfoUserFromPOST();
+            $infoImg = Images::FileInfo();
+
+            global $db;
+
+            $stmt = $db->prepare("UPDATE
+                                        $nameTable
+                                    SET
+                                        userName = ?, password = ?, email = ?, fullName = ?, age = ?, aboutYou = ?, langAndTools = ?, imageName = ?
+                                    WHERE
+                                        IdUser = ?");
+
+
+            $stmt->execute([
+                $info['userName'],
+                password_hash($info['password'], PASSWORD_DEFAULT),
+                $info['email'],
+                $info['fullName'],
+                $info['age'],
+                $info['aboutYou'],
+                $info['langAndTools'],
+                Images::RenameName($infoImg['name']),
+                Sessions::GetValueSessionDepKey('adminID'),
+            ]);
+
+            if ($stmt) {
+                Images::controllerUplodeProcess('users');
+                GlobalFunctions::Redirect('Sucsses Edit Information', 'back', 'success', 1000);
+
+            } else {
+                echo "Found sum errore";
+            }
+
+
+        }
     }
 
     class ValidationInput {
 
-        public static function ValidationInput() {
+        public static function ValidationInput($to = 'add') {
             $ERRORS = [];
             $info = Users::GetInfoUserFromPOST();
             // Start user Name
@@ -63,7 +109,7 @@
                 }
 
             // Start password
-                if (strlen($info['password']) <= 3) {
+                if (strlen($info['password']) <= 3 && $to != 'add') {
                     array_push($ERRORS, 'Password very week use characters and number');
                 }
             // Start Full name

@@ -25,159 +25,215 @@
 /* Start Dashbors */
 
 
-/* Start side Bar */
-
-.contant-index  {
-    height: 900px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+.dashbord {
+    display: grid;
+    height: inherit;
+    margin-top: 30px;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 20px;
 }
-
 
 .contant-sidbar {
+    grid-row: 1 / 3;
     background-color: var(--bbackground-color);
-    width: 250px;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 10px;
+    margin-left: 9px;
+    text-align: center;
+    padding: 20px;
     border-radius: 10px;
-    padding: 10px;
-    box-shadow: inset 2px 2px 18px white;
 }
 
-.name {
-    margin: 20px;
+.contant-sidbar .name {
+    margin-bottom: 20px;
+    display: inline-flex;
+    justify-content: space-around;
 }
 
-.name i {
-    margin-right: 10px;
+.contant-sidbar .name img {
+    width: 30px;
+    height: 30px;
+    margin-right: 13px;
+    top: -4px;
+    position: relative;
+    border-radius: 2px;
 }
 
-.contant-sidbar  ul {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 100%;
-    margin-top: 20px;
+/* .contant-sidbar ul {
+
+} */
+
+.contant-sidbar ul li {
+    margin-bottom: 20px;
+    padding: 9px;
+    border-radius: 10px;
+    transition-duration: .3s;
+    transition-timing-function: ease-in-out;
 }
 
-.contant-sidbar  ul li {
-    align-self: center;
+.contant-sidbar ul li:hover {
+    background-color: var(--titels);
+    transform: perspective(100px) translateZ(10px);
 }
 
-.contant-sidbar  ul li:hover {
-    transform: perspective(100px) translateZ(10px)
+.contant-sidbar ul li i {
+    position: relative;
+    left: -5px;
 }
 
-.contant-sidbar  ul li i {
-    margin-right: 10px;
-}
-
-
-.contant-sidbar  ul a {
+.contant-sidbar ul li a {
     color: white;
 }
 
-
-.contant-sidbar  ul hr {
-    width: 71%;
-    align-self: center;
-    opacity: .6;
+.contant-sidbar ul hr {
+    margin-bottom: 20px;
+    height: 0.5px;
+    width: 50%;
+    transform: translate(50%, 0);
 }
 
-/* End Side Bar */
+.img-user-aside {
+    width: 170px;
+    height: 170px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
 
-/* Start Controllar Panel */
+.containt-section {
+    grid-row: 1 / 3;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 5fr;
+}
 
 .contant-status-cards {
+    grid-column: 1 / 5;
     display: flex;
     justify-content: space-evenly;
-    position: absolute;
-    transform: translate(-50%, 40px);
-    left: 50%;
-    flex-wrap: wrap;
-    width: 100%;
 }
 
-.controle-panel {
-    width: 1200px;
-    height: 400px;
-    background-color: var(--bbackground-color);
-    align-self: center;
+.contant-status-cards .status-card {
+    width: calc(100% / 4);
+    background-color: #ce596d;
+    margin-left: 10px;
     border-radius: 10px;
-    box-shadow: inset 2px 2px 20px white;
     display: flex;
-    padding: 20px;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-.status-card {
-    background-color: #fa99aa;
-    width: 250px;
-    height: 130px;
-    border-radius: 10px;
-    padding: 10px;
+.vertical-line {
     display: flex;
-    margin-left: 20px;
-}
-
-.status-card span {
-    display: flex;
-    width: fit-content;
-    left: 10px;
     flex-direction: column;
+    justify-content: space-evenly;
 }
 
-.status-card .vertical-line::after {
+.vertical-line::after {
     content: "";
-    min-height: 87px;
+    width: 2px;
+    height: 60px;
     background-color: #777;
-    width: 1px;
-    top: -95px;
-    left: 73px;
-    position: relative;
-    border-radius: 10px;
+    position: absolute;
+    transform: translate(50px, -3px);
 }
 
-
-.status-card i {
-    font-size: 50px;
-    display: block;
-    width: fit-content;
-}
-
-
-
-.status-card span a {
-    color: white;
-    font-size: 35px;
-    width: fit-content;
-    position: relative;
-    left: 10px;
-    margin-top: 10px;
-}
-
-.status-card span a:hover {
-    color: var(--assistant);
-    transform: perspective(100px) translateZ(10px)  
-
-}
-
-.status-card p {
-    display: block;
-    position: relative;
-    text-align: center;
-    left: 40px;
-    top: 40px;
+.vertical-line i {
     font-size: 25px;
+}
+
+.vertical-line a {
+    font-size: 25px;
+    color: white;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+}
+
+.vertical-line a:hover {
+    color: var(--assistant);
+    transform: perspective(100px) translateZ(10px);
+}
+
+.indication-card {
+    display: inline;
+    top: 40%;
+    position: relative;
+    font-size: 20px;
+    width: fit-content;
     height: fit-content;
 }
 
-/* End Controllar Panel */
+.statistics {
+    grid-column: 1 / 5;
+}
 
 
 /* End Dashbors */
+
+
+/* Start Edit Profile Page  */
+
+.container-edit-form {
+    display: grid;
+    grid-template-columns: 100px 3fr 100px 2fr ;
+    grid-template-rows: 100px 1fr 100px;
+    height: inherit;
+    column-gap: 10px;
+}
+
+.form-edit {
+    grid-row: 2 / 3;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column: 2 / 3;
+    background-color: var(--bbackground-color);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.container-feild {
+    margin-bottom: 10px;
+}
+
+.form-edit label {
+    display: block;
+    margin-bottom: 5px;
+    position: relative;
+    left: 35px;
+}
+
+.form-edit .container-feild i {
+    position: absolute;
+    transform: translate(267px, 10px);
+    color: black;
+}
+
+.input-edit-feild {
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    margin-left: 10px;
+}
+
+.file-input {
+    background-color: white;
+}
+
+.container-edit-form textarea {
+    border-radius: 10px;
+    outline: none;
+    padding: 10px;
+}
+
+.img-user {
+    grid-row: 2  / 3;
+    grid-column: 4 / 5;
+    top: 20px;
+    position: relative;
+}
+
+.img-user img {
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+}
+
+/* End Edit Profile Page  */

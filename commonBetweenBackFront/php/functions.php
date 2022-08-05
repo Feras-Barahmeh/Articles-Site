@@ -29,10 +29,11 @@
                 $url = $direct;
             }
 
-            GlobalFunctions::AlertMassage($mass, $typeAlert);
-            echo "<br><br>";
-            GlobalFunctions::AlertMassage('You Will Redirect To ' . $url . 'After '. $sec . 'sec', 'info');
-            GlobalFunctions::SitBackBtn();
+            self::AlertMassage($mass, $typeAlert);
+
+            self::AlertMassage('You Will Redirect To ' . $url . 'After '. $sec . 'sec', 'info');
+
+            self::SitBackBtn();
             header('refresh:'.$sec . ';url='. $direct);
             exit();
         }
@@ -40,16 +41,20 @@
         public static function FromTable($filed='*', $table, $condition=NULL, $typeFetch = 'fetchAll', $ordered = null, $typeOrders = 'DESC', $limit = NULL) {
             global $db;
             if($ordered === null) {
+
                 $stmt = $db->prepare("SELECT $filed FROM $table $condition $limit");
             }
+
             else
                 $stmt = $db->prepare("SELECT $filed FROM $table $condition ORDER BY $ordered $typeOrders $limit");
             $stmt->execute();
     
             if ($typeFetch === 'fetchAll')
                 $requerd = $stmt->fetchAll();
+
             elseif($typeFetch === 'fetch') {
                 $requerd = $stmt->fetch();
+
             }
             return $requerd;
         }
@@ -57,37 +62,48 @@
 
         public static function IfExsist($selector, $table, $ValueSelector, $debend='string') {
             $val = NULL;
+
             if ($debend === 'string') {
-                $val = GlobalFunctions::FromTable($selector, $table, 'WHERE ' . $selector . '= \'' . $ValueSelector . '\'', 'fetch');
+                $val = self::FromTable($selector, $table, 'WHERE ' . $selector . '= \'' . $ValueSelector . '\'', 'fetch');
+
             } else {
-                $val = GlobalFunctions::FromTable($selector, $table, 'WHERE ' . $selector . '= ' . $ValueSelector, 'fetch')[$selector];
+                $val = self::FromTable($selector, $table, 'WHERE ' . $selector . '= ' . $ValueSelector, 'fetch')[$selector];
             }
 
             if (! empty($val)) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } 
+
+
+    }
+
+    class Sessions {
+        public static function IfSetSession() {
+            if (isset($_SESSION)) {
                 return true;
             } else {
                 return false;
             }
-        } 
+        }
 
-        public static function IfSetSession($nameSession = NULL) {
-            if ($nameSession === NULL) {
-                if (isset($_SESSION)) {
-                    return true;
-                } else {
-                    return false;
-                }
-
+        public static function IfSetSessionDepValue($key) {
+            if ( ! empty($_SESSION[$key]) && isset( $_SESSION[$key] ) ) {
+                return true;
             } else {
-
-                if (isset($_SESSION[$nameSession])) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return 0;
             }
         }
 
+        public static function GetValueSessionDepKey($key) {
+            if (self::IfSetSessionDepValue($key)) {
+                return $_SESSION[$key];
+            } else {
+                return false;
+            }
+        }
     }
 
     class GetRequests {
@@ -165,18 +181,23 @@
             return $info['userName'] . "_" . $currentName;
         }
 
-        public static function controllerUplodeProcess() {
-            $info = Images::FileInfo(); global $commfilesuploaded;
-            if (Images::ValidExtension($info['name'])) {
-                $info['name'] = Images::RenameName($info['name']);
-                move_uploaded_file($info['tmp_name'], $commfilesuploaded . 'users' . $info['name']);
+        public static function controllerUplodeProcess($FolderName) {
+            $info = self::FileInfo(); global $commfilesuploaded;
+
+            if (self::ValidExtension($info['name'])) {
+
+                if ( $info['name'] !== NULL ) {
+                    $info['name'] = self::RenameName($info['name']);
+                    move_uploaded_file($info['tmp_name'], $commfilesuploaded . $FolderName . '/' . $info['name']);
+                }
             }
         }
 
-        public static function IfValidImage(&$ERRORS) {
-            $info = Images::FileInfo();
+        public static function IfValidImage( & $ERRORS) {
+            $info = self::FileInfo();
+
             // name
-                if (!Images::ValidExtension($info['name'])) {
+                if ( ! self::ValidExtension($info['name']) ) {
                     array_push($ERRORS, 'Un Valid Extension Permissible jpeg, jpg, png, gif extensions');
                 }
             // size

@@ -17,13 +17,14 @@
 
 // Stasrt Fork Functions
     function controllerInsert() {
-        Images::FileInfo();
         $info = Users::GetInfoUserFromPOST();
+
         if(ValidationInput::ValidationInput()) {
-            if (GlobalFunctions::IfExsist('userName', 'users', $info['userName'])) {
-                Users::InsertInDB();
+            
+            if (! GlobalFunctions::IfExsist('userName', 'users', $info['userName'])) {
+                Users::InsertToDB();
             } else {
-                GlobalFunctions::AlertMassage('This User Is Exist Alrasdy', 'info');
+                GlobalFunctions::AlertMassage('This User Is Exist Alrasdy');
                 GlobalFunctions::SitBackBtn();
             }
         }

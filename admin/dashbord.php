@@ -17,7 +17,7 @@
                         <i class="fa-solid fa-users" aria-hidden="true"></i>
                         <a href="#">11</a>
                     </span>
-                    <p>Members</p>
+                    <p class="indication-card">Members</p>
                 </div>
 
                 <div class="Pending Memeber status-card">
@@ -25,7 +25,7 @@
                         <i class="fa-solid fa-lock-open" aria-hidden="true"></i>
                         <a href="#">12</a>
                     </span>
-                    <p>Admins</p>
+                    <p class="indication-card">Admins</p>
                 </div>
 
                 <div class="total-artical status-card">
@@ -33,7 +33,7 @@
                         <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
                         <a href="#">3</a>
                     </span>
-                    <p>Articles</p>
+                    <p class="indication-card">Articles</p>
                 </div>
 
                 <div class="comments status-card">
@@ -41,30 +41,35 @@
                         <i class="fa-solid fa-comment"  aria-hidden="true"></i>
                         <a href="#">44</a>
                     </span>
-                    <p>Comments</p>
+                    <p class="indication-card">Comments</p>
                 </div>
             </div>
         <?php
     }
 
     function SidBarStructer() {
+        global $commfilesImags;
         ?>
-            <div class="contant-index">
-                <div class="contant-sidbar">
-                    <div class="name"><i class="fa fa-user" aria-hidden="true"></i> Feras</div>
+            
+                <aside class="contant-sidbar">
+                    <!-- <h4 class="name"><i class="fa fa-user" aria-hidden="true"></i> Feras </h4> -->
+                    <h4 class="name"> <img src="<?php echo $commfilesImags ?>/imagesProject/defaultImg.jpg" alt=""> Feras </h4>
                     <ul>
-                        <li> <i class="fa-solid fa-house" aria-hidden="true"></i> <a href="#">Home</a></li> <hr>
-                        <li> <i class="fa-solid fa-gears"  aria-hidden="true"></i> <a href="#">Setting App</a></li> <hr>
-                        <li> <i class="fa-solid fa-newspaper" aria-hidden="true"></i><a href="#">Add Article</a></li> <hr>
+                        <li> <i class="fa-solid fa-house" aria-hidden="true"></i> <a href="#">Home</a>  </li> <hr>
+                        <li> <i class="fa-solid fa-gears"  aria-hidden="true"></i> <a href="#">Setting App</a>  </li> <hr>
+                        <li> <i class="fa-solid fa-newspaper" aria-hidden="true"></i><a href="#">Add Article</a>  </li> <hr>
                         <li> <i class="fa-solid fa-plus" aria-hidden="true"></i> <a href="users.php?actionMember=add">Add Member</a></li>
                     </ul>
-                </div>
+
+                    <!-- <img src="<?php echo $commfilesImags  ?>/imagesProject/defaultImg.jpg" alt="user img" class="img-user-aside"> -->
+                    <img src="<?php echo $commfilesImags  ?>/logos/logo3.jpg" alt="user img" class="img-user-aside">
+                </aside>
         <?php
     }
 
     function ControlePanel() {
         ?>
-                <div class="controle-panel">
+                <div class="statistics">
 
 
                 </div>
@@ -75,15 +80,25 @@
 // End Fork Functions
 
     function ControllerLayout() { 
-        StructerStatusCards();
-        SidBarStructer();
-        ControlePanel();
+        ?>
+        <div class="dashbord">
+            <?php 
+                SidBarStructer();
+            ?>
+            <section class="containt-section">
+                <?php 
+                    StructerStatusCards();
+                    ControlePanel(); 
+                ?>
+            </section>
+        </div>
+        <?php
     }
 
 
 
 // Controllar functions
-    if ( ! GlobalFunctions::IfSetSession()) {
+    if ( ! Sessions::IfSetSession()) {
         header('Location: index.php');
         exit();
     }

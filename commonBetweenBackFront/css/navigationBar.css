@@ -46,12 +46,32 @@ nav ul li:hover a::after {
     background-color: white;
 }
 
+.separetor-links {
+    width: 67%;
+    align-self: center;
+    opacity: .6;
+    position: relative;
+    transform: translateX(42px);
+    
+}
+
 .profile-pictuer {
     width: 50px;
     height: 45px;
     border-radius: 5px;
 }
 
+.name-in-nav {
+    display: inline;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
 .dropbtn:hover {
     color: #f3d33a;
+}
+
+.icone-drobdown {
+    position: absolute;
+    left: 6px;
 }
