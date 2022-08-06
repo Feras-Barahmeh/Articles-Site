@@ -1,12 +1,4 @@
 <?php 
-// Start Global Defination
-    ob_start();
-    session_start();
-    $TITLE = "Dashbord";
-    include('init.php');
-    SetNav();
-// End Global Difination
-
 // Start Fork Functions
 
     function StructerStatusCards() {
@@ -15,7 +7,7 @@
                 <div class="users-number status-card">
                     <span class="vertical-line"> 
                         <i class="fa-solid fa-users" aria-hidden="true"></i>
-                        <a href="#">11</a>
+                        <a href="dashbord.php?actionMember=users">11</a>
                     </span>
                     <p class="indication-card">Members</p>
                 </div>
@@ -48,12 +40,13 @@
     }
 
     function SidBarStructer() {
-        global $commfilesImags;
+        global $commfilesImags, $commfilesuploaded;
+        $nameUser =  GlobalFunctions::FromTable('userName', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['userName']
         ?>
             
                 <aside class="contant-sidbar">
-                    <!-- <h4 class="name"><i class="fa fa-user" aria-hidden="true"></i> Feras </h4> -->
-                    <h4 class="name"> <img src="<?php echo $commfilesImags ?>/imagesProject/defaultImg.jpg" alt=""> Feras </h4>
+
+                    <h4 class="name"> <?php Images::SetImg($commfilesuploaded . 'users/', Images::GetNameImgFromDB(), 'small-img'); echo $nameUser; ?>  </h4>
                     <ul>
                         <li> <i class="fa-solid fa-house" aria-hidden="true"></i> <a href="#">Home</a>  </li> <hr>
                         <li> <i class="fa-solid fa-gears"  aria-hidden="true"></i> <a href="#">Setting App</a>  </li> <hr>
@@ -70,15 +63,27 @@
     function ControlePanel() {
         ?>
                 <div class="statistics">
-
-
                 </div>
             </div>
         <?php
     }
+// GetRequests::GetValueGet('$actionMember')
+
+    function Querys($valueActionMember) {
+
+        switch ($valueActionMember) {
+            case 'users' :
+                echo "table users";
+                break;
+            default:
+                ControllerLayout();
+        }
+
+    }
 
 // End Fork Functions
 
+// Start Main Function
     function ControllerLayout() { 
         ?>
         <div class="dashbord">
@@ -97,12 +102,33 @@
 
 
 
-// Controllar functions
-    if ( ! Sessions::IfSetSession()) {
-        header('Location: index.php');
-        exit();
+// Start Global Defination
+    ob_start();
+    session_start();
+    $TITLE = "Dashbord";
+    include('init.php');
+
+    if (Sessions::IfSetSession() ) {
+        $permission = GlobalFunctions::FromTable('permission', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['permission'];
+
+        if ($permission  >= 1) {
+            SetNav();
+            // ControllerLayout();
+            Querys(GetRequests::GetValueGet('actionMember'));
+        } else {
+            GlobalFunctions::AlertMassage("Your Permission Don't Let You To Enter This Page");
+            ?> <a href="index.php"  class="form-btn back-btn">Bake</a> <?php
+        }
+
+    } else {
+        GlobalFunctions::AlertMassage("Can't Enter This Page Directry");
+        ?> <a href="index.php"  class="form-btn back-btn">Bake</a> <?php
     }
 
-    ControllerLayout();
+
+
     include($tpl . 'footer.php');
     ob_end_flush();
+
+
+// End Global Difination

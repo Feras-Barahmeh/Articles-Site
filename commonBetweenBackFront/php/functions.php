@@ -153,12 +153,12 @@
         public static function FileInfo() {
             $info = $_FILES['imageName'];
 
-            $name = filter_var(strtolower($info['name']), FILTER_SANITIZE_STRING);
-            $full_path = filter_var($info['full_path'], FILTER_SANITIZE_STRING);
-            $type = filter_var($info['type'], FILTER_SANITIZE_STRING);
-            $tmp_name = filter_var($info['tmp_name'], FILTER_SANITIZE_STRING);
-            $error = filter_var($info['error'], FILTER_SANITIZE_STRING);
-            $size = filter_var($info['size'], FILTER_SANITIZE_NUMBER_INT);
+            $name       = filter_var(strtolower($info['name']), FILTER_SANITIZE_STRING);
+            $full_path  = filter_var($info['full_path'], FILTER_SANITIZE_STRING);
+            $type       = filter_var($info['type'], FILTER_SANITIZE_STRING);
+            $tmp_name   = filter_var($info['tmp_name'], FILTER_SANITIZE_STRING);
+            $error      = filter_var($info['error'], FILTER_SANITIZE_NUMBER_INT);
+            $size       = filter_var($info['size'], FILTER_SANITIZE_NUMBER_INT);
 
             return [
                 'name'      => $name,
@@ -168,6 +168,23 @@
                 'error'     => $error,
                 'size'      => $size,
             ];
+        }
+
+        public static function GetNameImgFromDB() {
+            return 
+                GlobalFunctions::FromTable('imageName', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['imageName'];
+        }
+
+        public static function NameImg() {
+            $info = self::FileInfo();
+
+            if ( ! empty($info['name']) ) {
+                $imgName = Images::RenameName($info['name']);
+            } else {
+                $imgName = GlobalFunctions::FromTable('imageName', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['imageName'];
+            }
+
+            return $imgName;
         }
 
         public static function ValidExtension($extension) {
@@ -181,29 +198,43 @@
             return $info['userName'] . "_" . $currentName;
         }
 
+
         public static function controllerUplodeProcess($FolderName) {
             $info = self::FileInfo(); global $commfilesuploaded;
 
             if (self::ValidExtension($info['name'])) {
 
-                if ( $info['name'] !== NULL ) {
+                if ( ! empty( $info['name']) ) {
                     $info['name'] = self::RenameName($info['name']);
                     move_uploaded_file($info['tmp_name'], $commfilesuploaded . $FolderName . '/' . $info['name']);
                 }
             }
         }
 
+        public static function SetImg($path, $nameImg, $class = NULL ) {
+            global $commfilesImags;
+
+            if ( ! empty ($nameImg)) {
+                ?> <img src="<?php echo $path . $nameImg ?>"alt="Image" class="<?php echo $class ?>"> <?php
+            } else {
+                ?> <img src="<?php echo $commfilesImags ?>logos/logo3.jpg" alt="Imgae" class="<?php echo $class ?> <?php
+            }
+        }
+
+
         public static function IfValidImage( & $ERRORS) {
             $info = self::FileInfo();
 
-            // name
-                if ( ! self::ValidExtension($info['name']) ) {
-                    array_push($ERRORS, 'Un Valid Extension Permissible jpeg, jpg, png, gif extensions');
-                }
-            // size
-                if ($info['size'] > 51194 * 3) {
-                    array_push($ERRORS, 'Large Image Size Must be less Than' . 51194 * 3);
-                }
+            if ($info['name'] != NULL) {
+                // name
+                    if ( ! self::ValidExtension($info['name']) ) {
+                        array_push($ERRORS, 'Unvalid Extension Permissible jpeg, jpg, png, gif extensions');
+                    }
+                // size
+                    if ($info['size'] > 51194 * 3) {
+                        array_push($ERRORS, 'Large Image Size Must be less Than' . 51194 * 3);
+                    }
+            }
         }
     }
 

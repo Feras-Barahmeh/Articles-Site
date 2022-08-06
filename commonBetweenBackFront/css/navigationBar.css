@@ -55,10 +55,19 @@ nav ul li:hover a::after {
     
 }
 
+
+.options-user {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
 .profile-pictuer {
     width: 50px;
     height: 45px;
     border-radius: 5px;
+    margin-left: 10px;
 }
 
 .name-in-nav {

@@ -35,6 +35,7 @@
             $info = Users::GetInfoUserFromPOST();
             $infoImg = Images::FileInfo();
             global $db;
+
             $stmt = $db->prepare("INSERT INTO 
                                         users 
                                             (userName, password, email, fullName, permission, dataRegister, imageName)
@@ -50,7 +51,7 @@
                 'imageName' =>  Images::RenameName($infoImg['name']),
             ]);
 
-            if ($stmt) {
+            if ( $stmt->rowCount() > 0 ) {
                 Images::controllerUplodeProcess('users');
                 GlobalFunctions::Redirect('Sucsses Add User', 'back', 'success', 1000); 
             } else {
@@ -61,17 +62,14 @@
 
         public static function UpdateToDB($nameTable) {
             $info = Users::GetInfoUserFromPOST();
-            $infoImg = Images::FileInfo();
-
             global $db;
 
             $stmt = $db->prepare("UPDATE
-                                        $nameTable
+                                        users
                                     SET
                                         userName = ?, password = ?, email = ?, fullName = ?, age = ?, aboutYou = ?, langAndTools = ?, imageName = ?
                                     WHERE
                                         IdUser = ?");
-
 
             $stmt->execute([
                 $info['userName'],
@@ -81,16 +79,16 @@
                 $info['age'],
                 $info['aboutYou'],
                 $info['langAndTools'],
-                Images::RenameName($infoImg['name']),
-                Sessions::GetValueSessionDepKey('adminID'),
+                Images::NameImg($nameTable),
+                Sessions::GetValueSessionDepKey('IdUser'),
             ]);
 
-            if ($stmt) {
+            if ($stmt->rowCount() > 0) {
                 Images::controllerUplodeProcess('users');
                 GlobalFunctions::Redirect('Sucsses Edit Information', 'back', 'success', 1000);
 
             } else {
-                echo "Found sum errore";
+                GlobalFunctions::AlertMassage("Can't Update Now Try again later");
             }
 
 
@@ -112,15 +110,17 @@
                 if (strlen($info['password']) <= 3 && $to != 'add') {
                     array_push($ERRORS, 'Password very week use characters and number');
                 }
+
             // Start Full name
                 if (strlen($info['fullName']) >= 25) {
                     array_push($ERRORS, 'To long name must be less than 26 Character');
                 }
-            
+
             // Start permission 
                 if ($info['permission'] < 0 || $info['permission'] > 2) {
                     array_push($ERRORS, 'permission Must between 0 to 2');
                 }
+
             // Start Email
                 if (strlen($info['email']) == 0) {
                     array_push($ERRORS, 'Must Enter Email To verify Acount');

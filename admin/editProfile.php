@@ -12,6 +12,7 @@
         if (  $FromPostPass !== $FromDB && ($FromPostPass == NULL || $FromPostPass == null)) {
             $_POST['password'] = $_POST['registerdPass'];
         }
+
     }
 
     function PrepareToEdit() {
@@ -29,7 +30,7 @@
     function StructerEdit() {
         global $commfilesuploaded;
 
-        $values = GlobalFunctions::FromTable('*', 'admins', 'WHERE idUser = ' . Sessions::GetValueSessionDepKey('adminID'), 'fetch');
+        $values = GlobalFunctions::FromTable('*', 'users', 'WHERE idUser = ' . Sessions::GetValueSessionDepKey('IdUser'), 'fetch');
         ?>
             <h3 class="h-title">Edit Profile</h3>
             <div class="container-edit-form">

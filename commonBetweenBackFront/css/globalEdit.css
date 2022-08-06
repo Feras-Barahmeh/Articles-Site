@@ -27,7 +27,7 @@ html {
 body {
     background-color: #1C2148;
     color: var(--sun-theam);
-    height: 80vh;
+    height: 85vh;
 }
 
 ::selection {
@@ -89,7 +89,8 @@ a {
     border-radius: 10px;
     font-size: 20px;
     position: relative;
-    top: -100%;
+    /* top: -100%; */
+    top: 3%;
     opacity: .7;
     left: 50px;
 }
