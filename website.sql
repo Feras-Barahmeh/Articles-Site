@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 07, 2022 at 01:10 AM
+-- Generation Time: Aug 09, 2022 at 12:46 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -46,8 +46,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`IdUser`, `userName`, `password`, `email`, `fullName`, `aboutYou`, `langAndTools`, `permission`, `age`, `imageName`, `dataRegister`) VALUES
-(1, 'feras', '$2y$10$hQ8nyit/OksVwqr/cNXPAe6X25FsJIS8cqqgqcTRgS.YMeeSlpZYK', 'ferasfadi345@gmail.com', 'Feras Fadi Barahmeh', 'I\'m Feras Barahmeh', 'cpp, php, python, C#', 1, 20, 'feras_channels4_profile.jpg', '2022-08-07'),
-(2, 'majd', '$2y$10$hQ8nyit/OksVwqr/cNXPAe6X25FsJIS8cqqgqcTRgS.YMeeSlpZYK', 'majd@majd.com', 'Majd Fadi Barahmeh', '', '', 0, 0, 'majd_download (1).jpg', '2022-08-07');
+(1, 'feras', '$2y$10$smsGMZ/IXzRMfxi8DrPv6uHVe5ftJzGDuUNSjLrNbWnCID1S6q9nC', 'ferasfadi345@gmail.com', 'Feras Fadi Barahmeh', 'I\'m Feras Barahmeh', 'cpp, php, python, C#', 1, 20, 'feras_channels4_profile.jpg', '2022-08-07'),
+(2, 'majd', '$2y$10$HA1p1jssKqAtiNr6ojdSeOB/.VSxbV4YMmodi6hsi4LHtbsnZWl/.', 'majd@majd.com', '', 'I\'m Majd', 'R, Python, Rube', 0, 19, 'majd_channels4_profile.jpg', '2022-08-07'),
+(3, 'khaled', '$2y$10$BCQnkYDhjmeuPUfR2KyrWe1G6Kbdgs7MicXQZfjkNnQXelHoib7X2', 'k@k.com', 'Khaled Fadi Barahmeh', '', '', 0, 0, '', '2022-08-08'),
+(4, 'jenan', '$2y$10$yS/X.amKTIi6n2uKp6E15u6rYQjZaPmzVcfHi5ivt9MzQB8pD859S', 'j@j.com', 'Jenan', '', '', 0, 0, '', '2022-08-08'),
+(5, 'belal', '$2y$10$O6GtWnSjzrSaxCjlGbSI8O/cXKPBp33XIDrFeNgvC8K81wXcoEEhu', 'b@b.com', 'Belal Fadi', '', '', 0, 0, '', '2022-08-08'),
+(6, 'osama', '$2y$10$jLVyXDEYYFbhbl7yAc8NRub/F5YL/ecdkf3dAUugWsXMNb9YrnHgG', 'o@o.com', 'Osama Mohammad', '', '', 0, 0, 'feras_channels4_profile.jpg', '2022-08-09'),
+(7, 'blabla', '$2y$10$FkQcTLFOWjrRfJ6rRT26nunKg2Ywiw4TwJ8UkXENFZUMREqNkNpGy', 'b@b.com', '1234Blas', '', '', 0, 0, 'blabla_photo-1618424181497-157f25b6ddd5.jpg', '2022-08-09');
 
 --
 -- Indexes for dumped tables
@@ -68,7 +73,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identify user number', AUTO_INCREMENT=3;
+  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identify user number', AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
