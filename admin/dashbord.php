@@ -1,23 +1,24 @@
 <?php 
 // Start Fork Functions
 
+
     function StructerStatusCards() {
         ?>
             <div class="contant-status-cards">
                 <div class="users-number status-card">
                     <span class="vertical-line"> 
                         <i class="fa-solid fa-users" aria-hidden="true"></i>
-                        <a href="dashbord.php?actionMember=users">11</a>
+                        <a href="users.php">11</a>
                     </span>
                     <p class="indication-card">Members</p>
                 </div>
 
                 <div class="Pending Memeber status-card">
                     <span class="vertical-line">
-                        <i class="fa-solid fa-lock-open" aria-hidden="true"></i>
+                    <i class="fa fa-user-plus"  aria-hidden="true"></i>
                         <a href="#">12</a>
                     </span>
-                    <p class="indication-card">Admins</p>
+                    <p class="indication-card">Pending Users</p>
                 </div>
 
                 <div class="total-artical status-card">
@@ -46,7 +47,7 @@
             
                 <aside class="contant-sidbar">
 
-                    <h4 class="name"> <?php Images::SetImg($commfilesuploaded . 'users/', Images::GetNameImgFromDB(), 'small-img'); echo $nameUser; ?>  </h4>
+                    <h4 class="name"> <?php Images::SetImg($commfilesuploaded . 'users/', Images::GetNameImgFromDB('imageName', 'users', "Where IdUser = " .  Sessions::GetValueSessionDepKey('IdUser')), 'small-img'); echo $nameUser; ?>  </h4>
                     <ul>
                         <li> <i class="fa-solid fa-house" aria-hidden="true"></i> <a href="#">Home</a>  </li> <hr>
                         <li> <i class="fa-solid fa-gears"  aria-hidden="true"></i> <a href="#">Setting App</a>  </li> <hr>
@@ -67,23 +68,11 @@
             </div>
         <?php
     }
-// GetRequests::GetValueGet('$actionMember')
-
-    function Querys($valueActionMember) {
-
-        switch ($valueActionMember) {
-            case 'users' :
-                echo "table users";
-                break;
-            default:
-                ControllerLayout();
-        }
-
-    }
 
 // End Fork Functions
 
 // Start Main Function
+
     function ControllerLayout() { 
         ?>
         <div class="dashbord">
@@ -108,13 +97,13 @@
     $TITLE = "Dashbord";
     include('init.php');
 
-    if (Sessions::IfSetSession() ) {
+    if (Sessions::IfSetSession() && Sessions::IfSetSessionDepValue('IdUser')) {
         $permission = GlobalFunctions::FromTable('permission', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['permission'];
 
-        if ($permission  >= 1) {
+
+        if ($permission  == 1) {
             SetNav();
-            // ControllerLayout();
-            Querys(GetRequests::GetValueGet('actionMember'));
+            ControllerLayout();
         } else {
             GlobalFunctions::AlertMassage("Your Permission Don't Let You To Enter This Page");
             ?> <a href="index.php"  class="form-btn back-btn">Bake</a> <?php

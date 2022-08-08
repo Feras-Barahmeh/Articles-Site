@@ -160,7 +160,7 @@
 }
 
 .contant-status-cards .status-card {
-    width: calc(100% / 4);
+    width: calc(100% / 5);
     background-color: #ce596d;
     margin-left: 10px;
     border-radius: 10px;
@@ -213,7 +213,6 @@
     background-color: var(--bbackground-color);
     border-radius: 10px;
 }
-
 
 /* End Dashbors */
 
@@ -287,3 +286,110 @@
 }
 
 /* End Edit Profile Page  */
+
+
+/* Start Show User */
+
+.contanier-table {
+    display: grid;
+    grid-template-columns: 30px 1fr 30px;
+    grid-template-rows: 60px 1fr;
+    width: 100%;
+}
+
+.contanier-table .additions {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.contanier-table .additions .search {
+    display: inline;
+}
+
+.contanier-table .additions .search  i {
+    color: black;
+    position: relative;
+    left: 25px;
+}
+
+.contanier-table .additions .search  input {
+    padding: 8px 25px;
+    width: 400px;
+    border-radius: 5px;
+    outline: none;
+    opacity: .8;
+}
+
+
+.dashbord-show-users-table {
+    grid-column: 2 / 3;
+    grid-row-start: 2;
+}
+
+.contanier-table .add-member-in-users {
+    text-align: center;
+    margin: 0 !important;
+    background-color: #f1a1a1;
+}
+
+.contanier-table .add-member-in-users:hover {
+    background-color: var(--titels);
+    color: white;
+}
+
+.dashbord-show-users-table  thead tr {
+    background-color: var(--titels);
+    padding: 10px;
+    border-width: 0 1px;
+}
+
+.dashbord-show-users-table  thead tr td {
+    padding: 5px 2px;
+    text-align: center;
+}
+
+.dashbord-show-users-table tbody  {
+    background-color: #ed646473;
+}
+
+.dashbord-show-users-table tbody tr td {
+    padding: 4px 0 4px 0;
+    text-align: center;
+}
+
+
+.dashbord-show-users-table tbody .process-btn {
+    color: white;
+    position: relative;
+    font-size: 20px;
+}
+
+.process-btn:before {
+    content: attr(data-hover);
+    visibility: hidden;
+    opacity: 0;
+    width: 80px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 0;
+    transition: opacity 1s ease-in-out;
+    position: absolute;
+    z-index: 1;
+    left: -46%;
+    top: 70%;   
+}
+
+.process-btn:hover:before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* End Show User */

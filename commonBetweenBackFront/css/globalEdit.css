@@ -74,6 +74,14 @@ a {
     text-decoration: none;
 }
 
+table  {
+    overflow: hidden;
+}
+
+table tr td {
+    vertical-align: middle !important;
+}
+
 .container {
     padding-left: 15px;
     padding-right: 15px;

@@ -151,28 +151,29 @@
     class Images {
 
         public static function FileInfo() {
-            $info = $_FILES['imageName'];
+            if (PostRequests::IfPOST()) {
+                $info = $_FILES['imageName'];
 
-            $name       = filter_var(strtolower($info['name']), FILTER_SANITIZE_STRING);
-            $full_path  = filter_var($info['full_path'], FILTER_SANITIZE_STRING);
-            $type       = filter_var($info['type'], FILTER_SANITIZE_STRING);
-            $tmp_name   = filter_var($info['tmp_name'], FILTER_SANITIZE_STRING);
-            $error      = filter_var($info['error'], FILTER_SANITIZE_NUMBER_INT);
-            $size       = filter_var($info['size'], FILTER_SANITIZE_NUMBER_INT);
-
-            return [
-                'name'      => $name,
-                'full_path' => $full_path,
-                'type'      => $type,
-                'tmp_name'  => $tmp_name,
-                'error'     => $error,
-                'size'      => $size,
-            ];
+                $name       = filter_var(strtolower($info['name']), FILTER_SANITIZE_STRING);
+                $full_path  = filter_var($info['full_path'], FILTER_SANITIZE_STRING);
+                $type       = filter_var($info['type'], FILTER_SANITIZE_STRING);
+                $tmp_name   = filter_var($info['tmp_name'], FILTER_SANITIZE_STRING);
+                $error      = filter_var($info['error'], FILTER_SANITIZE_NUMBER_INT);
+                $size       = filter_var($info['size'], FILTER_SANITIZE_NUMBER_INT);
+    
+                return [
+                    'name'      => $name,
+                    'full_path' => $full_path,
+                    'type'      => $type,
+                    'tmp_name'  => $tmp_name,
+                    'error'     => $error,
+                    'size'      => $size,
+                ];
+            }
         }
 
-        public static function GetNameImgFromDB() {
-            return 
-                GlobalFunctions::FromTable('imageName', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['imageName'];
+        public static function GetNameImgFromDB($nameCol, $nameTable , $where ) {
+            return  GlobalFunctions::FromTable($nameCol, $nameTable,  $where , 'fetch')['imageName'];
         }
 
         public static function NameImg() {
@@ -202,10 +203,16 @@
         public static function controllerUplodeProcess($FolderName) {
             $info = self::FileInfo(); global $commfilesuploaded;
 
+            // GetRequests::GetValueGet('IdUser') != NULL ? $NameImgInDb = self::GetNameImgFromDB('imageName', 'users', "Where IdUser = " . GetRequests::GetValueGet('IdUser')) : 0;
+            
+
             if (self::ValidExtension($info['name'])) {
 
                 if ( ! empty( $info['name']) ) {
                     $info['name'] = self::RenameName($info['name']);
+
+                    # Add Remove Old Image
+
                     move_uploaded_file($info['tmp_name'], $commfilesuploaded . $FolderName . '/' . $info['name']);
                 }
             }
@@ -215,17 +222,19 @@
             global $commfilesImags;
 
             if ( ! empty ($nameImg)) {
-                ?> <img src="<?php echo $path . $nameImg ?>"alt="Image" class="<?php echo $class ?>"> <?php
+                ?> <img src="<?php echo $path . $nameImg ?>" alt="Image" class="<?php echo $class ?>"> <?php
             } else {
-                ?> <img src="<?php echo $commfilesImags ?>logos/logo3.jpg" alt="Imgae" class="<?php echo $class ?> <?php
+                ?>  <img src="<?php echo $commfilesImags ?>/imagesProject/defaultImg.jpg" alt="Image" class="<?php echo $class ?>"> <?php
             }
+
         }
 
 
         public static function IfValidImage( & $ERRORS) {
+
             $info = self::FileInfo();
 
-            if ($info['name'] != NULL) {
+            if ( ! empty($info['name']) ) {
                 // name
                     if ( ! self::ValidExtension($info['name']) ) {
                         array_push($ERRORS, 'Unvalid Extension Permissible jpeg, jpg, png, gif extensions');
