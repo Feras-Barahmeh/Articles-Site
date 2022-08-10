@@ -38,6 +38,44 @@
             exit();
         }
 
+
+        public static function IfExsist($selector, $table, $ValueSelector, $debend='string') {
+            $val = NULL;
+
+            if ($debend === 'string') {
+                $val = Queries::FromTable($selector, $table, 'WHERE ' . $selector . '= \'' . $ValueSelector . '\'', 'fetch');
+
+            } else {
+                $val = Queries::FromTable($selector, $table, 'WHERE ' . $selector . '= ' . $ValueSelector, 'fetch')[$selector];
+            }
+
+            if (! empty($val)) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } 
+
+
+    }
+
+    class Queries {
+        public static function Delete($table, $condition) {
+            global $db;
+            $obj = new GlobalFunctions();
+
+            $stmt = $db->prepare("DELETE FROM $table WHERE $condition");
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0 ) {
+                $obj->AlertMassage("Sucssess Delete", 'success');
+                $obj->SitBackBtn();
+            } else {
+                $obj->AlertMassage("Can't Delete now try again later", 'danger');
+            }
+        }
+
+
         public static function FromTable($filed='*', $table, $condition=NULL, $typeFetch = 'fetchAll', $ordered = null, $typeOrders = 'DESC', $limit = NULL) {
             global $db;
             if($ordered === null) {
@@ -59,24 +97,22 @@
             return $requerd;
         }
 
+        public static function Counter($columnName, $tableName, $where = NULL) {
+            global $db;
 
-        public static function IfExsist($selector, $table, $ValueSelector, $debend='string') {
-            $val = NULL;
+            $stmt = $db->prepare("SELECT COUNT($columnName) FROM $tableName $where");
 
-            if ($debend === 'string') {
-                $val = self::FromTable($selector, $table, 'WHERE ' . $selector . '= \'' . $ValueSelector . '\'', 'fetch');
+            $stmt->execute();
 
+            $number = $stmt->fetch();
+
+            if ($stmt->rowCount() > 0 ) {
+                return $number[0];
             } else {
-                $val = self::FromTable($selector, $table, 'WHERE ' . $selector . '= ' . $ValueSelector, 'fetch')[$selector];
+                echo "Random Nubmer";
             }
 
-            if (! empty($val)) {
-                return 1;
-            } else {
-                return 0;
-            }
-        } 
-
+        }
 
     }
 
@@ -173,7 +209,7 @@
         }
 
         public static function GetNameImgFromDB($nameCol, $nameTable , $where ) {
-            return  GlobalFunctions::FromTable($nameCol, $nameTable,  $where , 'fetch')['imageName'];
+            return  Queries::FromTable($nameCol, $nameTable,  $where , 'fetch')['imageName'];
         }
 
         public static function NameImg() {
@@ -182,7 +218,7 @@
             if ( ! empty($info['name']) ) {
                 $imgName = Images::RenameName($info['name']);
             } else {
-                $imgName = GlobalFunctions::FromTable('imageName', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['imageName'];
+                $imgName = Queries::FromTable('imageName', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['imageName'];
             }
 
             return $imgName;
@@ -195,16 +231,16 @@
         }
 
         public static function RenameName($currentName) {
-            $info = Users::GetInfoUserFromPOST();
-            return $info['userName'] . "_" . $currentName;
+            if (! empty($currentName)) {
+                $info = Users::GetInfoUserFromPOST();
+                return $info['userName'] . "_" . $currentName;
+            }
         }
 
 
         public static function controllerUplodeProcess($FolderName) {
             $info = self::FileInfo(); global $commfilesuploaded;
 
-            // GetRequests::GetValueGet('IdUser') != NULL ? $NameImgInDb = self::GetNameImgFromDB('imageName', 'users', "Where IdUser = " . GetRequests::GetValueGet('IdUser')) : 0;
-            
 
             if (self::ValidExtension($info['name'])) {
 

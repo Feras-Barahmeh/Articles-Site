@@ -16,30 +16,16 @@
 
 
 // Stasrt Fork Functions
-    function controllerInsert() {
-        $info = Users::GetInfoUserFromPOST();
 
-        if(ValidationInput::ValidationInput('add')) {
-
-            if (! GlobalFunctions::IfExsist('userName', 'users', $info['userName'])) {
-                Users::InsertToDB();
-            } else {
-                GlobalFunctions::AlertMassage('This User Is Exist Alrasdy');
-                GlobalFunctions::SitBackBtn();
-            }
-        }
-    }
-
-    
     class EditInfoUser {
-        
+            
         public static function StructerEdit() {
             global $commfilesuploaded;
             $id = GetRequests::GetValueGet('IdUser');
 
-            $values = GlobalFunctions::FromTable('*', 'users', 'WHERE IdUser = ' .  $id, 'fetch');
+            $values = Queries::FromTable('*', 'users', 'WHERE IdUser = ' .  $id, 'fetch');
             ?>
-                <h3 class="h-title">Edit Profile</h3>
+                <h3 class="h-title">Edit Profile <?php echo $values['userName'] ?> </h3>
                 <div class="container-edit-form">
                     <form action="users.php?actionMember=update&IdUser=<?php echo $id ?>" method="POST" class="form-edit" enctype="multipart/form-data">
                         <!-- User Name -->
@@ -96,11 +82,22 @@
                                 <input type="text" name="age" class="input-edit-feild" value="<?php echo $values['age'] ?>" placeholder="Your Age">
                             </div>
 
+                        <!-- Permission -->
+                            <div class="container-feild">
+                                <label for="permission" class="label-edit">permission</label>
+                                <i class="fa-solid fa-ranking-star" aria-hidden="true"></i>
+                                <select name="permission" id="permission" class="input-edit-feild" required>
+                                        <option value="0">Member</option>
+                                        <option value="1">Admin</option>
+                                        <option value="2">Programer</option>
+                                </select>
+                            </div>
+
                         <!-- About You -->
                             <div class="container-feild">
                                 <label for="user-name" class="label-edit">About You</label>
                                 <i class="fa-solid fa-comment-medical"></i>
-                                <textarea name="aboutYou" cols="39" rows="5"><?php echo $values['aboutYou'] ?></textarea>
+                                <textarea name="aboutYou" cols="36" rows="3"><?php echo $values['aboutYou'] ?></textarea>
                             </div>
 
                         <input type="submit" value="Save" class="form-btn text-center">
@@ -116,7 +113,7 @@
 
         public static function ChangesFaild() {
             $info = Users::GetInfoUserFromPOST();
-            $FromDB = GlobalFunctions::FromTable('*', 'users', "WHERE IdUser = " . GetRequests::GetValueGet('IdUser'), 'fetch');
+            $FromDB = Queries::FromTable('*', 'users', "WHERE IdUser = " . GetRequests::GetValueGet('IdUser'), 'fetch');
 
             if (  $info['userName'] !== $FromDB['userName'] && ($info['userName'] == NULL || $info['userName'] == null)) {
                 $_POST['userName'] = $FromDB['userName'];
@@ -158,15 +155,28 @@
 
             return $result;
         }
-    
+
         public static function PrepareToEdit() {
 
-            if (  self::ChangesFaild() ) {
+            if ( self::ChangesFaild() ) {
                 Users::UpdateToDB('users');
             }
         }
     }
 
+    function controllerInsert() {
+        $info = Users::GetInfoUserFromPOST();
+
+        if(ValidationInput::ValidationInput('add')) {
+
+            if (! GlobalFunctions::IfExsist('userName', 'users', $info['userName'])) {
+                Users::InsertToDB();
+            } else {
+                GlobalFunctions::AlertMassage('This User Is Exist Alrasdy');
+                GlobalFunctions::SitBackBtn();
+            }
+        }
+    }
 
     function ControlleUpdate() {
         if (PostRequests::IfPOST()) {
@@ -180,9 +190,9 @@
 
 
     function PrintDataUser() {
-        $data = GlobalFunctions::FromTable("*", 'users', "WHERE permission != 1");
+        $data = Queries::FromTable("*", 'users', "WHERE permission != 1");
         global $commfilesuploaded;
-        
+
         foreach ($data as $info) {
             ?>
                 <tr>
@@ -192,16 +202,16 @@
                     <td class="long-text"><?php echo $info['password'] ?></td>
                     <td><?php echo $info['email'] ?></td>
                     <td><?php echo $info['aboutYou'] ?></td>
+                    <td><?php echo $info['permission'] ?></td>
                     <td><?php echo $info['langAndTools'] ?></td>
                     <td><?php echo $info['age'] ?></td>
                     <td><?php echo $info['dataRegister'] ?></td>
                     <td>
                         <a href="users.php?actionMember=edit&IdUser=<?php echo $info['IdUser'] ?>" class="process-btn" data-hover="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="users.php?actionMember=delete&IdUser=<?php echo $info['IdUser'] ?>" class="process-btn" data-hover="Delete"><i class="fa-solid fa-trash-can"></i></a>
+                        <a href="users.php?actionMember=delete&IdUser=<?php echo $info['IdUser'] ?>" class="process-btn" data-hover="Delete" onclick="return Confirm()" ><i class="fa-solid fa-trash-can"></i></a>
                     </td>
                 </tr>
 
-                
             <?php
         }
     }
@@ -248,9 +258,9 @@
                                     <input type="file" name="imageName" class="input file-input" >
                                 </div>
                                 
-                            <!-- Start Rank -->
+                            <!-- Start permission -->
                                 <div class="parent-input">
-                                    <label for="userName" class="label-input">Rank</label>
+                                    <label for="userName" class="label-input">permission</label>
                                     <i class="fa-solid fa-ranking-star icon-in-input" aria-hidden="true"></i>
                                     <select name="permission" id="permission" class="input" required>
                                         <option value="0">Member</option>
@@ -280,11 +290,16 @@
 
             <h3 class="h-title">Member</h3>
             <div class="contanier-table">
+
                 <div class="additions">
                     <a href="users.php?actionMember=add" class="form-btn add-member-in-users">Add member</a>
                     <div class="search">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="search" value="Search" id="gsearch" name="gsearch">
+                    </div>
+
+                    <div class="number-users">
+                        <span>Number Of Users</span> <span class="num"><?php echo  Queries::Counter("IdUser", 'users', "Where permission != 1") ?></span>
                     </div>
                 </div>
 
@@ -297,6 +312,7 @@
                             <td class="long-text">Password</td>
                             <td>Email</td>
                             <td>Discription</td>
+                            <td>permission</td>
                             <td>Languages And Tools</td>
                             <td>Age</td>
                             <td>Register Date</td>
@@ -331,11 +347,13 @@
                 EditInfoUser::StructerEdit();
                 break;
 
+            case 'delete':
+                Queries::Delete('users', " IdUser = " . GetRequests::GetValueGet('IdUser'));
+                break;
+
             case 'update':
                 ControlleUpdate();
-
-                
-            break;
+                break;
 
             default:
                 ShowUserStructuer();

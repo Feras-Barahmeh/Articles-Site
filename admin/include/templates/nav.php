@@ -2,14 +2,13 @@
     function NavStructer() {
         global $commfilesImags;
         global $commfilesuploaded;
-        // $imgName = GlobalFunctions::FromTable('imageName', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['imageName'];
 
         ?>
                 <nav>
                     <div class="logo"><a href="dashbord.php"><img src="<?php echo $commfilesImags ?>logos/logo3.jpg" alt="Logo"></a></div>
                     <div class="bar">
                         <ul>
-                            <li><a href="#">Articles</a></li>
+                            <li><a href="#">Categories</a></li>
                             <li><a href="users.php">Users</a></li>
                             <li><a href="#">Admins</a></li>
                             <li><a href="#">Massags</a></li>
@@ -18,7 +17,6 @@
                     </div>
 
                     <div class="options-user">
-
                         <?php Images::SetImg($commfilesuploaded.'users/', Images::GetNameImgFromDB('imageName', 'users', "Where IdUser = " .  Sessions::GetValueSessionDepKey('IdUser')), 'profile-pictuer') ?>
 
                         <div class="label-dropdown">

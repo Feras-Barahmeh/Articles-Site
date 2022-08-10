@@ -1,6 +1,11 @@
 <?php 
-// Start Fork Functions
+// Global Defination 
+    ob_start();
+    session_start();
+    $TITLE = "Dashbord";
+    include('init.php');
 
+// Start Fork Functions
 
     function StructerStatusCards() {
         ?>
@@ -8,7 +13,7 @@
                 <div class="users-number status-card">
                     <span class="vertical-line"> 
                         <i class="fa-solid fa-users" aria-hidden="true"></i>
-                        <a href="users.php">11</a>
+                        <a href="users.php"><?php echo Queries::Counter('IdUser', 'users' , "WHERE permission != 1") ?></a>
                     </span>
                     <p class="indication-card">Members</p>
                 </div>
@@ -24,7 +29,7 @@
                 <div class="total-artical status-card">
                     <span class="vertical-line">
                         <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
-                        <a href="#">3</a>
+                        <a href="articles.php">3</a>
                     </span>
                     <p class="indication-card">Articles</p>
                 </div>
@@ -42,7 +47,7 @@
 
     function SidBarStructer() {
         global $commfilesImags, $commfilesuploaded;
-        $nameUser =  GlobalFunctions::FromTable('userName', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['userName']
+        $nameUser =  Queries::FromTable('userName', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['userName']
         ?>
             
                 <aside class="contant-sidbar">
@@ -91,15 +96,11 @@
 
 
 
-// Start Global Defination
-    ob_start();
-    session_start();
-    $TITLE = "Dashbord";
-    include('init.php');
+// Controller Part
+
 
     if (Sessions::IfSetSession() && Sessions::IfSetSessionDepValue('IdUser')) {
-        $permission = GlobalFunctions::FromTable('permission', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['permission'];
-
+        $permission = Queries::FromTable('permission', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['permission'];
 
         if ($permission  == 1) {
             SetNav();
@@ -113,8 +114,6 @@
         GlobalFunctions::AlertMassage("Can't Enter This Page Directry");
         ?> <a href="index.php"  class="form-btn back-btn">Bake</a> <?php
     }
-
-
 
     include($tpl . 'footer.php');
     ob_end_flush();

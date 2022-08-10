@@ -326,6 +326,29 @@
     opacity: .8;
 }
 
+.contanier-table .additions .number-users {
+    margin-left: 10px;
+    background-color: #03d2d2;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    position: relative;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+    text-align: center;
+}
+
+.contanier-table .additions .number-users:hover {
+    transform: perspective(100px) translateZ(10px);
+    opacity: .6;
+}
+
+.contanier-table .additions .number-users span:nth-child(2) {
+    font-weight: bold;
+    font-size: 19px;
+    margin: 0 0 0 5px;
+}
+
 
 .dashbord-show-users-table {
     grid-column: 2 / 3;
@@ -363,6 +386,11 @@
     text-align: center;
 }
 
+.dashbord-show-users-table button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
 
 .dashbord-show-users-table tbody .process-btn {
     color: white;

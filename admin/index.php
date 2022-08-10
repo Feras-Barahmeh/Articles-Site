@@ -16,7 +16,7 @@
     }
 
     function SetSession($userName) {
-        $fromDB = GlobalFunctions::FromTable('IdUser, password, IdUser', 'users', 'WHERE userName = \'' . $userName . '\'', 'fetch' );
+        $fromDB = Queries::FromTable('IdUser, password, IdUser', 'users', 'WHERE userName = \'' . $userName . '\'', 'fetch' );
         unset($_SESSION['userName']);
         $_SESSION['adminName'] = $userName;
         $_SESSION['password'] = $fromDB['password'];
@@ -60,7 +60,7 @@
 
         if (  GlobalFunctions::IfExsist('userName', 'users', $info['userName'], 'string') ) {
 
-            $SortedPassword = GlobalFunctions::FromTable('password', 'users', 'WHERE  userName = \'' . $info['userName'] . '\'' , 'fetch')['password'];
+            $SortedPassword = Queries::FromTable('password', 'users', 'WHERE  userName = \'' . $info['userName'] . '\'' , 'fetch')['password'];
 
             if (  password_verify($info['password'], $SortedPassword) ) {
                 
