@@ -28,6 +28,7 @@ body {
     background-color: #1C2148;
     color: var(--sun-theam);
     height: 85vh;
+
 }
 
 ::selection {

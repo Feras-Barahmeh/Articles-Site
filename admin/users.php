@@ -112,7 +112,7 @@
         }
 
         public static function ChangesFaild() {
-            $info = Users::GetInfoUserFromPOST();
+            $info = Users::FromPost();
             $FromDB = Queries::FromTable('*', 'users', "WHERE IdUser = " . GetRequests::GetValueGet('IdUser'), 'fetch');
 
             if (  $info['userName'] !== $FromDB['userName'] && ($info['userName'] == NULL || $info['userName'] == null)) {
@@ -151,7 +151,7 @@
                 $_POST['imageName'] = $FromDB['imageName'];
             }
 
-            $result = ValidationInput::ValidationInput();
+            $result = Users::ValidationInput();
 
             return $result;
         }
@@ -165,9 +165,9 @@
     }
 
     function controllerInsert() {
-        $info = Users::GetInfoUserFromPOST();
+        $info = Users::FromPost();
 
-        if(ValidationInput::ValidationInput('add')) {
+        if(Users::ValidationInput('add')) {
 
             if (! GlobalFunctions::IfExsist('userName', 'users', $info['userName'])) {
                 Users::InsertToDB();

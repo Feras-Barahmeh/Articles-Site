@@ -2,7 +2,7 @@
 
     class Users {
 
-        public static function GetInfoUserFromPOST() {
+        public static function FromPost() {
 
             isset($_POST['IdUser']) ? $IdUser                = filter_var($_POST['IdUser'], FILTER_SANITIZE_NUMBER_INT)          : $IdUser          = NULL;
             isset($_POST['userName']) ? $userName            = filter_var($_POST['userName'], FILTER_SANITIZE_STRING)            : $userName        = NULL;
@@ -36,7 +36,7 @@
 
 
         public static function InsertToDB() {
-            $info = Users::GetInfoUserFromPOST();
+            $info = Users::FromPost();
             $infoImg = Images::FileInfo();
             global $db;
 
@@ -65,7 +65,7 @@
 
 
         public static function UpdateToDB($nameTable) {
-            $info = Users::GetInfoUserFromPOST();
+            $info = Users::FromPost();
             global $db;
 
 
@@ -98,13 +98,11 @@
             }
 
         }
-    }
 
-    class ValidationInput {
 
         public static function ValidationInput() {
             $ERRORS = [];
-            $info = Users::GetInfoUserFromPOST();
+            $info = Users::FromPost();
 
                 if (strlen(strtolower($info['userName'])) <= 3) {
                     array_push($ERRORS, 'User Name Must Be Grater Than 3');
@@ -131,7 +129,7 @@
 
 
             if (!empty($ERRORS)) {
-                HandleErrors::PrintErorrs($ERRORS);
+                GlobalFunctions::PrintErorrs($ERRORS);
             } elseif (count($ERRORS) == 1) {
                 GlobalFunctions::AlertMassage($ERRORS[0]);
             } else {
@@ -141,4 +139,55 @@
         }
     }
 
+
+    class Articles {
+        public static function FromPost() {
+            isset($_POST['titleArticle']) ? $titleArticle                = filter_var($_POST['titleArticle'], FILTER_SANITIZE_STRING)          : $titleArticle          = NULL;
+            isset($_POST['IdUser']) ? $IdUser                = filter_var($_POST['IdUser'], FILTER_SANITIZE_NUMBER_INT)          : $titleArticle          = NULL;
+            isset($_POST['content']) ? $content                = filter_var($_POST['content'], FILTER_SANITIZE_STRING)          : $content          = NULL;
+            
+            return [
+                'titleArticle' => $titleArticle,
+                'IdUser' => $IdUser,
+                'content' => $content,
+            ];
+        }
+
+        public static function Insert() {
+            global $db; $info = self::FromPost();
+            $tools = new GlobalFunctions();
+            $stmt = $db->prepare("INSERT INTO articles( titleArticle , content, IdUser, additionDate ) VALUES (:titleArticle, :content, :IdUser, NOW() ) ");
+            $stmt->execute([
+                'titleArticle' => $info['titleArticle'],
+                'content' => $info['content'],
+                'IdUser' => $info['IdUser'],
+            ]);
+
+            if ($stmt->rowCount() > 0 ) {
+                $tools->AlertMassage(" Inserted Article successfully", 'success');
+                $tools->SitBackBtn();
+
+            } else {
+                $tools->AlertMassage("Sorry, Not insertes Article, try again later");
+            }
+        }
+
+        public static function IfValidInput() {
+            $info = self::FromPost(); $errors = [];
+
+            if ( empty($info['titleArticle']) ) {
+                array_push($errors, "Title Artical Can't Be Empty");
+            }
+
+            if ( empty($info['content']) ) {
+                array_push($errors, "Content Artical Can't Be Empty");
+            }
+
+            if (!empty($errors)) {
+                GlobalFunctions::PrintErorrs($errors);
+            } else {
+                return true;
+            }
+        }
+    }
 

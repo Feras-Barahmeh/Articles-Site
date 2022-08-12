@@ -29,7 +29,7 @@
                 <div class="total-artical status-card">
                     <span class="vertical-line">
                         <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
-                        <a href="articles.php">3</a>
+                        <a href="articles.php"><?php echo Queries::Counter('IdUser', 'articles') ?></a>
                     </span>
                     <p class="indication-card">Articles</p>
                 </div>
@@ -56,7 +56,7 @@
                     <ul>
                         <li> <i class="fa-solid fa-house" aria-hidden="true"></i> <a href="#">Home</a>  </li> <hr>
                         <li> <i class="fa-solid fa-gears"  aria-hidden="true"></i> <a href="#">Setting App</a>  </li> <hr>
-                        <li> <i class="fa-solid fa-newspaper" aria-hidden="true"></i><a href="#">Add Article</a>  </li> <hr>
+                        <li> <i class="fa-solid fa-newspaper" aria-hidden="true"></i><a href="articles.php?articleAction=add">Add Article</a>  </li> <hr>
                         <li> <i class="fa-solid fa-plus" aria-hidden="true"></i> <a href="users.php?actionMember=add">Add Member</a></li>
                     </ul>
 

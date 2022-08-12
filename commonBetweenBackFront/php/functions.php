@@ -56,6 +56,12 @@
             }
         } 
 
+        public static function PrintErorrs($errors) {
+            foreach ($errors as $error) {
+                GlobalFunctions::AlertMassage($error);
+            }
+            GlobalFunctions::SitBackBtn();
+        }
 
     }
 
@@ -174,14 +180,6 @@
         }
     }
 
-    class HandleErrors {
-        public static function PrintErorrs($errors) {
-            foreach ($errors as $error) {
-                GlobalFunctions::AlertMassage($error);
-            }
-            GlobalFunctions::SitBackBtn();
-        }
-    }
 
 
     class Images {
@@ -232,7 +230,7 @@
 
         public static function RenameName($currentName) {
             if (! empty($currentName)) {
-                $info = Users::GetInfoUserFromPOST();
+                $info = Users::FromPost();
                 return $info['userName'] . "_" . $currentName;
             }
         }
