@@ -84,7 +84,7 @@
                 $info['age'],
                 $info['aboutYou'],
                 $info['langAndTools'],
-                Images::NameImg($nameTable),
+                Images::NameImg('users', 'IdUser'),
                 GetRequests::GetValueGet('IdUser'),
             ]);
 
@@ -93,10 +93,9 @@
                 GlobalFunctions::Redirect('Sucsses Edit Information', 'back', 'success', 1000);
 
             } else {
-                GlobalFunctions::AlertMassage("Can't Update Now Try again later");
+                GlobalFunctions::AlertMassage("No Changed in information");
                 GlobalFunctions::SitBackBtn();
             }
-
         }
 
 
@@ -165,7 +164,7 @@
                 'titleArticle' => $info['titleArticle'],
                 'content' => $info['content'],
                 'IdUser' => $info['IdUser'],
-                'imageName' => Images::NameImg(),
+                'imageName' => Images::NameImg('articles', 'IdArticle'),
             ]);
 
             if ($stmt->rowCount() > 0 ) {
@@ -205,15 +204,15 @@
             $stmt = $db->prepare("UPDATE 
                                         articles
                                     SET
-                                        titleArticle = :titleArticle, IdUser = :IdUser, content = :content, imageName = :imageName 
-                                    WHERE 
+                                        titleArticle = :titleArticle, IdUser = :IdUser, content = :content, imageName = :imageName
+                                    WHERE
                                         IdArticle = :IdArticle" );
 
             $stmt->execute([
                 'titleArticle'  => $info['titleArticle'],
                 'IdUser'        => $info['IdUser'],
                 'content'       => $info['content'],
-                'imageName'     => Images::NameImg(),
+                'imageName'     => Images::NameImg('articles', 'IdArticle'),
                 'IdArticle'     => GetRequests::GetValueGet('IdArticle')
             ]);
 
@@ -221,7 +220,9 @@
                 $tools->AlertMassage("Success Edit", 'success');
                 $tools->SitBackBtn();
             } else {
-                $tools->AlertMassage("Sorry Can't Edit Now, Try again later");
+                $tools->AlertMassage("No Changed in information");
+                $tools->SitBackBtn();
+
             }
         }
 

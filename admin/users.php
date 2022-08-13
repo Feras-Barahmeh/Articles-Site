@@ -18,7 +18,6 @@
 // Stasrt Fork Functions
 
     class EditInfoUser {
-            
         public static function StructerEdit() {
             global $commfilesuploaded;
             $id = GetRequests::GetValueGet('IdUser');
@@ -147,7 +146,7 @@
                 $_POST['age'] = $FromDB['age'];
             }
 
-            if (  $info['imageName'] !== $FromDB['imageName'] && empty($info['imageName'])) {
+            if (  $info['imageName'] !== $FromDB['imageName'] && empty($info['imageName']) ) {
                 $_POST['imageName'] = $FromDB['imageName'];
             }
 
@@ -156,9 +155,11 @@
             return $result;
         }
 
+
         public static function PrepareToEdit() {
 
             if ( self::ChangesFaild() ) {
+                // EditInfoUser::ChangesFaild();
                 Users::UpdateToDB('users');
             }
         }

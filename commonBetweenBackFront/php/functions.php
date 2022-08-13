@@ -221,13 +221,13 @@
             return  Queries::FromTable($nameCol, $nameTable,  $where , 'fetch')['imageName'];
         }
 
-        public static function NameImg() {
+        public static function NameImg($table, $ColCondition) {
             $info = self::FileInfo();
 
             if ( ! empty($info['name']) ) {
                 $imgName = self::RenameName($info['name']);
             } else {
-                $imgName = Queries::FromTable('imageName', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['imageName'];
+                $imgName = Queries::FromTable('imageName', $table, "WHERE $ColCondition = " . GetRequests::GetValueGet($ColCondition), 'fetch')['imageName'];
             }
 
             return $imgName;
@@ -241,10 +241,6 @@
 
         public static function RenameName($currentName) {
             if (! empty($currentName)) {
-                $info = Users::FromPost();
-                // return $info['userName'] . "_" . $currentName;
-                // return rand(1, 100000) . "_" . $currentName;
-                // return $currentName . "_" . $currentName;
                 return $currentName .GetRequests::GetNum() . "_" . $currentName;
             }
         }

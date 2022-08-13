@@ -16,8 +16,8 @@
     }
 
     function ControllerUpdate() {
-        Articles::IfChangs();
         if (Articles::IfValidInput()) {
+            Articles::IfChangs();
             Images::controllerUplodeProcess('articles');
             Articles::Update();
         }
