@@ -119,7 +119,7 @@
             }
             
             
-            if (  $info['password'] !== $FromDB['password'] && empty($info['password']) ) {
+            if (  !empty($info['password']) ) {
                 $_POST['password'] = $FromDB['password'];
 
             } else {
@@ -155,11 +155,10 @@
             return $result;
         }
 
-
         public static function PrepareToEdit() {
 
             if ( self::ChangesFaild() ) {
-                // EditInfoUser::ChangesFaild();
+                EditInfoUser::ChangesFaild();
                 Users::UpdateToDB('users');
             }
         }
