@@ -156,11 +156,16 @@
         public static function Insert() {
             global $db; $info = self::FromPost();
             $tools = new GlobalFunctions();
-            $stmt = $db->prepare("INSERT INTO articles( titleArticle , content, IdUser, additionDate ) VALUES (:titleArticle, :content, :IdUser, NOW() ) ");
+
+            $stmt = $db->prepare("INSERT INTO 
+                                        articles( titleArticle , content, IdUser, imageName, additionDate ) 
+                                VALUES  
+                                        (:titleArticle, :content, :IdUser, :imageName, NOW() ) ");
             $stmt->execute([
                 'titleArticle' => $info['titleArticle'],
                 'content' => $info['content'],
                 'IdUser' => $info['IdUser'],
+                'imageName' => Images::NameImg(),
             ]);
 
             if ($stmt->rowCount() > 0 ) {
@@ -183,10 +188,62 @@
                 array_push($errors, "Content Artical Can't Be Empty");
             }
 
+            Images::IfValidImage($errors);
+
             if (!empty($errors)) {
                 GlobalFunctions::PrintErorrs($errors);
             } else {
                 return true;
+            }
+        }
+
+        public static function Update() {
+            global $db;
+            $info = self::FromPost();
+            $tools = new GlobalFunctions();
+
+            $stmt = $db->prepare("UPDATE 
+                                        articles
+                                    SET
+                                        titleArticle = :titleArticle, IdUser = :IdUser, content = :content, imageName = :imageName 
+                                    WHERE 
+                                        IdArticle = :IdArticle" );
+
+            $stmt->execute([
+                'titleArticle'  => $info['titleArticle'],
+                'IdUser'        => $info['IdUser'],
+                'content'       => $info['content'],
+                'imageName'     => Images::NameImg(),
+                'IdArticle'     => GetRequests::GetValueGet('IdArticle')
+            ]);
+
+            if ($stmt->rowCount() > 0 ) {
+                $tools->AlertMassage("Success Edit", 'success');
+                $tools->SitBackBtn();
+            } else {
+                $tools->AlertMassage("Sorry Can't Edit Now, Try again later");
+            }
+        }
+
+        public static function IfChangs() {
+            $data = Queries::FromTable('*', 'articles', "WHERE IdArticle = " . GetRequests::GetValueGet('IdArticle'), 'fetch');
+            $post = self::FromPost();
+            $postImg = Images::FileInfo();
+
+            if ( empty($post['titleArticle']) ) {
+                $_POST['titleArticle'] = $data['titleArticle'];
+            }
+
+            if ($post['IdUser'] != $data['IdUser']) {
+                $_POST['IdUser'] = $post['IdUser'];
+            }
+
+            if ( empty ($postImg['name']) ) {
+                $_FILES['name']  = $data['imageName'];
+            }
+
+            if ( empty ($post['content'])) {
+                $_POST['content'] = $data['content'];
             }
         }
     }

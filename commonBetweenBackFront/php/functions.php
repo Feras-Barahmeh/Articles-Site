@@ -162,6 +162,17 @@
                 return $_GET[$nameGet];
             }  
         }
+
+        public static function GetNum() {
+            if (self::IfGet()) {
+                $gets = $_GET;
+                foreach($gets as $get) {
+                    if (is_numeric($get)) {
+                        return $get;
+                    }
+                }
+            }
+        }
     }
 
     class PostRequests {
@@ -214,7 +225,7 @@
             $info = self::FileInfo();
 
             if ( ! empty($info['name']) ) {
-                $imgName = Images::RenameName($info['name']);
+                $imgName = self::RenameName($info['name']);
             } else {
                 $imgName = Queries::FromTable('imageName', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['imageName'];
             }
@@ -231,14 +242,16 @@
         public static function RenameName($currentName) {
             if (! empty($currentName)) {
                 $info = Users::FromPost();
-                return $info['userName'] . "_" . $currentName;
+                // return $info['userName'] . "_" . $currentName;
+                // return rand(1, 100000) . "_" . $currentName;
+                // return $currentName . "_" . $currentName;
+                return $currentName .GetRequests::GetNum() . "_" . $currentName;
             }
         }
 
 
         public static function controllerUplodeProcess($FolderName) {
             $info = self::FileInfo(); global $commfilesuploaded;
-
 
             if (self::ValidExtension($info['name'])) {
 

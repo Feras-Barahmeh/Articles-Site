@@ -219,10 +219,11 @@ table tr td {
 .h-title {
     text-align: center;
     margin-top: 20px;
-    background-color: var(--titels);
+    color: var(--titels);
     padding: 10px;
     border-radius: 10px;
     text-transform: uppercase;
+    font-size: 30px;
 }
 /* End  title page */
 

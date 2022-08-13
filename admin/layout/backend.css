@@ -188,14 +188,15 @@
     font-size: 25px;
 }
 
-.vertical-line a {
+.status-card  a {
     font-size: 25px;
     color: white;
     transition-duration: .2s;
     transition-timing-function: ease-in-out;
+    font-size: 20px;
 }
 
-.vertical-line a:hover {
+.status-card  a:hover {
     opacity: .6;
     transform: perspective(100px) translateZ(10px);
 }
@@ -303,10 +304,8 @@
     grid-row-start: 1;
     margin-top: 15px;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
-    align-content: center;
+    justify-content: space-evenly;
 }
 
 .contanier-table .additions .search {
@@ -328,15 +327,10 @@
 }
 
 .contanier-table .additions .number-users {
-    margin-left: 10px;
-    background-color: #03d2d2;
-    color: white;
-    padding: 8px;
-    border-radius: 5px;
-    position: relative;
-    transition-duration: .2s;
-    transition-timing-function: ease-in-out;
-    text-align: center;
+    background-color: var(--bbackground-color);
+    padding: 10px;
+    border-radius: 50px;
+    transition: .2s ease-in-out;
 }
 
 .contanier-table .additions .number-users:hover {
@@ -348,6 +342,7 @@
     font-weight: bold;
     font-size: 19px;
     margin: 0 0 0 5px;
+    color: var(--assistant);
 }
 
 
@@ -431,7 +426,7 @@
     display: grid;
     grid-template-columns: 100px 1fr 100px;
 
-    grid-auto-rows: minmax(100px, auto);
+    grid-auto-rows: minmax(40%, auto);
     row-gap: 10px;
     margin-top: 20px;
 }
@@ -440,7 +435,7 @@
     grid-column: 2 / 3;
 
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     background-color: var(--bbackground-color);
     height: fit-content;
     padding: 10px;
@@ -495,6 +490,26 @@
     border-radius: 5px;
     opacity: .6;
 }
+
+.page-article .article  .info-article img {
+    margin-bottom: 5px;
+}
+
+.page-article .article  .info-article .optins {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.page-article .article  .info-article .optins a:first-child {
+    color: var(--success);
+}
+
+.page-article .article  .info-article .optins a:last-child {
+    color: var(--danger);
+}
+
+
 .page-article .article  .info-article .optins a {
     display: inline;
 }
@@ -505,11 +520,68 @@
     display: block;
     width: fit-content;
 }
+
+
+.page-article .article  .info-article  .writer {
+    width: 100%;
+    text-align: center;
+    color: var(--sun-theam);
+    font-size: 20px;
+}
+
+
 .page-article .article  .info-article .date {
     display: block;
     width: fit-content;
     float: right;
 }
+
+.additions {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.additions a {
+    text-align: center;
+}
+
+.additions .search i {
+    position: relative;
+    left: 94%;
+    color: black;
+    z-index: 3;
+}
+
+.additions .search input {
+    padding: 8px 25px;
+    width: 400px;
+    border-radius: 5px;
+    outline: none;
+    opacity: .8;
+}
+
+.additions  .number-articles {
+    background-color: var(--bbackground-color);
+    padding: 10px;
+    border-radius: 50px;
+    transition: .2s ease-in-out;
+}
+
+.additions  .number-articles:hover {
+    transform: perspective(100px) translateZ(10px);
+    cursor: pointer;
+    opacity: .6;
+}
+
+.additions  .number-articles .num {
+
+    color: var(--assistant);
+    font-size: 20px;
+    margin: 0 0 0 6px;
+}
+
 /* End Articals */
 
 
@@ -545,6 +617,10 @@
     width: 100%;
 }
 
+.body-add-article  form div .file {
+    background-color: white;
+}
+
 .body-add-article  form div textarea {
     width: 90%;
     margin-left: 30px;
@@ -552,7 +628,7 @@
 
 }
 
-.body-add-article   form div label {
+.body-add-article  form div label {
     display: block;
     width: fit-content;
     position: relative;

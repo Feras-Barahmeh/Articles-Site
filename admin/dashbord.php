@@ -15,7 +15,7 @@
                         <i class="fa-solid fa-users" aria-hidden="true"></i>
                         <a href="users.php"><?php echo Queries::Counter('IdUser', 'users' , "WHERE permission != 1") ?></a>
                     </span>
-                    <p class="indication-card">Members</p>
+                    <p class="indication-card"><a href="users.php">Members</a></p>
                 </div>
 
                 <div class="Pending Memeber status-card">
@@ -23,7 +23,7 @@
                     <i class="fa fa-user-plus"  aria-hidden="true"></i>
                         <a href="#">12</a>
                     </span>
-                    <p class="indication-card">Pending Users</p>
+                    <p class="indication-card"><a href="#">Pending Users</a></p>
                 </div>
 
                 <div class="total-artical status-card">
@@ -31,7 +31,7 @@
                         <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
                         <a href="articles.php"><?php echo Queries::Counter('IdUser', 'articles') ?></a>
                     </span>
-                    <p class="indication-card">Articles</p>
+                    <p class="indication-card"><a href="articles.php">Articles</a></p>
                 </div>
 
                 <div class="comments status-card">
@@ -39,7 +39,7 @@
                         <i class="fa-solid fa-comment"  aria-hidden="true"></i>
                         <a href="#">44</a>
                     </span>
-                    <p class="indication-card">Comments</p>
+                    <p class="indication-card"><a href="#">Comments</a></p>
                 </div>
             </div>
         <?php
@@ -61,7 +61,7 @@
                     </ul>
 
                     <!-- <img src="<?php echo $commfilesImags  ?>/imagesProject/defaultImg.jpg" alt="user img" class="img-user-aside"> -->
-                    <img src="<?php echo $commfilesImags  ?>/logos/logo3.jpg" alt="user img" class="img-user-aside">
+                    <img src="<?php echo $commfilesImags  ?>/logos/logo.jpg" alt="user img" class="img-user-aside">
                 </aside>
         <?php
     }

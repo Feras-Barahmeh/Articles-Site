@@ -5,7 +5,7 @@
 
         ?>
                 <nav>
-                    <div class="logo"><a href="dashbord.php"><img src="<?php echo $commfilesImags ?>logos/logo3.jpg" alt="Logo"></a></div>
+                    <div class="logo"><a href="dashbord.php"><img src="<?php echo $commfilesImags ?>logos/logo.jpg" alt="Logo"></a></div>
                     <div class="bar">
                         <ul>
                             <li><a href="#">Categories</a></li>

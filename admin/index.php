@@ -11,7 +11,7 @@
     function logo() {
         global $commfilesImags;
         ?>
-            <div class="index-logo"><img src="<?php echo $commfilesImags ?>/logos/logo3.jpg" alt="" class=""></div>
+            <div class="index-logo"><img src="<?php echo $commfilesImags ?>/logos/logo.jpg" alt="" class=""></div>
         <?php
     }
 

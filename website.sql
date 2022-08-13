@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2022 at 04:19 PM
+-- Generation Time: Aug 13, 2022 at 10:17 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -31,10 +31,21 @@ CREATE TABLE `articles` (
   `IdArticle` int(11) NOT NULL,
   `titleArticle` varchar(255) NOT NULL,
   `content` text NOT NULL,
+  `imageName` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
   `IdUser` int(11) NOT NULL,
   `categoryID` int(11) NOT NULL,
   `additionDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `articles`
+--
+
+INSERT INTO `articles` (`IdArticle`, `titleArticle`, `content`, `imageName`, `IdUser`, `categoryID`, `additionDate`) VALUES
+(3, 'why can&#39;t start  number when declarate var', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\n', 'images.jpg3_images.jpg', 12, 0, '2022-08-12'),
+(6, 'Why index start to zero', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', NULL, 12, 0, '2022-08-12'),
+(8, 'Success Way Learn programing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\n', NULL, 12, 0, '2022-08-12'),
+(13, 'Db', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', '_download (7).jpg', 12, 0, '2022-08-13');
 
 -- --------------------------------------------------------
 
@@ -61,7 +72,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`IdUser`, `userName`, `password`, `email`, `fullName`, `aboutYou`, `langAndTools`, `permission`, `age`, `imageName`, `dataRegister`) VALUES
-(12, 'feras', '$2y$10$Kn1VHxs6TugHJciW9qPuuu0AuZVrlEg2rU/zpb/zekRNKbbdgYJkS', 'ferasfadi345@gmail.com', 'Feras Fadi Barahmeh', 'I\'m Feras Barahmeh', 'cpp, php, python, C#', 1, 20, 'feras_channels4_profile.jpg', '2022-08-10');
+(12, 'feras', '$2y$10$Kn1VHxs6TugHJciW9qPuuu0AuZVrlEg2rU/zpb/zekRNKbbdgYJkS', 'ferasfadi345@gmail.com', 'Feras Fadi Barahmeh', 'I\'m Feras Barahmeh', 'cpp, php, python, C#', 1, 20, 'feras_channels4_profile.jpg', '2022-08-10'),
+(14, 'majd', '$2y$10$Ci/KLHxpIAMOWOKqyEF1DuTyJBjxgYxKrrAP2wkuS/f6h6qHU85QO', 'majdbarahmeh990@gmail.com', 'Majd Fadi Barahmeh', 'I\'m Majd Fadi', 'cpp', 0, 19, 'feras_channels4_profile.jpg', '2022-08-10');
 
 --
 -- Indexes for dumped tables
@@ -72,7 +84,8 @@ INSERT INTO `users` (`IdUser`, `userName`, `password`, `email`, `fullName`, `abo
 --
 ALTER TABLE `articles`
   ADD PRIMARY KEY (`IdArticle`),
-  ADD UNIQUE KEY `titleArticle` (`titleArticle`);
+  ADD UNIQUE KEY `titleArticle` (`titleArticle`),
+  ADD KEY `FK_IDuser` (`IdUser`);
 
 --
 -- Indexes for table `users`
@@ -89,13 +102,23 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `IdArticle` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdArticle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identify user number', AUTO_INCREMENT=14;
+  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identify user number', AUTO_INCREMENT=15;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `articles`
+--
+ALTER TABLE `articles`
+  ADD CONSTRAINT `FK_IDuser` FOREIGN KEY (`IdUser`) REFERENCES `users` (`IdUser`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
