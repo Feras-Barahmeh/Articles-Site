@@ -138,6 +138,10 @@
                 $_POST['aboutYou'] = $FromDB['aboutYou'];
             }
 
+            if (  $info['permission'] !== $FromDB['permission'] && empty($info['permission'])) {
+                $_POST['permission'] = $FromDB['permission'];
+            }
+
             if (  $info['langAndTools'] !== $FromDB['langAndTools'] && empty($info['langAndTools'])) {
                 $_POST['langAndTools'] = $FromDB['langAndTools'];
             }

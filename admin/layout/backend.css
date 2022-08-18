@@ -75,7 +75,7 @@
     display: grid;
     height: inherit;
     margin-top: 30px;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 9fr;
     grid-template-rows: 1fr 1fr;
     column-gap: 20px;
 }
@@ -86,7 +86,7 @@
     margin-left: 9px;
     text-align: center;
     padding: 20px;
-    border-radius: 10px;
+
 }
 
 .contant-sidbar .name {
@@ -117,7 +117,7 @@
 }
 
 .contant-sidbar ul li:hover {
-    background-color: var(--titels);
+    opacity: .6;
     transform: perspective(100px) translateZ(10px);
 }
 
@@ -161,7 +161,7 @@
 
 .contant-status-cards .status-card {
     width: calc(100% / 5);
-    background-color: #ce596d;
+    background-color: var(--color-cards);
     margin-left: 10px;
     border-radius: 10px;
     display: flex;
@@ -213,7 +213,6 @@
 .statistics {
     grid-column: 1 / 5;
     background-color: var(--bbackground-color);
-    border-radius: 10px;
 }
 
 /* End Dashbors */
@@ -308,6 +307,14 @@
     justify-content: space-evenly;
 }
 
+
+
+@media(max-width: 767px){
+    .additions {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
 .contanier-table .additions .search {
     display: inline;
 }
@@ -427,7 +434,7 @@
     grid-template-columns: 100px 1fr 100px;
 
     grid-auto-rows: minmax(40%, auto);
-    row-gap: 10px;
+    /* row-gap: au; */
     margin-top: 20px;
 }
 
@@ -488,7 +495,6 @@
     background-color: var(--titels);
     padding: 20px;
     border-radius: 5px;
-    opacity: .6;
 }
 
 .page-article .article  .info-article img {
@@ -501,13 +507,12 @@
     width: 100%;
 }
 
-.page-article .article  .info-article .optins a:first-child {
-    color: var(--success);
+.page-article .article  .info-article .optins a {
+    color: white;
+    position: relative;
+    font-size: 20px;
 }
 
-.page-article .article  .info-article .optins a:last-child {
-    color: var(--danger);
-}
 
 
 .page-article .article  .info-article .optins a {
@@ -664,3 +669,101 @@
 }
 
 /* End Add Artical */
+
+
+/* Start Category */
+.page-category {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+
+.page-category .category {
+    background-color: var(--color-cards);
+    padding: 20px;
+    width: 300px;
+    margin: 10px;
+}
+
+.page-category .category .content-category h4 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.page-category .category .info-category .date-category {
+    font-size: 14px;
+    position: relative;
+    left: 77%;
+    top: 15px;
+    opacity: .6;
+    width: fit-content;
+}
+
+.page-category .category .info-category .layout {
+    margin-top: 10px;
+}
+
+.page-category .category .info-category .layout .optins a {
+    color: white;
+    margin-right: 10px;
+}
+
+
+
+.page-category .category .info-category .layout a span {
+    color: white;
+}
+
+.page-category .category .info-category .layout .optins {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* Add */
+.body-add-category {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 100px 1fr 100px;
+}
+
+.body-add-category form {
+    grid-column: 2 / 3;
+    grid-row: 2 /3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.body-add-category form div label {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+    left: 20px;
+    position: relative;
+}
+
+.body-add-category form div  i {
+    position: relative;
+    width: fit-content;
+    display: block;
+    color: black;
+    opacity: .6;
+    left: 50%;
+    top: 30px;
+}
+
+
+.body-add-category form div input {
+    padding: 10px 0 10px 10px;
+    display: block;
+}
+/* End Category */

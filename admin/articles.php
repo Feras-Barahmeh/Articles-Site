@@ -23,51 +23,59 @@
         }
     }
 
-    function PrintWriters() {
-        $data = Queries::FromTable('IdUser, userName', 'users', "WHERE permission > 0");
+
+    function PrintCategories() {
+        $data = Queries::FromTable("IdCategory, titleCategory", 'categories');
+
         foreach($data as $info) {
         ?>
-                <option value="<?php echo $info['IdUser'] ?>"><?php echo $info['userName'] ?></option>
-
-        <?php }
+            <option value="<?php echo $info['IdCategory'] ?>"><?php echo $info['titleCategory'] ?></option>
+        <?php 
+        }
     }
 
     function AddStructer() {
+
         ?>
             <div class="body-add-article">
-                    <img src="../commonBetweenBackFront/images//logos/logo.jpg" alt="user img" >
+                <form action="articles.php?articleAction=insert" method="POST" enctype="multipart/form-data">
 
-                    <form action="articles.php?articleAction=insert" method="POST" enctype="multipart/form-data">
+                    <div class="">
+                        <label for="title" class="label">Title</label>
+                        <i class="fa-solid fa-heading"></i>
+                        <input type="text" name="titleArticle" id="title"   placeholder="Title" class="input-edit-feild">
+                    </div>
 
-                        <div class="">
-                            <label for="title" class="label">Title</label>
-                            <i class="fa-solid fa-heading"></i>
-                            <input type="text" name="titleArticle" id="title"   placeholder="Title" class="input-edit-feild">
-                        </div>
+                    <div class="">
+                        <label for="writer" class="label">writer</label>
+                        <i class="fa-solid fa-feather"></i>
+                        <select name="IdUser" id="writer" class="input-edit-feild">
+                            <?php Backend::PrintWriters() ?>
+                        </select>
+                    </div>
 
-                        <div class="">
-                            <label for="writer" class="label">writer</label>
-                            <i class="fa-solid fa-feather"></i>
-                            <select name="IdUser" id="writer" class="input-edit-feild">
-                                <?php PrintWriters() ?>
-                            </select>
-                        </div>
+                    <div class="">
+                        <label for="img" class="label">Image</label>
+                        <i class="fa-solid fa-image"></i>
+                        <input type="file" name="imageName" id="img" class="input-edit-feild file">
+                    </div>
 
-                        <div class="">
-                            <label for="img" class="label">Image</label>
-                            <i class="fa-solid fa-image"></i>
-                            <input type="file" name="imageName" id="img" class="input-edit-feild file">
-                        </div>
+                    <div class="">
+                        <label for="categoryID" class="label">Category</label>
+                        <i class="fa-solid fa-feather"></i>
+                        <select name="categoryID" id="categoryID" class="input-edit-feild" required>
+                            <?php PrintCategories() ?>
+                        </select>
+                    </div>
 
-                        <div class="">
-                            <label for="article" class="label">Article</label>
-                            <textarea name="content" id="article" cols="80" rows="10" class="input-edit-feild"></textarea>
-                            
-                        </div>
+                    <div class="">
+                        <label for="article" class="label">Article</label>
+                        <textarea name="content" id="article" cols="80" rows="10" class="input-edit-feild"></textarea>
+                        
+                    </div>
 
-                        <input type="submit" class="form-btn add-member-in-users">
-                    </form>
-
+                    <input type="submit" value="Add" class="form-btn add-member-in-users">
+                </form>
 
             </div>
         <?php
@@ -83,9 +91,10 @@
                             FROM
                                 users
                             INNER JOIN
-                                `articles`
+                                articles
                             ON
-                                `users`.`IdUser` = `articles`.`IdUser`");
+                                users.IdUser = articles.IdUser
+                            ORDER BY IdArticle DESC ");
         $stmt->execute();
 
         $nams = $stmt->fetchAll();
@@ -117,7 +126,7 @@
                             <label for="writer" class="label">writer</label>
                             <i class="fa-solid fa-feather"></i>
                             <select name="IdUser" id="writer" class="input-edit-feild">
-                                <?php PrintWriters() ?>
+                                <?php Backend::PrintWriters() ?>
                             </select>
                         </div>
 
@@ -127,13 +136,21 @@
                             <input type="file" name="imageName" id="img" class="input-edit-feild file">
                         </div>
 
+                    <div class="">
+                        <label for="categoryID" class="label">Category</label>
+                        <i class="fa-solid fa-feather"></i>
+                        <select name="categoryID" id="categoryID" class="input-edit-feild" required>
+                            <?php PrintCategories() ?>
+                        </select>
+                    </div>
+
                         <div class="">
                             <label for="article" class="label">Article</label>
                             <textarea name="content" id="article"  cols="80" rows="10" class="input-edit-feild"><?php echo $info['content'] ?></textarea>
                             
                         </div>
 
-                        <input type="submit" class="form-btn add-member-in-users">
+                        <input type="submit" class="form-btn add-member-in-users" value="Edit">
                     </form>
 
 
@@ -142,12 +159,14 @@
     }
 
 
+
+
     function PrintArticle() {
         $data = NameWriter();
         global $commfilesuploaded;
 
         foreach($data as $info ) {
-
+            $infocAT = Queries::FromTable("categories.titleCategory, categories.IdCategory, articles.*", 'categories', "INNER JOIN  articles ON  categories.IdCategory = articles.categoryID WHERE IdArticle = " . $info['IdArticle'], 'fetch');
             ?>
                 <div class="article">
                     <div class="content-article">
@@ -155,18 +174,17 @@
                         <p class="content"><?php echo $info['content'] ?></p>
                     </div>
                     <div class="info-article">
-                        <!-- <img src="../commonBetweenBackFront/images//logos/logo3.jpg" alt="user img" class="img-user-aside"> -->
                         <?php Images::SetImg($commfilesuploaded . 'articles/', $info['imageName'], 'img-user-aside') ?>
 
                         <div class="layout">
                             <a href="#" class="writer"><?php echo $info['userName'] ?></a>
 
                             <div class="optins">
-                                <a href="articles.php?articleAction=edit&IdArticle=<?php echo $info['IdArticle'] ?>" ><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="articles.php?articleAction=delete&IdArticle=<?php echo $info['IdArticle'] ?>" onclick="return Confirm()"><i class="fa-solid fa-trash-can"></i></a>
+                                <a href="articles.php?articleAction=edit&IdArticle=<?php echo $info['IdArticle'] ?>" class="process-btn" data-hover="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="articles.php?articleAction=delete&IdArticle=<?php echo $info['IdArticle'] ?>"  onclick="return Confirm()" class="process-btn" data-hover="Delete"><i class="fa-solid fa-trash-can"></i></a>
                             </div>
 
-                            <span>Gategory</span>
+                            <span><?php  echo $infocAT['titleCategory'] ?></span>
                             <span class="date"><?php echo $info['additionDate'] ?></span>
                         </div>
                     </div>
@@ -183,7 +201,7 @@
                     <a href="articles.php?articleAction=add" class="form-btn">Add Article</a>
                     <div class="search">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="search" value="Search" id="gsearch" name="gsearch">
+                        <input type="search" placeholder="Search" id="gsearch" name="gsearch">
                     </div>
 
                     <div class="number-articles">

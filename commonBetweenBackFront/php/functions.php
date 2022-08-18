@@ -11,7 +11,7 @@
         }
 
         public static function SitBackBtn() {
-            ?> <a href="<?php echo $_SERVER['HTTP_REFERER']?> "  class="form-btn back-btn">Back</a> <?php
+            ?> <a href="<?php echo $_SERVER['HTTP_REFERER']?>"  class="form-btn back-btn">Back</a> <?php
         }
 
         public static function AlertMassage($mass, $typeAlert= 'danger') {
@@ -226,11 +226,14 @@
 
             if ( ! empty($info['name']) ) {
                 $imgName = self::RenameName($info['name']);
+                return $imgName;
             } else {
                 $imgName = Queries::FromTable('imageName', $table, "WHERE $ColCondition = " . GetRequests::GetValueGet($ColCondition), 'fetch')['imageName'];
+                return $imgName;
             }
 
-            return $imgName;
+            return NULL;
+            
         }
 
         public static function ValidExtension($extension) {
@@ -286,6 +289,9 @@
                     if ($info['size'] > 51194 * 3) {
                         array_push($ERRORS, 'Large Image Size Must be less Than' . 51194 * 3);
                     }
+
+            } elseif(! empty($info['name']) &&  !empty(GetRequests::GetValueGet('edit')) ) {
+                array_push($ERRORS, 'Can\'t Empty Image Name');
             }
         }
     }

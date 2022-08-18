@@ -8,8 +8,9 @@
                     <div class="logo"><a href="dashbord.php"><img src="<?php echo $commfilesImags ?>logos/logo.jpg" alt="Logo"></a></div>
                     <div class="bar">
                         <ul>
-                            <li><a href="#">Categories</a></li>
+                            <li><a href="categories.php">Categories</a></li>
                             <li><a href="users.php">Users</a></li>
+                            <li><a href="articles.php">Articles</a></li>
                             <li><a href="#">Admins</a></li>
                             <li><a href="#">Massags</a></li>
                             <li><a href="#">Quotes</a></li>
