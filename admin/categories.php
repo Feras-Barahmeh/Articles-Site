@@ -143,7 +143,7 @@ function MainStructer () {
         <h3 class="h-title">Categories</h3>
 
         <div class="additions">
-                <a href="categories.php?categoriesAction=add" class="form-btn">Add Category</a>
+                <a href="categories.php?categoriesAction=add" class="add-btn">Add Category</a>
                 <div class="search">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="search" placeholder="Search" id="gsearch" name="gsearch">

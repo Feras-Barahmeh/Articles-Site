@@ -133,6 +133,18 @@ table tr td {
 }
 
 
+.add-btn {
+    background-color: var(--bbackground-color);
+    padding: 10px;
+    margin-left: 5px;
+    transition: .2s ease-in-out;
+    color: white;
+}
+
+.add-btn:hover {
+    transform: perspective(100px) translateZ(10px);
+    opacity: .6;
+}
 
 
 

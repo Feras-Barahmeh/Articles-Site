@@ -192,9 +192,17 @@
         }
     }
 
+    function WhoShowed () {
+        if (GetRequests::GetValueGet('show') == "users")
+            $data = Queries::FromTable("*", 'users', "WHERE permission != 1");
+        else 
+            $data = Queries::FromTable("*", 'users', "WHERE permission >= 1");
+        return $data;
+    }
+
 
     function PrintDataUser() {
-        $data = Queries::FromTable("*", 'users', "WHERE permission != 1");
+        $data = WhoShowed();
         global $commfilesuploaded;
 
         foreach ($data as $info) {
@@ -219,6 +227,8 @@
             <?php
         }
     }
+
+
 
 
     function AddStructure() {
@@ -296,15 +306,27 @@
             <div class="contanier-table">
 
                 <div class="additions">
-                    <a href="users.php?actionMember=add" class="form-btn add-member-in-users">Add member</a>
+                    <a href="users.php?actionMember=add" class="add-member-in-users">Add member</a>
                     <div class="search">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="search" value="Search" id="gsearch" name="gsearch">
                     </div>
 
-                    <div class="number-users">
-                        <span>Number Of Users</span> <span class="num"><?php echo  Queries::Counter("IdUser", 'users', "Where permission != 1") ?></span>
+
+                    <div class="counters">
+                        <a href="users.php?show=users">
+                            <div class="number-users add-btn">
+                                <span>Users</span> <span class="num"><?php echo  Queries::Counter("IdUser", 'users', "Where permission != 1") ?></span>
+                            </div>
+                        </a>
+
+                        <a href="users.php?show=admins">
+                            <div class="number-admins add-btn">
+                                <span>Admins</span> <span class="num"><?php echo  Queries::Counter("IdUser", 'users', "Where permission = 1") ?></span>
+                            </div>
+                        </a>
                     </div>
+
                 </div>
 
                 <table class="dashbord-show-users-table">

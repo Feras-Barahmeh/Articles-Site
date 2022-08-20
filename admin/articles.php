@@ -198,7 +198,7 @@
             <h3 class="h-title">Articles</h3>
 
             <div class="additions">
-                    <a href="articles.php?articleAction=add" class="form-btn">Add Article</a>
+                    <a href="articles.php?articleAction=add" class="add-btn">Add Article</a>
                     <div class="search">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="search" placeholder="Search" id="gsearch" name="gsearch">

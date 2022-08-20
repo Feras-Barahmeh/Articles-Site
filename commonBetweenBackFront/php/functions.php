@@ -163,6 +163,14 @@
             }  
         }
 
+        public static function IfSetValue($val) {
+            if (isset($val) )  {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public static function GetNum() {
             if (self::IfGet()) {
                 $gets = $_GET;
