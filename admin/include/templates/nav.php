@@ -26,7 +26,7 @@
                                     <button onclick="myFunction()" class="dropbtn name-in-nav">
                                         <?php echo $_SESSION['adminName'] ?>  <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
                                     <div id="myDropdown" class="dropdown-content">
-                                        <a href="#"><i class="fa-solid fa-user icone-drobdown" aria-hidden="true" ></i>Profile</a> <hr class="separetor-links">
+                                        <a href="profile.php"><i class="fa-solid fa-user icone-drobdown" aria-hidden="true" ></i>Profile</a> <hr class="separetor-links">
                                         <a href="#"><i class="fa-solid fa-gear icone-drobdown" aria-hidden="true"></i>setting</a>  <hr class="separetor-links">
                                         <a href="users.php?actionMember=edit&IdUser=<?php echo Sessions::GetValueSessionDepKey('IdUser') ?>"><i class="fa-solid fa-pen-to-square icone-drobdown" aria-hidden="true"></i>Edit Profile</a>  <hr class="separetor-links">
                                         <a href="dashbord.php"><i class="fa-solid fa-chart-line icone-drobdown" aria-hidden="true"></i>To Dashbord</a>  <hr class="separetor-links">

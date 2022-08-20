@@ -6,6 +6,8 @@
     */
 
 
+    // Small Edit :: Whene Update profile check if user name not exist.
+
 // Start Gloabal Difination
     ob_start();
     session_start();
@@ -227,9 +229,6 @@
             <?php
         }
     }
-
-
-
 
     function AddStructure() {
         ?>
