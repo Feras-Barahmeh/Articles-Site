@@ -109,7 +109,8 @@
     function EditStructer() {
         global $commfilesuploaded;
         $IdArticle = GetRequests::GetValueGet('IdArticle');
-        $info = Queries::FromTable("titleArticle, imageName, content", 'articles', "WHERE IdArticle = " . $IdArticle, 'fetch');
+        $info = Queries::FromTable("titleArticle, imageName, content, categoryID", 'articles', "WHERE IdArticle = " . $IdArticle, 'fetch');
+        $catname  = Queries::FromTable("titleCategory", 'categories', "WHERE IdCategory = " . $info['categoryID'], 'fetch')['titleCategory'];
         ?>
             <div class="body-add-article">
                     <?php Images::SetImg($commfilesuploaded . 'articles/', $info['imageName'], 'img-user-aside') ?>
@@ -140,6 +141,7 @@
                         <label for="categoryID" class="label">Category</label>
                         <i class="fa-solid fa-feather"></i>
                         <select name="categoryID" id="categoryID" class="input-edit-feild" required>
+                            <option value="<?php echo $info['categoryID'] ?>"><?php echo $catname ?></option>
                             <?php PrintCategories() ?>
                         </select>
                     </div>
@@ -184,8 +186,10 @@
                                 <a href="articles.php?articleAction=delete&IdArticle=<?php echo $info['IdArticle'] ?>"  onclick="return Confirm()" class="process-btn" data-hover="Delete"><i class="fa-solid fa-trash-can"></i></a>
                             </div>
 
-                            <span><?php  echo $infocAT['titleCategory'] ?></span>
-                            <span class="date"><?php echo $info['additionDate'] ?></span>
+                            <div class="cat-date">
+                                <a href="filterByCat.php?CatName=<?php  echo $infocAT['titleCategory'] ?>"><?php  echo $infocAT['titleCategory'] ?></a>
+                                <span class="date"><?php echo $info['additionDate'] ?></span>
+                            </div>
                         </div>
                     </div>
                 </div>

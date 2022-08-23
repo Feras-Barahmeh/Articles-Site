@@ -38,7 +38,7 @@
 .index-input {
     padding: 7px 0 7px 35px;
     width: 400px;
-    border-radius: 10px;
+    border-radius: 1px;
     outline: none;
     position: relative;
     transform: translate(50%, 0);
@@ -56,7 +56,7 @@
     position: relative;
     color: black;
     top: 0px;
-    left: 28%;
+    left: 32%;
 }
 
 
@@ -163,7 +163,7 @@
     width: calc(100% / 5);
     background-color: var(--color-cards);
     margin-left: 10px;
-    border-radius: 10px;
+    border-radius: 1px;
     display: flex;
     justify-content: space-around;
 }
@@ -588,6 +588,11 @@
     margin: 0 0 0 6px;
 }
 
+.cat-date {
+    display: flex;
+    justify-content: space-around;
+}
+
 /* End Articals */
 
 
@@ -683,7 +688,7 @@
 
 
 .page-category .category {
-    background-color: var(--color-cards);
+    background-color: var(--titels);
     padding: 20px;
     width: 300px;
     margin: 10px;
@@ -716,8 +721,9 @@
 
 
 
-.page-category .category .info-category .layout a span {
+.page-category .category .info-category .layout   a {
     color: white;
+    display: inline;
 }
 
 .page-category .category .info-category .layout .optins {
@@ -725,6 +731,8 @@
     display: flex;
     justify-content: space-between;
 }
+
+
 
 
 /* Add */
@@ -887,9 +895,6 @@
 }
 
 
-.articles .article:hover {
-    /* transform: perspective(100px) translateZ(10px); */
-}
 
 
 .articles .article img {
@@ -913,6 +918,10 @@
     width: 100%;
 }
 
+.articles .article .info-art  a {
+    color: white;
+}
+
 .articles .article span a {
     color: white;
     overflow: hidden;
@@ -927,3 +936,71 @@
 
 
 /* End Profile */
+
+
+/* Start Filter By Tag */
+.show-article-cat {
+    background-color: var(--bbackground-color);
+    grid-column: 1 / 5;
+    grid-row: 2;
+    display: flex;
+    padding: 20px;
+}
+
+.show-article-cat .article {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.show-article-cat .article img {
+    width: 100%;
+    height: 140px;
+}
+
+.show-article-cat .article .info-article {
+    width: 100%;
+
+}
+
+.show-article-cat .article .info-article .title {
+    color: white;
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin-top: 5px;
+}
+
+.show-article-cat .article .info-article  .info-art {
+    display: flex;
+
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+.show-article-cat .article .info-article  .info-art  a {
+    color: white;
+}
+
+
+.show-article-cat .article .info-article  .info-art .date {
+    font-size: 14px;
+    opacity: .6;
+}
+
+.showcat {
+    grid-column: 2 / 4;
+    text-align: center;
+    color: var(--color-cards);
+    font-size: 40px;
+}
+
+aside .showCat {
+    padding: 0 !important;
+    margin: 5px 0 10px !important;
+}
+/* End Filter By Tag */

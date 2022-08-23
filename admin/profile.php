@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="info-art">
-                        <span><a href="showarticlea.php?CatName=<?php echo str_replace(" ", "-", $fromcat) ?>"><?php echo $fromcat ?></a></span></span>
+                        <span><a href="filterByCat.php?CatName=<?php echo str_replace(" ", "-", $fromcat) ?>"><?php echo $fromcat ?></a></span></span>
                         <span class="date"><?php echo $article['additionDate'] ?> </span>
                         <a href="articles.php?articleAction=edit&IdArticle=<?php echo $article['IdArticle'] ?>">Edit</a>
                     </div>

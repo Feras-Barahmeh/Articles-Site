@@ -13,9 +13,9 @@
                 <div class="users-number status-card">
                     <span class="vertical-line"> 
                         <i class="fa-solid fa-users" aria-hidden="true"></i>
-                        <a href="users.php"><?php echo Queries::Counter('IdUser', 'users' , "WHERE permission != 1") ?></a>
+                        <a href="users.php?show=users"><?php echo Queries::Counter('IdUser', 'users' , "WHERE permission != 1") ?></a>
                     </span>
-                    <p class="indication-card"><a href="users.php">Members</a></p>
+                    <p class="indication-card"><a href="users.php?show=users">Members</a></p>
                 </div>
 
                 <div class="Pending Memeber status-card">

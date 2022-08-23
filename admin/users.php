@@ -23,7 +23,6 @@
         public static function StructerEdit() {
             global $commfilesuploaded;
             $id = GetRequests::GetValueGet('IdUser');
-
             $values = Queries::FromTable('*', 'users', 'WHERE IdUser = ' .  $id, 'fetch');
             ?>
                 <h3 class="h-title">Edit Profile <?php echo $values['userName'] ?> </h3>
@@ -88,6 +87,7 @@
                                 <label for="permission" class="label-edit">permission</label>
                                 <i class="fa-solid fa-ranking-star" aria-hidden="true"></i>
                                 <select name="permission" id="permission" class="input-edit-feild" required>
+                                        <option value="<?php echo $values['permission'] ?>">Same permission</option>
                                         <option value="0">Member</option>
                                         <option value="1">Admin</option>
                                         <option value="2">Programer</option>
@@ -195,10 +195,13 @@
     }
 
     function WhoShowed () {
-        if (GetRequests::GetValueGet('show') == "users")
-            $data = Queries::FromTable("*", 'users', "WHERE permission != 1");
-        else 
-            $data = Queries::FromTable("*", 'users', "WHERE permission >= 1");
+        $WantShow = GetRequests::GetValueGet('show');
+        if ($WantShow  === "users")
+            $data = Queries::FromTable("*", 'users', "WHERE permission = 0");
+        else if ($WantShow === 'admins')
+            $data = Queries::FromTable("*", 'users', "WHERE permission = 1");
+        else if ($WantShow === 'prog')
+            $data = Queries::FromTable("*", 'users', "WHERE permission = 2");
         return $data;
     }
 
@@ -301,27 +304,33 @@
     function ShowUserStructuer() {
         ?>
 
-            <h3 class="h-title">Member</h3>
+            <h3 class="h-title">Users</h3>
             <div class="contanier-table">
 
                 <div class="additions">
                     <a href="users.php?actionMember=add" class="add-member-in-users">Add member</a>
                     <div class="search">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="search" value="Search" id="gsearch" name="gsearch">
+                    <input type="search" placeholder="Search" id="gsearch" name="gsearch">
                     </div>
 
 
                     <div class="counters">
                         <a href="users.php?show=users">
                             <div class="number-users add-btn">
-                                <span>Users</span> <span class="num"><?php echo  Queries::Counter("IdUser", 'users', "Where permission != 1") ?></span>
+                                <span>Users</span> <span class="num"><?php echo  Queries::Counter("IdUser", 'users', "Where permission = 0") ?></span>
                             </div>
                         </a>
 
                         <a href="users.php?show=admins">
                             <div class="number-admins add-btn">
                                 <span>Admins</span> <span class="num"><?php echo  Queries::Counter("IdUser", 'users', "Where permission = 1") ?></span>
+                            </div>
+                        </a>
+
+                        <a href="users.php?show=prog">
+                            <div class="number-admins add-btn">
+                                <span>Programmers</span> <span class="num"><?php echo  Queries::Counter("IdUser", 'users', "Where permission = 2") ?></span>
                             </div>
                         </a>
                     </div>
