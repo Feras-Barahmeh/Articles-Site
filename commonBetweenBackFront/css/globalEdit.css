@@ -10,12 +10,16 @@
 
 :root {
     --main-color: #1C2148;
-    --bbackground-color: #161A34;
+    /* --bbackground-color: #161A34; */
+    --bbackground-color: rgba(0, 0, 0, 0.5);
     --assistant: #f3d33a;
     --titels: cadetblue;
-    --sun-theam: white;
+    --titles-two: #1da4f2;
+    --sun-theam: #fff;
+    --color-cat-three: #81ecec;
     --danger: #ed6464;
     --info: rgb(135, 222, 239);
+    --main-cat-tow: #1da4f2;
     --success: rgb(147, 227, 147);
     --desine-one: #81ecec;
     --color-cards: #ce596d;
@@ -23,13 +27,16 @@
 
 html {
     scroll-behavior: smooth;
+    height: 100%;
 }
 
 body {
-    background-color: #1C2148;
+    /* background-color: #1C2148; */
+    background: linear-gradient(#393f4a, #30455e);
     color: var(--sun-theam);
-    height: 85vh;
-
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
 }
 
 ::selection {
@@ -104,18 +111,16 @@ table tr td {
     margin-right: auto;
 }
 
+
+
 .alert {
     text-align: center;
-    padding: 10px;
-    margin-top: 5px;
-    width: 900px;
-    border-radius: 10px;
-    font-size: 20px;
+    width: 360px;
     position: relative;
-    /* top: -100%; */
-    top: 3%;
-    opacity: .7;
-    left: 50px;
+    left: 50%;
+    top: 11px;
+    transform: translate(-50%);
+    padding: 10px;
 }
 
 .danger {
@@ -136,14 +141,23 @@ table tr td {
 }
 
 .back-btn {
-    position: absolute;
-    text-align: center;
-    left: 64%;
-    top: 14%;
-    margin: 0;
-    padding: 10px;
-    display: inline;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #1da4f2;
+    font-size: 16px;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 4px;
+    letter-spacing: 4px;
 }
+
+.back-btn:hover {
+    color: #fff;
+    background: var(--main-cat-tow);
+}
+
 
 
 .add-btn {
@@ -248,79 +262,8 @@ table tr td {
     color: var(--titels);
     padding: 10px;
     border-radius: 10px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-size: 30px;
 }
 /* End  title page */
 
-
-/* Start forms */
-
-.parent {
-    height: 800px;
-    transform: translate(-50px, 20px);
-}
-
-.form {
-    width: 40%;
-    position: relative;
-    left: 35%;
-}
-
-.parent-input {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
-
-.icon-in-input {
-    position: relative;
-    top: 52px;
-    z-index: 200;
-    width: fit-content;
-    left: 20px;
-    color: black;
-}
-
-.label-input {
-    font-weight: bold;
-    opacity: .7;
-    position: relative;
-    top: 30px;
-    margin-bottom: 5px;
-}
-
-.input {
-    padding: 13px 50px;
-    border-radius: 7px;
-    font-size: 15px;
-    margin-top: 15px;
-    outline: none;
-    border: none;
-}
-
-.file-input {
-    background-color: var(--sun-theam);
-}
-
-.form-btn {
-    margin-top: 10px;
-    padding: 8px;
-    border-radius: 5px;
-    background-color: var(--assistant);
-    width: 150px;
-    height: 40px;
-    color: black;
-    transition-duration: .2s;
-    transition-timing-function: ease-in-out;
-    border: none;
-    outline: none;
-}
-
-.form-btn:hover {
-    cursor: pointer;
-    background-color: var(--sun-theam);
-    transform: perspective(100px) translateZ(10px);
-}
-
-/* End forms */

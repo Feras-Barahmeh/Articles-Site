@@ -1,7 +1,7 @@
 <?php 
 
 
-    class Backend {
+    class Printer {
         public static function PrintWriters() {
             $data = Queries::FromTable('IdUser, userName', 'users', "WHERE permission > 0");
 
@@ -11,7 +11,19 @@
             <?php 
             }
         }
+
+        
+        public static function PrintCatName() {
+            $nameCats = Queries::FromTable("titleCategory", 'categories');
+            foreach ($nameCats as $nameCat) {
+            ?>
+                <li class="showCat"><a href="filterByCat.php?CatName=<?php  echo str_replace(" ", '-', $nameCat['titleCategory']) ?>"><?php  echo $nameCat['titleCategory'] ?></a>  </li> <hr>
+            <?php }
+        }
+
     }
+
+
 
 
 

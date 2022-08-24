@@ -26,88 +26,79 @@
             $id = GetRequests::GetValueGet('IdUser');
             $values = Queries::FromTable('*', 'users', 'WHERE IdUser = ' .  $id, 'fetch');
             ?>
-                <h3 class="h-title">Edit Profile <?php echo $values['userName'] ?> </h3>
-                <div class="container-edit-form">
-                    <form action="users.php?actionMember=update&IdUser=<?php echo $id ?>" method="POST" class="form-edit" enctype="multipart/form-data">
-                        <!-- User Name -->
-                            <div class="container-feild">
-                                <label for="user-name" class="label-edit">User Name</label>
-                                <i class="fa-solid fa-user"></i>
-                                <input type="text" name="userName" class="input-edit-feild" value="<?php echo $values['userName'] ?>">
-                            </div>
+                <div class="img-user">
+                    <?php Images::SetImg($commfilesuploaded . 'users//', Images::GetNameImgFromDB('imageName', 'users', "WHERE IdUser = " . GetRequests::GetValueGet("IdUser"))); ?>
+                </div>`
 
-                        <!-- passwoed -->
-                            <div class="container-feild">
-                                <label for="user-name" class="label-edit">Password</label>
-                                <i class="fa-solid fa-lock"></i>
-                                <input type="password" name="password" class="input-edit-feild" >
-                            </div>
+                <div class="contanier-form">
+                    <h3 class="h-title">Edit Profile</h3>
+                    <form form action="users.php?actionMember=update&IdUser=<?php echo $id ?>" method="POST" class="form-edit" enctype="multipart/form-data">
+                        <!-- Start User name -->
+                        <div class="input-box">
+                            <input type="text" name="userName" id="userName" value="<?php echo $values['userName'] ?>" class="input" autocomplete="off">
+                            <label for="userName" class="label">user name</label>
+                        </div>
 
+                        <!-- password -->
+                        <div class="input-box">
+                            <input type="password" name="password" id="password" class="input" autocomplete="off">
+                            <label for="password" class="label">password</label>
+                        </div>
+                        
                         <!-- Registerd Password -->
-                            <div class="container-feild" style="display: none;">
-                                <input type="hidden" name="registerdPass" class="input-edit-feild" value="<?php echo $values['password'] ?>">
-                            </div>
+                        <div class="input-box" style="display: none;">
+                            <input type="hidden" name="registerdPass" id="" value="<?php echo $values['password'] ?>" class="" autocomplete="off">
+                        </div>
 
                         <!-- Email -->
-                            <div class="container-feild">
-                                <label for="user-name" class="label-edit">Email</label>
-                                <i class="fa-solid fa-envelope"></i>
-                                <input type="email" name="email" class="input-edit-feild" value="<?php echo $values['email'] ?>">
-                            </div>
+                        <div class="input-box">
+                            <input type="email" name="email" id="password" value="<?php echo $values['email'] ?>" class="input" autocomplete="off">
+                            <label for="email" class="label">Email</label>
+                        </div>
 
                         <!-- Longuage And Tools -->
-                            <div class="container-feild">
-                                <label for="user-name" class="label-edit">Longuage And Tools</label>
-                                <i class="fa-solid fa-language"></i>
-                                <input type="text" name="langAndTools" class="input-edit-feild" value="<?php echo $values['langAndTools'] ?>" placeholder="Your Tools, Programming Language">
-                            </div>
+                        <div class="input-box">
+                            <input type="text" name="langAndTools" id="langAndTools" value="<?php echo $values['langAndTools'] ?>" class="input" autocomplete="off">
+                            <label for="langAndTools" class="label">Longuage And Tools</label>
+                        </div>
 
                         <!-- Image -->
-                            <div class="container-feild" >
-                                <label for="user-name" class="label-edit">Image</label>
-                                <i class="fa-solid fa-camera"></i>
-                                <input type="file" name="imageName" class="input-edit-feild file-input">
-                            </div>
+                        <div class="input-box" >
+                            <input type="file" name="imageName" class="input">
+                        </div>
 
                         <!-- Full Name -->
-                            <div class="container-feild">
-                                <label for="user-name" class="label-edit">Full Name</label>
-                                <i class="fa-solid fa-signature"></i>
-                                <input type="text" name="fullName" class="input-edit-feild" value="<?php echo $values['fullName'] ?>" placeholder="Full Name">
-                            </div>
+                        <div class="input-box">
+                            <input type="text" name="fullName" id="fullName" value="<?php echo $values['fullName'] ?>" class="input" autocomplete="off">
+                            <label for="fullName" class="label">Full Name</label>
+                        </div>
 
                         <!-- Age -->
-                            <div class="container-feild">
-                                <label for="user-name" class="label-edit">Age</label>
-                                <i class="fa-solid fa-calendar"></i>
-                                <input type="text" name="age" class="input-edit-feild" value="<?php echo $values['age'] ?>" placeholder="Your Age">
-                            </div>
+                        <div class="input-box">
+                            <input type="text" name="age" id="age" value="<?php echo $values['age'] ?>" class="input" autocomplete="off">
+                            <label for="age" class="label">Age</label>
+                        </div>
 
                         <!-- Permission -->
-                            <div class="container-feild">
-                                <label for="permission" class="label-edit">permission</label>
-                                <i class="fa-solid fa-ranking-star" aria-hidden="true"></i>
-                                <select name="permission" id="permission" class="input-edit-feild" required>
-                                        <option value="<?php echo $values['permission'] ?>">Same permission</option>
-                                        <option value="0">Member</option>
-                                        <option value="1">Admin</option>
-                                        <option value="2">Programer</option>
-                                </select>
-                            </div>
+                        <div class="input-box">
+                            <select name="permission" id="permission" class="select" required>
+                                <option value="<?php echo $values['permission'] ?>">Same permission</option>
+                                <option value="0">Member</option>
+                                <option value="1">Admin</option>
+                                <option value="2">Programer</option>
+                            </select>
+                        </div>
 
+                        
                         <!-- About You -->
-                            <div class="container-feild">
-                                <label for="user-name" class="label-edit">About You</label>
-                                <i class="fa-solid fa-comment-medical"></i>
-                                <textarea name="aboutYou" cols="36" rows="3"><?php echo $values['aboutYou'] ?></textarea>
-                            </div>
+                        <div class="input-box">
+                            <textarea name="aboutYou" cols="36" rows="3"><?php echo $values['aboutYou'] ?></textarea>
+                            <label for="aboutYou" class="label">About You</label>
+                        </div>
 
-                        <input type="submit" value="Save" class="form-btn text-center">
+                        <input type="submit" value="Save" class="btn-submit">
+
                     </form>
-
-                    <div class="img-user">
-                        <?php Images::SetImg($commfilesuploaded . 'users//', Images::GetNameImgFromDB('imageName', 'users', "WHERE IdUser = " . GetRequests::GetValueGet("IdUser"))); ?>
-                    </div>
                 </div>
 
             <?php
@@ -234,63 +225,51 @@
 
     function AddStructure() {
         ?>
-            <div class="container">
-                <h3 class="h-title">Add Member</h3>
-                <div class="parent">
-                    <form action="?actionMember=insert" method="POST" class="form" enctype="multipart/form-data">
-                            <!-- Start User name -->
-                                <div class="user-name parent-input">
-                                    <label for="userName" class="label-input">User Name</label>
-                                    <i class="fa-solid fa-user icon-in-input" aria-hidden="true" ></i>
-                                    <input type="text" name="userName" class="input" placeholder="User Name" required>
-                                </div>
+            <div class="contanier-form">
+                <h1 class="h-title">Add User</h1>
+                <form action="?actionMember=insert" method="POST" class="form" enctype="multipart/form-data">
+                    <!-- User Name -->
+                    <div class="input-box">
+                        <input type="text" name="userName" id="userName" class="input" required="" autocomplete="off">
+                        <label for="userName" class="label">User Name</label>
+                    </div>
 
-                            <!-- Start Password -->
-                                <div class="parent-input">
-                                    <label for="userName" class="label-input">password</label>
-                                    <i class="fa-solid fa-lock icon-in-input" aria-hidden="true"></i>
-                                    <input type="password" name="password" class="input" placeholder="password" required>
-                                </div>
+                    <!-- Password -->
+                    <div class="input-box">
+                        <input type="password" name="password" id="password"  class="input" required="" autocomplete="off">
+                        <label for="password" class="label">password</label>
+                    </div>
 
-                            <!-- Start Email -->
-                                <div class="parent-input">
-                                    <label for="userName" class="label-input">Email</label>
-                                    <i class="fa-solid fa-envelope icon-in-input" aria-hidden="true"></i>
-                                    <input type="email" name="email" class="input" placeholder="Email" required>
-                                </div>
+                    <!-- Email -->
+                    <div class="input-box">
+                        <input type="email" name="email" id="email"  class="input" required="" autocomplete="off">
+                        <label for="email" class="label">Email</label>
+                    </div>
 
-                                <!-- Start Full Name -->
-                                <div class="parent-input">
-                                    <label for="userName" class="label-input">Full Name</label>
-                                    <i class="fa-solid fa-signature icon-in-input" aria-hidden="true"></i>
-                                    <input type="text" name="fullName" class="input" placeholder="Full Name" required>
-                                </div>
+                    <!-- Full Name -->
+                    <div class="input-box">
+                        <input type="text" name="fullName" id="fullName"  class="input" required="" autocomplete="off">
+                        <label for="fullName" class="label">Full Name</label>
+                    </div>
 
-                                <!-- Start Image-->
-                                <div class="parent-input">
-                                    <label for="userName" class="label-input">Profile Pictuer</label>
-                                    <i class="fa-solid fa-file-image icon-in-input" aria-hidden="true"></i>
-                                    <input type="file" name="imageName" class="input file-input" >
-                                </div>
-                                
-                            <!-- Start permission -->
-                                <div class="parent-input">
-                                    <label for="userName" class="label-input">permission</label>
-                                    <i class="fa-solid fa-ranking-star icon-in-input" aria-hidden="true"></i>
-                                    <select name="permission" id="permission" class="input" required>
-                                        <option value="0">Member</option>
-                                        <option value="1">Admin</option>
-                                        <option value="2">Programer</option>
-                                    </select>
-                                </div>
+                    <!-- Pictuer -->
+                    <div class="input-box">
+                        <input type="file" name="imageName" id="imageName"  class="input" required="" autocomplete="no">
+                        <!-- <label for="imageName" class="file-label">Profile Pictuer</label> -->
+                    </div>
 
-                            <!-- Submit btn -->
-                                <input type="submit" value="Add member" class="form-btn">
-                    </form>
-
-                </div>
+                    <!-- Start permission -->
+                    <div class="input-box">
+                        <select name="permission" id="permission" class="select" required="" autocomplete="off">
+                            <option value="0">Member</option>
+                            <option value="1">Admin</option>
+                            <option value="2">Programer</option>
+                        </select>
+                        <!-- <label for="permission" class="file-label">permission</label> -->
+                    </div>
+                    <input type="submit" value="Add member" class="btn-submit">
+                </form>
             </div>
-
         <?php
     }
 

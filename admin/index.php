@@ -5,13 +5,17 @@
     session_start();
     $TITLE = 'login';
     include('init.php');
+    
+    // Users
+    include($FunUsers . 'user.php');
+    include($FunUsers . 'queries.php');
 
 // Start Fork Functions
 
     function logo() {
         global $commfilesImags;
         ?>
-            <div class="index-logo"><img src="<?php echo $commfilesImags ?>/logos/logo.jpg" alt="" class=""></div>
+            <div class="index-logo"><img src="<?php echo $commfilesImags ?>/logos/logo.jpg" alt="" class="login-img"></div>
         <?php
     }
 
@@ -26,25 +30,21 @@
 // main Function
     function LoginStructure() {
         ?>
-            <div class="repo">
+            <?php logo() ?>
+            <div class="login-box">
+                <h2>Login</h2>
+                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
+                    <div class="user-box">
+                        <input type="text" name="userName" required="">
+                        <label for="userName">User Name</label>
+                    </div>
+                    <div class="user-box">
+                        <input type="password" name="password" required="">
+                        <label for="password">Password</label>
+                    </div>
+                    <input type="submit" value="Login" class="btn-submit">
 
-                <?php  logo() ?>
-                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" class="index-form" method="POST" autocomplete="off">
-                    <!-- User Name -->
-                        <div class="">
-                            <label for="userName" class="label">User Name</label>
-                            <i class="fa-solid fa-user icon-in-input" aria-hidden="true"></i>
-                            <input type="text" name="userName" class="index-input" placeholder="User Name" required autocomplete="off">
-                        </div>
-
-                    <!-- Password -->
-                        <div class="">
-                            <label for="userName" class="label">Password</label>
-                            <i class="fa-solid fa-lock icon-in-input" aria-hidden="true"></i>
-                            <input type="password" name="password" class="index-input" placeholder="password" required autocomplete="off">
-                        </div>
-
-                    <input type="submit" value="Login" class="form-btn btn-index">
+                    </a>
                 </form>
             </div>
         <?php

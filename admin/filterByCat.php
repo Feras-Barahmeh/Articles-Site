@@ -34,14 +34,6 @@
     }
 
 
-    function PrintCatName() {
-        $nameCats = Queries::FromTable("titleCategory", 'categories');
-        foreach ($nameCats as $nameCat) {
-        ?>
-            <li class="showCat"><a href="filterByCat.php?CatName=<?php  echo str_replace(" ", '-', $nameCat['titleCategory']) ?>"><?php  echo $nameCat['titleCategory'] ?></a>  </li>
-        <?php }
-    }
-
     function SidBarStructer() {
         global $commfilesImags, $commfilesuploaded;
         $nameUser =  Queries::FromTable('userName', 'users', "WHERE IdUser = " . Sessions::GetValueSessionDepKey('IdUser'), 'fetch')['userName']
@@ -50,8 +42,10 @@
                 <aside class="contant-sidbar">
 
                     <h4 class="name"> <?php Images::SetImg($commfilesuploaded . 'users/', Images::GetNameImgFromDB('imageName', 'users', "Where IdUser = " .  Sessions::GetValueSessionDepKey('IdUser')), 'small-img'); echo $nameUser; ?>  </h4>
+                    <input type="search" name=""  placeholder="Serche" id="">
+
                     <ul id="showCat">
-                        <?php PrintCatName() ?>
+                        <?php Printer::PrintCatName() ?>
                     </ul>
                     
                 </aside>

@@ -26,7 +26,9 @@
                 }
 
                 // Chenk To Image
-                Images::IfValidImage($errors);
+                if (! empty(Images::FileInfo()['name'])) {
+                    Images::IfValidImage($errors);
+                }
     
                 if (!empty($errors)) {
                     GlobalFunctions::PrintErorrs($errors);

@@ -54,7 +54,7 @@
                         <label for="writer" class="label">writer</label>
                         <i class="fa-solid fa-feather"></i>
                         <select name="IdUser" id="writer" class="input-edit-feild">
-                            <?php Backend::PrintWriters() ?>
+                            <?php Printer::PrintWriters() ?>
                         </select>
                     </div>
 
@@ -108,7 +108,7 @@
                             <label for="writer" class="label">writer</label>
                             <i class="fa-solid fa-feather"></i>
                             <select name="IdUser" id="writer" class="input-edit-feild">
-                                <?php Backend::PrintWriters() ?>
+                                <?php Printer::PrintWriters() ?>
                             </select>
                         </div>
 
@@ -204,20 +204,20 @@
                 AddStructer();
                 break;
 
-                case 'insert':
-                    ControllerInsert();
+            case 'insert':
+                ControllerInsert();
                 break;
 
-                case 'edit':
-                    EditStructer();
+            case 'edit':
+                EditStructer();
                 break;
 
-                case 'update':
-                    ControllerUpdate();
+            case 'update':
+                ControllerUpdate();
                 break;
 
-                case 'delete':
-                    Queries::Delete('articles', "IdArticle = " . GetRequests::GetValueGet('IdArticle'));
+            case 'delete':
+                Queries::Delete('articles', "IdArticle = " . GetRequests::GetValueGet('IdArticle'));
                 break;
 
             default:

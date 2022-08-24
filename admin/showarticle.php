@@ -2,45 +2,44 @@
 // Start Gloabal Difination
     ob_start();
     session_start();
-    $TITLE = 'users';
+    $TITLE = str_replace("-", " ", array_key_first($_GET));
     include ('init.php');
     SetNav();
 
 // Start  Fork Functions
 
-    function PrintArticles($nameCat) {
+    function PrintArticles() {
         global $commfilesuploaded; 
-        $catid = Queries::FromTable("IdCategory", 'categories', "WHERE titleCategory = '$nameCat'", 'fetch')['IdCategory'];
+        $NameArticle = filter_var(str_replace("-", " ", array_key_first($_GET)), FILTER_UNSAFE_RAW);
 
-        $articles = Queries::FromTable("*", 'articles', "WHERE categoryID = '$catid'");
 
-        foreach ($articles  as $article) {
-            ?>
-                <div class="article">
-                    <?php Images::SetImg($commfilesuploaded . "articles/", $article['imageName']) ?>
-                    <div class="info-article">
-                        <a href="showarticle.php?<?php echo str_replace(" ", '-', $article['titleArticle']) ?>" class="title"><?php echo $article['titleArticle'] ?></a>
-                        <div class="info-art">
-                            <span class="date"><?php echo $article['additionDate'] ?> </span>
-                            <a href="articles.php?articleAction=edit&IdArticle=<?php echo $article['IdArticle'] ?>">Edit</a>
+        $articles = Queries::FromTable("*", 'articles', "WHERE titleArticle = '" . $NameArticle . "'");
+        // echo "<pre>";
+        // print_r($articles);
+        // echo "</pre>";
+        if (! empty ($articles)) {
+            foreach ($articles  as $article) {
+                ?>
+                    <div class="article">
+                        <?php Images::SetImg($commfilesuploaded . "articles/", $article['imageName']) ?>
+                        <div class="info-article">
+                            <a href="showarticle.php?<?php echo str_replace(" ", '-',  $NameArticle) ?>" class="title"><?php echo  $NameArticle ?></a>
+                            <div class="info-art">
+                                <span class="date"><?php echo $article['additionDate'] ?> </span>
+                                <a href="articles.php?articleAction=edit&IdArticle=<?php echo $article['IdArticle'] ?>">Edit</a>
+                            </div>
                         </div>
                     </div>
 
-                </div>
-
-            <?php
+                <?php
+            }
+        } else {
+            GlobalFunctions::AlertMassage("This Category Not included any article yet", 'info');
         }
 
+
     }
 
-
-    function PrintCatName() {
-        $nameCats = Queries::FromTable("titleArticle", 'articles');
-        foreach ($nameCats as $nameCat) {
-        ?>
-            <li class="showCat"><a href="filterByCat.php?CatName=<?php  echo str_replace(" ", '-', $nameCat['titleCategory']) ?>"><?php  echo $nameCat['titleCategory'] ?></a>  </li>
-        <?php }
-    }
 
     function SidBarStructer() {
         global $commfilesImags, $commfilesuploaded;
@@ -50,8 +49,9 @@
                 <aside class="contant-sidbar">
 
                     <h4 class="name"> <?php Images::SetImg($commfilesuploaded . 'users/', Images::GetNameImgFromDB('imageName', 'users', "Where IdUser = " .  Sessions::GetValueSessionDepKey('IdUser')), 'small-img'); echo $nameUser; ?>  </h4>
+                    <input type="search" name=""  placeholder="Serche" id="">
                     <ul id="showCat">
-                        <?php PrintCatName() ?>
+                        <?php Printer::PrintCatName() ?>
                     </ul>
                     
                 </aside>
@@ -59,11 +59,11 @@
     }
 
     function ControlePanel() {
-        $namecat = str_replace("-", " ", GetRequests::GetValueGet('CatName'));
+
         ?>
-                <h2 class="showcat">Articles <?php echo $namecat ?></h2>
+                <h2 class="showcat"><?php echo str_replace("-", " ", array_key_first($_GET)) ?></h2>
                 <div class="show-article-cat">
-                    <?php PrintArticles($namecat) ?>
+                    <?php PrintArticles() ?>
                 </div>
             </div>
         <?php

@@ -73,7 +73,7 @@
                         <label for="writer" class="label">writer</label>
                         <i class="fa-solid fa-feather"></i>
                         <select name="IdUser" id="writer" class="input-edit-feild">
-                            <?php Backend::PrintWriters() ?>
+                            <?php Printer::PrintWriters() ?>
                         </select>
                     </div>
 
@@ -119,7 +119,7 @@
                         <i class="fa-solid fa-feather"></i>
                         <select name="IdUser" id="writer" class="input-edit-feild">
                             <option value="<?php echo $data['IdUser'] ?>"><?php echo $data['userName'] ?></option>
-                            <?php Backend::PrintWriters() ?>
+                            <?php Printer::PrintWriters() ?>
                         </select>
                     </div>
 
