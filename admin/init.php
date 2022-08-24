@@ -8,6 +8,7 @@
     $css            = 'layout/backend.css';
     $js             = 'layout/backend.js';
     $fun            = 'include/functions/';
+    $funusers            = 'include/functions/users/';
     $lang           = 'include/languages/';
     $commfiles      = '../commonBetweenBackFront/';
     $commfilesCSS   = '../commonBetweenBackFront/css/';
@@ -18,6 +19,8 @@
     // Include Files
     include($lang . 'eng.php');
     include($fun . 'backendFunctions.php');
+    include($funusers . 'user.php');
+    include($funusers . 'queries.php');
     include($commfilesPHP. 'functions.php');
     include($tpl . 'header.php');
 

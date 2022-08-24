@@ -1,7 +1,6 @@
 <?php 
 
 
-    // Calss
     class GlobalFunctions {
         public static function SitNamePage() {
             global $TITLE;
@@ -207,10 +206,10 @@
             if (PostRequests::IfPOST()) {
                 $info = $_FILES['imageName'];
 
-                $name       = filter_var(strtolower($info['name']), FILTER_SANITIZE_STRING);
-                $full_path  = filter_var($info['full_path'], FILTER_SANITIZE_STRING);
-                $type       = filter_var($info['type'], FILTER_SANITIZE_STRING);
-                $tmp_name   = filter_var($info['tmp_name'], FILTER_SANITIZE_STRING);
+                $name       = filter_var(strtolower($info['name']), FILTER_UNSAFE_RAW);
+                $full_path  = filter_var($info['full_path'], FILTER_UNSAFE_RAW);
+                $type       = filter_var($info['type'], FILTER_UNSAFE_RAW);
+                $tmp_name   = filter_var($info['tmp_name'], FILTER_UNSAFE_RAW);
                 $error      = filter_var($info['error'], FILTER_SANITIZE_NUMBER_INT);
                 $size       = filter_var($info['size'], FILTER_SANITIZE_NUMBER_INT);
     

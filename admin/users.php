@@ -5,16 +5,13 @@
         |============================================================|
     */
 
-
-    // Small Edit :: Whene Update profile check if user name not exist.
-
 // Start Gloabal Difination
     ob_start();
     session_start();
     $TITLE = 'users';
     include ('init.php');
     SetNav();
-// End Gloabal Difination
+
 
 
 // Stasrt Fork Functions
@@ -113,14 +110,13 @@
         }
 
         public static function ChangesFaild() {
-            $info = Users::FromPost();
+            $info = Users::Post();
             $FromDB = Queries::FromTable('*', 'users', "WHERE IdUser = " . GetRequests::GetValueGet('IdUser'), 'fetch');
 
             if (  $info['userName'] !== $FromDB['userName'] && ($info['userName'] == NULL || $info['userName'] == null)) {
                 $_POST['userName'] = $FromDB['userName'];
             }
-            
-            
+
             if (  !empty($info['password']) ) {
                 $_POST['password'] = $FromDB['password'];
 
@@ -156,27 +152,26 @@
                 $_POST['imageName'] = $FromDB['imageName'];
             }
 
-            $result = Users::ValidationInput();
+            $result =  ValidationInput::IfValid('update');
 
             return $result;
         }
 
         public static function PrepareToEdit() {
-
             if ( self::ChangesFaild() ) {
                 EditInfoUser::ChangesFaild();
-                Users::UpdateToDB('users');
-            }
+                Update::Update();
+            } 
         }
     }
 
     function controllerInsert() {
-        $info = Users::FromPost();
+        $info = Users::Post();
 
-        if(Users::ValidationInput('add')) {
+        if(new ValidationInput('Insert')) {
 
             if (! GlobalFunctions::IfExsist('userName', 'users', $info['userName'])) {
-                Users::InsertToDB();
+                Insert::Insert();
             } else {
                 GlobalFunctions::AlertMassage('This User Is Exist Alrasdy');
                 GlobalFunctions::SitBackBtn();
@@ -394,8 +389,6 @@
                 break;
         }
     }
-// End controlled Function
-
 
 
 // Root file

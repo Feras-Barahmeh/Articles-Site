@@ -56,7 +56,7 @@
 
     if (PostRequests::IfPOST() ) {
 
-        $info = Users::FromPost();
+        $info = Users::Post();
 
         if (  GlobalFunctions::IfExsist('userName', 'users', $info['userName'], 'string') ) {
 
