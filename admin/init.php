@@ -7,10 +7,17 @@
     $tpl            = 'include/templates/';
     $css            = 'layout/backend.css';
     $js             = 'layout/backend.js';
+
+    // fUNC
     $Fun            = 'include/functions/';
     $FunUsers       = 'include/functions/users/';
     $FunArticles    = 'include/functions/articles/';
+    $FunCategories  = 'include/functions/categories/';
+
+    // Lang
     $lang           = 'include/languages/';
+
+    // Common
     $commfiles      = '../commonBetweenBackFront/';
     $commfilesCSS   = '../commonBetweenBackFront/css/';
     $commfilesImags =  '../commonBetweenBackFront/images/';
@@ -23,6 +30,9 @@
 
     // Commone Function
     include($commfilesPHP. 'functions.php');
+
+    
+    // Header
     include($tpl . 'header.php');
 
 

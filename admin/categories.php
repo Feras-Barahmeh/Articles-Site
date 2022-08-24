@@ -5,6 +5,9 @@
     session_start();
     $TITLE = 'Categories';
     include ('init.php');
+
+    include($FunCategories . 'queries.php');
+    include($FunCategories . 'category.php');
     SetNav();
 
 // Fork Functions
@@ -19,7 +22,7 @@
                 ?>
                     <div class="category">
                         <div class="content-category">
-                            <h4><?php echo $info['titleCategory'] ?></h4>
+                            <h4><a href="filterByCat.php?CatName=<?php echo $info['titleCategory'] ?>"><?php echo $info['titleCategory'] ?></a></h4>
                             <p class="content"><?php echo $info['content'] ?></p>
                         </div>
                         <div class="info-category">
@@ -43,8 +46,8 @@
     }
 
     function PrepareInsert() {
-        if (Categories::ValidationInput()) {
-            Categories::Insert();
+        if (ValidationCategory::ValidationInput()) {
+            Insert::Insert();
         }
     }
 
@@ -82,9 +85,9 @@
 
     function PrepareUpdate() {
         if (PostRequests::IfPOST()) {
-            if (Categories::ValidationInput()) {
-                Categories::IfChangs();
-                Categories::Update();
+            if (ValidationCategory::ValidationInput()) {
+                IfChangsCategoryInfo::IfChangs();
+                Update::Update();
             }
         } else {
             GlobalFunctions::AlertMassage("Can't Enter This Page Directry");
