@@ -7,8 +7,9 @@
     $tpl            = 'include/templates/';
     $css            = 'layout/backend.css';
     $js             = 'layout/backend.js';
-    $fun            = 'include/functions/';
-    $funusers            = 'include/functions/users/';
+    $Fun            = 'include/functions/';
+    $FunUsers       = 'include/functions/users/';
+    $FunArticles    = 'include/functions/articles/';
     $lang           = 'include/languages/';
     $commfiles      = '../commonBetweenBackFront/';
     $commfilesCSS   = '../commonBetweenBackFront/css/';
@@ -18,9 +19,9 @@
 
     // Include Files
     include($lang . 'eng.php');
-    include($fun . 'backendFunctions.php');
-    include($funusers . 'user.php');
-    include($funusers . 'queries.php');
+    include($Fun . 'backendFunctions.php');
+
+    // Commone Function
     include($commfilesPHP. 'functions.php');
     include($tpl . 'header.php');
 
@@ -31,4 +32,3 @@
             include($tpl . 'nav.php');
         }
     }
-

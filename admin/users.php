@@ -10,6 +10,10 @@
     session_start();
     $TITLE = 'users';
     include ('init.php');
+
+    // Users
+    include($FunUsers . 'user.php');
+    include($FunUsers . 'queries.php');
     SetNav();
 
 

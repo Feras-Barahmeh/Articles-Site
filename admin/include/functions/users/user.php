@@ -1,5 +1,6 @@
 <?php
         class Users {
+
             public static function Post() {
                 isset($_POST['IdUser']) ? $IdUser                = filter_var($_POST['IdUser'], FILTER_SANITIZE_NUMBER_INT)          : $IdUser          = NULL;
                 isset($_POST['userName']) ? $userName            = filter_var($_POST['userName'], FILTER_UNSAFE_RAW)            : $userName        = NULL;
@@ -32,6 +33,7 @@
         }
 
         class ValidationInput {
+
             public static function IfValid($ValidTo) {
                 $info = Users::Post(); $ERRORS = [];
 
@@ -71,6 +73,7 @@
 
 
     class PrintErrors extends ValidationInput {
+
         public static function IfNoError(&$ERRORS) {
             if (!empty($ERRORS)) {
                 GlobalFunctions::PrintErorrs($ERRORS);

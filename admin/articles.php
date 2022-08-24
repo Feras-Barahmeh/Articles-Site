@@ -2,24 +2,28 @@
 // Start Gloabal Difination
     ob_start();
     session_start();
-    $TITLE = 'users';
+    $TITLE = 'Articles';
     include ('init.php');
+
+    // Articles
+    include($FunArticles . 'article.php');
+    include($FunArticles . 'queries.php');
     SetNav();
 
 // Fork Functions
 
     function ControllerInsert() {
-        if (Articles::IfValidInput()) {
+        if (ValidationInput::IfValidArticleInfo()) {
             Images::controllerUplodeProcess('articles');
-            Articles::Insert();
+            InsertArticle::Insert();
         }
     }
 
     function ControllerUpdate() {
-        if (Articles::IfValidInput()) {
-            Articles::IfChangs();
+        if (ValidationInput::IfValidArticleInfo()) {
+            FetchChanged::IfChangs();
             Images::controllerUplodeProcess('articles');
-            Articles::Update();
+            UpdateArticle::Update();
         }
     }
 
@@ -81,30 +85,7 @@
         <?php
     }
 
-    function NameWriter () {
-        global $db;
-        $stmt = $db->prepare("SELECT 
-                                users.userName,
-                                users.IdUser,
-                                articles.*
 
-                            FROM
-                                users
-                            INNER JOIN
-                                articles
-                            ON
-                                users.IdUser = articles.IdUser
-                            ORDER BY IdArticle DESC ");
-        $stmt->execute();
-
-        $nams = $stmt->fetchAll();
-
-        if ($stmt->rowCount() > 0 ) {
-            return $nams;
-        } else {
-            echo "Some Errors";
-        }
-    }
 
     function EditStructer() {
         global $commfilesuploaded;
@@ -155,16 +136,12 @@
                         <input type="submit" class="form-btn add-member-in-users" value="Edit">
                     </form>
 
-
             </div>
         <?php
     }
 
-
-
-
     function PrintArticle() {
-        $data = NameWriter();
+        $data = NameWriter::NameWriter();
         global $commfilesuploaded;
 
         foreach($data as $info ) {

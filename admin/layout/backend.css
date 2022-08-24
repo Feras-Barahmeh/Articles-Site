@@ -943,7 +943,9 @@
     background-color: var(--bbackground-color);
     grid-column: 1 / 5;
     grid-row: 2;
-    display: flex;
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 200px));
     padding: 20px;
 }
 
