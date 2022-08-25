@@ -153,8 +153,10 @@ option {
     text-transform: uppercase;
     overflow: hidden;
     transition: 0.5s;
-    margin-top: 4px ;
+    margin-top: 4px;
     letter-spacing: 4px;
+    text-align: center;
+    align-items: center;
 }
 
 .btn-submit:hover {
@@ -166,9 +168,7 @@ option {
 
 /* Start Edit User */
 
-.textarea-label {
-    
-}
+
 
 /* End Edit User */
 
@@ -179,10 +179,11 @@ option {
 
 .dashbord {
     display: grid;
-    height: inherit;
+    height: 80%;
     margin-top: 30px;
     grid-template-columns: 1fr 9fr;
-    grid-template-rows: 1fr 1fr;
+    /* grid-template-rows: 1fr 1fr; */
+    grid-template-rows: repeat(auto-fill, 1fr);
     column-gap: 20px;
 }
 
@@ -598,7 +599,7 @@ option {
 }
 
 .page-article .article  .info-article {
-    background-color: var(--titels);
+    background: linear-gradient(#393f4a, #30455e);
     padding: 20px;
     border-radius: 5px;
 }
@@ -805,6 +806,10 @@ option {
     font-weight: bold;
 }
 
+.page-category .category .content-category h4:hover {
+    opacity: .6;
+}
+
 .page-category .category .info-category .date-category {
     font-size: 14px;
     position: relative;
@@ -937,10 +942,12 @@ option {
 
 .row .data .contant {
     width: 25%;
-    background-color: var(--color-cards );
+    background-color: var(--color-cards);
     margin-bottom: 10px;
     padding: 5px;
     margin-left: 5px;
+    color: var(--sun-theam);
+
 }
 
 .row .data .contant .information {
@@ -1106,8 +1113,8 @@ option {
     font-weight: bold;
 }
 
-aside .showCat {
+/* aside .showCat {
     padding: 0 !important;
     margin: 5px 0 10px !important;
-}
+} */
 /* End Filter By Tag */

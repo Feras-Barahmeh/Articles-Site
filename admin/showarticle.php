@@ -49,7 +49,8 @@
                 <aside class="contant-sidbar">
 
                     <h4 class="name"> <?php Images::SetImg($commfilesuploaded . 'users/', Images::GetNameImgFromDB('imageName', 'users', "Where IdUser = " .  Sessions::GetValueSessionDepKey('IdUser')), 'small-img'); echo $nameUser; ?>  </h4>
-                    <input type="search" name=""  placeholder="Serche" id="">
+                    <?php GlobalFunctions::Search()?>
+
                     <ul id="showCat">
                         <?php Printer::PrintCatName() ?>
                     </ul>

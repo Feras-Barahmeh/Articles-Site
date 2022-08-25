@@ -17,7 +17,7 @@
             $nameCats = Queries::FromTable("titleCategory", 'categories');
             foreach ($nameCats as $nameCat) {
             ?>
-                <li class="showCat"><a href="filterByCat.php?CatName=<?php  echo str_replace(" ", '-', $nameCat['titleCategory']) ?>"><?php  echo $nameCat['titleCategory'] ?></a>  </li> <hr>
+                <li class="showCat for-search"><a href="filterByCat.php?CatName=<?php  echo str_replace(" ", '-', $nameCat['titleCategory']) ?>" class="search-li"><?php  echo $nameCat['titleCategory'] ?></a>  </li> 
             <?php }
         }
 

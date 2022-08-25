@@ -10,7 +10,7 @@
         }
 
         public static function SitBackBtn() {
-            ?> <a href="<?php echo $_SERVER['HTTP_REFERER']?>"  class="form-btn back-btn">Back</a> <?php
+            ?> <a href="<?php echo $_SERVER['HTTP_REFERER']?>"  class="btn-submit">Back</a> <?php
         }
 
         public static function AlertMassage($mass, $typeAlert= 'danger') {
@@ -60,6 +60,18 @@
                 GlobalFunctions::AlertMassage($error);
             }
             GlobalFunctions::SitBackBtn();
+        }
+
+        public static function Search() {
+            ?>
+                <table class="saerch-table">
+                    <tr>
+                        <td><i class="fas fa-search"></i></td>
+                        <td><input type="text" placeholder="saerch" id="SearchValue"
+                        onkeyup="filter()"></td>
+                    </tr>
+                </table>
+            <?php
         }
 
     }

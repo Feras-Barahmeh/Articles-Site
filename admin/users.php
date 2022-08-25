@@ -92,7 +92,7 @@
                         
                         <!-- About You -->
                         <div class="input-box">
-                            <textarea name="aboutYou" cols="36" rows="3"><?php echo $values['aboutYou'] ?></textarea>
+                            <textarea name="aboutYou" cols="36" rows="3" class="input"><?php echo $values['aboutYou'] ?></textarea>
                             <label for="aboutYou" class="label">About You</label>
                         </div>
 
@@ -180,14 +180,14 @@
 
         } else {
             GlobalFunctions::AlertMassage("Can't Enter This Page Directry");
-            ?> <a href="dashbord.php" class="form-btn">Back</a> <?php
+            ?> <a href="dashbord.php" class="btn-submit">Back</a> <?php
         }
     }
 
     function WhoShowed () {
         $WantShow = GetRequests::GetValueGet('show');
         if ($WantShow  === "users")
-            $data = Queries::FromTable("*", 'users', "WHERE permission = 0");
+            $data = Queries::FromTable("*", 'users', "WHERE permission = 0", 'fetchAll', 'IdUser');
         else if ($WantShow === 'admins')
             $data = Queries::FromTable("*", 'users', "WHERE permission = 1");
         else if ($WantShow === 'prog')
@@ -287,12 +287,9 @@
 
                 <div class="additions">
                     <a href="users.php?actionMember=add" class="add-member-in-users">Add member</a>
-                    <div class="search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="search" placeholder="Search" id="gsearch" name="gsearch">
-                    </div>
 
-
+                    <?php GlobalFunctions::Search()?>
+                    
                     <div class="counters">
                         <a href="users.php?show=users">
                             <div class="number-users add-btn">

@@ -78,7 +78,7 @@
                         
                     </div>
 
-                    <input type="submit" value="Add" class="form-btn add-member-in-users">
+                    <input type="submit" value="Add" class="btn-submit">
                 </form>
 
             </div>
@@ -133,7 +133,7 @@
                             
                         </div>
 
-                        <input type="submit" class="form-btn add-member-in-users" value="Edit">
+                        <input type="submit" class="btn-submit" value="Edit">
                     </form>
 
             </div>
