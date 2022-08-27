@@ -82,9 +82,8 @@
 
                     <div class="sklis contant">
                         <div class="information">
-                            <span>Skiles</span> <p> <?php echo $info['langAndTools'] ?></p>
+                            <span>Skiles</span> <p> <?php echo $info['langs'] ?></p>
                         </div>
-
                     </div>
 
                     <div class="age contant">

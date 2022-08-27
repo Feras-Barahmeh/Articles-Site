@@ -56,10 +56,16 @@
                                 <label for="email" class="label">Email</label>
                             </div>
 
-                        <!-- Longuage And Tools -->
+                        <!-- Longuage -->
                             <div class="input-box">
-                                <input type="text" name="langAndTools" id="langAndTools" value="<?php echo $values['langAndTools'] ?>" class="input" autocomplete="off">
-                                <label for="langAndTools" class="label">Longuage And Tools</label>
+                                <input type="text" name="langs" id="langs" value="<?php echo $values['langs'] ?>" class="input" autocomplete="off">
+                                <label for="langs" class="label">Longuage</label>
+                            </div>
+
+                        <!-- Tools -->
+                            <div class="input-box">
+                                <input type="text" name="tools" id="tools" value="<?php echo $values['tools'] ?>" class="input" autocomplete="off">
+                                <label for="tools" class="label">Tools</label>
                             </div>
 
                         <!-- Image -->
@@ -161,7 +167,8 @@
                     <td><?php echo $info['email'] ?></td>
                     <td><?php echo $info['aboutYou'] ?></td>
                     <td><?php echo $info['permission'] ?></td>
-                    <td><?php echo $info['langAndTools'] ?></td>
+                    <td><?php echo $info['langs'] ?></td>
+                    <td><?php echo $info['tools'] ?></td>
                     <td><?php echo $info['age'] ?></td>
                     <td><?php echo $info['dataRegister'] ?></td>
                     <td>
@@ -273,7 +280,8 @@
                             <td>Email</td>
                             <td>Discription</td>
                             <td>permission</td>
-                            <td>Languages And Tools</td>
+                            <td>Languages</td>
+                            <td>tools</td>
                             <td>Age</td>
                             <td>Register Date</td>
                             <td>Controlle</td>

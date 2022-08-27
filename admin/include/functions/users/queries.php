@@ -48,7 +48,7 @@
             $stmt = $db->prepare("UPDATE
                                         users
                                     SET
-                                        userName = ?, password = ?, email = ?, fullName = ?, age = ?, aboutYou = ?, permission = ?, langAndTools = ?, imageName = ?
+                                        userName = ?, password = ?, email = ?, fullName = ?, age = ?, aboutYou = ?, permission = ?, langs = ?, tools = ?, imageName = ?
                                     WHERE
                                         IdUser = ?");
 
@@ -60,7 +60,8 @@
                 $info['age'],
                 $info['aboutYou'],
                 $info['permission'],
-                $info['langAndTools'],
+                $info['langs'],
+                $info['tools'],
                 NameImag::NameImg('users', 'IdUser'),
                 GetRequests::GetValueGet('IdUser'),
             ]);

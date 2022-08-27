@@ -17,7 +17,8 @@
                 isset($_POST['imageName']) ? $imageName          = filter_var($_POST['imageName'], FILTER_SANITIZE_NUMBER_INT)       : $imageName       = NULL;
                 isset($_POST['registerdPass']) ? $registerdPass  = $_POST['registerdPass']                                           : $registerdPass   = NULL;
                 isset($_POST['aboutYou']) ? $aboutYou            = filter_var($_POST['aboutYou'], FILTER_UNSAFE_RAW)                 : $aboutYou        = NULL;
-                isset($_POST['langAndTools']) ? $langAndTools    = filter_var($_POST['langAndTools'], FILTER_UNSAFE_RAW)             : $langAndTools    = NULL;
+                isset($_POST['langs']) ? $langs    = filter_var($_POST['langs'], FILTER_UNSAFE_RAW)             : $langs    = NULL;
+                isset($_POST['tools']) ? $tools    = filter_var($_POST['tools'], FILTER_UNSAFE_RAW)             : $tools    = NULL;
 
                 $data =  [
                     'IdUser'                => $IdUser,
@@ -29,7 +30,8 @@
                     'imageName'             => $imageName,
                     'registerdPass'         => $registerdPass,
                     'aboutYou'              => $aboutYou,
-                    'langAndTools'          => $langAndTools,
+                    'langs'                 => $langs,
+                    'tools'                 => $tools,
                     'age'                   => $age,
                 ];
 
@@ -140,8 +142,12 @@
                 $_POST['permission'] = $FromDB['permission'];
             }
 
-            if (  $info['langAndTools'] !== $FromDB['langAndTools'] && empty($info['langAndTools'])) {
-                $_POST['langAndTools'] = $FromDB['langAndTools'];
+            if (  $info['langs'] !== $FromDB['langs'] && empty($info['langs'])) {
+                $_POST['langs'] = $FromDB['langs'];
+            }
+
+            if (  $info['tools'] !== $FromDB['tools'] && empty($info['tools'])) {
+                $_POST['tools'] = $FromDB['tools'];
             }
 
             if (  $info['age'] !== $FromDB['age'] &&  empty($info['age'])) {
