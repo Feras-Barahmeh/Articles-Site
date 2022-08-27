@@ -21,7 +21,7 @@
             foreach ($articles  as $article) {
                 ?>
                     <div class="article">
-                        <?php Images::SetImg($commfilesuploaded . "articles/", $article['imageName']) ?>
+                        <?php ShowImage::SetImg($commfilesuploaded . "articles/", $article['imageName']) ?>
                         <div class="info-article">
                             <a href="showarticle.php?<?php echo str_replace(" ", '-',  $NameArticle) ?>" class="title"><?php echo  $NameArticle ?></a>
                             <div class="info-art">
@@ -48,7 +48,7 @@
             
                 <aside class="contant-sidbar">
 
-                    <h4 class="name"> <?php Images::SetImg($commfilesuploaded . 'users/', Images::GetNameImgFromDB('imageName', 'users', "Where IdUser = " .  Sessions::GetValueSessionDepKey('IdUser')), 'small-img'); echo $nameUser; ?>  </h4>
+                    <h4 class="name"> <?php ShowImage::SetImg($commfilesuploaded . 'users/', NameImag::GetNameImgFromDB('imageName', 'users', "Where IdUser = " .  Sessions::GetValueSessionDepKey('IdUser')), 'small-img'); echo $nameUser; ?>  </h4>
                     <?php GlobalFunctions::Search()?>
 
                     <ul id="showCat">

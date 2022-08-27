@@ -6,33 +6,52 @@
     include ('init.php');
     SetNav();
 
-// Main Functions
+// Fork Function
 
-    function PrintArticles() {
+    function PrintArticlesName() {
         $idUser = Sessions::GetValueSessionDepKey('IdUser');
-        $articles = Queries::FromTable("*" , 'articles', "WHERE IdUser = " . $idUser);
-        
-        global $commfilesuploaded;
+        $articles = Queries::FromTable("titleArticle" , 'articles', "WHERE IdUser = " . $idUser);
         foreach ($articles as $article) {
-            $fromcat = Queries::FromTable("titleCategory" , 'categories', "WHERE categories.IdCategory = " . $article['categoryID'] , 'fetch')['titleCategory'];
             ?>
-                <div class="article">
-                    <?php ShowImage::SetImg($commfilesuploaded . "articles/", $article['imageName']) ?>
-                    <div class="info-article">
-                        <a href="#"><?php echo $article['titleArticle'] ?></a>
-                    </div>
-
-                    <div class="info-art">
-                        <span><a href="filterByCat.php?CatName=<?php echo str_replace(" ", "-", $fromcat) ?>"><?php echo $fromcat ?></a></span></span>
-                        <span class="date"><?php echo $article['additionDate'] ?> </span>
-                        <a href="articles.php?articleAction=edit&IdArticle=<?php echo $article['IdArticle'] ?>">Edit</a>
-                    </div>
-                </div>
+                <li><a href="showarticle.php?<?php echo $article['titleArticle'] ?>"><?php echo $article['titleArticle'] ?></a> <a href="showarticle.php?<?php echo $article['titleArticle'] ?>" class="btn-read">Read</a></li>
             <?php
         }
     }
 
-    function StructerProfiel() {
+    function PrintLanguages() {
+        $idUser = Sessions::GetValueSessionDepKey('IdUser');
+        $langs = Queries::FromTable("langs" , 'users', "WHERE IdUser = " . $idUser, 'fetch')['langs'];
+        $SplitedLangs = explode(',', $langs);
+
+        foreach ($SplitedLangs as $lang) {
+        ?>
+            <div class="lang">
+                <label class="name-lang"><?php echo $lang ?></label>
+                <div class="under"></div>
+            </div>
+        <?php }
+    }
+
+    function PrintSkilles () {
+        $idUser = Sessions::GetValueSessionDepKey('IdUser');
+        $skilles = Queries::FromTable("tools" , 'users', "WHERE IdUser = " . $idUser, 'fetch')['tools'];
+        $SplitedSkilles = explode(',', $skilles);
+        if (!empty($skilles)) {
+            foreach ($SplitedSkilles as $skill) {
+                ?>
+                    <div class="skill">
+                        <label class="name-skill"><?php echo $skill ?></label>
+                        <div class="under"></div>
+                    </div>
+                <?php }
+        } else {
+            ?> <img src="../commonBetweenBackFront/images/imagesProject/null_light.png" alt="" class="null-img"> <?php
+        }
+    } 
+
+
+// Main Functions
+    function StructerProfiel () {
         global $commfilesuploaded;
         $queries = new Queries;
         $idUser = Sessions::GetValueSessionDepKey('IdUser');
@@ -44,89 +63,66 @@
             $numberCat =  $queries->Counter("IdCategory", 'categories', "WHERE IDwriter = $idUser");
 
         ?>
-            <h4 class="h-title"><?php echo $info['userName'] ?> Profile</h4>
-            <div class="row">
-                <aside class="aside">
-                    <?php ShowImage::SetImg($commfilesuploaded . "users/", $imgname) ?>
+            <div class="content-profile">
+                <aside class="aside-profile">
+                    <div class="header">
+                        <div class="name-user">
+                            <div class="img"><?php ShowImage::SetImg($commfilesuploaded . "users/", $imgname) ?></div>
+                            <div class="name">
+                                <h3><?php echo $info['fullName'] ?></h3>
+                                <h5 class="username"><?php echo $info['userName'] ?></h5>
+                            </div>
+                        </div>
+
+                        <div class="location link"><span><i class="fa-solid fa-location-pin"></i></span> Jordan</div>
+                        <a href="" class="githup link"><span><i class="fa-brands fa-github"></i></span> FerasBarahmeh</a>
+                        <a href="" class="facebook link" ><span><i class="fa-brands fa-linkedin"></i></span> FerasBarahmeh</a>
+                        <a href="" class="twetter link"><span><i class="fa-brands fa-twitter"></i></span> FerasBarahmeh</a>
+                        <div class="separator"></div>
+                    </div>
 
                     <div class="bio">
-                        <div class="information">
-                            <pre><?php echo $info['aboutYou'] ?> </pre>
-                        </div>
+                        <h5>About you</h5>
+                        <p><?php echo $info['aboutYou'] ?> </p>
+                        <div class="separator"></div>
+                    </div>
 
-                        <div class="action">
-                            <a href="users.php?actionMember=edit&IdUser=<?php echo $idUser ?>">Edit Bio</a>
-                        </div>
+                    <div class="date-reg">
+                        <h5>Register Date</h5>
+                        <p><?php echo $info['dataRegister'] ?> </p>
+                        <div class="separator"></div>
+                    </div>
+
+                    <div class="langs">
+                        <h5>Languages</h5>
+                        <?php PrintLanguages() ?>
+                        <div class="separator"></div>
+                    </div>
+
+                    <div class="skills">
+                            <h4>Skills</h4>
+                            <?php PrintSkilles() ?>
+                            <div class="separator"></div>
                     </div>
                 </aside>
 
-                <div class="data">
-                    <div class="username contant">
-                        <div class="information">
-                            <span>User Name: </span> <p><?php echo $info['userName'] ?></p>
-                        </div>
+                <section class="contant-section">
+                    <div class="cats">
+                        <span><a href="#">Db</a></span>
+                        <span><a href="#">Python</a></span>
+                        <span><a href="#">Cpp</a></span>
                     </div>
 
-                    <div class="email contant">
-                        <div class="information ">
-                            <span>Email: </span> <p> <?php echo $info['email'] ?></p>
-                        </div>
+                    <div class="articles">
+                        <ul>
+                            <?php PrintArticlesName() ?>
+                        </ul>
                     </div>
-
-                    <div class="fullname contant">
-                        <div class="information ">
-                            <span>Full name</span> <p> <?php echo $info['fullName'] ?></p>
-                        </div>
-                    </div>
-
-
-                    <div class="sklis contant">
-                        <div class="information">
-                            <span>Skiles</span> <p> <?php echo $info['langs'] ?></p>
-                        </div>
-                    </div>
-
-                    <div class="age contant">
-                        <div class="information">
-                        <span>Age</span> <p> <?php echo $info['age'] ?></p>
-                        </div>
-                    </div>
-
-                    <div class="reg-date contant">
-                        <div class="information">
-                        <span>Register Date</span> <p> <?php echo $info['dataRegister'] ?> </p>
-                        </div>
-                    </div>
-
-                    <div class="reg-date contant">
-                        <div class="information">
-                        <span>Number Articles</span> <p> <?php echo $numberArticles ?> </p>
-                        </div>
-                    </div>
-                    
-
-                    <div class="reg-date contant">
-                        <div class="information">
-                        <span>Number Categories</span> <p> <?php echo $numberCat ?> </p>
-                        </div>
-                    </div>
-
-                    
-                    <div class="action">
-                            <a href="users.php?actionMember=edit&IdUser=<?php echo $idUser ?>">Edit</a>
-                        </div>
-                </div>
-
+                </section>
             </div>
-
-
-            <!-- Start Show Articles -->
-                <h4 class="h-title">Your Articles</h4>
-                <div class="articles">
-                    <?php PrintArticles() ?>
-                </div>
         <?php
     }
+
 
 // Last Page
     StructerProfiel();

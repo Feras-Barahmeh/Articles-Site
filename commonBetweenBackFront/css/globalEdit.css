@@ -27,6 +27,7 @@
 html {
     scroll-behavior: smooth;
     height: 100%;
+    background: linear-gradient(#393f4a, #30455e);
 }
 
 body {
@@ -305,4 +306,39 @@ table tr td {
     color: var(--color-cat-three);
     margin: 8px 0;
     cursor: pointer;
+}
+
+
+/* Start Skills Bar */
+.under {
+    width: 100%;
+    background-color: #fff;
+    height: 10px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.under::before {
+    content: "";
+    width: 20%;
+    background-color: var(--bbackground-color);
+    height: 10px;
+    border-radius: 10px;
+    margin-top: 5px;
+    position: relative;
+    display: block;
+}
+/* End Skills Bar */
+
+/* Separator */
+.separator {
+    margin-top: 15px;
+    border-bottom: 1px solid;
+    opacity: .6;
+}
+
+/* Null image */
+.null-img {
+    width: 150px;
+    height: 150px;
 }

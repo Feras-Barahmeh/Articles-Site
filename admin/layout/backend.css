@@ -905,164 +905,128 @@ option {
 
 
 /* Start Profile */
-.row {
-    height: 50vh;
+.content-profile {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    position: relative;
-    top: 50px;
-}
-
-.row .aside img {
-    border-radius: 50%;
-}
-
-.row .aside .bio {
-    background-color: var(--bbackground-color);
-    padding: 10px;
-    margin-top: 20px;
-}
-
-.row .aside .action {
-    width: 90%;
-    margin: 10px 0 0px 0;
-    background-color: var(--color-cards);
-    border-radius: 3px;
-    text-align: center;
-    padding: 2px;
-    transition-duration: .2s;
-    transition-timing-function: ease-in-out;
-    position: relative;
-    left: 5%;
-}
-
-.row .aside .action:hover {
-    opacity: .6;
-    transform: perspective(100px) translateZ(10px);
-}
-
-.row .aside .action a {
-    color: white;
-}
-
-.row .data {
-    width: 50%;
-    height: calc(100% - 15%);
+    width: 100%;
     padding: 20px;
-    background-color: var(--bbackground-color);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
 }
-
-.row .data .contant {
-    width: 25%;
-    background-color: var(--color-cards);
-    margin-bottom: 10px;
-    padding: 5px;
-    margin-left: 5px;
-    color: var(--sun-theam);
-
-}
-
-.row .data .contant .information {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-
-.row .data div .information p {
-    background-color: var(--bbackground-color);
-    padding: 5px;
-    font-size: 12px;
-    flex-grow: 1;
-}
-
-.row .data div .information span {
-    margin-right: 30px;
-}
-
-.row .data  .action {
-    display: inline;
-    height: fit-content;
-    position: absolute;
-    top: 0%;
-    opacity: .6;
-    right: 19%;
-}
-
-.row .data  .action a {
-    color: white;
-}
-
-/* Articles */
-
-
-.articles {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin: 30px 100px;
-    text-align: center;
-}
-
-.articles .article {
-    overflow: hidden;
-    display: flex;
-    flex-wrap: wrap;
+.content-profile aside {
+    background: linear-gradient(45deg, black, transparent);
+    padding: 20px;
+    flex-shrink: 1;
     width: 300px;
-    max-height: 200px;
-    margin: 20px 10px;
-    padding: 15px;
-    background-color: var(--bbackground-color);
-    transition-duration: .2s;
-    transition-timing-function: ease-in-out;
+}
+.content-profile .aside-profile .header {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
-
-
-
-.articles .article img {
+.content-profile .aside-profile .header .name-user {
     width: 100%;
-    height: 65%;
+    margin-bottom: 15px;
 }
 
-.articles .article .info-article {
+.content-profile .aside-profile .header .name-user img {
+    width: 5rem;
+    height: 5rem;
+}
+
+.content-profile .aside-profile .header .name-user .img {
+    display: inline-block;
+}
+
+.content-profile .aside-profile .header .name-user .name {
+    position: relative;
+    display: inline-block;
+    top: -15px;
+    margin-left: 10px;
+}
+.content-profile .aside-profile  .link  {
+    display: block;
+    margin: 20px 0 0 0;
+}
+.content-profile .aside-profile .bio {
+    margin: 10px 0 10px 0;
+}
+.content-profile .aside-profile  h5 {
+    margin-bottom: 10px;
+}
+
+.content-profile .aside-profile .bio .date-reg {
+
+}
+
+
+
+.content-profile .aside-profile  .location span {
+    margin-right: 10px;
+}
+.content-profile .aside-profile   a span {
+    margin-right: 10px;
+}
+
+
+.content-profile .aside-profile .langs {
+    margin: 10px 0 20px 0 ;
+}
+
+.content-profile .aside-profile .lang {
+    margin: 10px 0;
+}
+
+
+
+.content-profile .aside-profile .skills {
+    margin: 10px 0 20px 0 ;
+}
+
+.content-profile .aside-profile .skill {
+    margin: 10px 0;
+}
+.content-profile .aside-profile .skill meter {
     width: 100%;
 }
 
-.articles .article .info-article a {
-    color: white;
-    text-align: center;
-    overflow: hidden;
+.contant-section {
+    flex-grow: 3;
+    padding: 20px;
+    background: linear-gradient(45deg, black, transparent);
+    margin-left: 30px;
+}
+.contant-section  .cats {
+    display: flex;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+}
+.contant-section  .cats span {
+    margin-right: 10px;
+    background-color: #777;
+    padding: 5px;
 }
 
-.articles .article .info-art {
+.contant-section .articles {
+    background: var(--bbackground-color);
+    padding: 20px;
+}
+.contant-section .articles ul li {
+    margin: 10px 0;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
-    width: 100%;
+}
+.contant-section .articles ul li .btn-read {
+    height: fit-content;
+    background-color: var(--color-cards);
+    padding: 5px;
+}
+.contant-section .articles ul li:nth-child(odd) {
+    background: #07292a;
 }
 
-.articles .article .info-art  a {
-    color: white;
-}
-
-.articles .article span a {
-    color: white;
-    overflow: hidden;
-}
-
-.articles .article .date {
+.contant-section .articles ul li:nth-child(even) {
     opacity: .6;
-    font-size: 12px;
-    float: right;
-    width: 100%;
 }
-
-
 /* End Profile */
 
 

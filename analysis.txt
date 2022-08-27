@@ -23,4 +23,284 @@
 ## Services
 ## Projects
 
-// Add Tools Session
+
+    function PrintArticles() {
+        $idUser = Sessions::GetValueSessionDepKey('IdUser');
+        $articles = Queries::FromTable("*" , 'articles', "WHERE IdUser = " . $idUser);
+        
+        global $commfilesuploaded;
+        foreach ($articles as $article) {
+            $fromcat = Queries::FromTable("titleCategory" , 'categories', "WHERE categories.IdCategory = " . $article['categoryID'] , 'fetch')['titleCategory'];
+            ?>
+                <div class="article">
+                    <?php ShowImage::SetImg($commfilesuploaded . "articles/", $article['imageName']) ?>
+                    <div class="info-article">
+                        <a href="#"><?php echo $article['titleArticle'] ?></a>
+                    </div>
+
+                    <div class="info-art">
+                        <span><a href="filterByCat.php?CatName=<?php echo str_replace(" ", "-", $fromcat) ?>"><?php echo $fromcat ?></a></span></span>
+                        <span class="date"><?php echo $article['additionDate'] ?> </span>
+                        <a href="articles.php?articleAction=edit&IdArticle=<?php echo $article['IdArticle'] ?>">Edit</a>
+                    </div>
+                </div>
+            <?php
+        }
+    }
+
+    function StructerProfiel() {
+        global $commfilesuploaded;
+        $queries = new Queries;
+        $idUser = Sessions::GetValueSessionDepKey('IdUser');
+        $imgname = $queries->FromTable("imageName", 'users', "WHERE IdUser = $idUser", 'fetch')['imageName'];
+
+        // Queries fetch Info
+            $info = $queries->FromTable("*" , 'users', "WHERE users.IdUser = $idUser", 'fetch');
+            $numberArticles =  $queries->Counter("IdArticle", 'articles', "WHERE IdUser = $idUser");
+            $numberCat =  $queries->Counter("IdCategory", 'categories', "WHERE IDwriter = $idUser");
+
+        ?>
+            <h4 class="h-title"><?php echo $info['userName'] ?> Profile</h4>
+            <div class="row">
+                <aside class="aside">
+                    <?php ShowImage::SetImg($commfilesuploaded . "users/", $imgname) ?>
+
+                    <div class="bio">
+                        <div class="information">
+                            <pre><?php echo $info['aboutYou'] ?> </pre>
+                        </div>
+
+                        <div class="action">
+                            <a href="users.php?actionMember=edit&IdUser=<?php echo $idUser ?>">Edit Bio</a>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="data">
+                    <div class="username contant">
+                        <div class="information">
+                            <span>User Name: </span> <p><?php echo $info['userName'] ?></p>
+                        </div>
+                    </div>
+
+                    <div class="email contant">
+                        <div class="information ">
+                            <span>Email: </span> <p> <?php echo $info['email'] ?></p>
+                        </div>
+                    </div>
+
+                    <div class="fullname contant">
+                        <div class="information ">
+                            <span>Full name</span> <p> <?php echo $info['fullName'] ?></p>
+                        </div>
+                    </div>
+
+
+                    <div class="sklis contant">
+                        <div class="information">
+                            <span>Skiles</span> <p> <?php echo $info['langs'] ?></p>
+                        </div>
+                    </div>
+
+                    <div class="age contant">
+                        <div class="information">
+                        <span>Age</span> <p> <?php echo $info['age'] ?></p>
+                        </div>
+                    </div>
+
+                    <div class="reg-date contant">
+                        <div class="information">
+                        <span>Register Date</span> <p> <?php echo $info['dataRegister'] ?> </p>
+                        </div>
+                    </div>
+
+                    <div class="reg-date contant">
+                        <div class="information">
+                        <span>Number Articles</span> <p> <?php echo $numberArticles ?> </p>
+                        </div>
+                    </div>
+                    
+
+                    <div class="reg-date contant">
+                        <div class="information">
+                        <span>Number Categories</span> <p> <?php echo $numberCat ?> </p>
+                        </div>
+                    </div>
+
+                    
+                    <div class="action">
+                            <a href="users.php?actionMember=edit&IdUser=<?php echo $idUser ?>">Edit</a>
+                        </div>
+                </div>
+
+            </div>
+
+
+            <!-- Start Show Articles -->
+                <h4 class="h-title">Your Articles</h4>
+                <div class="articles">
+                    <?php PrintArticles() ?>
+                </div>
+        <?php
+    }
+
+
+
+
+
+	/* .row {
+    height: 50vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    position: relative;
+    top: 50px;
+}
+
+.row .aside img {
+    border-radius: 50%;
+}
+
+.row .aside .bio {
+    background-color: var(--bbackground-color);
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.row .aside .action {
+    width: 90%;
+    margin: 10px 0 0px 0;
+    background-color: var(--color-cards);
+    border-radius: 3px;
+    text-align: center;
+    padding: 2px;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+    position: relative;
+    left: 5%;
+}
+
+.row .aside .action:hover {
+    opacity: .6;
+    transform: perspective(100px) translateZ(10px);
+}
+
+.row .aside .action a {
+    color: white;
+}
+
+.row .data {
+    width: 50%;
+    height: calc(100% - 15%);
+    padding: 20px;
+    background-color: var(--bbackground-color);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+.row .data .contant {
+    width: 25%;
+    background-color: var(--color-cards);
+    margin-bottom: 10px;
+    padding: 5px;
+    margin-left: 5px;
+    color: var(--sun-theam);
+
+}
+
+.row .data .contant .information {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+.row .data div .information p {
+    background-color: var(--bbackground-color);
+    padding: 5px;
+    font-size: 12px;
+    flex-grow: 1;
+}
+
+.row .data div .information span {
+    margin-right: 30px;
+}
+
+.row .data  .action {
+    display: inline;
+    height: fit-content;
+    position: absolute;
+    top: 0%;
+    opacity: .6;
+    right: 19%;
+}
+
+.row .data  .action a {
+    color: white;
+}
+
+/* Articles */
+
+/*
+.articles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 30px 100px;
+    text-align: center;
+}
+
+.articles .article {
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    max-height: 200px;
+    margin: 20px 10px;
+    padding: 15px;
+    background-color: var(--bbackground-color);
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+}
+
+
+
+
+.articles .article img {
+    width: 100%;
+    height: 65%;
+}
+
+.articles .article .info-article {
+    width: 100%;
+}
+
+.articles .article .info-article a {
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.articles .article .info-art {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.articles .article .info-art  a {
+    color: white;
+}
+
+.articles .article span a {
+    color: white;
+    overflow: hidden;
+}
+
+.articles .article .date {
+    opacity: .6;
+    font-size: 12px;
+    float: right;
+    width: 100%;
+} */
