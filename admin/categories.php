@@ -77,7 +77,7 @@
                         </select>
                     </div>
 
-                    <input type="submit" value="Add Category" class="form-btn">
+                    <input type="submit" value="Add Category" class="btn-submit">
                 </form>
             </div>
         <?php
@@ -123,7 +123,7 @@
                         </select>
                     </div>
 
-                    <input type="submit" value="Edit Category" class="form-btn">
+                    <input type="submit" value="Edit Category" class="btn-submit">
                 </form>
             </div>
         <?php

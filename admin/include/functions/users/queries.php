@@ -1,10 +1,15 @@
 <?php 
 
-    class Insert extends Users {
+    interface IQuerieDone {
+        public static function IfQuerieDone($RowCount);
+    }
+
+
+    class Insert implements IQuerieDone {
+
         public static function Insert() {
-            $info = self::Post();
-            $infoImg = Images::FileInfo();
-            global $db;
+            $info = Users::Post();
+            $infoImg = ImagePost::FileInfo(); global $db;
 
             $stmt = $db->prepare("INSERT INTO
                                         users
@@ -18,14 +23,24 @@
                 'email'     => $info['email'],
                 'fullName'  => $info['fullName'],
                 'permission'    => $info['permission'],
-                'imageName' =>  Images::RenameName($infoImg['name']),
+                'imageName' =>  NameImag::RenameName($infoImg['name']),
             ]);
+            self::IfQuerieDone($stmt->rowCount());
+        }
 
-            new IfQuerieDone($stmt->rowCount());
+        public static function IfQuerieDone($RowCount) {
+            if ($RowCount > 0) {
+                UplodeImageAdd::UplodeImage('users');
+                GlobalFunctions::Redirect('operation accomplished successfully', 'back', 'success', 100);
+
+            } else {
+                GlobalFunctions::AlertMassage("No Changed in information", 'info', 100);
+                GlobalFunctions::SitBackBtn();
+            }
         }
     }
 
-    class Update extends Users {
+    class Update implements IQuerieDone {
         public static function Update() {
             $info = Users::Post();
             global $db;
@@ -46,19 +61,17 @@
                 $info['aboutYou'],
                 $info['permission'],
                 $info['langAndTools'],
-                Images::NameImg('users', 'IdUser'),
+                NameImag::NameImg('users', 'IdUser'),
                 GetRequests::GetValueGet('IdUser'),
             ]);
 
-            new IfQuerieDone($stmt->rowCount());
+            self::IfQuerieDone($stmt->rowCount());
         }
-    }
 
-    class IfQuerieDone {
-        public function __construct($rowCount) {
-            $this->rowCount = $rowCount;
-            if ($this->rowCount  > 0) {
-                Images::controllerUplodeProcess('users');
+        public static function IfQuerieDone($RowCount) {
+
+            if ($RowCount > 0) {
+                UplodeImageEdit::UplodeImage('users');
                 GlobalFunctions::Redirect('operation accomplished successfully', 'back', 'success', 100);
 
             } else {
@@ -66,5 +79,4 @@
                 GlobalFunctions::SitBackBtn();
             }
         }
-
     }

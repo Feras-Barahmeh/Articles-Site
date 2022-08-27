@@ -11,7 +11,7 @@
                 'titleArticle' => $info['titleArticle'],
                 'content' => $info['content'],
                 'IdUser' => $info['IdUser'],
-                'imageName' => Images::NameImg('articles', 'IdArticle'),
+                'imageName' => NameImag::NameImg('articles', 'IdArticle'),
                 'categoryID' => $info['categoryID'],
             ]);
 
@@ -34,7 +34,7 @@
                 'titleArticle'  => $info['titleArticle'],
                 'IdUser'        => $info['IdUser'],
                 'content'       => $info['content'],
-                'imageName'     => Images::NameImg('articles', 'IdArticle'),
+                'imageName'     => NameImag::NameImg('articles', 'IdArticle'),
                 'categoryID'    => $info['categoryID'],
                 'IdArticle'     => GetRequests::GetValueGet('IdArticle')
             ]);

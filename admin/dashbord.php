@@ -52,7 +52,7 @@
             
                 <aside class="contant-sidbar">
 
-                    <h4 class="name"> <?php Images::SetImg($commfilesuploaded . 'users/', Images::GetNameImgFromDB('imageName', 'users', "Where IdUser = " .  Sessions::GetValueSessionDepKey('IdUser')), 'small-img'); echo $nameUser; ?>  </h4>
+                    <h4 class="name"> <?php ShowImage::SetImg($commfilesuploaded . 'users/', NameImag::GetNameImgFromDB('imageName', 'users', "Where IdUser = " .  Sessions::GetValueSessionDepKey('IdUser')), 'small-img'); echo $nameUser; ?>  </h4>
                     <!-- <?php GlobalFunctions::Search()?> -->
                     <ul>
                         <li> <i class="fa-solid fa-house" aria-hidden="true"></i> <a href="#">Home</a>  </li> <hr>

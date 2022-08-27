@@ -47,6 +47,11 @@
     transition: .5s;
 }
 
+.SpecialCase-label {
+    top: -30px !important;
+    color: var(--main-cat-tow);
+}
+
 .login-box .user-box input:focus~label,
 .login-box .user-box input:valid~label {
     top: -20px;
@@ -68,6 +73,12 @@
     transition: 0.5s;
     margin-top: 4px ;
     letter-spacing: 4px;
+}
+
+.SpecialCase-btn-submit {
+    height: 50px;
+    padding: 0;
+    width: 100px;
 }
 
 .login-box form .btn-submit:hover {
@@ -105,6 +116,7 @@
 
 .contanier-form .input-box {
     position: relative;
+    width: 100%;
 }
 
 .contanier-form .input-box .input,.select {
@@ -379,10 +391,14 @@ option {
 }
 
 .img-user {
-    grid-row: 2  / 3;
+    grid-row: 2 / 3;
     grid-column: 4 / 5;
-    top: 20px;
-    position: relative;
+    width: fit-content;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 20px;
 }
 
 .img-user img {
@@ -793,7 +809,7 @@ option {
 
 
 .page-category .category {
-    background-color: var(--titels);
+    background-color: var(--color-cards);
     padding: 20px;
     width: 300px;
     margin: 10px;
@@ -826,6 +842,7 @@ option {
 .page-category .category .info-category .layout .optins a {
     color: white;
     margin-right: 10px;
+    transition: .5s;
 }
 
 

@@ -13,16 +13,16 @@
 // Fork Functions
 
     function ControllerInsert() {
-        if (ValidationInput::IfValidArticleInfo()) {
-            Images::controllerUplodeProcess('articles');
+        if (ValidationArticleAdd::IfValidArticleInfo()) {
+            UplodeImageAdd::UplodeImage('articles');
             InsertArticle::Insert();
         }
     }
 
     function ControllerUpdate() {
-        if (ValidationInput::IfValidArticleInfo()) {
+        if (ValidationArticleEdit::IfValidArticleInfo()) {
             FetchChanged::IfChangs();
-            Images::controllerUplodeProcess('articles');
+            UplodeImageEdit::UplodeImage('articles');
             UpdateArticle::Update();
         }
     }
@@ -94,7 +94,7 @@
         $catname  = Queries::FromTable("titleCategory", 'categories', "WHERE IdCategory = " . $info['categoryID'], 'fetch')['titleCategory'];
         ?>
             <div class="body-add-article">
-                    <?php Images::SetImg($commfilesuploaded . 'articles/', $info['imageName'], 'img-user-aside') ?>
+                    <?php ShowImage::SetImg($commfilesuploaded . 'articles/', $info['imageName'], 'img-user-aside') ?>
 
                     <form action="articles.php?articleAction=update&IdArticle=<?php echo $IdArticle ?>" method="POST" enctype="multipart/form-data">
 
@@ -153,7 +153,7 @@
                         <p class="content"><?php echo $info['content'] ?></p>
                     </div>
                     <div class="info-article">
-                        <?php Images::SetImg($commfilesuploaded . 'articles/', $info['imageName'], 'img-user-aside') ?>
+                        <?php ShowImage::SetImg($commfilesuploaded . 'articles/', $info['imageName'], 'img-user-aside') ?>
 
                         <div class="layout">
                             <a href="#" class="writer"><?php echo $info['userName'] ?></a>

@@ -29,7 +29,8 @@
     include($Fun . 'backendFunctions.php');
 
     // Commone Function
-    include($commfilesPHP. 'functions.php');
+    include($commfilesPHP. 'functions.php'); 
+    include($commfilesPHP. 'images.php');
 
     
     // Header

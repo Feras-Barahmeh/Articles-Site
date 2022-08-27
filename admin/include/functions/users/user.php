@@ -1,4 +1,9 @@
 <?php
+
+        interface IValisation {
+            public static function IfValid();
+        }
+
         class Users {
 
             public static function Post() {
@@ -32,15 +37,13 @@
             }
         }
 
-        class ValidationInput {
 
-            public static function IfValid($ValidTo) {
+        class ValidationInputInsert implements IValisation {
+            public static function IfValid() {
                 $info = Users::Post(); $ERRORS = [];
 
-                if ($ValidTo == 'update') {
-                    if ( ! GlobalFunctions::IfExsist('userName', 'users', $info['userName'])) {
-                        array_push($ERRORS, 'This User Name used');
-                    }
+                if (  GlobalFunctions::IfExsist('userName', 'users', $info['userName'])) {
+                    array_push($ERRORS, 'This User Name used');
                 }
 
                 if (strlen(strtolower($info['userName'])) <= 3) {
@@ -64,7 +67,39 @@
                 }
 
                 // Image validation
-                Images::IfValidImage($ERRORS);
+                ValidationInputWhenAdd::IfValidImage($ERRORS);
+
+                // Print Error If Founded
+                return PrintErrors::IfNoError($ERRORS);
+            }
+        }
+
+        class ValidationInputUpdate implements IValisation {
+            public static function IfValid() {
+                $info = Users::Post(); $ERRORS = [];
+
+                if (strlen(strtolower($info['userName'])) <= 3) {
+                    array_push($ERRORS, 'User Name Must Be Grater Than 3');
+                }
+
+                if (strlen($info['password']) <= 3 ) {
+                    array_push($ERRORS, 'Password very week use characters and number');
+                }
+
+                if (strlen($info['fullName']) >= 25 ) {
+                    array_push($ERRORS, 'To long name must be less than 26 Character');
+                }
+
+                if ($info['permission'] < 0 || $info['permission'] > 2) {
+                    array_push($ERRORS, 'permission Must between 0 to 2');
+                }
+
+                if (strlen($info['email']) == 0) {
+                    array_push($ERRORS, 'Must Enter Email To verify Acount');
+                }
+
+                // Image validation
+                ValidationInputWhenEdit::IfValidImage($ERRORS);
 
                 // Print Error If Founded
                 return PrintErrors::IfNoError($ERRORS);
@@ -72,7 +107,58 @@
         }
 
 
-    class PrintErrors extends ValidationInput {
+        class IfChangs {
+            
+        public static function ChangesFaild() {
+            $info = Users::Post();
+            $FromDB = Queries::FromTable('*', 'users', "WHERE IdUser = " . GetRequests::GetValueGet('IdUser'), 'fetch');
+
+            if (  $info['userName'] !== $FromDB['userName'] && ($info['userName'] == NULL || $info['userName'] == null)) {
+                $_POST['userName'] = $FromDB['userName'];
+            }
+
+            if (  !empty($info['password']) ) {
+                $_POST['password'] = $FromDB['password'];
+
+            } else {
+                $_POST['password'] = password_hash( $info['password'], PASSWORD_DEFAULT);
+            }
+
+            if (  $info['email'] !== $FromDB['email'] && empty($info['email']) ) {
+                $_POST['email'] = $FromDB['email'];
+            }
+
+            if (  $info['fullName'] !== $FromDB['fullName'] && empty($info['fullName'])) {
+                $_POST['fullName'] = $FromDB['fullName'];
+            }
+
+            if (  $info['aboutYou'] !== $FromDB['aboutYou'] && empty($info['aboutYou'])) {
+                $_POST['aboutYou'] = $FromDB['aboutYou'];
+            }
+
+            if (  $info['permission'] !== $FromDB['permission'] && empty($info['permission'])) {
+                $_POST['permission'] = $FromDB['permission'];
+            }
+
+            if (  $info['langAndTools'] !== $FromDB['langAndTools'] && empty($info['langAndTools'])) {
+                $_POST['langAndTools'] = $FromDB['langAndTools'];
+            }
+
+            if (  $info['age'] !== $FromDB['age'] &&  empty($info['age'])) {
+                $_POST['age'] = $FromDB['age'];
+            }
+
+            if (  $info['imageName'] !== $FromDB['imageName'] && empty($info['imageName']) ) {
+                $_POST['imageName'] = $FromDB['imageName'];
+            }
+
+            $result =  ValidationInputUpdate::IfValid('update');
+
+            return $result;
+        }
+        }
+
+    class PrintErrors  {
 
         public static function IfNoError(&$ERRORS) {
             if (!empty($ERRORS)) {

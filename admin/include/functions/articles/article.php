@@ -1,4 +1,8 @@
 <?php 
+        interface IArticle {
+            public static function IfValidArticleInfo();
+        }
+
         class Articles {
             public static function FromPost() {
                 isset($_POST['titleArticle']) ? $titleArticle                = filter_var($_POST['titleArticle'], FILTER_UNSAFE_RAW)          : $titleArticle          = NULL;
@@ -14,9 +18,9 @@
             }
         }
 
-        class ValidationInput extends Articles {
+        class ValidationArticleAdd implements IArticle {
             public static function IfValidArticleInfo() {
-                $info = self::FromPost(); $errors = [];
+                $info = Articles::FromPost(); $errors = [];
                 if ( empty($info['titleArticle']) ) {
                     array_push($errors, "Title Artical Can't Be Empty");
                 }
@@ -26,8 +30,8 @@
                 }
 
                 // Chenk To Image
-                if (! empty(Images::FileInfo()['name'])) {
-                    Images::IfValidImage($errors);
+                if (! empty(ImagePost::FileInfo()['name'])) {
+                    ValidationInputWhenAdd::IfValidImage($errors);
                 }
     
                 if (!empty($errors)) {
@@ -36,7 +40,30 @@
                     return true;
                 }
             }
+        }
 
+        class ValidationArticleEdit implements IArticle {
+            public static function IfValidArticleInfo() {
+                $info = Articles::FromPost(); $errors = [];
+                if ( empty($info['titleArticle']) ) {
+                    array_push($errors, "Title Artical Can't Be Empty");
+                }
+
+                if ( empty($info['content']) ) {
+                    array_push($errors, "Content Artical Can't Be Empty");
+                }
+
+                // Chenk To Image
+                if (! empty(ImagePost::FileInfo()['name'])) {
+                    ValidationInputWhenEdit::IfValidImage($errors);
+                }
+
+                if (!empty($errors)) {
+                    GlobalFunctions::PrintErorrs($errors);
+                } else {
+                    return true;
+                }
+            }
         }
 
 
@@ -44,7 +71,7 @@
             public static function IfChangs() {
                 $data = Queries::FromTable('*', 'articles', "WHERE IdArticle = " . GetRequests::GetValueGet('IdArticle'), 'fetch');
                 $post = self::FromPost();
-                $postImg = Images::FileInfo();
+                $postImg = ImagePost::FileInfo();
     
                 if ( empty($post['titleArticle']) ) {
                     $_POST['titleArticle'] = $data['titleArticle'];

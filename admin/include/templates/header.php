@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><?php GlobalFunctions::SitNamePage() ?></title>
+        <title><?php GlobalFunctions::SetNamePage() ?></title>
         <!-- Start Css -->
         <link rel="stylesheet" href="static\..\<?php echo $css ?>">
         <link rel="stylesheet" href="<?php echo $commfilesCSS?>navigationBar.css">

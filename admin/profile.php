@@ -17,7 +17,7 @@
             $fromcat = Queries::FromTable("titleCategory" , 'categories', "WHERE categories.IdCategory = " . $article['categoryID'] , 'fetch')['titleCategory'];
             ?>
                 <div class="article">
-                    <?php Images::SetImg($commfilesuploaded . "articles/", $article['imageName']) ?>
+                    <?php ShowImage::SetImg($commfilesuploaded . "articles/", $article['imageName']) ?>
                     <div class="info-article">
                         <a href="#"><?php echo $article['titleArticle'] ?></a>
                     </div>
@@ -47,7 +47,7 @@
             <h4 class="h-title"><?php echo $info['userName'] ?> Profile</h4>
             <div class="row">
                 <aside class="aside">
-                    <?php Images::SetImg($commfilesuploaded . "users/", $imgname) ?>
+                    <?php ShowImage::SetImg($commfilesuploaded . "users/", $imgname) ?>
 
                     <div class="bio">
                         <div class="information">

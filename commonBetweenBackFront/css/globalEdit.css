@@ -21,7 +21,7 @@
     --main-cat-tow: #1da4f2;
     --success: rgb(147, 227, 147);
     --desine-one: #81ecec;
-    --color-cards: #ce596d;
+    --color-cards: #ce596d8c;
 }
 
 html {
@@ -305,8 +305,4 @@ table tr td {
     color: var(--color-cat-three);
     margin: 8px 0;
     cursor: pointer;
-}
-
-.for-search {
-
 }
