@@ -341,4 +341,7 @@ table tr td {
 .null-img {
     width: 150px;
     height: 150px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }

@@ -111,7 +111,6 @@
 
         public static function PrepareToEdit() {
             if ( IfChangs::ChangesFaild() ) {
-                // EditInfoUser::ChangesFaild();
                 Update::Update();
             } 
         }

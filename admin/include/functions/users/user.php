@@ -123,7 +123,8 @@
                 $_POST['password'] = $FromDB['password'];
 
             } else {
-                $_POST['password'] = password_hash( $info['password'], PASSWORD_DEFAULT);
+                // $_POST['password'] = password_hash( $info['password'], PASSWORD_DEFAULT);
+                $_POST['password'] = $FromDB['password'];
             }
 
             if (  $info['email'] !== $FromDB['email'] && empty($info['email']) ) {
@@ -136,10 +137,6 @@
 
             if (  $info['aboutYou'] !== $FromDB['aboutYou'] && empty($info['aboutYou'])) {
                 $_POST['aboutYou'] = $FromDB['aboutYou'];
-            }
-
-            if (  $info['permission'] !== $FromDB['permission'] && empty($info['permission'])) {
-                $_POST['permission'] = $FromDB['permission'];
             }
 
             if (  $info['langs'] !== $FromDB['langs'] && empty($info['langs'])) {
