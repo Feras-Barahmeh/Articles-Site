@@ -241,7 +241,6 @@
                                 <option value="1">Admin</option>
                                 <option value="2">Programer</option>
                             </select>
-                            <!-- <label for="permission" class="file-label">permission</label> -->
                         </div>
                     <input type="submit" name="submit" value="Add member" class="btn-submit">
                 </form>

@@ -37,7 +37,6 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    height: 100%;
 }
 
 ::selection {
@@ -112,7 +111,23 @@ table tr td {
     margin-left: auto;
     margin-right: auto;
 }
-
+@media (min-width: 768px) {
+    .contenar {
+        width: 750px;
+    }
+}
+/* Medium */
+@media (min-width: 992) {
+    .contenar {
+        width: 970px;
+    }
+}
+/* Large */
+@media (min-width: 1200px) {
+    .contenar {
+        width: 1170px;
+    }
+}
 
 
 .alert {
@@ -276,6 +291,7 @@ table tr td {
 .saerch-table {
     border: 1px solid var(--color-cat-three);
     border-radius: 5px;
+    display: inline-block;
 }
 
 .saerch-table input {

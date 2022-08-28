@@ -147,27 +147,17 @@
         foreach($data as $info ) {
             $infocAT = Queries::FromTable("categories.titleCategory, categories.IdCategory, articles.*", 'categories', "INNER JOIN  articles ON  categories.IdCategory = articles.categoryID WHERE IdArticle = " . $info['IdArticle'], 'fetch');
             ?>
-                <div class="article">
-                    <div class="content-article">
-                        <h4><?php echo $info['titleArticle'] ?></h4>
-                        <p class="content"><?php echo $info['content'] ?></p>
+                <div class="box-article" id="">
+                    <?php ShowImage::SetImg($commfilesuploaded . 'articles/', $info['imageName'], 'img-user-aside') ?>
+                    <div class="content">
+                        <h3><?php echo $info['titleArticle'] ?></h3>
+                        <p><?php echo $info['content'] ?></p>
                     </div>
-                    <div class="info-article">
-                        <?php ShowImage::SetImg($commfilesuploaded . 'articles/', $info['imageName'], 'img-user-aside') ?>
-
-                        <div class="layout">
-                            <a href="#" class="writer"><?php echo $info['userName'] ?></a>
-
-                            <div class="optins">
-                                <a href="articles.php?articleAction=edit&IdArticle=<?php echo $info['IdArticle'] ?>" class="process-btn" data-hover="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="articles.php?articleAction=delete&IdArticle=<?php echo $info['IdArticle'] ?>"  onclick="return Confirm()" class="process-btn" data-hover="Delete"><i class="fa-solid fa-trash-can"></i></a>
-                            </div>
-
-                            <div class="cat-date">
-                                <a href="filterByCat.php?CatName=<?php  echo $infocAT['titleCategory'] ?>"><?php  echo $infocAT['titleCategory'] ?></a>
-                                <span class="date"><?php echo $info['additionDate'] ?></span>
-                            </div>
-                        </div>
+                    <div class="options-article">
+                        <a href="articles.php?articleAction=edit&IdArticle=<?php echo $info['IdArticle'] ?>" class="process-btn" data-hover="Edit"><i class="fa-solid fa-pen-to-square no-move"></i></a>
+                        <a href="articles.php?articleAction=delete&IdArticle=<?php echo $info['IdArticle'] ?>"  onclick="return Confirm()" class="process-btn" data-hover="Delete"><i class="fa-solid fa-trash-can no-move"></i></a>
+                        <a href="showarticle.php?<?php echo str_replace(" ", '-', $info['titleArticle']) ?>" class="read-mode">Read More</a>
+                        <i class="fa-solid fa-arrow-right-long"></i>
                     </div>
                 </div>
             <?php 
@@ -176,23 +166,25 @@
 
     function MainStructer () {
         ?>
-            <h3 class="h-title">Articles</h3>
-
-            <div class="additions">
-                    <a href="articles.php?articleAction=add" class="add-btn">Add Article</a>
-                    <div class="search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="search" placeholder="Search" id="gsearch" name="gsearch">
+                <div class="articles">
+                    <h3 class="h-title">Articles</h3>
+                    <div class="options">
+                        <a href="" class="add-btn">Add Article</a>
+                        <table class="saerch-table">
+                            <tr>
+                                <td><i class="fas fa-search"></i></td>
+                                <td><input type="text" placeholder="saerch" id="SearchValue"
+                                onkeyup="FilterArticles()"></td>
+                            </tr>
+                        </table>
+                        <span class="add-btn">Number Articles <span class="num"><?php echo  Queries::Counter("IdArticle", 'articles', "Where  IdUser = " . Sessions::GetValueSessionDepKey('IdUser')) ?></span></span>
                     </div>
-
-                    <div class="number-articles">
-                        <span>Number Articles</span> <span class="num"><?php echo  Queries::Counter("IdArticle", 'articles') ?></span>
+                    <div class="container">
+                        <?php PrintArticle() ?>
                     </div>
                 </div>
 
-            <div class="page-article">
-                <?php PrintArticle() ?>
-            </div>
+
         <?php
     }
 
