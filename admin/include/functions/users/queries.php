@@ -31,8 +31,7 @@
         public static function IfQuerieDone($RowCount) {
             if ($RowCount > 0) {
                 UplodeImageAdd::UplodeImage('users');
-                GlobalFunctions::Redirect('operation accomplished successfully', 'back', 'success', 100);
-
+                GlobalFunctions::AlertMassage("operation accomplished successfully", 'success');
             } else {
                 GlobalFunctions::AlertMassage("No Changed in information", 'info', 100);
                 GlobalFunctions::SitBackBtn();
@@ -73,8 +72,7 @@
 
             if ($RowCount > 0) {
                 UplodeImageEdit::UplodeImage('users');
-                GlobalFunctions::Redirect('operation accomplished successfully', 'back', 'success', 100);
-
+                GlobalFunctions::AlertMassage('operation accomplished successfully', 'success');
             } else {
                 GlobalFunctions::AlertMassage("No Changed in information", 'info', 100);
                 GlobalFunctions::SitBackBtn();

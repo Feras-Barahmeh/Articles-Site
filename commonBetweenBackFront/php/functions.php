@@ -1,5 +1,31 @@
 <?php 
 
+    class Directions {
+
+        public static function Redirect($mass, $direct=NULL, $typeAlert='info', $sec=200) {
+            if ($direct === NULL) {
+                $direct = 'index.php';
+                $url = 'Home Page';
+            } elseif ($direct === 'back') {
+                $direct = isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] != '' ? $direct = $_SERVER['HTTP_REFERER'] : 'index.php';
+                $url = 'Previes page';
+            } else {
+                $url = $direct;
+            }
+
+            GlobalFunctions::AlertMassage($mass, $typeAlert);
+
+            GlobalFunctions::AlertMassage('You Will Redirect To ' . $url . 'After '. $sec . 'sec', 'info');
+
+            GlobalFunctions::SitBackBtn();
+            header('refresh:'.$sec . ';url='. $direct);
+            exit();
+        }
+
+        public static function SamePage($key) {
+
+        }
+    }
 
     class GlobalFunctions {
         public static function SetNamePage() {
@@ -17,25 +43,6 @@
             ?> <div class="alert <?php echo $typeAlert?>"><?php echo $mass?></div> <?php
         }
 
-        public static function Redirect($mass, $direct=NULL, $typeAlert='info', $sec=200) {
-            if ($direct === NULL) {
-                $direct = 'index.php';
-                $url = 'Home Page';
-            } elseif ($direct === 'back') {
-                $direct = isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] != '' ? $direct = $_SERVER['HTTP_REFERER'] : 'index.php';
-                $url = 'Previes page';
-            } else {
-                $url = $direct;
-            }
-
-            self::AlertMassage($mass, $typeAlert);
-
-            self::AlertMassage('You Will Redirect To ' . $url . 'After '. $sec . 'sec', 'info');
-
-            self::SitBackBtn();
-            header('refresh:'.$sec . ';url='. $direct);
-            exit();
-        }
 
 
         public static function IfExsist($selector, $table, $ValueSelector, $debend='string') {
@@ -87,9 +94,10 @@
             if ($stmt->rowCount() > 0 ) {
                 $obj->AlertMassage("Sucssess Delete", 'success');
                 $obj->SitBackBtn();
-            } else {
-                $obj->AlertMassage("Can't Delete now try again later", 'danger');
-            }
+            } 
+            // else {
+            //     $obj->AlertMassage("Can't Delete now try again later", 'danger');
+            // }
         }
 
 
@@ -175,7 +183,7 @@
         }
 
         public static function IfSetValue($val) {
-            if (isset($val) )  {
+            if (isset($_GET[$val]) )  {
                 return true;
             } else {
                 return false;

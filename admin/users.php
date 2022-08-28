@@ -32,7 +32,7 @@
 
                 <div class="contanier-form">
                     <h3 class="h-title">Edit Profile</h3>
-                    <form form action="users.php?actionMember=update&IdUser=<?php echo $id ?>" method="POST" class="form-edit" enctype="multipart/form-data">
+                    <form form action="users.php?actionMember=edit&IdUser=<?php echo $id ?>&update" method="POST" class="form-edit" enctype="multipart/form-data">
                         <!-- Start User name -->
                             <div class="input-box">
                                 <input type="text" name="userName" id="userName" value="<?php echo $values['userName'] ?>" class="input" autocomplete="off">
@@ -101,7 +101,7 @@
                                 <label for="aboutYou" class="label SpecialCase-label">About You</label>
                             </div>
 
-                        <input type="submit" value="Save" class="btn-submit SpecialCase-btn-submit">
+                        <input type="submit" name="submit" value="Save" class="btn-submit SpecialCase-btn-submit">
 
                     </form>
                 </div>
@@ -172,7 +172,7 @@
                     <td><?php echo $info['dataRegister'] ?></td>
                     <td>
                         <a href="users.php?actionMember=edit&IdUser=<?php echo $info['IdUser'] ?>" class="process-btn" data-hover="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="users.php?actionMember=delete&IdUser=<?php echo $info['IdUser'] ?>" class="process-btn" data-hover="Delete" onclick="return Confirm()" ><i class="fa-solid fa-trash-can"></i></a>
+                        <a href="users.php?show=<?php echo GetRequests::GetValueGet('show') ?>&IdUser=<?php echo $info['IdUser'] ?>&delete" class="process-btn" data-hover="Delete" onclick="return Confirm()" ><i class="fa-solid fa-trash-can"></i></a>
                     </td>
                 </tr>
 
@@ -180,51 +180,70 @@
         }
     }
 
+
+    function IfInsert() {
+        if (isset($_POST['submit'])) {
+            controllerInsert();
+        }
+    }
+
+    function IfUpdate() {
+        if (isset($_POST['submit'])) {
+            ControlleUpdate();
+        }
+    }
+
+    function IfDelete() {
+        if ( GetRequests::IfSetValue('delete')) {
+            Queries::Delete('users', " IdUser = " . GetRequests::GetValueGet('IdUser'));
+        } 
+    }
+
     function AddStructure() {
         ?>
             <div class="contanier-form">
                 <h1 class="h-title">Add User</h1>
-                <form action="?actionMember=insert" method="POST" class="form" enctype="multipart/form-data">
+                <form action="users.php?actionMember=add&insert" method="POST" class="form" enctype="multipart/form-data">
                     <!-- User Name -->
-                    <div class="input-box">
-                        <input type="text" name="userName" id="userName" class="input" required="" autocomplete="off">
-                        <label for="userName" class="label">User Name</label>
-                    </div>
+                        <div class="input-box">
+                            <input type="text" name="userName" id="userName" class="input" required="" autocomplete="off">
+                            <label for="userName" class="label">User Name</label>
+                        </div>
 
                     <!-- Password -->
-                    <div class="input-box">
-                        <input type="password" name="password" id="password"  class="input" required="" autocomplete="off">
-                        <label for="password" class="label">password</label>
-                    </div>
+                        <div class="input-box">
+                            <input type="password" name="password" id="password"  class="input" required="" autocomplete="off">
+                            <label for="password" class="label">password</label>
+                        </div>
 
                     <!-- Email -->
-                    <div class="input-box">
-                        <input type="email" name="email" id="email"  class="input" required="" autocomplete="off">
-                        <label for="email" class="label">Email</label>
-                    </div>
+                        <div class="input-box">
+                            <input type="email" name="email" id="email"  class="input" required="" autocomplete="off">
+                            <label for="email" class="label">Email</label>
+                        </div>
 
                     <!-- Full Name -->
-                    <div class="input-box">
-                        <input type="text" name="fullName" id="fullName"  class="input" required="" autocomplete="off">
-                        <label for="fullName" class="label">Full Name</label>
-                    </div>
+                        <div class="input-box">
+                            <input type="text" name="fullName" id="fullName"  class="input" required="" autocomplete="off">
+                            <label for="fullName" class="label">Full Name</label>
+                        </div>
 
                     <!-- Pictuer -->
-                    <div class="input-box">
-                        <input type="file" name="imageName" id="imageName"  class="input" required="" autocomplete="no">
-                        <!-- <label for="imageName" class="file-label">Profile Pictuer</label> -->
-                    </div>
+                        <div class="input-box">
+                            <input type="file" name="imageName" id="imageName"  class="input" required="" autocomplete="no">
+                            <!-- <label for="imageName" class="file-label">Profile Pictuer</label> -->
+                        </div>
 
                     <!-- Start permission -->
-                    <div class="input-box">
-                        <select name="permission" id="permission" class="select" required="" autocomplete="off">
-                            <option value="0">Member</option>
-                            <option value="1">Admin</option>
-                            <option value="2">Programer</option>
-                        </select>
-                        <!-- <label for="permission" class="file-label">permission</label> -->
-                    </div>
-                    <input type="submit" value="Add member" class="btn-submit">
+                        <div class="input-box">
+                            <select name="permission" id="permission" class="select" required="" autocomplete="off">
+                                <option value="0">Member</option>
+                                <option value="1">Admin</option>
+                                <option value="2">Programer</option>
+                            </select>
+                            <!-- <label for="permission" class="file-label">permission</label> -->
+                        </div>
+                    <input type="submit" name="submit" value="Add member" class="btn-submit">
                 </form>
             </div>
         <?php
@@ -304,25 +323,16 @@
 
             case 'add':
                 AddStructure();
-                break;
-
-            case 'insert':
-                controllerInsert();
+                IfInsert();
                 break;
 
             case 'edit':
                 EditInfoUser::StructerEdit();
-                break;
-
-            case 'delete':
-                Queries::Delete('users', " IdUser = " . GetRequests::GetValueGet('IdUser'));
-                break;
-
-            case 'update':
-                ControlleUpdate();
+                IfUpdate();
                 break;
 
             default:
+                IfDelete();
                 ShowUserStructuer();
                 break;
         }

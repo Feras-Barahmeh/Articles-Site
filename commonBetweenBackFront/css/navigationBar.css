@@ -82,7 +82,8 @@ nav ul li:hover a::after {
 }
 
 .dropbtn:hover {
-    color: #f3d33a;
+    color: var(--main-cat-tow);
+
 }
 
 .icone-drobdown {
