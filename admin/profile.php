@@ -13,7 +13,7 @@
         $articles = Queries::FromTable("titleArticle" , 'articles', "WHERE IdUser = " . $idUser);
         foreach ($articles as $article) {
             ?>
-                <li><a href="showarticle.php?<?php echo $article['titleArticle'] ?>"><?php echo $article['titleArticle'] ?></a> <a href="showarticle.php?<?php echo $article['titleArticle'] ?>" class="btn-read">Read</a></li>
+                <li><a href="showarticle.php?<?php echo $article['titleArticle'] ?>"><?php echo $article['titleArticle'] ?></a> <a href="showarticle.php?<?php echo str_replace(" ", "-", $article['titleArticle']) ?>" class="btn-read">Read</a></li>
             <?php
         }
     }

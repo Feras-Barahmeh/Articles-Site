@@ -27,6 +27,24 @@
         }
     }
 
+    function IfDeleting() {
+        if (GetRequests::IfSetValue('delete')) {
+                Queries::Delete('articles', "IdArticle = " . GetRequests::GetValueGet('IdArticle'));
+        }
+    }
+
+    function IfUpdating() {
+        if (isset($_POST['submit']) && isset($_GET['update'])) {
+            ControllerUpdate();
+        } 
+    }
+
+    function IfInsert() {
+        if (isset($_POST['submit']) && isset($_GET['insert'])) {
+                ControllerInsert();
+        }
+    }
+
 
     function PrintCategories() {
         $data = Queries::FromTable("IdCategory, titleCategory", 'categories');
@@ -42,7 +60,7 @@
 
         ?>
             <div class="body-add-article">
-                <form action="articles.php?articleAction=insert" method="POST" enctype="multipart/form-data">
+                <form action="articles.php?articleAction=add&insert" method="POST" enctype="multipart/form-data">
 
                     <div class="">
                         <label for="title" class="label">Title</label>
@@ -78,7 +96,7 @@
                         
                     </div>
 
-                    <input type="submit" value="Add" class="btn-submit">
+                    <input type="submit" name="submit" value="Add" class="btn-submit">
                 </form>
 
             </div>
@@ -96,7 +114,7 @@
             <div class="body-add-article">
                     <?php ShowImage::SetImg($commfilesuploaded . 'articles/', $info['imageName'], 'img-user-aside') ?>
 
-                    <form action="articles.php?articleAction=update&IdArticle=<?php echo $IdArticle ?>" method="POST" enctype="multipart/form-data">
+                    <form action="articles.php?articleAction=edit&IdArticle=<?php echo $IdArticle ?>&update" method="POST" enctype="multipart/form-data">
 
                         <div class="">
                             <label for="title" class="label">Title</label>
@@ -133,7 +151,7 @@
                             
                         </div>
 
-                        <input type="submit" class="btn-submit" value="Edit">
+                        <input type="submit" name="submit" class="btn-submit" value="Edit">
                     </form>
 
             </div>
@@ -155,7 +173,7 @@
                     </div>
                     <div class="options-article">
                         <a href="articles.php?articleAction=edit&IdArticle=<?php echo $info['IdArticle'] ?>" class="process-btn" data-hover="Edit"><i class="fa-solid fa-pen-to-square no-move"></i></a>
-                        <a href="articles.php?articleAction=delete&IdArticle=<?php echo $info['IdArticle'] ?>"  onclick="return Confirm()" class="process-btn" data-hover="Delete"><i class="fa-solid fa-trash-can no-move"></i></a>
+                        <a href="articles.php?delete&IdArticle=<?php echo $info['IdArticle'] ?>"  onclick="return Confirm()" class="process-btn" data-hover="Delete"><i class="fa-solid fa-trash-can no-move"></i></a>
                         <a href="showarticle.php?<?php echo str_replace(" ", '-', $info['titleArticle']) ?>" class="read-mode">Read More</a>
                         <i class="fa-solid fa-arrow-right-long"></i>
                     </div>
@@ -169,7 +187,7 @@
                 <div class="articles">
                     <h3 class="h-title">Articles</h3>
                     <div class="options">
-                        <a href="" class="add-btn">Add Article</a>
+                        <a href="articles.php?articleAction=add" class="add-btn">Add Article</a>
                         <table class="saerch-table">
                             <tr>
                                 <td><i class="fas fa-search"></i></td>
@@ -189,31 +207,35 @@
     }
 
 
+
 // Main Function
     function Controller() {
         switch (GetRequests::GetValueGet('articleAction')) {
             case 'add':
                 AddStructer();
+                IfInsert();
                 break;
 
-            case 'insert':
-                ControllerInsert();
-                break;
+            // case 'insert':
+            //     ControllerInsert();
+            //     break;
 
             case 'edit':
+                IfUpdating();
                 EditStructer();
                 break;
 
-            case 'update':
-                ControllerUpdate();
-                break;
+            // case 'update':
+            //     ControllerUpdate();
+            //     break;
 
-            case 'delete':
-                Queries::Delete('articles', "IdArticle = " . GetRequests::GetValueGet('IdArticle'));
-                break;
+            // case 'delete':
+            //     Queries::Delete('articles', "IdArticle = " . GetRequests::GetValueGet('IdArticle'));
+            //     break;
 
             default:
                 MainStructer();
+                IfDeleting();
                 break;
         }
     }

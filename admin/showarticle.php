@@ -20,9 +20,8 @@
 
     function MainStructer() {
         $InfoArticle = Queries::FromTable('*', 'articles', "Where titleArticle = '" . str_replace("-", " ", array_key_first($_GET)) . "'", 'fetch');
-
         ?>
-            <h3 class="h-title"><?php echo $InfoArticle['titleArticle'] ?></h3>
+            <h3 class="h-title"><?php echo stripslashes($InfoArticle['titleArticle']) ?></h3>
             <div class="contanier-show-article">
                 <aside>
                         <?php GlobalFunctions::Search('FilterArticlesInThisCat()') ?> 

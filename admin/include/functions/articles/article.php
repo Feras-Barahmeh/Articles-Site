@@ -5,7 +5,7 @@
 
         class Articles {
             public static function FromPost() {
-                isset($_POST['titleArticle']) ? $titleArticle                = filter_var($_POST['titleArticle'], FILTER_UNSAFE_RAW)          : $titleArticle          = NULL;
+                isset($_POST['titleArticle']) ? $titleArticle                = addslashes(filter_var($_POST['titleArticle'], FILTER_UNSAFE_RAW))          : $titleArticle          = NULL;
                 isset($_POST['IdUser']) ? $IdUser                = filter_var($_POST['IdUser'], FILTER_SANITIZE_NUMBER_INT)          : $titleArticle          = NULL;
                 isset($_POST['content']) ? $content                = filter_var($_POST['content'], FILTER_UNSAFE_RAW)          : $content          = NULL;
                 isset($_POST['categoryID']) ? $categoryID                = filter_var($_POST['categoryID'], FILTER_SANITIZE_NUMBER_INT)          : $categoryID          = NULL;
