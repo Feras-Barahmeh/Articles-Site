@@ -10,10 +10,10 @@
 
     function PrintArticlesName() {
         $idUser = Sessions::GetValueSessionDepKey('IdUser');
-        $articles = Queries::FromTable("titleArticle" , 'articles', "WHERE IdUser = " . $idUser);
+        $articles = Queries::FromTable("titleArticle, categoryID" , 'articles', "WHERE IdUser = " . $idUser);
         foreach ($articles as $article) {
             ?>
-                <li><a href="showarticle.php?<?php echo $article['titleArticle'] ?>"><?php echo $article['titleArticle'] ?></a> <a href="showarticle.php?<?php echo str_replace(" ", "-", $article['titleArticle']) ?>" class="btn-read">Read</a></li>
+                <li class="name-articel" idcat="<?php echo $article['categoryID'] ?>"><a href="showarticle.php?<?php echo $article['titleArticle'] ?>"><?php echo $article['titleArticle'] ?></a> <a href="showarticle.php?<?php echo str_replace(" ", "-", $article['titleArticle']) ?>" class="btn-read">Read</a></li>
             <?php
         }
     }
@@ -49,6 +49,15 @@
         }
     } 
 
+    function GetCats() {
+        $Cats = Queries::FromTable('titleCategory, IdCategory', 'categories');
+        foreach ($Cats as $Cat) {
+            ?>
+                <li onclick="SetClickedClass()" idcat="<?php echo $Cat['IdCategory']  ?>"><a href="#"><?php echo $Cat['titleCategory'] ?></a></li>
+            <?php
+        }
+    }
+
 
 // Main Functions
     function StructerProfiel () {
@@ -75,9 +84,9 @@
                         </div>
 
                         <div class="location link"><span><i class="fa-solid fa-location-pin"></i></span> Jordan</div>
-                        <a href="" class="githup link"><span><i class="fa-brands fa-github"></i></span> FerasBarahmeh</a>
-                        <a href="" class="facebook link" ><span><i class="fa-brands fa-linkedin"></i></span> FerasBarahmeh</a>
-                        <a href="" class="twetter link"><span><i class="fa-brands fa-twitter"></i></span> FerasBarahmeh</a>
+                        <a href="#" class="githup link"><span><i class="fa-brands fa-github"></i></span> FerasBarahmeh</a>
+                        <a href="#" class="facebook link" ><span><i class="fa-brands fa-linkedin"></i></span> FerasBarahmeh</a>
+                        <a href="#" class="twetter link"><span><i class="fa-brands fa-twitter"></i></span> FerasBarahmeh</a>
                         <div class="separator"></div>
                     </div>
 
@@ -107,16 +116,22 @@
                 </aside>
 
                 <section class="contant-section">
-                    <div class="cats">
-                        <span><a href="#">Db</a></span>
-                        <span><a href="#">Python</a></span>
-                        <span><a href="#">Cpp</a></span>
+                    <div class="header-contaner">
+                        <div class="categoreis-dropdown">
+                            Filter By Cat
+                            <span><i class="fa-solid fa-caret-down" aria-hidden="true"></i></span>
+                            <ul id="cats-page-profile">
+                                <?php GetCats() ?>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="articles">
-                        <ul>
-                            <?php PrintArticlesName() ?>
-                        </ul>
+                        <div class="cats">
+                            <ul id="if-no-val">
+                                <?php PrintArticlesName() ?>
+                            </uli>
+                        </div>
                     </div>
                 </section>
             </div>

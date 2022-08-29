@@ -900,17 +900,54 @@ option {
     background: linear-gradient(45deg, black, transparent);
     margin-left: 30px;
 }
-.contant-section  .cats {
+.contant-section  .header-contaner {
     display: flex;
     margin-bottom: 20px;
     padding: 5px 10px;
 }
-.contant-section  .cats span {
+.contant-section  .header-contaner .categoreis-dropdown {
     margin-right: 10px;
     background-color: #777;
     padding: 5px;
+    position: relative;
+    cursor: pointer;
+    transition: .2s ease-in-out;
 }
+.contant-section  .header-contaner .categoreis-dropdown ul {
+    display: none;
+    position: absolute;
+    background-color: #b1b1b1;
+    color: black;
+    padding: 20px;
+    left: -1px;
+    top: 50px;
+    border-radius: 5px;
+    width: 200px;
+    z-index: 100;
+}
+.contant-section  .header-contaner .categoreis-dropdown ul::before {
+    content: "";
+    position: absolute;
+    border: 18px #777 solid;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    top: -36px;
+    left: 3px;
 
+}
+.contant-section  .header-contaner .categoreis-dropdown ul li {
+    padding: 4px;
+    display: block;
+}
+.contant-section  .header-contaner .categoreis-dropdown ul li:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+.contant-section  .header-contaner .categoreis-dropdown ul li  a {
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+}
 .contant-section .articles {
     background: var(--bbackground-color);
     padding: 20px;

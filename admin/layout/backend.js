@@ -25,3 +25,65 @@
             }
         }
     }
+
+
+
+// Filter By Cat In Profile Page
+    let ContantFilterByCats =  document.querySelector(".categoreis-dropdown");
+
+    // Add Class on clicked li
+    ContantFilterByCats.addEventListener("click", 
+        function (event) {
+            var ul = document.getElementById("cats-page-profile");
+            if (ul.style.display == "block") {
+                ul.style.display = "none";
+            } else {
+                ul.style.display = "block";
+            }
+        }
+    );
+
+    function CreateImgNull() {
+        let Img = document.createElement("img");
+        Img.src = '../commonBetweenBackFront/images/imagesProject/null_light.png';
+        Img.alt = "NULL-Value";
+        Img.className = "null-img";
+        let ContanierImag = document.getElementById("if-no-val");
+        ContanierImag.appendChild(Img);
+    }
+
+    function GetAllHasClickedClass() {
+        let HasClicked = document.querySelectorAll('.clicked');
+        console.log(HasClicked);
+        for (let i of HasClicked)
+            i.className = "";
+    }
+
+    function ShowDetermantArticles(catid) {
+        let ArticelsNames = document.querySelectorAll(".name-articel"); let counter = 0;
+        for (let ArticleName of ArticelsNames) {
+            if (ArticleName.getAttribute('idcat') !== catid){
+                ArticleName.style.display = "none";
+
+            } else {
+                ArticleName.style.display = "flex";
+                counter++;
+            }
+        }
+        if (counter == 0)  {
+            CreateImgNull();
+        }
+    }
+
+    function SetClickedClass() {
+        document.addEventListener('click', function HandelClick(event){
+            let li = event.target.parentElement;
+            GetAllHasClickedClass();
+            li.classList.add('clicked');
+            if (li.hasAttribute) {
+                ShowDetermantArticles(li.getAttribute('idcat'));
+            }
+        });
+    }
+
+// main
