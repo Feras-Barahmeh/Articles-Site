@@ -867,9 +867,6 @@ option {
     margin-bottom: 10px;
 }
 
-
-
-
 .content-profile .aside-profile  .location span {
     margin-right: 10px;
 }
@@ -885,8 +882,6 @@ option {
 .content-profile .aside-profile .lang {
     margin: 10px 0;
 }
-
-
 
 .content-profile .aside-profile .skills {
     margin: 10px 0 20px 0 ;
@@ -932,7 +927,8 @@ option {
     padding: 5px;
 }
 .contant-section .articles ul li:nth-child(odd) {
-    background: #07292a;
+    /* background: #07292a; */
+    background: linear-gradient(45deg, #8c8c8c, transparent);
 }
 
 .contant-section .articles ul li:nth-child(even) {
@@ -946,7 +942,6 @@ option {
     background-color: var(--bbackground-color);
     grid-column: 1 / 5;
     grid-row: 2;
-    /* display: flex; */
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(500px, 200px));
     padding: 20px;
@@ -1005,8 +1000,73 @@ option {
     font-weight: bold;
 }
 
-/* aside .showCat {
-    padding: 0 !important;
-    margin: 5px 0 10px !important;
-} */
+
 /* End Filter By Tag */
+
+/* Start Show Article */
+.contanier-show-article {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto;
+    padding: 5em 5em 0 5em;
+    margin: 0 auto;
+    gap: 40px;
+}
+.contanier-show-article aside {
+    background: linear-gradient(-45deg, black, transparent);
+    padding: 20px;
+}
+.contanier-show-article aside table {
+    width: 100%;
+}
+.contanier-show-article aside ul {
+    margin: 20px 0;
+}
+.contanier-show-article aside ul li {
+    margin: 10px;
+    border-bottom: 1px solid #e6e6e7;
+    padding: 7px;
+}
+.contanier-show-article section {
+    display: flex;
+    padding: 20px;
+    background: #8c8c8c;
+    color: black;
+    line-height: 1.3;
+}
+
+.contanier-show-article section  .info-article {
+    width: 500px;
+}
+
+.contanier-show-article section  .info-article img {
+    max-width: 300px;
+    width: 300px;
+    height: 200px;
+}
+.contanier-show-article section  .info-article .opt-article {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: var(--sun-theam);
+    padding: 8px;
+    color: var(--main-cat-tow);
+    width: 200px;
+}
+.contanier-show-article section  .info-article .opt-article  a {
+    color: var(--main-cat-tow);
+}
+.contanier-show-article section  .content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.contanier-show-article section .content h3 {
+    text-align: center;
+    margin: 20px 0;
+}
+.contanier-show-article section  .content p {
+    word-break: break-word;
+    
+}
+/* End Show Article */

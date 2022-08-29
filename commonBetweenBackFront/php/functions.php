@@ -69,13 +69,13 @@
             GlobalFunctions::SitBackBtn();
         }
 
-        public static function Search() {
+        public static function Search($NameJSFilterFunct='filter()') {
             ?>
                 <table class="saerch-table">
                     <tr>
                         <td><i class="fas fa-search"></i></td>
                         <td><input type="text" placeholder="saerch" id="SearchValue"
-                        onkeyup="filter()"></td>
+                        onkeyup="<?php echo $NameJSFilterFunct ?>"></td>
                     </tr>
                 </table>
             <?php
