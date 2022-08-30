@@ -1,3 +1,6 @@
+
+
+
 // Search Article
     function FilterArticles() {
         let SearchValue = document.getElementById('SearchValue').value;
@@ -29,9 +32,9 @@
 
 
 // Filter By Cat In Profile Page
-    let ContantFilterByCats =  document.querySelector(".categoreis-dropdown");
 
-    // Add Class on clicked li
+    // Show Ul when click
+    let ContantFilterByCats =  document.querySelector(".categoreis-dropdown");
     ContantFilterByCats.addEventListener("click", 
         function (event) {
             var ul = document.getElementById("cats-page-profile");
@@ -43,47 +46,32 @@
         }
     );
 
-    function CreateImgNull() {
-        let Img = document.createElement("img");
-        Img.src = '../commonBetweenBackFront/images/imagesProject/null_light.png';
-        Img.alt = "NULL-Value";
-        Img.className = "null-img";
-        let ContanierImag = document.getElementById("if-no-val");
-        ContanierImag.appendChild(Img);
-    }
-
-    function GetAllHasClickedClass() {
-        let HasClicked = document.querySelectorAll('.clicked');
-        console.log(HasClicked);
-        for (let i of HasClicked)
-            i.className = "";
-    }
-
+    // Show Determatin article by category
     function ShowDetermantArticles(catid) {
-        let ArticelsNames = document.querySelectorAll(".name-articel"); let counter = 0;
+        let ArticelsNames = document.querySelectorAll(".name-articel"); 
+        let CounterArticlesInCat = 0;
         for (let ArticleName of ArticelsNames) {
             if (ArticleName.getAttribute('idcat') !== catid){
                 ArticleName.style.display = "none";
-
             } else {
                 ArticleName.style.display = "flex";
-                counter++;
+                CounterArticlesInCat++;
             }
         }
-        if (counter == 0)  {
-            CreateImgNull();
+
+        if (CounterArticlesInCat == 0)  {
+            console.log("Not Found");
         }
     }
 
     function SetClickedClass() {
-        document.addEventListener('click', function HandelClick(event){
-            let li = event.target.parentElement;
-            GetAllHasClickedClass();
-            li.classList.add('clicked');
-            if (li.hasAttribute) {
-                ShowDetermantArticles(li.getAttribute('idcat'));
-            }
-        });
+        document.addEventListener('click', function(event){
+        let li = event.target;
+        li.classList.add('clicked');
+        if (li.hasAttribute) {
+            ShowDetermantArticles(li.getAttribute('idcat'));
+        }
+    });
     }
 
 // main

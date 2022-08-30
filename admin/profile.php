@@ -53,7 +53,7 @@
         $Cats = Queries::FromTable('titleCategory, IdCategory', 'categories');
         foreach ($Cats as $Cat) {
             ?>
-                <li onclick="SetClickedClass()" idcat="<?php echo $Cat['IdCategory']  ?>"><a href="#"><?php echo $Cat['titleCategory'] ?></a></li>
+                <li  onclick="SetClickedClass()" idcat="<?php echo $Cat['IdCategory']  ?>"><?php echo $Cat['titleCategory'] ?></li>
             <?php
         }
     }
