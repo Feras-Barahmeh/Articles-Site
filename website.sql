@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2022 at 05:59 PM
+-- Generation Time: Aug 30, 2022 at 03:35 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -42,13 +42,12 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`IdArticle`, `titleArticle`, `content`, `imageName`, `IdUser`, `categoryID`, `additionDate`) VALUES
-(3, 'why can&#39;t start  number when declaration var', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'images.jpg3_images.jpg', 12, 12, '2022-08-12'),
-(6, 'Why index start to zero', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', NULL, 12, 12, '2022-08-12'),
+(6, 'Why index start to zero', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'null_light-53585615fd723ba992bd2df7a10d10d1.png6_null_light-53585615fd723ba992bd2df7a10d10d1.png', 12, 10, '2022-08-12'),
 (8, 'All you need to learn Git', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', '1_omc83-7fb27k1ttmxdfraq (1).png8_1_omc83-7fb27k1ttmxdfraq (1).png', 12, 11, '2022-08-12'),
-(13, 'DB', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'download (7).jpg13_download (7).jpg', 12, 3, '2022-08-13'),
-(16, 'Success Way Learn programing', 'FILTER_SANITIZE_NUMBER_INT', 'images.jpg_images.jpg', 12, 10, '2022-08-18'),
 (17, 'Best Way learn framework python', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', '1_z7hxzx49ero8tfg6mzxrnw.jpeg17_1_z7hxzx49ero8tfg6mzxrnw.jpeg', 12, 1, '2022-08-18'),
-(18, 'make Directory', 'To Mack Dir in linux using mkdir command', 'r.jpg_r.jpg', 12, 5, '2022-08-21');
+(21, 'How booting OS', 'LoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoream', 'r.jpg_r.jpg', 12, 5, '2022-08-27'),
+(22, 'backend Web Devalober', 'The Language To Backend Web develober PHP, Python, Rube', 'backend-is.png_backend-is.png', 12, 4, '2022-08-29'),
+(24, 'The Difference between backslash n and endl in CPP', 'معلمة سريعه عن ++c\r\nالفرق بين n\\ و endl \r\nالاغلب بعرف الفرق ال n\\ لل string و ال endl لغير ال string \r\nوفعليا مش هاذا الاختلاف الجوهري بينهم \r\nطيب شو الاختلاف ؟\r\nالاختلاف بطريقة تخزين البينات قبل عرضها على الشاشة \r\nبمعنى \r\nلو عندك 1000 جملة cout تحت بعض \r\nال n\\ رح يحط ال 1000 جملة جوا buffer(خلينا نعتبرها جدول اول مكان لتخزين بشكل مؤقت ) بعدين يعرضهم على الشاشة \r\nطيب ال endl شو بسوي ؟؟ \r\nال endl كل جملة بحطها ب buffer بعدين بظهرها على الشاشة وبرجع بيوخذ ال cout البعدها \r\n\r\nطيب انا مين استخدم (انو اسرع) ؟؟ \r\nفعليا اسرع اشي انك تستخدمهم ال اثنين مع بعض \r\n\r\nكيف ؟؟ \r\nفرضا عندك 1000 جملة طباعة متتاليات \r\nاستخدم مثلا 99 جملة ب n\\ والجملة ال 100 endl \r\nهيك لا انتا استهلكت وقت اذا استخدمت endl (بعد كل جملة رح يروح ع ال buffer ويطبع ويرجع يفضيها )  ولا انتا اعطيت ال buffer اكبر من سعتها لو استخدمت n\\', 'images (1).jpg_images (1).jpg', 12, 4, '2022-08-30');
 
 -- --------------------------------------------------------
 
@@ -71,13 +70,16 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`IdCategory`, `titleCategory`, `content`, `additionDate`, `IDwriter`) VALUES
 (1, 'Python', 'All You need to learn Python', '2022-08-18', 12),
 (3, 'DB', 'All you need to learn DB', '2022-08-18', 12),
-(4, 'CPP', 'All you need to learn cpp', '2022-08-18', 12),
+(4, 'CPP', 'All you need to learn c++', '2022-08-18', 12),
 (5, 'linux', 'all command linux', '2022-08-18', 12),
 (7, 'windows server', 'All you need to learn windows ', '2022-08-18', 12),
 (9, 'FrameWorks', 'As Laravel, Django, node js', '2022-08-18', 12),
 (10, 'Fundamental', 'Fundamental Programmin', '2022-08-18', 12),
 (11, 'Git And Gihup', 'Tip git & githup', '2022-08-18', 12),
-(12, 'Tricks', 'This category to show some tricks in programming', '2022-08-23', 12);
+(12, 'Tricks', 'This category to show some tricks in programming', '2022-08-23', 12),
+(13, 'PHP', 'ALl  You need to learn PHP To learn  Backend', '2022-08-24', 12),
+(14, 'Windows ', 'Windows ', '2022-08-27', 12),
+(15, 'Problems', 'This Category to update problem solving skills', '2022-08-30', 12);
 
 -- --------------------------------------------------------
 
@@ -92,7 +94,8 @@ CREATE TABLE `users` (
   `email` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
   `fullName` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
   `aboutYou` varchar(255) NOT NULL,
-  `langAndTools` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+  `langs` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+  `tools` text DEFAULT NULL,
   `permission` tinyint(11) NOT NULL,
   `age` tinyint(4) NOT NULL,
   `imageName` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
@@ -103,11 +106,14 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`IdUser`, `userName`, `password`, `email`, `fullName`, `aboutYou`, `langAndTools`, `permission`, `age`, `imageName`, `dataRegister`) VALUES
-(12, 'feras', '$2y$10$Ci/KLHxpIAMOWOKqyEF1DuTyJBjxgYxKrrAP2wkuS/f6h6qHU85QO', 'ferasfadi345@gmail.com', 'Feras Fadi Barahmeh', 'I\'m Feras Barahmeh', 'cpp, php, python, C#', 1, 20, 'download.png12_download.png', '2022-08-10'),
-(14, 'majd', '$2y$10$Ci/KLHxpIAMOWOKqyEF1DuTyJBjxgYxKrrAP2wkuS/f6h6qHU85QO', 'majdbarahmeh990@gmail.com', 'Majd Fadi Barahmeh', 'I\'m Majd Fadi', 'cpp', 0, 19, '52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg14_52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg', '2022-08-10'),
-(16, 'khaled', '$2y$10$YRdaKlH0nS94UjlGdmDTR.xL/QetGEJ/l4B3LSeLlreuI41ND7Wju', 'khaled@khale.com', 'Khaled Fadi Barahmeh', 'I\'m khaled barahmeh', 'english', 0, 16, 'download.jpg_download.jpg', '2022-08-18'),
-(17, 'fadi', '$2y$10$id1hH5sb8EeeOcxVNUu26.gKqBg146QkYjBdSQVBxkjc949w/TC1y', 'fedi@f.com', 'Fadi Barahmeh', 'study CS', 'CPP, VB', 2, 47, 'depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg_depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '2022-08-23');
+INSERT INTO `users` (`IdUser`, `userName`, `password`, `email`, `fullName`, `aboutYou`, `langs`, `tools`, `permission`, `age`, `imageName`, `dataRegister`) VALUES
+(12, 'feras', '$2y$10$Ci/KLHxpIAMOWOKqyEF1DuTyJBjxgYxKrrAP2wkuS/f6h6qHU85QO', 'ferasfadi345@gmail.com', 'Feras Barahmeh', 'I\'m Feras Barahmeh, study at ttu', 'cpp, php, python', 'Git  & Githup, SOLID prinsiple', 1, 21, 'download.png12_download.png', '2022-08-10'),
+(14, 'majd', '$2y$10$Ci/KLHxpIAMOWOKqyEF1DuTyJBjxgYxKrrAP2wkuS/f6h6qHU85QO', 'majdbarahmeh990@gmail.com', 'Majd Fadi Barahmeh', 'I\'m Majd Fadi', 'cpp, pythn', NULL, 0, 19, '52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg14_52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg', '2022-08-10'),
+(17, 'fadi', '$2y$10$id1hH5sb8EeeOcxVNUu26.gKqBg146QkYjBdSQVBxkjc949w/TC1y', 'fedi@f.com', 'Fadi Barahmeh', 'study CS', 'CPP, VB', NULL, 2, 47, 'depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg_depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '2022-08-23'),
+(18, 'jojo', '$2y$10$yw5YQAxHZq7oD5LJiTrrEeEkvoUMF4Kfwkg7.witOw7f3SAjZkExe', 'j@j.com', 'Jenan', 'Saf 8', 'None', NULL, 1, 13, 'avatar-icon-of-girl-in-a-baseball-cap-vector-16225068.jpg18_avatar-icon-of-girl-in-a-baseball-cap-vector-16225068.jpg', '2022-08-23'),
+(20, 'ahmad', '$2y$10$l6MDWcjvy6c1d0pZ3WuCMuH3IxbyJTrvFqPA1ScAlWNtLWhPhY9f2', 'a@a.com', 'Ahmad Fadi', '', '', NULL, 2, 0, NULL, '2022-08-24'),
+(25, 'fowze', '$2y$10$ejYzeGgEnenB2ggNPX2AYue5wxddr7sYcrqpiCFZ3kgH7bg1Pdojm', 'f@fa.com', 'Fawaz Ahmad', 'I\'m Fawaz', 'NULL', 'git', 2, 45, 'null_light-53585615fd723ba992bd2df7a10d10d1.png25_null_light-53585615fd723ba992bd2df7a10d10d1.png', '2022-08-25'),
+(28, 'fadiazmi', '$2y$10$lmr2/f3xtusQEY2R6ZJZsOkzIRpX2i/uPG9OaiAdDwbv1PZ5rQkfK', 'f@f.com', 'Fadi barha', '', '', NULL, 1, 50, 'download (5).jpg_download (5).jpg', '2022-08-25');
 
 --
 -- Indexes for dumped tables
@@ -145,19 +151,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `IdArticle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `IdArticle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `IdCategory` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `IdCategory` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identify user number', AUTO_INCREMENT=18;
+  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identify user number', AUTO_INCREMENT=35;
 
 --
 -- Constraints for dumped tables

@@ -33,45 +33,97 @@
 
 // Filter By Cat In Profile Page
 
-    // Show Ul when click
-    let ContantFilterByCats =  document.querySelector(".categoreis-dropdown");
-    ContantFilterByCats.addEventListener("click", 
-        function (event) {
-            var ul = document.getElementById("cats-page-profile");
-            if (ul.style.display == "block") {
-                ul.style.display = "none";
-            } else {
-                ul.style.display = "block";
-            }
-        }
-    );
+    function fetchLettersWhenSearch() {
+        let litters = document.getElementById("search-cats").value.toLowerCase();
 
-    // Show Determatin article by category
-    function ShowDetermantArticles(catid) {
-        let ArticelsNames = document.querySelectorAll(".name-articel"); 
-        let CounterArticlesInCat = 0;
-        for (let ArticleName of ArticelsNames) {
-            if (ArticleName.getAttribute('idcat') !== catid){
-                ArticleName.style.display = "none";
+        // Get Elemnts Has Name Careggory
+        let categoriesName = document.querySelectorAll("#cat-name");
+        
+        for (let li of categoriesName) {
+            if (li.innerHTML.toLocaleLowerCase().search(litters) == -1) {
+                li.style.display = "none";
             } else {
-                ArticleName.style.display = "flex";
-                CounterArticlesInCat++;
+                li.style.display = "block";
             }
-        }
-
-        if (CounterArticlesInCat == 0)  {
-            console.log("Not Found");
         }
     }
 
-    function SetClickedClass() {
-        document.addEventListener('click', function(event){
-        let li = event.target;
-        li.classList.add('clicked');
-        if (li.hasAttribute) {
-            ShowDetermantArticles(li.getAttribute('idcat'));
-        }
-    });
+    function creatImg(inClass, desine=null) {
+        // Where We Set Img
+        let contanier = document.getElementsByClassName(inClass);
+
+        const image = document.createElement("img");
+        image.src = "../commonBetweenBackFront/images/imagesProject/null_light.png";
+        image.alt = "NULL Contant";
+        image.classList.add(desine);
+        contanier[0].appendChild(image);
+
     }
 
+    function hiddenImage(inClass) {
+        let contanier = document.getElementsByClassName(inClass);
+    }
+
+
+    function whenClickCategpry() {
+        // Get ID Category
+        let categoryID = event.target.getAttribute("idcat");
+
+        // Get Name Articel
+        let nameArticles = document.getElementsByClassName("name-articel");
+
+        let counter = 0;
+
+        for (let nameArticle of nameArticles ) {
+            if (nameArticle.getAttribute("idcat") !== categoryID) {
+                nameArticle.style.display = "none";
+                counter--;
+            } else {
+                nameArticle.style.display = "flex";
+                counter++;
+            }
+        }
+
+        // Desiply ul when choose category
+        const showContent = document.getElementById("padding-dropdown");
+        showContent.style.display = "none";
+
+        // Add NULL image if No Article in This Category 
+        // if (counter == -1 * (nameArticles.length)) {
+        //     creatImg("articles", "null-img");
+        // } else {
+        //     hiddenImage("articles");
+        // }
+
+    }
+
+    // Open ul when click
+    function openList() {
+
+        // Get Info Btn
+        const btnShowUl = document.querySelector(".categoreis-dropdown");
+
+        // Get Content btn
+        const showContent = document.getElementById("padding-dropdown");
+
+        // Change Display content
+        if (showContent.style.display == "block") {
+            showContent.style.display = "none";
+
+            // Show caret-down icone
+            btnShowUl.children[0].children[0].style.display = "inline-block";
+
+            // hidden caret-up icone
+            btnShowUl.children[0].children[1].style.display = "none";
+        } else {
+            showContent.style.display = "block";
+
+            // Hidden caret-down icone
+            btnShowUl.children[0].children[1].style.display = "inline-block";
+
+            // Show caret-up icone
+            btnShowUl.children[0].children[0].style.display = "none";
+        }
+
+    }
 // main

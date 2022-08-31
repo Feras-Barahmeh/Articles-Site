@@ -69,9 +69,9 @@
             GlobalFunctions::SitBackBtn();
         }
 
-        public static function Search($NameJSFilterFunct='filter()') {
+        public static function Search($NameJSFilterFunct='filter()', $position=NULL) {
             ?>
-                <table class="saerch-table">
+                <table class="saerch-table"  style="position: <?php echo $position ?>;">
                     <tr>
                         <td><i class="fas fa-search"></i></td>
                         <td><input type="text" placeholder="saerch" id="SearchValue"

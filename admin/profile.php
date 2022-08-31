@@ -53,7 +53,7 @@
         $Cats = Queries::FromTable('titleCategory, IdCategory', 'categories');
         foreach ($Cats as $Cat) {
             ?>
-                <li  onclick="SetClickedClass()" idcat="<?php echo $Cat['IdCategory']  ?>"><?php echo $Cat['titleCategory'] ?></li>
+                <li id="cat-name" class="test" onclick="whenClickCategpry()" idcat="<?php echo $Cat['IdCategory']  ?>"><?php echo $Cat['titleCategory'] ?></li>
             <?php
         }
     }
@@ -70,7 +70,6 @@
             $info = $queries->FromTable("*" , 'users', "WHERE users.IdUser = $idUser", 'fetch');
             $numberArticles =  $queries->Counter("IdArticle", 'articles', "WHERE IdUser = $idUser");
             $numberCat =  $queries->Counter("IdCategory", 'categories', "WHERE IDwriter = $idUser");
-
         ?>
             <div class="content-profile">
                 <aside class="aside-profile">
@@ -117,13 +116,16 @@
 
                 <section class="contant-section">
                     <div class="header-contaner">
-                        <div class="categoreis-dropdown">
-                            Filter By Cat
-                            <span><i class="fa-solid fa-caret-down" aria-hidden="true"></i></span>
-                            <ul id="cats-page-profile">
+                        <div class="categoreis-dropdown" onclick="openList()">
+                            Categories
+                            <span><i class="fa-solid fa-caret-down" aria-hidden="true"></i><i class="fa-solid fa-caret-up"></i></span>
+                            <!-- Search Feild -->
+
+                        </div>
+                        <ul id="padding-dropdown">
+                                <li for="search-cats" ><input onkeyup="fetchLettersWhenSearch()" type="text" id="search-cats" placeholder="Search Category"><i class="fa-solid fa-magnifying-glass"></i></li>
                                 <?php GetCats() ?>
                             </ul>
-                        </div>
                     </div>
 
                     <div class="articles">
