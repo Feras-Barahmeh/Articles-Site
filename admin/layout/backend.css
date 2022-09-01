@@ -179,9 +179,78 @@ option {
 /* End Add User  */
 
 /* Start Edit User */
+.langs-tag {
+    position: relative;
+    top: 38px;
+    display: flex;
+    flex-direction: column;
+}
 
+.langs-tag .content-langs ul {
+    display: flex;
+    margin-bottom: 6px;
+    flex-wrap: wrap
+}
+.langs-tag .content-langs li {
+    padding: 3px 5px;
+    background-color: var(--main-cat-tow);
+    display: flex;
+    height: fit-content;
+    justify-content: space-between;
+    margin-left: 3px;
+    margin-bottom: 4px;
+    align-items: center;
 
+}
+.langs-tag .content-langs li i {
+    background-color: #433939;
+    width: 15px;
+    border-radius: 50%;
+    margin-left: 10px;
+    text-align: center;
+    height: 15px;
+}
 
+.langs-tag input {
+    outline: none;
+    border: none;
+    padding: 6px 6px 6px 16px;
+    background-color: transparent;
+    color: white;
+    margin-bottom: 10px;
+}
+.langs-tag .detiles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.langs-tag .detiles span {
+    font-size: 13px;
+}
+.langs-tag .detiles div {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+.langs-tag .detiles div button:first-child {
+    z-index: -100;
+}
+
+.langs-tag .detiles button {
+    padding: 5px;
+    border: none;
+    outline: none;
+    background-color: var(--main-cat-tow);
+    color: white;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+    cursor: pointer;
+    /* width: 100%; */
+}
+.langs-tag .detiles button:hover {
+    background-color: white;
+    color: var(--main-cat-tow);
+}
 /* End Edit User */
 
 
@@ -191,7 +260,7 @@ option {
 .dashbord {
     display: grid;
     height: 80%;
-    margin-top: 30px;
+    margin-top: 100px;
     grid-template-columns: 1fr 9fr;
     /* grid-template-rows: 1fr 1fr; */
     grid-template-rows: repeat(auto-fill, 1fr);
@@ -914,7 +983,6 @@ option {
 .contant-section  .header-contaner .categoreis-dropdown span i:last-child{
     display: none;
 }
-
 
 .contant-section  .header-contaner ul {
     display: none;

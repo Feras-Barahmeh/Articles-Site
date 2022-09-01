@@ -40,7 +40,7 @@
         }
 
         public static function AlertMassage($mass, $typeAlert= 'danger') {
-            ?> <div class="alert <?php echo $typeAlert?>"><?php echo $mass?></div> <?php
+            ?> <div class="alert <?php echo $typeAlert?>"><span><?php echo $mass?></span> <i id="X" class="fa-sharp fa-solid fa-xmark" onclick="removeAleart()"></i></div> <?php
         }
 
 

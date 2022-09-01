@@ -72,15 +72,11 @@
         // Get Name Articel
         let nameArticles = document.getElementsByClassName("name-articel");
 
-        let counter = 0;
-
         for (let nameArticle of nameArticles ) {
             if (nameArticle.getAttribute("idcat") !== categoryID) {
                 nameArticle.style.display = "none";
-                counter--;
             } else {
                 nameArticle.style.display = "flex";
-                counter++;
             }
         }
 
@@ -124,6 +120,7 @@
             // Show caret-up icone
             btnShowUl.children[0].children[0].style.display = "none";
         }
-
     }
-// main
+
+
+// Serch Language Tage In Edit Profile Page

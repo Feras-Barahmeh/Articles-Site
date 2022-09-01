@@ -7,10 +7,12 @@ nav {
     justify-content: space-evenly;
     align-items: center;
     /* box-shadow: -1px 0 14px #b9b7b740; */
-    box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
-    /* position: fixed; */
+    box-shadow: 0 15px 25px rgb(0 0 0 / 60%);   
     width: 100%;
     top: 0;
+    z-index: 100;
+    /* position: fixed; */
+
 
 }
 

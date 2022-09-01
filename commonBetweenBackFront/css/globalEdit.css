@@ -143,6 +143,13 @@ table tr td {
     padding: 10px;
     position: fixed;
     z-index: 100;
+    display: flex;
+    justify-content: space-around;
+}
+
+.alert i {
+    width: 17px;
+    padding: 3px;
 }
 
 .danger {

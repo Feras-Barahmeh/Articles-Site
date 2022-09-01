@@ -21,6 +21,24 @@
 // Stasrt Fork Functions
 
     class EditInfoUser {
+
+        public static function PrintLangs() {
+            $handelFile = fopen("../commonBetweenBackFront/textfiles/lang.txt", 'r');
+            $firstLine =   fgets($handelFile);
+
+            fseek($handelFile, mb_strlen($firstLine . "\r\n", "8bit")-1); // Set Curcer in secound line
+
+            $lines =  fread($handelFile, 1024); // Read All Lines in File
+
+            $langs = explode("-", $lines);
+
+            foreach($langs as $lang) {
+            ?>
+                <input type="checkbox" value="<?php echo $lang ?>" for="langs" name="langs[]" ><?php echo $lang ?></input>
+            <?php }
+
+        }
+
         public static function StructerEdit() {
             global $commfilesuploaded;
             $id = GetRequests::GetValueGet('IdUser');
@@ -32,7 +50,7 @@
 
                 <div class="contanier-form">
                     <h3 class="h-title">Edit Profile</h3>
-                    <form form action="users.php?actionMember=edit&IdUser=<?php echo $id ?>&update" method="POST" class="form-edit" enctype="multipart/form-data">
+                    <form id="edit-form" action="users.php?actionMember=edit&IdUser=<?php echo $id ?>&update" method="POST" class="form-edit" enctype="multipart/form-data">
                         <!-- Start User name -->
                             <div class="input-box">
                                 <input type="text" name="userName" id="userName" value="<?php echo $values['userName'] ?>" class="input" autocomplete="off">
@@ -52,7 +70,7 @@
 
                         <!-- Email -->
                             <div class="input-box">
-                                <input type="email" name="email" id="password" value="<?php echo $values['email'] ?>" class="input" autocomplete="off">
+                                <input type="email" name="email" id="email" value="<?php echo $values['email'] ?>" class="input" autocomplete="off">
                                 <label for="email" class="label">Email</label>
                             </div>
 
@@ -101,8 +119,28 @@
                                 <label for="aboutYou" class="label SpecialCase-label">About You</label>
                             </div>
 
-                        <input type="submit" name="submit" value="Save" class="btn-submit SpecialCase-btn-submit">
+                            <!-- Add Languages -->
+                            <!-- <div class="input-box">
+                                <div class="langs-tag">
+                                    <div class="content-langs">
+                                        <ul id="langs-tage">
+                                            <li>HtmL <i class="fa-sharp fa-solid fa-xmark"></i></li>
+                                            <li>PHP <i class="fa-sharp fa-solid fa-xmark"></i></li>
+                                            <li>cpp <i class="fa-sharp fa-solid fa-xmark"></i></li>
+                                            <li>python <i class="fa-sharp fa-solid fa-xmark"></i></li>
+                                            <input type="text" id="search-lang-tags" placeholder="search language">
+                                        </ul>
+                                    </div>
+                                    <div class="detiles">
+                                        <span>10 Language</span>
+                                        <div class="btns"> <button id="add-lang" >Add</button> <button>Remove All</button></div>
+                                    </div>
+                                </div>
+                                <label for="langs" class="label">Longuage</label>
+                            </div> -->
 
+                        <!-- Submit Form -->
+                        <input type="submit" name="submit" value="Save" class="btn-submit SpecialCase-btn-submit">
                     </form>
                 </div>
             <?php
@@ -125,7 +163,7 @@
                 Insert::Insert();
             } else {
                 GlobalFunctions::AlertMassage('This User Is Exist Alrasdy');
-                GlobalFunctions::SitBackBtn();
+                // GlobalFunctions::SitBackBtn();
             }
         }
     }
@@ -136,7 +174,7 @@
 
         } else {
             GlobalFunctions::AlertMassage("Can't Enter This Page Directry");
-            ?> <a href="dashbord.php" class="btn-submit">Back</a> <?php
+            
         }
     }
 

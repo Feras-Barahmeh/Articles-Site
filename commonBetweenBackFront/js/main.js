@@ -39,3 +39,11 @@
             }
         }
     }
+
+    // remove Aleart massage
+    const X = document.getElementById("X");
+
+    function removeAleart() {
+        const alertMassage = document.getElementsByClassName("alert");
+        X.parentElement.remove();
+    }

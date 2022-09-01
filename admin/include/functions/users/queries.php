@@ -75,7 +75,7 @@
                 GlobalFunctions::AlertMassage('operation accomplished successfully', 'success');
             } else {
                 GlobalFunctions::AlertMassage("No Changed in information", 'info', 100);
-                GlobalFunctions::SitBackBtn();
+                // GlobalFunctions::SitBackBtn();
             }
         }
     }
