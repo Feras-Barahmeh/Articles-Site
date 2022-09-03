@@ -61,6 +61,7 @@
                                             <li><a href="#services"><i class="fa-solid fa-list"></i>Services</a></li>
                                             <li><a href="#portfolio"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
                                             <li><a href="#contact"><i class="fa-solid fa-comments"></i>Contact</a></li>
+                                            <li><a href="fronend//login.php"><i class="fa-sharp fa-solid fa-arrow-right-to-bracket"></i>Login</a></li>
                                         </ul>
                                     </nav>
                                 </aside>

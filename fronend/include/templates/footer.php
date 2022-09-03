@@ -1,6 +1,7 @@
     <footer class="footer"></footer>
-    <script  type="text/javascript" src='static/../<?php echo $js ?>'></script>
-    <script  type="text/javascript" src='static/../<?php echo $commfiles?>js/main.js'></script>
+
+    <script src="static//../../../<?php echo $js ?>frontend.js"></script>
+
 </body>
 
 </html>

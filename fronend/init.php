@@ -3,42 +3,20 @@
     // configration file
     include("config.php");
 
-    // Paths
-    $tpl            = 'include/templates/';
-    $css            = 'layout/frontend.css';
-    $js             = 'layout/frontend.js';
+    // Function
+    $functions = "include//functions//";
 
-    // fUNC
-    $Fun            = 'include/functions/';
+    // Templates
+    $tpl = "include//templates//";
 
-    // Lang
-    $lang           = 'include/languages/';
 
-    // Common
-    $commfiles      = 'commonBetweenBackFront/';
-    $commfilesCSS   = 'commonBetweenBackFront/css/';
-    $commfilesImags =  'commonBetweenBackFront/images/';
-    $commfilesuploaded =  'commonBetweenBackFront/uploaded/';
-    $commfilesPHP   = 'commonBetweenBackFront/php/';
+    // layout
+    $css =  "layout//css//";
+    $js  = "layout//js//";
 
-    // Include Files
-    include($lang . 'eng.php');
-    include($Fun . 'fronendFuntions.php');
+    // include
 
-    // Commone Function
-    include($commfilesPHP. 'functions.php'); 
-    include($commfilesPHP. 'images.php');
+    include ($functions . "frontendFunction.php");
 
-    
-    // Header
-    include($tpl . 'header.php');
-
-    // Navigation
-    // include($tpl . 'nav.php');
-
-    // if (!function_exists('SetNav')) {
-    //     function SetNav() {
-    //         global $tpl;
-    //         include($tpl . 'nav.php');
-    //     }
-    // }
+    include ($tpl . "header.php");
+    // include ($tpl . "nav.php");
