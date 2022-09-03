@@ -130,7 +130,7 @@
     }
 
     function PrepareDelete() {
-        if (GlobalFunctions::IfExsist('IdCategory', 'categories', GetRequests::GetValueGet('IdCategory') ))  {
+        if (Queries::IfExsist('IdCategory', 'categories', GetRequests::GetValueGet('IdCategory') ))  {
             Queries::Delete('categories', "IdCategory = " . GetRequests::GetValueGet('IdCategory'));
         } else {
             echo "cant inter this page Directore";

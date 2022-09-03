@@ -58,7 +58,7 @@
 
         $info = Users::Post();
 
-        if (  GlobalFunctions::IfExsist('userName', 'users', $info['userName'], 'string') ) {
+        if (  Queries::IfExsist('userName', 'users', $info['userName'], 'string') ) {
 
             $SortedPassword = Queries::FromTable('password', 'users', 'WHERE  userName = \'' . $info['userName'] . '\'' , 'fetch')['password'];
 

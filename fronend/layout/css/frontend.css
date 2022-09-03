@@ -30,6 +30,9 @@ body {
     text-decoration: none;
     box-sizing: border-box;
 }
+::selection {
+    color: var(--skin-color);
+}
 ::before::after {
     box-sizing: border-box;
 }
@@ -42,7 +45,6 @@ ul {
 .hidden {
     display: none !important;
 }
-
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -68,6 +70,50 @@ ul {
 }
 .success {
     border: 1px solid var(--skin-color) !important;
+}
+.info {
+    background: rgb(126 198 255);
+    color: var(--text-black-700);
+}
+/* Start Box Alert */
+
+#boxAlert .contanier {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-black-700);
+    border: 1px solid #777;
+    width: 400px;
+    overflow: hidden;
+    background-color: var(--bg-black-900);
+} 
+#boxAlert .contanier h2 {
+    background: var(--skin-color);
+    padding: 5px 20px;
+    margin: 0;
+    width: 100%;
+    color: var(--text-black-700);
+}
+p {
+    font-weight: 600;
+    padding: 10px;
+}
+#boxAlert .contanier button {
+    width: 100px;
+    float: right;
+    bottom: 0;
+    right: 0;
+    margin: 0 5px 5px 0;
+    padding: 4px 0;
+    position: relative;
+    outline: none;
+    border: none;
+    border-radius: 40px;
+    background: var(--skin-color);
+}
+#boxAlert .contanier button:hover {
+    box-shadow: 0px 3px 4px 3px rgba(48, 46, 77, 0.15);
 }
 /* Start Login Signup */
 aside {
@@ -116,6 +162,11 @@ aside  .logo::before {
 }
 aside nav {
     margin-top: 50px;
+    text-align: center;
+    font-weight: 600;
+}
+aside nav ul .info {
+    padding: 10px;
 }
 aside nav li {
     display: block;
@@ -290,3 +341,4 @@ aside .nav-toggeler span::after {
     }
 }
 /* End Login Signup */
+

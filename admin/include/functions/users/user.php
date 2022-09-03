@@ -44,7 +44,7 @@
             public static function IfValid() {
                 $info = Users::Post(); $ERRORS = [];
 
-                if (  GlobalFunctions::IfExsist('userName', 'users', $info['userName'])) {
+                if (  Queries::IfExsist('userName', 'users', $info['userName'])) {
                     array_push($ERRORS, 'This User Name used');
                 }
 

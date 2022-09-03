@@ -179,3 +179,27 @@ toggel.addEventListener("click", () =>{
     }
 
 });
+
+
+// Box Alert
+const btnBox = document.getElementById("btn-boxAlert");
+
+if (btnBox !== null) {
+    btnBox.addEventListener("click", function(){
+        boxAlert.style.display = "none";
+    });
+}
+
+function SetBoxAlert() {
+    const boxAlert = document.getElementById("boxAlert");
+
+    if (boxAlert !== null) {
+        boxAlert.style.marginLeft = (window.innerHeight / 2) - (boxAlert.clientWidth / 2) + "px";
+        boxAlert.style.marginTop = (window.innerHeight / 2) - (boxAlert.clientHeight / 2) + "px";
+    }
+}
+SetBoxAlert();
+
+window.addEventListener("resize", SetBoxAlert );
+
+// End Alert Box

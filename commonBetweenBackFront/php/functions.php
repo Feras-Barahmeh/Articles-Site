@@ -14,9 +14,7 @@
             }
 
             GlobalFunctions::AlertMassage($mass, $typeAlert);
-
             GlobalFunctions::AlertMassage('You Will Redirect To ' . $url . 'After '. $sec . 'sec', 'info');
-
             GlobalFunctions::SitBackBtn();
             header('refresh:'.$sec . ';url='. $direct);
             exit();
@@ -43,24 +41,6 @@
             ?> <div class="alert <?php echo $typeAlert?>"><span><?php echo $mass?></span> <i id="X" class="fa-sharp fa-solid fa-xmark" onclick="removeAleart()"></i></div> <?php
         }
 
-
-
-        public static function IfExsist($selector, $table, $ValueSelector, $debend='string') {
-            $val = NULL;
-
-            if ($debend === 'string') {
-                $val = Queries::FromTable($selector, $table, 'WHERE ' . $selector . '= \'' . $ValueSelector . '\'', 'fetch');
-
-            } else {
-                $val = Queries::FromTable($selector, $table, 'WHERE ' . $selector . '= ' . $ValueSelector, 'fetch')[$selector];
-            }
-
-            if (! empty($val)) {
-                return 1;
-            } else {
-                return 0;
-            }
-        } 
 
         public static function PrintErorrs($errors) {
             foreach ($errors as $error) {
@@ -99,6 +79,24 @@
             //     $obj->AlertMassage("Can't Delete now try again later", 'danger');
             // }
         }
+
+
+        public static function IfExsist($selector, $table, $ValueSelector, $debend='string') {
+            $val = NULL;
+
+            if ($debend === 'string') {
+                $val = Queries::FromTable($selector, $table, 'WHERE ' . $selector . '= \'' . $ValueSelector . '\'', 'fetch');
+
+            } else {
+                $val = Queries::FromTable($selector, $table, 'WHERE ' . $selector . '= ' . $ValueSelector, 'fetch')[$selector];
+            }
+
+            if (! empty($val)) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } 
 
 
         public static function FromTable($filed='*', $table, $condition=NULL, $typeFetch = 'fetchAll', $ordered = null, $typeOrders = 'DESC', $limit = NULL) {

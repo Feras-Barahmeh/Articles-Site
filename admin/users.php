@@ -159,7 +159,7 @@
 
         if(ValidationInputInsert::IfValid()) {
 
-            if (! GlobalFunctions::IfExsist('userName', 'users', $info['userName'])) {
+            if (! Queries::IfExsist('userName', 'users', $info['userName'])) {
                 Insert::Insert();
             } else {
                 GlobalFunctions::AlertMassage('This User Is Exist Alrasdy');

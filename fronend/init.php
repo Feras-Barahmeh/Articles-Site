@@ -6,9 +6,11 @@
     // Function
     $functions = "include//functions//";
 
+    // Commone Funtion
+    $functionsCommone = "../commonBetweenBackFront/php/functions.php";
+
     // Templates
     $tpl = "include//templates//";
-
 
     // layout
     $css =  "layout//css//";
@@ -17,6 +19,11 @@
     // include
 
     include ($functions . "frontendFunction.php");
+    include ($functionsCommone);
 
     include ($tpl . "header.php");
-    // include ($tpl . "nav.php");
+
+    if (isset($_SESSION) && !empty($_SESSION)) {
+        include ($tpl . "nav.php");
+
+    }
