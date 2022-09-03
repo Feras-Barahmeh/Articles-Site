@@ -44,7 +44,7 @@
                     <!-- ======= Start  Main Contanier -->
                         <div class="main-container">
                             <!-- Aside Start  -->
-                                <aside>
+                                <aside id="aside-index">
                                     <div class="logo">
                                         <a href="#"><span>F</span><span>eras</span></a>
                                     </div>

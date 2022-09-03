@@ -99,12 +99,12 @@ aside .nav-toggeler {
     border: 1px solid var(--bg-black-50);
     cursor: pointer;
     position: fixed;
-    left: 300px;
+    left: -250px;
     top: 20px;
     border-radius: 5px;
     background: var(--bg-black-100);
-    /* display: flex; */
-    display: none;
+    display: flex;
+    /* display: none; */
     justify-content: center;
     align-items: center;
 }
@@ -647,6 +647,9 @@ h3.myprofession {
         display: block;
         margin-left: 0;
     }
+    .nav-toggeler {
+        left: 0 !important;
+    }
 }
 @media (max-width: 991px) {
     .contact .contact-info-item,
@@ -664,6 +667,9 @@ h3.myprofession {
     .home .home-img {
         display: none;
     }
+    .nav-toggeler {
+        left: 0 !important;
+    }
 }
 @media (max-width: 767px) {
     .contact .contact-form .col-6,
@@ -674,6 +680,9 @@ h3.myprofession {
     .about .about-content .personal-info {
         flex: 0 0 100%;
         max-width: 100%;
+    }
+    .nav-toggeler {
+        left: 0 !important;
     }
 }
 /* End Responsive */

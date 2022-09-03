@@ -58,3 +58,23 @@ window.addEventListener("load", () => {
         darkIconeSunIcon.add("fa-moon");
     }
 });
+
+
+// Show Aside 
+
+const toggel = document.querySelector(".nav-toggeler");
+
+toggel.addEventListener("click", ()=>{
+    let mainContant = document.querySelector(".main-content");
+    let aside = document.getElementById("aside-index");
+
+    if (aside.style.left === "-270px") {
+        aside.style.left = "0";
+        aside.style.width = "100%";
+        mainContant.style.display = "none";
+    } else {
+        mainContant.style.display = "";
+        aside.style.left = "-270px";
+        aside.style.width = "270px";
+    }
+});
