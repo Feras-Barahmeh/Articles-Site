@@ -1,31 +1,52 @@
+// Set Active Class In links [Main page]
+
+    // Get All links
+    const linksHome = document.querySelectorAll("#index-a li a");
+    linksHome.forEach(link => {
+
+        link.addEventListener("click", ()=>{
+            // Add Class On Clicked Link
+            link.classList.add("active");
+
+            // Remove Class For Links Not Clicabel
+            linksHome.forEach(e =>  {
+                if (e.className.includes("active") && e !== link) {
+                    e.classList.remove("active");
+                }
+            });
+        });
+    });
+
+
+
 // Start Typeing
-var typed = new Typed(".typing", {
-    strings: ["", "Backend Web Devalober", "Intelligent Systems Engineer"],
-    typeSpeed: 100,
-    BackSpeed: 60,
-    loop: true,
-});
+    var typed = new Typed(".typing", {
+        strings: ["", "Backend Web Devalober", "Intelligent Systems Engineer"],
+        typeSpeed: 100,
+        BackSpeed: 60,
+        loop: true,
+    });
 
 
 
 // Start Show Switcher
-const switcherSection = document.querySelector(".style-switcher-toggler");
-const contanierSwitcher = document.querySelector(".style-switcher").classList;
+    const switcherSection = document.querySelector(".style-switcher-toggler");
+    const contanierSwitcher = document.querySelector(".style-switcher").classList;
 
-switcherSection.addEventListener("click", ()=>{
-    if (contanierSwitcher.contains("open")) {
-        contanierSwitcher.remove("open");
-    } else {
-        contanierSwitcher.add("open");
-    }
-});
+    switcherSection.addEventListener("click", ()=>{
+        if (contanierSwitcher.contains("open")) {
+            contanierSwitcher.remove("open");
+        } else {
+            contanierSwitcher.add("open");
+        }
+    });
 
 // Hid switcher when scroller
-window.addEventListener("scroll", ()=> {
-    if (contanierSwitcher.contains("open")) {
-        contanierSwitcher.remove("open");
-    }
-});
+    window.addEventListener("scroll", ()=> {
+        if (contanierSwitcher.contains("open")) {
+            contanierSwitcher.remove("open");
+        }
+    });
 
 // Start Theam Colors
 

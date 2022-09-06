@@ -147,6 +147,7 @@ aside nav li a {
     color: var(--text-black-900);
     padding: 5px 15px ;
     border-bottom: 1px solid var(--bg-black-50);
+    animation: all .3s ease-in-out;
 }
 aside nav li a.active {
     color: var(--skin-color);

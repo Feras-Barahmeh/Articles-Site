@@ -18,6 +18,7 @@
     }
 
 
+
     function BoxAlert($title, $massage) {
         ?>
                 <div id="overlay" class="" ></div> 
@@ -73,7 +74,7 @@
                 <li><a href="#"><i class="fa-solid fa-quote-right"></i>Quotes</a></li>
                 <li><a href="#"><i class="fa fa-puzzle-piece"></i>Problem Solving</a></li>
                 <li><a href="#"><i class="fa-solid fa-bug"></i>Solving Bugs</a></li>
-                <li><a href="#"><i class="fa-solid fa-bug"></i>Logout</a></li>
+                <li><a href="../../index.php"><i class="fa-solid fa-bug"></i>Logout</a></li>
             <?php
         } else {
             ?>
@@ -234,7 +235,8 @@
                     if ( $directory == "admin") {
                         header("Location: ../../admin/dashbord.php");
                     } elseif ($directory === "regular") {
-                        echo "To Home Articles ";
+                        // header("Location: ../../index.php");
+                        echo "To Prfile";
                     }
                 } else {
                     BoxAlert("Error In Password", "Invalid Password 😅");
@@ -248,12 +250,11 @@
         }
     }
 
-
-
     function PrepareToSingup() {
         if (isset($_POST['singup'])) {
-            if (IfValid::IfValid()) {
-                
+            // Add User
+            if (AddUser::AddUser()) {
+                header("Location: ../../index.php");
             }
         }
     }

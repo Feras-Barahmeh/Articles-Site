@@ -1,4 +1,4 @@
-// Chose Login Form Or Signup
+// Chosse Login Form Or Signup
     function showForm() {
         // Get Buttens
         const loginBtn = document.querySelector(".login-btn")
@@ -80,7 +80,6 @@
             showForm();
         }
     });
-
 
 // Start Validation input login page
 
@@ -218,13 +217,27 @@
 
 
 
-// Delete Alert Massage
-    const AlertMassage = document.getElementById("alert-mass");
+// Simple Alert Massage
+    // Delete Alert
+        const AlertMassage = document.getElementById("alert-mass");
 
-    // If Massage dange exist 
-    if (AlertMassage !== null) {
-        const cross = document.getElementById("del-mass");
-        cross.addEventListener("click", ()=> {
-            AlertMassage.style.display = "none";
-        });
-    }
+        // If Massage dange exist
+        if (AlertMassage !== null) {
+            const cross = document.getElementById("del-mass");
+            cross.addEventListener("click", ()=> {
+                AlertMassage.style.display = "none";
+            });
+
+            // Set Color Masssage
+            if (AlertMassage.classList.contains("danger")) {  // If Error
+                AlertMassage.style.background = "#ff6c6c";
+                AlertMassage.style.borderLeft = "5px solid #fc2222";
+                AlertMassage.children[0].children[1].style.background = "red";
+
+            } else if (AlertMassage.classList.contains("done")) { // If Success
+                AlertMassage.style.background = "#93e468";
+                AlertMassage.style.borderLeft = "5px solid #48a903";
+                AlertMassage.children[0].children[1].style.background = "#48a903";
+            }
+        }
+

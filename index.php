@@ -28,6 +28,13 @@
         <?php
     }
 
+    function LoginLisks() {
+        ?>
+            <li><a href="#"><i class="fa-solid fa-newspaper"></i>Articles</a></li>
+            <li><a href="#"><i class="fa-solid fa-address-card"></i>Profile</a></li>
+        <?php
+    }
+
     function MainStructer() {
         ?>
             <!DOCTYPE html>
@@ -55,12 +62,13 @@
                                     </div>
 
                                     <nav>
-                                        <ul>
+                                        <ul id="index-a">
                                             <li><a href="#home" class="active"><i class="fa-solid fa-house"></i>Home</a></li>
                                             <li><a href="#about"><i class="fa-solid fa-user"></i>About</a></li>
                                             <li><a href="#services"><i class="fa-solid fa-list"></i>Services</a></li>
                                             <li><a href="#portfolio"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
                                             <li><a href="#contact"><i class="fa-solid fa-comments"></i>Contact</a></li>
+                                            <?php LoginLisks() ?>
                                             <li><a href="fronend//login.php"><i class="fa-sharp fa-solid fa-arrow-right-to-bracket"></i>Login</a></li>
                                         </ul>
                                     </nav>

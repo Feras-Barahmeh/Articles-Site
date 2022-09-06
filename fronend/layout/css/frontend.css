@@ -78,12 +78,10 @@ ul {
 /* Start Simple Alert Massage */
 .mass {
     position: fixed;
-    background: #ff6c6c;
     right: 0;
     top: 5px;
-    width: 300px;
-    height: 50px;
-    border-left: 5px solid #fc2222;
+    width: auto;
+    transition: all .3s ease;
 }
 .content-mass {
     display: flex;
@@ -98,7 +96,6 @@ ul {
     width: 24px;
     height: 24px;
     margin-right: 7px;
-    background-color: red;
     padding: 3px;
     border-radius: 50%;
     display: flex;

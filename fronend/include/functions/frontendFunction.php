@@ -11,10 +11,10 @@
         }
     }
 
-    class StructerErrorsSingup {
-        public static function AlertError ($e) {
+    class StructerErrorsMass {
+        public static function AlertError ($e, $type) {
             ?>
-                <div id="alert-mass" class="mass">
+                <div id="alert-mass" class="mass <?php echo $type ?>">
                     <div class="content-mass">
                         <p><?php echo $e ?></p>
                         <span id="del-mass"><i class="fa-solid fa-x"></i></span>
