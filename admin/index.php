@@ -30,7 +30,6 @@
 // main Function
     function LoginStructure() {
         ?>
-            <?php logo() ?>
             <div class="login-box">
                 <h2>Login</h2>
                 <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">

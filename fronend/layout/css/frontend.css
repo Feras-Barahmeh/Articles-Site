@@ -7,7 +7,7 @@
     --bg-black-50: #e8dfec;
     --text-black-900 : #302e4d;
     --text-black-700 : #504e70;
-    --danger: #fb6262;
+    --danger--900: #fb6262;
 }
 body.dark {
     --bg-black-900: #151515;
@@ -66,7 +66,7 @@ ul {
     height: inherit;
 }
 .danger {
-    background: var(--danger);
+    background: var(--danger--900);
 }
 .success {
     border: 1px solid var(--skin-color) !important;
@@ -75,46 +75,43 @@ ul {
     background: rgb(126 198 255);
     color: var(--text-black-700);
 }
-/* Start Box Alert */
-
-#boxAlert .contanier {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--text-black-700);
-    border: 1px solid #777;
-    width: 400px;
-    overflow: hidden;
-    background-color: var(--bg-black-900);
-} 
-#boxAlert .contanier h2 {
-    background: var(--skin-color);
-    padding: 5px 20px;
-    margin: 0;
-    width: 100%;
-    color: var(--text-black-700);
-}
-p {
-    font-weight: 600;
-    padding: 10px;
-}
-#boxAlert .contanier button {
-    width: 100px;
-    float: right;
-    bottom: 0;
+/* Start Simple Alert Massage */
+.mass {
+    position: fixed;
+    background: #ff6c6c;
     right: 0;
-    margin: 0 5px 5px 0;
-    padding: 4px 0;
-    position: relative;
-    outline: none;
-    border: none;
-    border-radius: 40px;
-    background: var(--skin-color);
+    top: 5px;
+    width: 300px;
+    height: 50px;
+    border-left: 5px solid #fc2222;
 }
-#boxAlert .contanier button:hover {
-    box-shadow: 0px 3px 4px 3px rgba(48, 46, 77, 0.15);
+.content-mass {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
+.content-mass p {
+    color: #4e3f3f;
+    font-size: 15px;
+}
+.content-mass span {
+    width: 24px;
+    height: 24px;
+    margin-right: 7px;
+    background-color: red;
+    padding: 3px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    justify-content: center;
+    font-weight: 900;
+}
+.content-mass span:hover {
+    opacity: .6;
+}
+/* End Simple Alert Massage */
 /* Start Login Signup */
 aside {
     width: 250px;
@@ -257,8 +254,9 @@ aside .nav-toggeler span::after {
     font-weight: 600;
     position: absolute;
     top: -37px;
-    left: 50%;
+    left: 48%;
     transform: translateX(-50%);
+    width: 100%;
 }
 .active-lgsin {
     color: var(--skin-color);
@@ -278,14 +276,19 @@ aside .nav-toggeler span::after {
     display: inline-block;
     cursor: pointer;
     padding: 5px 30px;
-    border-radius: 10px;
-    margin: 0 10px;
+    width: 49%;
+    margin-left: 31px;
+    transition: all .3s ease-in-out;
+}
+.loginsingup-form {
+    height: 100%;
 }
 .form-structer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 .form-structer .row {
     justify-content: center;
@@ -339,6 +342,70 @@ aside .nav-toggeler span::after {
     .nav-toggeler {
         left: 0  !important;
     }
+}
+
+/* End Simple Alert */
+
+/* Start Box Alert */
+#boxAlert {
+    width: 100%;
+    position: absolute;
+    transition-duration: 6s;
+    transition-timing-function: ease-in-out;
+    z-index: 200;
+}
+#boxAlert .contanier {
+    position: fixed;
+    left: 57%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    color: var(--text-black-700);
+    width: 400px;
+    max-width: 100%;
+    overflow: hidden;
+    background-color: var(--bg-black-900);
+} 
+#boxAlert .contanier h2 {
+    background: var(--skin-color);
+    padding: 5px 20px;
+    margin: 0;
+    width: 100%;
+    color: var(--text-black-700);
+}
+p {
+    font-weight: 600;
+    padding: 10px;
+}
+#boxAlert .contanier button {
+    width: 100px;
+    float: right;
+    bottom: 0;
+    right: 0;
+    margin: 0 5px 5px 0;
+    padding: 4px 0;
+    position: relative;
+    outline: none;
+    border: none;
+    border-radius: 40px;
+    background: var(--skin-color);
+}
+#boxAlert .contanier button:hover {
+    box-shadow: 0px 3px 4px 3px rgba(48, 46, 77, 0.15);
+}
+#overlay {
+    background: rgba(0, 0, 0, .5);
+    z-index: 100;
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
 }
 /* End Login Signup */
 

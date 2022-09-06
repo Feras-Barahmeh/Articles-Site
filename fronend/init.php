@@ -19,7 +19,7 @@
     // include
 
     include ($functions . "frontendFunction.php");
-    include ($functionsCommone);
+    include  $functionsCommone;
 
     include ($tpl . "header.php");
 

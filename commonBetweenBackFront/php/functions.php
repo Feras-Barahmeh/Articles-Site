@@ -26,6 +26,7 @@
     }
 
     class GlobalFunctions {
+        public $db;
         public static function SetNamePage() {
             global $TITLE;
             if(isset($TITLE)) {
@@ -75,9 +76,6 @@
                 $obj->AlertMassage("Sucssess Delete", 'success');
                 $obj->SitBackBtn();
             } 
-            // else {
-            //     $obj->AlertMassage("Can't Delete now try again later", 'danger');
-            // }
         }
 
 
@@ -85,10 +83,10 @@
             $val = NULL;
 
             if ($debend === 'string') {
-                $val = Queries::FromTable($selector, $table, 'WHERE ' . $selector . '= \'' . $ValueSelector . '\'', 'fetch');
+                $val = self::FromTable($selector, $table, 'WHERE ' . $selector . ' = \'' . $ValueSelector . '\'', 'fetch');
 
             } else {
-                $val = Queries::FromTable($selector, $table, 'WHERE ' . $selector . '= ' . $ValueSelector, 'fetch')[$selector];
+                $val = self::FromTable($selector, $table, 'WHERE ' . $selector . ' = ' . $ValueSelector, 'fetch')[$selector];
             }
 
             if (! empty($val)) {
@@ -102,12 +100,11 @@
         public static function FromTable($filed='*', $table, $condition=NULL, $typeFetch = 'fetchAll', $ordered = null, $typeOrders = 'DESC', $limit = NULL) {
             global $db;
             if($ordered === null) {
-
                 $stmt = $db->prepare("SELECT $filed FROM $table $condition $limit");
+            } else {
+                $stmt = $db->prepare("SELECT $filed FROM $table $condition ORDER BY $ordered $typeOrders $limit");
             }
 
-            else
-                $stmt = $db->prepare("SELECT $filed FROM $table $condition ORDER BY $ordered $typeOrders $limit");
             $stmt->execute();
     
             if ($typeFetch === 'fetchAll')
