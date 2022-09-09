@@ -25,5 +25,4 @@
 
     if (isset($_SESSION) && !empty($_SESSION)) {
         include ($tpl . "nav.php");
-
     }

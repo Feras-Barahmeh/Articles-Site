@@ -1,5 +1,6 @@
 <?php
-
+    ob_start();
+    session_start();
     function MetaHTML() {
         ?>
             <meta charset="UTF-8">
@@ -35,6 +36,21 @@
         <?php
     }
 
+    function LoginOrLogoutLink() {
+        
+        if (isset($_SESSION['user']) && ! empty($_SESSION['user']) ) {
+            ?>
+                <li><a href="#"><i class="fa-solid fa-newspaper"></i>Articles</a></li>
+                <li><a href="fronend//profile.php?user=<?php echo $_SESSION['user'] ?>"><i class="fa-solid fa-address-card"></i>Profile</a></li>
+                <li><a href="fronend//logout.php"><i class="fa-sharp fa-solid fa-arrow-right-to-bracket"></i>Logout</a></li>
+            <?php
+        } else {
+            ?>
+                <li><a href="fronend//login.php"><i class="fa-sharp fa-solid fa-arrow-right-to-bracket"></i>Login</a></li>
+            <?php
+        }
+    }
+
     function MainStructer() {
         ?>
             <!DOCTYPE html>
@@ -47,7 +63,7 @@
                 <!-- Css File -->
                     <?php CSSFiles() ?>
             </head>
-                <body class="dark">
+                <body> <!--  class="dark" -->
                     <!-- ======= Start  Main Contanier -->
                         <div class="main-container">
                             <!-- Aside Start  -->
@@ -68,8 +84,8 @@
                                             <li><a href="#services"><i class="fa-solid fa-list"></i>Services</a></li>
                                             <li><a href="#portfolio"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
                                             <li><a href="#contact"><i class="fa-solid fa-comments"></i>Contact</a></li>
-                                            <?php LoginLisks() ?>
-                                            <li><a href="fronend//login.php"><i class="fa-sharp fa-solid fa-arrow-right-to-bracket"></i>Login</a></li>
+                                            <?php  LoginOrLogoutLink();?>
+                                            
                                         </ul>
                                     </nav>
                                 </aside>
@@ -543,3 +559,4 @@
 
 // Main 
     MainStructer();
+    ob_end_flush();

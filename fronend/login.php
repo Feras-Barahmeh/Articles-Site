@@ -3,7 +3,9 @@
     session_start();
     $TITLE = "Feras Barahmeh";
     include ("init.php");
-    include ($functions . "loginFunctions//login.php"); // Class For This Page
+    include ( $functions . "loginFunctions/login.php"); 
+    $pathLogin = $functions . "loginFunctions/singup/";
+    include ( $pathLogin . "addUser.php");
 
 // Fork Funtion
 
@@ -68,13 +70,13 @@
 
         if (!empty($_SESSION)) {
             ?>
-                <li><a href="#"><i class="fa-solid fa-user"></i>Profile</a></li>
+                <li><a href="profile.php?<?php echo  $_SESSION['user'] ?>"><i class="fa-solid fa-user"></i>Profile</a></li>
                 <li><a href="#"><i class="fa-solid fa-newspaper"></i>Articles</a></li>
                 <li><a href="#"><i class="fa-solid fa-tag"></i>Categories</a></li>
                 <li><a href="#"><i class="fa-solid fa-quote-right"></i>Quotes</a></li>
                 <li><a href="#"><i class="fa fa-puzzle-piece"></i>Problem Solving</a></li>
                 <li><a href="#"><i class="fa-solid fa-bug"></i>Solving Bugs</a></li>
-                <li><a href="../../index.php"><i class="fa-solid fa-bug"></i>Logout</a></li>
+                <li><a href="logout.php"><i class="fa-solid fa-bug"></i>Logout</a></li>
             <?php
         } else {
             ?>
@@ -235,8 +237,8 @@
                     if ( $directory == "admin") {
                         header("Location: ../../admin/dashbord.php");
                     } elseif ($directory === "regular") {
-                        // header("Location: ../../index.php");
-                        echo "To Prfile";
+
+                        header("Location: profile.php?user=" . $_SESSION['user']);
                     }
                 } else {
                     BoxAlert("Error In Password", "Invalid Password 😅");
@@ -259,10 +261,11 @@
         }
     }
 // Main Configration
-
     PrepareToLogin();
     PrepareToSingup();
-
+    if ( isset($_SESSION['user']) && !empty($_SESSION) ) {
+        header("Location: profile.php?user={$_SESSION['user']}");
+    } 
 
     include ($tpl . "footer.php");
     ob_end_flush();

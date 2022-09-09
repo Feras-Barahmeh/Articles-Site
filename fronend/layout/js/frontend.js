@@ -28,136 +28,153 @@
 
     const loginBtn = document.querySelector(".login-btn")
     const signupBtn = document.querySelector(".sigun-btn");
+    if (signupBtn != null) {
+        signupBtn.addEventListener("click", () => {
+            let hasActiveSingup = signupBtn.classList;
+            let hasActiveLogin = loginBtn.classList;
 
-    signupBtn.addEventListener("click", () => {
-        let hasActiveSingup = signupBtn.classList;
-        let hasActiveLogin = loginBtn.classList;
+            if (hasActiveSingup.contains("un-active-lgsin")) { // Determent Btutton selected
 
-        if (hasActiveSingup.contains("un-active-lgsin")) { // Determent Btutton selected
+                // if btn singup has un active class we will remove and add active class
+                hasActiveSingup.remove("un-active-lgsin");
+                hasActiveSingup.add("active-lgsin");
 
-            // if btn singup has un active class we will remove and add active class
-            hasActiveSingup.remove("un-active-lgsin");
-            hasActiveSingup.add("active-lgsin");
+                // un active if in singup mean login btn is active we will set un active 
+                hasActiveLogin.remove("active-lgsin");
+                hasActiveLogin.add("un-active-lgsin");
+                showForm();
 
-            // un active if in singup mean login btn is active we will set un active 
-            hasActiveLogin.remove("active-lgsin");
-            hasActiveLogin.add("un-active-lgsin");
-            showForm();
+            } else {
+                // remove un active fron login
+                hasActiveLogin.remove("un-active-lgsin");
+                hasActiveLogin.add("active-lgsin");
 
-        } else {
-            // remove un active fron login
-            hasActiveLogin.remove("un-active-lgsin");
-            hasActiveLogin.add("active-lgsin");
+                // remove active fron singup
+                hasActiveSingup.remove("active-lgsin");
+                hasActiveSingup.add("un-active-lgsin");
+                showForm();
+            }
+        });
+    }
 
-            // remove active fron singup
-            hasActiveSingup.remove("active-lgsin");
-            hasActiveSingup.add("un-active-lgsin");
-            showForm();
-        }
-    });
+    if (loginBtn !== null) {
+        loginBtn.addEventListener("click", ()=> {
+            let hasActiveSingup = signupBtn.classList;
+            let hasActiveLogin = loginBtn.classList;
+            if (hasActiveLogin.contains("active-lgsin")) { // Determent Btutton selected
 
-    loginBtn.addEventListener("click", ()=> {
-        let hasActiveSingup = signupBtn.classList;
-        let hasActiveLogin = loginBtn.classList;
-
-        if (hasActiveLogin.contains("active-lgsin")) { // Determent Btutton selected
-
-        
-            hasActiveLogin.remove("active-lgsin");
-            hasActiveLogin.add("un-active-lgsin");
-
-            hasActiveSingup.remove("un-active-lgsin");
-            hasActiveSingup.add("active-lgsin");
-
-            showForm();
-
-        } else {
-            hasActiveLogin.add("active-lgsin");
-            hasActiveLogin.remove("un-active-lgsin");
             
-            hasActiveSingup.add("un-active-lgsin");
-            hasActiveSingup.remove("active-lgsin");
-            showForm();
-        }
-    });
+                hasActiveLogin.remove("active-lgsin");
+                hasActiveLogin.add("un-active-lgsin");
+    
+                hasActiveSingup.remove("un-active-lgsin");
+                hasActiveSingup.add("active-lgsin");
+    
+                showForm();
+    
+            } else {
+                hasActiveLogin.add("active-lgsin");
+                hasActiveLogin.remove("un-active-lgsin");
+                
+                hasActiveSingup.add("un-active-lgsin");
+                hasActiveSingup.remove("active-lgsin");
+                showForm();
+            }
+        });
+    }
 
 // Start Validation input login page
 
 // User name in login
     const userNameLogin = document.getElementById("usernamelogin");
 
-    userNameLogin.addEventListener("keyup", ()=>{
-        if (userNameLogin.value.length <= 3 ) {
-            userNameLogin.parentElement.children[1].classList.remove("hidden");
-            userNameLogin.style.border = "1px solid red";
-        } else {
-            userNameLogin.parentElement.children[1].classList.add("hidden");
-            userNameLogin.classList.add("success");
-        }
-    });
+    if (userNameLogin !== null) {
+        userNameLogin.addEventListener("keyup", ()=>{
+            if (userNameLogin.value.length <= 3 ) {
+                userNameLogin.parentElement.children[1].classList.remove("hidden");
+                userNameLogin.style.border = "1px solid red";
+            } else {
+                userNameLogin.parentElement.children[1].classList.add("hidden");
+                userNameLogin.classList.add("success");
+            }
+        });
+    }
 
 // Password login
     const passwordLogin = document.getElementById("passwordlogin");
 
-    passwordLogin.addEventListener("keyup", ()=>{
-        if (passwordLogin.value.length <= 3 ) {
-            passwordLogin.parentElement.children[1].classList.remove("hidden")
-        } else {
-            passwordLogin.parentElement.children[1].classList.add("hidden")
-            passwordLogin.classList.add("success");
-        }
-    });
+    if (passwordLogin !== null) {
 
+        passwordLogin.addEventListener("keyup", ()=>{
+            if (passwordLogin.value.length <= 3 ) {
+                passwordLogin.parentElement.children[1].classList.remove("hidden")
+            } else {
+                passwordLogin.parentElement.children[1].classList.add("hidden")
+                passwordLogin.classList.add("success");
+            }
+        });
+
+    }
 
 // user name singup
     const userNameSignup = document.getElementById("usernames");
 
-    userNameSignup.addEventListener("keyup", ()=>{
-        if (userNameSignup.value.length <= 3 ) {
-            userNameSignup.parentElement.children[1].classList.remove("hidden")
-        } else {
-            userNameSignup.parentElement.children[1].classList.add("hidden")
-            userNameSignup.classList.add("success");
-        }
-    });
+    if (userNameSignup !== null ){ 
+        userNameSignup.addEventListener("keyup", ()=>{
+            if (userNameSignup.value.length <= 3 ) {
+                userNameSignup.parentElement.children[1].classList.remove("hidden")
+            } else {
+                userNameSignup.parentElement.children[1].classList.add("hidden")
+                userNameSignup.classList.add("success");
+            }
+        });
+    }
 
 // Password Singup
     const passwordSignup = document.getElementById("passwords");
 
-    passwordSignup.addEventListener("keyup", ()=>{
-        if (passwordSignup.value.length <= 3 ) {
-            passwordSignup.parentElement.children[1].classList.remove("hidden")
-        } else {
-            passwordSignup.parentElement.children[1].classList.add("hidden")
-            passwordSignup.classList.add("success");
-        }
-    });
+    if (passwordSignup !== null) {
+            
+        passwordSignup.addEventListener("keyup", ()=>{
+            if (passwordSignup.value.length <= 3 ) {
+                passwordSignup.parentElement.children[1].classList.remove("hidden")
+            } else {
+                passwordSignup.parentElement.children[1].classList.add("hidden")
+                passwordSignup.classList.add("success");
+            }
+        });
+    }
 
 // Email Singup
     const emailSignup = document.getElementById("emails");
 
-    emailSignup.addEventListener("keyup", ()=>{
-        if (emailSignup.value.length <= 3 ) {
-            emailSignup.parentElement.children[1].classList.remove("hidden")
-        } else {
-            emailSignup.parentElement.children[1].classList.add("hidden")
-            emailSignup.classList.add("success");
-        }
-    });
+    if (emailSignup !== null) {
+        
+        emailSignup.addEventListener("keyup", ()=>{
+            if (emailSignup.value.length <= 3 ) {
+                emailSignup.parentElement.children[1].classList.remove("hidden")
+            } else {
+                emailSignup.parentElement.children[1].classList.add("hidden")
+                emailSignup.classList.add("success");
+            }
+        });
+    }
 
 
 // Full Name Singup
     const fullNameSignup = document.getElementById("fullnames");
 
-    fullNameSignup.addEventListener("keyup", ()=>{
-        if (fullNameSignup.value.length <= 3 ) {
-            fullNameSignup.parentElement.children[1].classList.remove("hidden")
-        } else {
-            fullNameSignup.parentElement.children[1].classList.add("hidden")
-            fullNameSignup.classList.add("success");
-        }
-    });
-
+    if (fullNameSignup !== null) {
+        
+        fullNameSignup.addEventListener("keyup", ()=>{
+            if (fullNameSignup.value.length <= 3 ) {
+                fullNameSignup.parentElement.children[1].classList.remove("hidden")
+            } else {
+                fullNameSignup.parentElement.children[1].classList.add("hidden")
+                fullNameSignup.classList.add("success");
+            }
+        });
+    }
 
 
 // Show Aside when Click Toggeler
@@ -168,14 +185,17 @@
         let aside = document.getElementById("login-aside");
         let mainContent= document.querySelector(".main-content");
 
-        if (mainContent.style.display === "") {
-            mainContent.style.display = "none";
-            aside.style.left = 0;
-            aside.style.width = "100%";
-        } else {
-            mainContent.style.display = "";
-            aside.style.left = "-250px";
-            aside.style.width = "250px";
+        if (mainContent != null) {
+            
+            if (mainContent.style.display === "") {
+                mainContent.style.display = "none";
+                aside.style.left = 0;
+                aside.style.width = "100%";
+            } else {
+                mainContent.style.display = "";
+                aside.style.left = "-250px";
+                aside.style.width = "250px";
+            }
         }
 
     });
@@ -241,3 +261,103 @@
             }
         }
 
+// Start  Profile
+    // Drop down List
+    const btnDropdown = document.getElementById("deopdown-btn");
+    if (btnDropdown !== null) {
+        // get Icons Up Down List
+
+        btnDropdown.addEventListener("click", ()=>{
+            const ul = document.getElementById("ul-dropdown");
+            const up = document.getElementById("up");
+            const down = document.getElementById("down");
+
+            if (ul.style.display == "none") {
+                // show list
+                ul.style.display = "block";
+                // Show Appropriate Icone
+                up.style.display = "inline-block";
+                down.style.display = "none";
+            } else {
+                // Disaple list
+                ul.style.display = "none";
+                
+                // Show Appropriate Icone
+                down.style.display = "inline-block";
+                up.style.display = "none";
+            }
+        });
+    }
+
+    // Start Shrink Content
+    function ShowArticles () {
+        // Get Articles 
+        let articlesContanier = document.getElementById("articles");
+        // Get Icome up
+        const up = document.getElementById("up-section");
+        // Get Icone down
+        const down = document.getElementById("down-section");
+
+        if (articlesContanier.style.display == "block") {
+            up.style.display = "none";
+            down.style.display = "inline-block";
+            articlesContanier.style.display = "none";
+        } else {
+            up.style.display = "inline-block";
+            down.style.display = "none";
+            articlesContanier.style.display = "block";
+        }
+    }
+
+    function ShowComments () {
+        let commetnsContanier = document.getElementById("comments");
+        // Get Icome up
+        const up = document.getElementById("up-section-comm");
+        // Get Icone down
+        const down = document.getElementById("down-section-comm");
+
+        if (commetnsContanier.style.display == "block") {
+            commetnsContanier.style.display = "none";
+            up.style.display = "none";
+            down.style.display = "inline-block";
+        } else {
+            commetnsContanier.style.display = "block";
+            up.style.display = "inline-block";
+            down.style.display = "none";
+        }
+    }
+
+    function ShowQueueArticles() {
+        let queueContanier = document.getElementById("queue-articles");
+        // Get Icome up
+        const up = document.getElementById("up-queue-articles");
+        // Get Icone down
+        const down = document.getElementById("down-queue-articles");
+
+        if (queueContanier.style.display == "block") {
+            queueContanier.style.display = "none";
+            up.style.display = "none";
+            down.style.display = "inline-block";
+        } else {
+            queueContanier.style.display = "block";
+            up.style.display = "inline-block";
+            down.style.display = "none";
+        }
+    }
+
+    const liContent = document.querySelectorAll(".shrink-content");
+    if (liContent !== null ) {
+        liContent.forEach( (li)=>{
+            li.addEventListener("click", ()=> {
+                const id = li.getAttribute("id");
+
+                if (id === "to-show-articls") {
+                    ShowArticles();
+                } else if (id === "to-show-comments") {
+                    ShowComments();
+                } else if (id === "to-queue-articles") {
+                    ShowQueueArticles();
+                }
+            });
+        });
+    }
