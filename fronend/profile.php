@@ -7,6 +7,90 @@
     include ("init.php");
 
 // Fork Structer 
+
+    function SetMediaLinks() {
+        $user = GetRequests::GetValueGet("user");
+        $userNams = Queries::FromTable("githup, facebook, twitter, linkedin", "users", "WHERE userName = '" . $user . "'", "fetch");
+
+        // Set GitHup Account
+    
+        if (! empty($userNams["githup"])) {
+
+            ?>
+                <li><a href="https://github.com/<?php echo $userNams["githup"] ?>"><i class="fa-brands fa-github"></i><?php echo $userNams["githup"]  ?></a></li>
+            <?php
+        }
+
+        if (! empty($userNams["facebook"])) {
+            ?>
+                <li><a href="https://www.facebook.com/<?php echo $userNams['facebook'] ?>"><i class="fa-brands fa-facebook"></i><?php echo $userNams["facebook"]  ?></a></li>
+            <?php
+        }
+
+        if (! empty($userNams["twitter"])) {
+            ?>
+                <li><a href="https://twitter.com/<?php echo $userNams['twitter'] ?>"><i class="fa-brands fa-twitter"></i><?php echo $userNams["twitter"]  ?></a></li>
+            <?php
+        }
+
+        if (! empty($userNams["linkedin"])) {
+            ?>
+                <li><a href="https://www.linkedin.com/in/<?php echo $userNams["linkedin"] ?>"><i class="fa-brands fa-linkedin"></i><?php echo $userNams["linkedin"]  ?></a></li>
+            <?php
+        }
+        
+    }
+
+    function PrepareSkilleAndRate($langs) : array{
+        $lang = explode(",", $langs);
+        return $lang;
+    }
+
+    function SetLanguges() {
+        $lansUser = Queries::FromTable("langs", "users", "WHERE IdUser = {$_SESSION['IdUser']}", "fetch")['langs'];
+        $langs = PrepareSkilleAndRate($lansUser);
+        foreach ($langs as $lang) {
+            $lang = explode(":", $lang);
+            $langName = $lang[0];
+            $langRate = $lang[1];
+            
+            ?>
+                <li>
+                    <div class="content-ul">
+                        <label><?php echo $langName ?></label>
+                        <div class="prosses">
+                            <div class="back" style="width: <?php echo $langRate ?>;"></div>
+                            <div class="rate" ><?php echo $langRate ?></div>
+                        </div>
+                    </div>
+                </li>
+            <?php 
+        }
+    }
+
+    function SetTools() {
+        $toolsUser = Queries::FromTable("tools", "users", "WHERE IdUser = {$_SESSION['IdUser']}", "fetch")['tools'];
+        $tools = PrepareSkilleAndRate($toolsUser);
+        foreach ($tools as $tool) {
+            $tool = explode(":", $tool);
+            $toolName = $tool[0];
+            $toolRate = $tool[1];
+            
+            ?>
+                <li>
+                    <div class="content-ul">
+                        <label><?php echo $toolName ?></label>
+                        <div class="prosses">
+                            <div class="back" style="width: <?php echo $toolRate ?>;"></div>
+                            <div class="rate"><?php echo $toolRate ?></div>
+                        </div>
+                    </div>
+                </li>
+            <?php 
+        }
+    }
+
+
     function StructAside() {
         ?>
             <aside id="aside-profile-page" class="aside-profile-page">
@@ -20,63 +104,22 @@
                 </div>
 
                 <nav>
-                    <a href="#" class="edit-profile">Edit</a>
+                    <!-- Links Media -->
                     <ul id="links-media" class="contanier-section">
-                        <li><a href=""><i class="fa-brands fa-github"></i>FerasBarahmeh</a></li>
-                        <li><a href=""><i class="fa-brands fa-facebook"></i>ferasfadi</a></li>
-                        <li><a href=""><i class="fa-brands fa-twitter"></i>ferasfadi</a></li>
-                        <li><a href=""><i class="fa-brands fa-linkedin"></i>Feras-Barahmeh</a></li>
+                        <?php SetMediaLinks() ?>
+                        <a href="#" class="edit-profile">Edit</a>
                     </ul>
+
+                    <!-- Language Skilles -->
                     <ul id="langs" class="contanier-section">
                         <h4>Languages</h4>
-                        <li>
-                            <div class="content-ul">
-                                <label>CPP</label>
-                                <div class="prosses">
-                                    <div class="back"></div>
-                                    <div class="rate">40%</div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="content-ul ">
-                                <label>Python</label>
-                                <div class="prosses">
-                                    <div class="back"></div>
-                                    <div class="rate">40%</div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="content-ul ">
-                                <label>PHP</label>
-                                <div class="prosses">
-                                    <div class="back"></div>
-                                    <div class="rate">40%</div>
-                                </div>
-                            </div>
-                        </li>
+                        <?php SetLanguges() ?>
                     </ul>
+
+                    <!-- Tools And Skiles -->
                     <ul id="skils" class="contanier-section">
                         <h4>Skiells</h4>
-                        <li>
-                            <div class="content-ul">
-                                <label>GitHup</label>
-                                <div class="prosses">
-                                    <div class="back"></div>
-                                    <div class="rate">30%</div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="content-ul ">
-                                <label>lINUX</label>
-                                <div class="prosses">
-                                    <div class="back"></div>
-                                    <div class="rate">40%</div>
-                                </div>
-                            </div>
-                        </li>
+                        <?php SetTools() ?>
                     </ul>
                 </nav>
             </aside>
@@ -84,15 +127,10 @@
     }
 
     function StructerCardsSection() {
+        $user = Queries::FromTable("*", "users", "WHERE IdUser = {$_SESSION['IdUser']}", "fetch");
+
         ?>
             <section class="cards">
-                    <!-- Start  Intersest Card -->
-                    <div class="card-statistics">
-                        <h4>Intersted To</h4>
-                        <span>Machine Learning</span>
-                    </div>
-                    <!-- End Intersest Card -->
-
                     <!-- Start Favarit Articles -->
                     <div class="card-statistics">
                         <h4>Favarite Feild</h4>
@@ -103,21 +141,21 @@
                     <!-- Start nakie Articles -->
                     <div class="card-statistics">
                         <h4>Nickname</h4>
-                        <span>Bnz</span>
+                        <span><?php echo $user['nickname'] ?></span>
                     </div>
                     <!-- End nakie Articles -->
 
                     <!-- Start AGE Articles -->
                     <div class="card-statistics">
                         <h4>Age</h4>
-                        <span>20</span>
+                        <span><?php echo $user['age'] ?></span>
                     </div>
                     <!-- End age Articles -->
 
                     <!-- Start loin Articles -->
                     <div class="card-statistics">
                         <h4>Register Date</h4>
-                        <span>20-5-2022</span>
+                        <span><?php echo $user['dataRegister'] ?></span>
                     </div>
                     <!-- End join Articles -->
 
@@ -126,7 +164,20 @@
     }
 
     function StructerStatistics() {
+        $aboutUser = Queries::FromTable("aboutYou", "users", "WHERE IdUser = {$_SESSION['IdUser']}", "fetch")['aboutYou'];
         ?>
+            <!-- Start About You Section -->
+            <section class="about-you">
+                <div class="header">
+                    <h4>About You</h4>
+                </div>
+                <p>
+                    <?php echo $aboutUser ?>
+                </p>
+            </section>
+            <!-- End About You -->
+
+            <!--Statistics  -->
             <section class="Statistics-section">
                 <!-- Start Articles -->
                     <div class="inner-section">
@@ -181,7 +232,7 @@
             <?php StructAside() ?>
             <!-- Aside  End  -->
 
-            <div class="main-contanier">
+            <div class="main-contanier contanier-profile">
                 <!-- Start Cards Section -->
                 <?php StructerCardsSection(); ?>
                 <!-- End Cards Section -->

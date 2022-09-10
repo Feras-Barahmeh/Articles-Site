@@ -1,3 +1,24 @@
+// Toggel Btn
+    const toggelBurgerMinu = document.querySelector(".nav-toggeler");
+
+    if (toggelBurgerMinu !== null) {
+        toggelBurgerMinu.addEventListener("click", ()=>{
+            let mainContant = document.querySelector(".contanier-profile");
+            let aside = document.getElementById("aside-profile-page");
+
+            if (aside.style.left === "-270px") {
+                aside.style.left = "0";
+                aside.style.width = "100%";
+                mainContant.style.display = "none";
+            } else {
+                mainContant.style.display = "";
+                aside.style.left = "-270px";
+                aside.style.width = "270px";
+            }
+        });
+    }
+
+
 // Chosse Login Form Or Signup
     function showForm() {
         // Get Buttens

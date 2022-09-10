@@ -113,10 +113,51 @@ a.active {
 }
 /* End Simple Alert Massage */
 /* Start navigation Bar */
+aside .nav-toggeler {
+    height: 40px;
+    width: 45px;
+    border: 1px solid var(--bg-black-50);
+    cursor: pointer;
+    position: fixed;
+    left: -250px;
+    top: 20px;
+    border-radius: 5px;
+    background: var(--bg-black-100);
+    display: flex;
+    /* display: none; */
+    justify-content: center;
+    align-items: center;
+}
+.nav-toggeler span {
+    height: 2px;
+    width: 18px;
+    background: var(--skin-color);
+    display: inline-block;
+    position: relative;
+}
+.nav-toggeler span::before {
+    content: "";
+    height: 2px;
+    width: 18px;
+    background: var(--skin-color);
+    position: absolute;
+    top: -6px;
+    left: 0;
+}
+.nav-toggeler span::after {
+    content: "";
+    height: 2px;
+    width: 18px;
+    background: var(--skin-color);
+    position: absolute;
+    top: 6px;
+    left: 0;
+}
 .nav-front {
     width: calc(100% - 250px);
     position: relative;
 }
+
 .contaner-navigation-bar {
     left: 250px;
     position: relative;
@@ -164,16 +205,17 @@ a.active {
 }
 .aside-profile-page nav {
     margin-top: 100px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 .aside-profile-page nav .edit-profile {
-    width: 100%;
     background: #00000033;
-    position: relative;
-    left: 59px;
-    top: 167px;
     border-radius: 3px;
+    width: 100%;
     color: var(--text-black-700);
     padding: 0 11px;
+    float: right;
 }
 .aside-profile-page nav .edit-profile:hover {
     box-shadow: 2px 2px 4.4px #706464;
@@ -182,6 +224,10 @@ a.active {
     border-bottom: 1px solid;
     margin-bottom: 7px;
     padding-bottom: 20px;
+    width: 200px;
+}
+.aside-profile-page nav  .contanier-section:last-child {
+    border-bottom: none;
 }
 .aside-profile-page nav  .contanier-section h4 {
     text-align: left;
@@ -221,7 +267,12 @@ a.active {
     border-radius: 4px;
 }
 .aside-profile-page nav  ul li .content-ul  .prosses .rate {
-    color: var(--text-black-900);
+    color: white;
+    z-index: 600;
+    position: relative;
+    font-weight: unset;
+    font-size: 13px;
+    accent-color: currentcolor;
 }
 .nav-front .contanier-options {
     display: flex;
@@ -404,7 +455,7 @@ aside .nav-toggeler span::after {
     left: 0;
 }
 /* Start content */
-.main-content {
+.contanier-profile {
     padding-left: 250px;
 }
 .section {
@@ -595,7 +646,6 @@ p {
 /* Start Profile User */
 .main-contanier {
     padding-left: 250px;
-    padding-left: 250px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -628,7 +678,23 @@ p {
 .main-contanier  .cards .card-statistics span {
     color: var(--text-black-900);
 }
-
+.about-you {
+    margin: 20px 20px;
+    background: var(--bg-black-50);
+    color: var(--text-black-900);
+    padding: 10px 15px;
+    border-radius: 3px;
+    min-height: 148px;
+    width: auto;
+}
+.about-you .header {
+    text-align: center;
+    background: var(--bg-black-100);
+    padding: 8px;
+}
+.about-you p {
+    text-align: left;
+}
 .Statistics-section {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
@@ -688,6 +754,7 @@ p {
     align-items: center;
     justify-content: space-between;
     padding: 3px;
+    transition: all .3s ease-in-out;
 }
 .Statistics-section .inner-section ul li:nth-child(even) {
     background-color: var(--bg-black-50);
@@ -719,5 +786,31 @@ p {
 }
 .Statistics-section .inner-section ul li:nth-child(odd) .btn-a {
     background-color: var(--bg-black-50);
+}
+@media (max-width: 991px) {
+    .Statistics-section {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+        row-gap: 40px;
+    }
+}
+@media (max-width: 837px) {
+
+}
+@media (max-width: 767px) {
+    .contanier-profile {
+        padding: 0;
+    }
+    .nav-front {
+        width: 100%;
+    }
+    .contaner-navigation-bar {
+        left: 0 !important;
+    }
+
+}
+@media (max-width: 716px) {
+    .contaner-navigation-bar .profile-pictuer {
+        display: none;
+    }
 }
 /* End Profile User */ 

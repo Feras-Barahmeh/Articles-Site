@@ -3,68 +3,28 @@
     session_start();
     $TITLE = "Feras Barahmeh";
     include ("init.php");
-    include ( $functions . "loginFunctions/login.php"); 
+    include ( $functions . "loginFunctions/login/login.php"); 
     $pathLogin = $functions . "loginFunctions/singup/";
     include ( $pathLogin . "addUser.php");
-
 // Fork Funtion
 
-    function GetPermissionUser($value) {
-        $permission = Queries::FromTable("permission", "users", "WHERE username = '{$value}' OR email = '{$value}'", "fetch")['permission'];
-        return $permission;
-    }
-
-    function GetPassword($value) {
-        $password = Queries::FromTable("password", "users", "WHERE username = '{$value}' OR email = '{$value}'", "fetch")['password'];
-        return $password;
-    }
 
 
 
     function BoxAlert($title, $massage) {
         ?>
-                <div id="overlay" class="" ></div> 
+            <div id="overlay" class="" ></div> 
             <div id="boxAlert" >
                 <div class="contanier">
                     <h2 class=""><?php echo $title ?></h2>
                     <p><?php echo $massage ?></p>
                     <button id="btn-boxAlert" type="button">OK</button>
                 </div>
-            </div> 
+            </div>
         <?php
     }
 
-    function GetUser($depend) {
-        $data = Queries::FromTable("*", "users", "WHERE username = '{$depend}' OR email = '{$depend}'", "fetch");
-        return $data;
-    }
 
-    function AddToSesssion($permistion, $user) {
-        $userInfo = GetUser($user);
-
-        if ($permistion === 1) {
-            $_SESSION['adminName']  = $userInfo['userName'];
-            $_SESSION['password']   = $userInfo['password'];
-            $_SESSION['IdUser']     = $userInfo['IdUser'];
-            return "admin";
-
-        } else {
-            unset($_SESSION['adminName']);
-            $_SESSION['user']  = $userInfo['userName'];
-            $_SESSION['password']   = $userInfo['password'];
-            $_SESSION['IdUser']     = $userInfo['IdUser'];
-            return "regular";
-        }
-    }
-
-    function IfExist($value) : bool {
-        if ( Queries::IfExsist("username", "users", $value, "string") 
-        || Queries::IfExsist("email", "users", $value, "string")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     function SetLinks() {
 
@@ -105,6 +65,18 @@
         <?php
     }
 
+    function PrintValuesPassCookies() {
+        if (isset($_COOKIE['password']) && !empty($_COOKIE['password'])) {
+            echo $_COOKIE['password'];
+        }
+    }
+
+    function PrintValuesUserNameCookies() {
+        if (isset($_COOKIE['userName']) && !empty($_COOKIE['userName'])) {
+            echo $_COOKIE['userName'];
+        }
+    }
+
     function MainContent() {
         ?>
             <div class="main-content">
@@ -126,7 +98,7 @@
                                         <div class="input-item padd-15">
                                             <label for="username">username or email</label>
                                             <div class="">
-                                                <input type="text" name="username" id="usernamelogin" required autocomplete="off" placeholder="username or email">
+                                                <input type="text" name="username" id="usernamelogin" value="<?php PrintValuesUserNameCookies() ?>" required autocomplete="off" placeholder="username or email">
                                                 <div class="alert-validation danger hidden user-alert">User Name Must BelowerCase, Greater Than three leters</div>
                                             </div>
                                             <i class="fa-solid fa-user"></i>
@@ -136,7 +108,7 @@
                                         <div class="input-item padd-15">
                                             <label for="passwordlogin">password</label>
                                             <div class="" >
-                                                <input type="password" name="password" id="passwordlogin" required autocomplete="off" placeholder="password">
+                                                <input type="password" name="password" id="passwordlogin" value="<?php PrintValuesPassCookies() ?>" required autocomplete="off" placeholder="password">
                                                 <div class="alert-validation danger hidden user-alert">Passowrd week, Must  be grater than three characther</div>
                                             </div>
 
@@ -224,33 +196,10 @@
 // Main Structer
     PageStructer();
 
-    function PrepareToLogin() {
-        if (isset($_POST['login'])) {
-            $info = $_POST;
-            if (IfExist($info['username'])) {
-                $permistion = GetPermissionUser($info["username"]);
-                $passwordDB = GetPassword($info['username']);
-
-                // Validation Password
-                if (password_verify($info['password'], $passwordDB)) {
-                    $directory = AddToSesssion($permistion, $info['username']) ;
-                    if ( $directory == "admin") {
-                        header("Location: ../../admin/dashbord.php");
-                    } elseif ($directory === "regular") {
-
-                        header("Location: profile.php?user=" . $_SESSION['user']);
-                    }
-                } else {
-                    BoxAlert("Error In Password", "Invalid Password 😅");
-                }
-
-            } else {
-                BoxAlert("Error In User Name 😞!!", "This User Name Not Valid");
-            }
-        } else {
-            return false;
-        }
+    if (isset($_POST['login'])) {
+        PrepareToLogin::login();
     }
+
 
     function PrepareToSingup() {
         if (isset($_POST['singup'])) {
@@ -261,7 +210,7 @@
         }
     }
 // Main Configration
-    PrepareToLogin();
+    // PrepareToLogin();
     PrepareToSingup();
     if ( isset($_SESSION['user']) && !empty($_SESSION) ) {
         header("Location: profile.php?user={$_SESSION['user']}");

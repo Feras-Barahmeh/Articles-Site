@@ -1,8 +1,17 @@
-
+<?php 
+    require_once "../commonBetweenBackFront\php\images.php";
+?>
 <nav class="nav-front">
     <div class="contaner-navigation-bar">
+
+
         <div class="contanier-options">
-            <img src="../../commonBetweenBackFront/images/imagesProject/defaultImg.jpg"  class="profile-pictuer" alt="">
+            <?php
+                ShowImage::SetImg(
+                        "../../commonBetweenBackFront/uploaded/users/", 
+                        Queries::FromTable("imageName", "users", "WHERE IdUser = {$_SESSION['IdUser']}", "fetch")['imageName'],
+                        "profile-pictuer");
+            ?>
             <div class="dropdown" id="deopdown-btn"><span>majd</span><i class="fa-sharp fa-solid fa-caret-down" id="down"></i><i class="fa-solid fa-caret-up" id="up"></i></div>
             <ul class="ul-dropdown" id="ul-dropdown">
                     <li><a href="#">Read Later</a></li>
@@ -21,5 +30,6 @@
             <li><a href="#" >Queties</a></li>
             
         </ul>
+
     </div>
 </nav>
