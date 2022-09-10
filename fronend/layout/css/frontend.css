@@ -78,6 +78,12 @@ ul {
 a.active {
     color: var(--skin-color);
 }
+.width-nav {
+    left: 0 !important;
+}
+.width {
+    width: 100% !important;
+}
 /* Start Simple Alert Massage */
 .mass {
     position: fixed;
@@ -703,6 +709,7 @@ p {
 .Statistics-section .inner-section {
     margin: 0 20px;
     transition: all .3s ease-in-out;
+    box-shadow: 12px 10px 8px rgb(0 0 0 / 8%);
 }
 .Statistics-section .inner-section .header {
     display: flex;
@@ -814,3 +821,187 @@ p {
     }
 }
 /* End Profile User */ 
+
+
+
+/* Start Edit Profile */
+.layout {
+    background-image: url("layout.jpeg");
+    width: 100%;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.layout .opacuty {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgb(0 0 0 / 75%);
+}
+.layout img {
+    width: 150px;
+    height: 150px;
+    z-index: 101;
+    border-radius: 3px;
+}
+.layout .name {
+    z-index: 101;
+    position: relative;
+    color: var(--bg-black-900);
+}
+.layout .name .id-user .title {
+    font-size: 13px;
+}
+.edit-section  {
+    position: relative;
+    margin: 0 200px;
+    display: flex;
+    flex-direction: row;
+}
+.edit-section .side-section-edit {
+    width: 30%;
+    padding: 15px;
+    min-height: 600px;
+    background: var(--bg-black-900);
+}
+.edit-section .side-section-edit .sidebar {
+    width: 100%;
+    margin: auto;
+    padding-top: 20px;
+}
+.edit-section .side-section-edit .sidebar li {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    transition: all .3s ease-in-out;
+}
+.edit-section .side-section-edit .sidebar li.active {
+    background: var(--bg-skin-color);
+}
+.edit-section .side-section-edit .sidebar li.active i {
+    color: var(--text-black-700);
+}
+.edit-section .side-section-edit .sidebar li:hover {
+    background: var(--bg-skin-color);
+}
+.edit-section .side-section-edit .sidebar li:hover span {
+    color: var(--bg-black-900);
+}
+.edit-section .side-section-edit .sidebar li:hover i {
+    color: var(--text-black-700);
+}
+.edit-section .side-section-edit .sidebar li i {
+    color: var(--skin-color);
+}
+.edit-section .side-section-edit .sidebar li span {
+    margin-left: 20px;
+    color: var(--text-black-700);
+}
+.edit-section .section-edit {
+    width: 70%;
+    padding: 15px;
+    min-height: 600px;
+    position: relative;
+    box-shadow: 0 15px 15px 7px rgb(0 0 0 / 8%);
+    top: -60px;
+    z-index: 105;
+    background: var(--bg-black-100);
+    border-radius: 10px;
+}
+.edit-section .section-edit > div {
+    margin-bottom: 50px;
+    box-shadow: 3px 3px 4px rgb(0 0 0 / 8%);
+}
+.edit-section .section-edit h4 {
+    color: var(--text-black-700);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    margin-left: 12px;
+}
+.edit-section .section-edit .contanier-feild {
+    border-bottom: 1px solid var(--bg-black-50);
+    transition: all .3s ease-in-out;
+}
+.edit-section .section-edit .contanier-feild:last-child {
+    border-bottom: none;
+}
+.edit-section .section-edit .contanier-feild .row-feild {
+    display: flex;
+    width: 100%;
+    font-size: 14px;
+    padding: 12px 0;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.edit-section .section-edit .contanier-feild .row-feild .name-feild {
+    width: 100px;
+    color: var(--text-black-700);
+}
+.edit-section .section-edit .contanier-feild .row-feild .content-feild  {
+    width: calc(100% - 300px);
+    flex-grow: 1;
+}
+.edit-section .section-edit .contanier-feild .row-feild .content-feild span {
+    color: var(--text-black-700);
+}
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess {
+    overflow: hidden;
+    transition: all .3s ease-in-out;
+}
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .snippet-input {
+    outline: none;
+    border: 1px solid var(--bg-black-50);
+    padding: 7px 10px;
+    width: 200px;
+    color: var(--text-black-700);
+}
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess textarea {
+    border: 1px solid var(--text-black-700);
+    padding: 10px;
+    background: var(--bg-black-900);
+    overflow: hidden;
+    width: 100%;
+    outline: none;
+    resize: none;
+}
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .input-shills {
+    width: 100%;
+}
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .btns {
+    height: 27px;
+    margin-top: 11px;
+}
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save,
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .cancel {
+    padding: 5px 10px;
+    border: none;
+    color: var(--text-black-700);
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save:hover,
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .cancel:hover {
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, .5);
+}
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save {
+    background-color: var(--skin-color);
+}
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .cancel {
+    background-color: var(--bg-black-50);
+}
+.edit-section .section-edit .contanier-feild .row-feild .editbtn {
+    width: 100px;
+    text-align: right;
+    color: var(--text-black-700);
+    cursor: pointer;
+}
+/* End Edit Profile */

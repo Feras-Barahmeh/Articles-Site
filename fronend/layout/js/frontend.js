@@ -201,25 +201,27 @@
 // Show Aside when Click Toggeler
     const toggel = document.querySelector(".nav-toggeler");
 
+    if (toggel !== null) {
+        
+        toggel.addEventListener("click", () =>{
+            let aside = document.getElementById("login-aside");
+            let mainContent= document.querySelector(".main-content");
 
-    toggel.addEventListener("click", () =>{
-        let aside = document.getElementById("login-aside");
-        let mainContent= document.querySelector(".main-content");
-
-        if (mainContent != null) {
-            
-            if (mainContent.style.display === "") {
-                mainContent.style.display = "none";
-                aside.style.left = 0;
-                aside.style.width = "100%";
-            } else {
-                mainContent.style.display = "";
-                aside.style.left = "-250px";
-                aside.style.width = "250px";
+            if (mainContent != null) {
+                
+                if (mainContent.style.display === "") {
+                    mainContent.style.display = "none";
+                    aside.style.left = 0;
+                    aside.style.width = "100%";
+                } else {
+                    mainContent.style.display = "";
+                    aside.style.left = "-250px";
+                    aside.style.width = "250px";
+                }
             }
-        }
-
-    });
+        });
+    }
+    
 
 
 // Box Alert
