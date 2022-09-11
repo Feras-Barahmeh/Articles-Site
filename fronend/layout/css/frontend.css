@@ -715,7 +715,7 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--bg-black-900);
+    background:var(--skin-color);
     padding: 5px 10px;
 }
 .Statistics-section .inner-section .header h4 {
@@ -972,8 +972,45 @@ p {
     outline: none;
     resize: none;
 }
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess #tag-contanier {
+    background: var(--bg-black-50);
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    flex-wrap: wrap;
+}
 .edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .input-shills {
-    width: 100%;
+    height: 30px;
+    background: transparent !important;
+    border: none;
+}
+.tag {
+    width: auto;
+    background: var(--bg-black-100);
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 3px;
+    padding: 8px;
+    height: 28px;
+    box-shadow: 3px 1px 3px rgb(0 0 0 / 8%);
+    margin-bottom: 4px;
+}
+.tag span {
+    margin-right: 6px;
+}
+.tag i {
+    padding: 2px;
+    border-radius: 50%;
+    width: 17px;
+    display: flex;
+    justify-content: center;
+    color: var(--text-black-900);
+    transition: all .3s ease-in-out;
+}
+.tag i:hover {
+    background: var(--skin-color);
 }
 .edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .btns {
     height: 27px;
