@@ -15,8 +15,9 @@
                 <ul class="ul-dropdown" id="ul-dropdown">
                         <li><a href="#">Read Later</a></li>
                         <li><a href="#">Favarit Article</a></li>
-                        <li><a href="#">Edit Profile</a></li>
+                        <li><a href="editprofile.php?user=<?php echo $_SESSION['user'] ?>">Edit Profile</a></li>
                         <li><a href="#">Settings</a></li>
+                        <li><a href="#">Membership request</a></li>
                         <li><a href="logout.php">Logout</a></li>
                     </ul>
             </div>

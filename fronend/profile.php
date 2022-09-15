@@ -107,7 +107,7 @@
                     <!-- Links Media -->
                     <ul id="links-media" class="contanier-section">
                         <?php SetMediaLinks() ?>
-                        <a href="editprofile.php" class="edit-profile">Edit</a>
+                        <a href="editprofile.php?user=<?php echo $_SESSION['user'] ?>" class="edit-profile">Edit</a>
                     </ul>
 
                     <!-- Language Skilles -->

@@ -1,0 +1,7 @@
+This file has all teqnolige can user add in profile
+-git
+-githup
+-AJAX
+-XML
+-JSON
+-SOLID Prinsale

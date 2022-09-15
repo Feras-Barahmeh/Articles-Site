@@ -11,6 +11,7 @@
         }
     }
 
+
     class StructerErrorsMass {
         public static function AlertError ($e, $type) {
             ?>

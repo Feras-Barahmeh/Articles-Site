@@ -963,6 +963,14 @@ p {
     width: 200px;
     color: var(--text-black-700);
 }
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .error-mas {
+    display: block;
+    width: 100%;
+    border: 2px solid red;
+    text-align: center;
+    color: white;
+    background: var(--danger--900);
+}
 .edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess textarea {
     border: 1px solid var(--text-black-700);
     padding: 10px;
@@ -1017,6 +1025,7 @@ p {
     margin-top: 11px;
 }
 .edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save,
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save-skille,
 .edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .cancel {
     padding: 5px 10px;
     border: none;
@@ -1026,10 +1035,12 @@ p {
     border-radius: 2px;
 }
 .edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save:hover,
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save-skille:hover,
 .edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .cancel:hover {
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, .5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 20%);
 }
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save {
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save,
+.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save-skille {
     background-color: var(--skin-color);
 }
 .edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .cancel {
@@ -1040,5 +1051,8 @@ p {
     text-align: right;
     color: var(--text-black-700);
     cursor: pointer;
+}
+.edit-section .section-edit .contanier-feild .row-feild .editbtn:hover {
+    text-shadow: 0px 1px 10px rgb(0 0 0 / 50%);
 }
 /* End Edit Profile */

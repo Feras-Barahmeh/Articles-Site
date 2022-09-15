@@ -89,16 +89,47 @@
                 });
             }
 
+            function getTechnical() {
+                var xhr = new XMLHttpRequest();
+                var technicalAll = [];
+                xhr.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        let technicals = this.responseText.split("-");
+                        let techPure = technicals.slice(1, technicals.length);
+                        for(let i = 0; i < techPure.length; i++) {
+
+                            technicalAll.push(techPure[i].replace("\r\n", "").toLowerCase());
+                            technicalAll.push(techPure[i].replace("\r\n", "").toUpperCase());
+                        }
+                    }
+
+                };
+                xhr.open("GET", "../../commonBetweenBackFront/textfiles/technical.txt", false);
+                xhr.send("");
+
+                return technicalAll;
+            }
+
             const containerTags = document.getElementById("tag-contanier");
             const skille = document.getElementById("skills");
             var tags = [];
 
+            const validTeqnical = getTechnical();
+
             // Fetch Words
             skille.addEventListener("keyup", (e)=> {
                 if (e.key === 'Enter' || e.keyCode === 13) {
+
                     let tag = e.target.value;
-                    if (tag.length >= 1) {
-                        tags.push(tag);
+
+                    if (tag.length >= 1 && ! tags.includes(tag)) {
+
+                        if (Object.values(validTeqnical).indexOf(tag) > -1) {
+                            tags.push(tag);
+                            skille.parentElement.lastElementChild.classList.add("hidden");
+                        } else {
+                            skille.parentElement.lastElementChild.classList.remove("hidden");
+                        }
                     }
                     addTags();
                     tag = e.target.value = "";
@@ -114,4 +145,103 @@
                     addTags();
                 }
             });
-        
+
+        // Controlle Save New Information
+
+        // Send New Data to BackEnd
+            function setPost(name, nameValu, idUser, caontanierData) {
+                let xmlHR = new XMLHttpRequest;
+
+                xmlHR.onload = function () {
+                    if (this.readyState = 4 && this.status == 200) {
+                        caontanierData.innerHTML = this.responseText;
+                    }
+                };
+                xmlHR.open("POST", "../save edit/updateField.php", true);
+                xmlHR.setRequestHeader(
+                    "Content-Type",
+                    "application/x-www-form-urlencoded"
+                )
+                xmlHR.send(`${name}=${nameValu}&IdUser=${idUser}`);
+            }
+
+            const saveBtns = document.querySelectorAll(".save");
+
+            saveBtns.forEach((saveBtn)=>{
+                saveBtn.addEventListener("click", function() {
+                    const input = this.closest(".contanier-input").firstElementChild;
+
+                    const nameInput = input.getAttribute("name");
+
+                    saveBtn.closest(".contanier-proccess").classList.add("hidden")
+                    saveBtn.closest(".content-feild").firstElementChild.classList.toggle("hidden");
+                    setPost(nameInput, input.value, saveBtn.getAttribute("user-id"), input.closest(".content-feild").firstElementChild);
+                });
+            });
+
+            // Same Peossces To Skiles
+
+            function setSkilles(nameInputSkilles, tags, idUser, caontanierData) {
+                var xmlhttprequest = new XMLHttpRequest();
+
+                xmlhttprequest.onload = function () {
+                    if (xmlhttprequest.status == 200 && xmlhttprequest.readyState == 4) {
+                        let tagSkilles = this.responseText.split(",");
+                        tagSkilles.forEach((tagSkille)=> {
+
+                            caontanierData.prepend(CreatTag(tagSkille));
+                        });
+                        // caontanierData.innerHTML = this.responseText;
+                    }
+                };
+
+                xmlhttprequest.open("POST", "../save edit/updateField.php", true);
+                xmlhttprequest.setRequestHeader (
+                    "Content-Type",
+                    "application/x-www-form-urlencoded"
+                );
+
+                xmlhttprequest.send(`${nameInputSkilles}=${[...tags]}&IdUser=${idUser}`)
+            }
+
+            function removeElemtRepated(tags, toRemove) {
+                tags = tags.filter( ( el ) => !toRemove.includes( el ) );
+            }
+
+            const saveSkillesBtn = document.getElementById("save-skilles");
+
+            // Get Old Skilles 
+            let regVal = document.getElementById("regist-val").innerHTML;
+            let purePrevSkilles = Object.values(regVal);
+            let skilesPartion = []; let skil = "";
+
+            purePrevSkilles.forEach((char) => {
+                if (char !== ",") {
+                    skil += char;
+                } else {
+                    skilesPartion.push(skil);
+                    skil = "";
+                }
+            });
+            // To Add Last Value
+            skilesPartion.push(skil);
+            skil = "";
+
+            tags = [...skilesPartion];
+
+            saveSkillesBtn.addEventListener("click", ()=> {
+                const inputSkilles = saveSkillesBtn.closest(".contanier-input").firstElementChild;
+                let nameInputSkilles;
+
+                const toSelectInput = Object.values(inputSkilles.children);
+
+                toSelectInput.forEach((e)=>{
+                    if (e.getAttribute("id") === "skills" ) {
+                        nameInputSkilles = e.getAttribute("name");
+                    }
+                });
+
+                
+
+                setSkilles(nameInputSkilles, tags, saveSkillesBtn.getAttribute("user-id"), document.getElementById("tag-contanier"));
+            });

@@ -1,5 +1,4 @@
 <?php 
-
     class Directions {
 
         public static function Redirect($mass, $direct=NULL, $typeAlert='info', $sec=200) {
@@ -134,6 +133,18 @@
 
         }
 
+
+        public static function Update ($table, $column, $value, $where = NULL) {
+            global $db;
+            $stmt = $db->prepare("UPDATE `$table` SET `$column` = '$value' $where");
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     class Sessions {

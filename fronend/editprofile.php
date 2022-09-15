@@ -8,6 +8,16 @@
 
 // Main Structers
 
+    function PrintSkilles($userTools) {
+        $userTools = explode(",", $userTools);
+        if ( ! empty($userTools)) {
+            foreach ($userTools as $userTool) {
+                ?>
+                    <div class="tag"><span><?php echo $userTool ?></span><i class="fa fa-xmark" data-tag="<?php echo $userTool ?>"></i></div>
+                <?php
+            }
+        }
+    }
 
     function MainStructer () {
         $user = Queries::FromTable("*", "users", "WHERE IdUser = {$_SESSION['IdUser']}", "fetch");
@@ -48,14 +58,15 @@
                                                 <span class="containt-reg-db"><?php echo isset($user['fullName']) ? $user['fullName'] : "Your Full Name" ?></span>
                                                 <!-- Start input Feils -->
                                                 <div class="contanier-proccess hidden">
-                                                    <div class="">
-                                                        <input 
+                                                    <div class="contanier-input">
+                                                        <input
                                                         type="text" 
-                                                        name="name" 
-                                                        value="<?php echo isset($user['fullName']) ? $user['fullName'] : "Your Full Name" ?>" 
+                                                        name="fullName" 
+                                                        value="<?php echo isset($user['fullName']) ? $user['fullName'] : "" ?>" 
                                                         class="snippet-input" 
-                                                        placeholder="Name">
-                                                        <div class="btns"><button class="save" name="save-edit" id="save-edit">Save</button><button class="cancel" id="cancel">Cancel</button></div>
+                                                        placeholder="Your Full Name">
+                                                        <div class="error-mas hidden"></div>
+                                                        <div class="btns"><button class="save" name="save-edit" id="save-edit" user-id = "<?php echo $_SESSION['IdUser'] ?>">Update</button><button class="cancel" id="cancel">Cancel</button></div>
                                                     </div>
                                                 </div>
                                                 <!-- End Input Feils -->
@@ -71,16 +82,16 @@
                                         <div class="row-feild">
                                             <div class="name-feild">Gender</div>
                                             <div class="content-feild">
-                                                <span class="containt-reg-db"><?php echo $user['gender'] == "m" ? "Mael" : "Femal" ?></span>
+                                                <span class="containt-reg-db"><?php echo $user['gender'] == "male" ? "male" : "Female" ?></span>
                                                 <!-- Start input Feils -->
                                                 <div class="contanier-proccess hidden">
-                                                    <div class="">
-                                                        <select name="" id="" class="snippet-input">
-                                                            <option value="<?php echo isset($user['gender']) && $user['gender'] == "m" ? "Mael" : "Femal" ?>"><?php echo $user['gender'] == "m" ? "Mael" : "Femal" ?></option>
-                                                            <option value="m">Mael</option>
-                                                            <option value="f">Femal</option>
+                                                    <div class="contanier-input">
+                                                        <select name="gender" id="" class="snippet-input">
+                                                            <option value="<?php echo isset($user['gender']) && $user['gender'] == "male" ? "Mael" : "Femal" ?>"><?php echo $user['gender'] == "male" ? "Mael" : "Femal" ?></option>
+                                                            <option value="male">Mael</option>
+                                                            <option value="female">Femal</option>
                                                         </select>
-                                                        <div class="btns"><span class="save">Save</span><span class="cancel">Cancel</span></div>
+                                                        <div class="btns"><span class="save" user-id = "<?php echo $_SESSION['IdUser'] ?>">Update</span><span class="cancel">Cancel</span></div>
                                                     </div>
                                                 </div>
                                                 <!-- End Input Feils -->
@@ -99,9 +110,9 @@
                                                 <span class="containt-reg-db"><?php echo isset($user['location']) ? $user['location'] : "City - Country"  ?></span>
                                                 <!-- Start input Feils -->
                                                 <div class="contanier-proccess hidden">
-                                                    <div class="">
-                                                        <input type="text" name="" value="<?php echo isset($user['location']) ? $user['location'] : "City - Country"  ?>" class="snippet-input" placeholder="Location">
-                                                        <div class="btns"><span class="save">Save</span><span class="cancel">Cancel</span></div>
+                                                    <div class="contanier-input">
+                                                        <input type="text" name="location" value="<?php echo isset($user['location']) ? $user['location'] : ""  ?>" class="snippet-input" placeholder="City - Country">
+                                                        <div class="btns"><span class="save" user-id = "<?php echo $_SESSION['IdUser'] ?>">Update</span><span class="cancel">Cancel</span></div>
                                                     </div>
                                                 </div>
                                                 <!-- End Input Feils -->
@@ -120,9 +131,9 @@
                                                 <span class="containt-reg-db"><?php echo isset($user['age']) ? $user['age'] : "Your Barthday"  ?></span>
                                                 <!-- Start input Feils -->
                                                 <div class="contanier-proccess hidden">
-                                                    <div class="">
-                                                        <input type="date" name="" value="<?php echo isset($user['age']) ? $user['age'] : "Your Barthday"  ?>" class="snippet-input" placeholder="Birthday">
-                                                        <div class="btns"><span class="save">Save</span><span class="cancel">Cancel</span></div>
+                                                    <div class="contanier-input">
+                                                        <input type="date" name="age" value="<?php echo isset($user['age']) ? $user['age'] : ""  ?>" class="snippet-input" placeholder="Your Barthday">
+                                                        <div class="btns"><span class="save" user-id = "<?php echo $_SESSION['IdUser'] ?>">Update</span><span class="cancel">Cancel</span></div>
                                                     </div>
                                                 </div>
                                                 <!-- End Input Feils -->
@@ -141,9 +152,9 @@
                                                 <span class="containt-reg-db"><?php echo isset($user['aboutYou']) ? $user['aboutYou'] : "Brief To You"  ?></span>
                                                 <!-- Start input Feils -->
                                                 <div class="contanier-proccess hidden">
-                                                    <div class="">
-                                                        <textarea name="" id=""  placeholder="Brief" cols="50" rows="5"><?php echo isset($user['aboutYou']) ? $user['aboutYou'] : "Brief To You"  ?></textarea>
-                                                        <div class="btns"><span class="save">Save</span><span class="cancel">Cancel</span></div>
+                                                    <div class="contanier-input">
+                                                        <textarea name="aboutYou" id=""  placeholder="Brief To You" cols="50" rows="5"><?php echo isset($user['aboutYou']) ? $user['aboutYou'] : ""  ?></textarea>
+                                                        <div class="btns"><span class="save" user-id = "<?php echo $_SESSION['IdUser'] ?>">Update</span><span class="cancel">Cancel</span></div>
                                                     </div>
                                                 </div>
                                                 <!-- End Input Feils -->
@@ -162,12 +173,14 @@
                                                 <span class="containt-reg-db"><?php echo isset($user['website']) ? $user['website'] : "Your website | Blog" ?></span>
                                                 <!-- Start input Feils -->
                                                 <div class="contanier-proccess hidden">
-                                                    <div class="">
-                                                        <input type="text" name=""
-                                                                value=""
+                                                    <div class="contanier-input">
+                                                        <input 
+                                                                type="text" 
+                                                                name="website"
+                                                                value="<?php echo isset($user['website']) ? $user['website'] : "" ?>"
                                                                 class="snippet-input"
-                                                                placeholder="<?php if ( ! isset($user['website']) ) echo  "Yore Site | Bloge" ?>">
-                                                        <div class="btns"><span class="save">Save</span><span class="cancel">Cancel</span></div>
+                                                                placeholder="Your website | Blog">
+                                                        <div class="btns"><span class="save" user-id = "<?php echo $_SESSION['IdUser'] ?>">Update</span><span class="cancel">Cancel</span></div>
                                                     </div>
                                                 </div>
                                                 <!-- End Input Feils -->
@@ -186,9 +199,9 @@
                                                 <span class="containt-reg-db"><?php if ( isset($user['githup']) ) echo  $user['githup']; ?></span>
                                                 <!-- Start input Feils -->
                                                 <div class="contanier-proccess hidden">
-                                                    <div class="">
-                                                        <input type="text" name="" value="<?php if ( isset($user['githup']) ) echo  $user['githup']; ?>" class="snippet-input" placeholder="Githup">
-                                                        <div class="btns"><span class="save">Save</span><span class="cancel">Cancel</span></div>
+                                                    <div class="contanier-input">
+                                                        <input type="text" name="githup" value="<?php if ( isset($user['githup']) ) echo  $user['githup']; ?>" class="snippet-input" placeholder="Your Githup Account">
+                                                        <div class="btns"><span class="save" user-id = "<?php echo $_SESSION['IdUser'] ?>">Update</span><span class="cancel">Cancel</span></div>
                                                     </div>
                                                 </div>
                                                 <!-- End Input Feils -->
@@ -207,9 +220,10 @@
                                                 <span class="containt-reg-db"><?php if ( isset($user['twitter']) ) echo  $user['twitter']; ?></span>
                                                 <!-- Start input Feils -->
                                                 <div class="contanier-proccess hidden">
-                                                    <div class="">
-                                                        <input type="text" name="" value="<?php if ( isset($user['twitter']) ) echo  $user['twitter']; ?>" class="snippet-input" placeholder="Twitter">
-                                                        <div class="btns"><span class="save">Save</span><span class="cancel">Cancel</span></div>
+                                                    <div class="contanier-input">
+                                                        <input type="text" name="twitter" 
+                                                        value="<?php if ( isset($user['twitter']) ) echo  $user['twitter']; ?>" class="snippet-input" placeholder="Your Twitter Account">
+                                                        <div class="btns"><span class="save" user-id = "<?php echo $_SESSION['IdUser'] ?>">Update</span><span class="cancel">Cancel</span></div>
                                                     </div>
                                                 </div>
                                                 <!-- End Input Feils -->
@@ -228,14 +242,14 @@
                                                 <span class="containt-reg-db"><?php echo isset($user['linkedin']) ?  $user['linkedin'] : "Your Linkedin Account" ?></span>
                                                 <!-- Start input Feils -->
                                                 <div class="contanier-proccess hidden">
-                                                    <div class="">
+                                                    <div class="contanier-input">
                                                         <input 
                                                         type="text" 
-                                                        name="" 
-                                                        value="<?php echo isset($user['linkedin']) ?  $user['linkedin'] : "Your Linkedin Account" ?>" 
+                                                        name="linkedin" 
+                                                        value="<?php echo isset($user['linkedin']) ?  $user['linkedin'] : "" ?>" 
                                                         class="snippet-input"
-                                                        placeholder="Linkedin">
-                                                        <div class="btns"><span class="save">Save</span><span class="cancel">Cancel</span></div>
+                                                        placeholder="Your Linkedin Account">
+                                                        <div class="btns"><span class="save" user-id = "<?php echo $_SESSION['IdUser'] ?>">Update</span><span class="cancel">Cancel</span></div>
                                                     </div>
                                                 </div>
                                                 <!-- End Input Feils -->
@@ -258,13 +272,9 @@
                                                     <span class="containt-reg-db"><?php echo isset($user['education']) ?  $user['education'] : "Education" ?></span>
                                                     <!-- Start input Feils -->
                                                     <div class="contanier-proccess hidden">
-                                                        <div class="">
-                                                            <input 
-                                                            type="text" 
-                                                            name="" value="<?php echo isset($user['education']) ?  $user['education'] : "Education" ?>" 
-                                                            class="snippet-input" 
-                                                            placeholder="Education">
-                                                            <div class="btns"><span class="save">Save</span><span class="cancel">Cancel</span></div>
+                                                        <div class="contanier-input">
+                                                            <textarea name="education" id="" cols="50" rows="5" placeholder="Education"><?php echo isset($user['education']) ?  $user['education'] : "" ?></textarea>
+                                                            <div class="btns"><span class="save" user-id = "<?php echo $_SESSION['IdUser'] ?>">Update</span><span class="cancel">Cancel</span></div>
                                                         </div>
                                                     </div>
                                                     <!-- End Input Feils -->
@@ -282,9 +292,10 @@
                                                     <span class=""><?php echo isset($user['work']) ?  $user['work'] : "Work At" ?></span>
                                                     <!-- Start input Feils -->
                                                     <div class="contanier-proccess hidden">
-                                                        <div class="">
-                                                            <input type="text" name="" value="" class="snippet-input" placeholder="Work">
-                                                            <div class="btns"><span class="save">Save</span><span class="cancel">Cancel</span></div>
+                                                        <div class="contanier-input">
+                                                            <!-- <input type="text" name="work" value="" class="snippet-input" placeholder="Work"> -->
+                                                            <textarea name="work" class="" placeholder="Work" id="" cols="50" rows="5"><?php echo $user["work"] ?></textarea>
+                                                            <div class="btns"><span class="save" user-id = "<?php echo $_SESSION['IdUser'] ?>">Update</span><span class="cancel">Cancel</span></div>
                                                         </div>
                                                     </div>
                                                     <!-- End Input Feils -->
@@ -308,11 +319,14 @@
                                                 <span class="containt-reg-db">skills</span>
                                                 <!-- Start input Feils -->
                                                 <div class="contanier-proccess hidden">
-                                                    <div class="" id="">
+                                                    <div class="contanier-input" id="">
                                                         <div id="tag-contanier">
-                                                            <input type="text" name="" value="" id="skills" class="snippet-input input-shills" placeholder="skills">
+                                                            <?php PrintSkilles($user["tools"]) ?>
+                                                            <input type="text" name="tools" value="" id="skills" class="snippet-input input-shills" placeholder="skills">
+                                                            <div class="hidden" id="regist-val"><?php echo $user['tools'] ?></div>
+                                                            <div class="error-mas hidden">Not Founded Technical</div>
                                                         </div>
-                                                        <div class="btns"><span class="save">Save</span><span class="cancel">Cancel</span></div>
+                                                        <div class="btns"><span class="save-skille" id="save-skilles" user-id = "<?php echo $_SESSION['IdUser'] ?>">Update</span><span class="cancel">Cancel</span></div>
                                                     </div>
                                                 </div>
                                                 <!-- End Input Feils -->
