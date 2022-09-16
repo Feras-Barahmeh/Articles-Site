@@ -117,6 +117,9 @@ a.active {
 .content-mass span:hover {
     opacity: .6;
 }
+.success-mas {
+    background: rgb(137, 243, 137);
+}
 /* End Simple Alert Massage */
 /* Start navigation Bar */
 aside .nav-toggeler {
@@ -309,7 +312,7 @@ aside .nav-toggeler {
     display: none;
     width: auto;
     flex-direction: column;
-    position: fixed;
+    position: absolute;
     z-index: 100;
     right: 15%;
     top: 55px;
@@ -773,6 +776,7 @@ p {
     font-weight: unset;
     font-size: 15px;
     padding: 2px 5px;
+    color: var(--text-black-700);
 }
 .Statistics-section .inner-section ul li a {
     padding: 2px 3px;
@@ -881,6 +885,7 @@ p {
     padding: 10px;
     border-radius: 4px;
     transition: all .3s ease-in-out;
+    cursor: pointer;
 }
 .edit-section .side-section-edit .sidebar li.active {
     background: var(--bg-skin-color);
@@ -904,7 +909,7 @@ p {
     margin-left: 20px;
     color: var(--text-black-700);
 }
-.edit-section .section-edit {
+.edit-section .cont-type-edit {
     width: 70%;
     padding: 15px;
     min-height: 600px;
@@ -915,55 +920,59 @@ p {
     background: var(--bg-black-100);
     border-radius: 10px;
 }
-.edit-section .section-edit > div {
+.edit-section .cont-type-edit > div {
     margin-bottom: 50px;
     box-shadow: 3px 3px 4px rgb(0 0 0 / 8%);
 }
-.edit-section .section-edit h4 {
+.edit-section .cont-type-edit h4 {
     color: var(--text-black-700);
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 8px;
     margin-left: 12px;
 }
-.edit-section .section-edit .contanier-feild {
+.edit-section .cont-type-edit .contanier-feild {
     border-bottom: 1px solid var(--bg-black-50);
     transition: all .3s ease-in-out;
+    margin-top: 15px;
 }
-.edit-section .section-edit .contanier-feild:last-child {
+.edit-section .cont-type-edit .contanier-feild:last-child {
     border-bottom: none;
 }
-.edit-section .section-edit .contanier-feild .row-feild {
+.edit-section .cont-type-edit .contanier-feild .row-feild {
     display: flex;
+    align-items: center;
     width: 100%;
     font-size: 14px;
     padding: 12px 0;
     padding-left: 12px;
     padding-right: 12px;
 }
-.edit-section .section-edit .contanier-feild .row-feild .name-feild {
+.edit-section .cont-type-edit .contanier-feild .row-feild .name-feild {
     width: 100px;
     color: var(--text-black-700);
 }
-.edit-section .section-edit .contanier-feild .row-feild .content-feild  {
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild  {
     width: calc(100% - 300px);
     flex-grow: 1;
 }
-.edit-section .section-edit .contanier-feild .row-feild .content-feild span {
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild span {
     color: var(--text-black-700);
+    display: flex;
+    align-items: center;
 }
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess {
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess {
     overflow: hidden;
     transition: all .3s ease-in-out;
 }
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .snippet-input {
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess .snippet-input {
     outline: none;
     border: 1px solid var(--bg-black-50);
     padding: 7px 10px;
     width: 200px;
     color: var(--text-black-700);
 }
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .error-mas {
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess .error-mas {
     display: block;
     width: 100%;
     border: 2px solid red;
@@ -971,7 +980,7 @@ p {
     color: white;
     background: var(--danger--900);
 }
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess textarea {
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess textarea {
     border: 1px solid var(--text-black-700);
     padding: 10px;
     background: var(--bg-black-900);
@@ -980,14 +989,14 @@ p {
     outline: none;
     resize: none;
 }
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess #tag-contanier {
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess #tag-contanier {
     background: var(--bg-black-50);
     display: flex;
     padding: 5px;
     align-items: center;
     flex-wrap: wrap;
 }
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .input-shills {
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess .input-shills {
     height: 30px;
     background: transparent !important;
     border: none;
@@ -1002,8 +1011,11 @@ p {
     border-radius: 3px;
     padding: 8px;
     height: 28px;
-    box-shadow: 3px 1px 3px rgb(0 0 0 / 8%);
+    box-shadow: 5px 5px 3px rgb(0 0 0 / 19%);
     margin-bottom: 4px;
+}
+.tag:hover {
+    opacity: .8;
 }
 .tag span {
     margin-right: 6px;
@@ -1020,39 +1032,178 @@ p {
 .tag i:hover {
     background: var(--skin-color);
 }
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .btns {
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess .btns {
     height: 27px;
     margin-top: 11px;
 }
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save,
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save-skille,
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .cancel {
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save,
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save-skille,
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess .cancel {
     padding: 5px 10px;
     border: none;
     color: var(--text-black-700);
     margin-right: 10px;
     cursor: pointer;
     border-radius: 2px;
+    display: inline-block;
 }
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save:hover,
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save-skille:hover,
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .cancel:hover {
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save:hover,
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save-skille:hover,
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess .cancel:hover {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 20%);
 }
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save,
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save-skille {
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save,
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess .save-skille {
     background-color: var(--skin-color);
 }
-.edit-section .section-edit .contanier-feild .row-feild .content-feild .contanier-proccess .cancel {
+.edit-section .cont-type-edit .contanier-feild .row-feild .content-feild .contanier-proccess .cancel {
     background-color: var(--bg-black-50);
 }
-.edit-section .section-edit .contanier-feild .row-feild .editbtn {
+.edit-section .cont-type-edit .contanier-feild .row-feild .editbtn {
     width: 100px;
     text-align: right;
     color: var(--text-black-700);
     cursor: pointer;
 }
-.edit-section .section-edit .contanier-feild .row-feild .editbtn:hover {
+.edit-section .cont-type-edit .contanier-feild .row-feild .editbtn:hover {
     text-shadow: 0px 1px 10px rgb(0 0 0 / 50%);
 }
 /* End Edit Profile */
+
+
+/* Start Account Section */
+.privet {
+    font-size: 15px;
+    border-radius: 4px;
+    margin-left: 10px;
+    background: var(--skin-color);
+    padding: 2px 5px;
+    color: var(--bg-black-100) !important;
+}
+.theams {
+    display: flex;
+    justify-content: space-around;
+}
+.type-theam {
+    cursor: pointer;
+    background: var(--skin-color);
+    padding: 5px;
+    border-radius: 3px;
+    width: 70px;
+    justify-content: center;
+    color: var(--bg-black-50) !important;
+    font-weight: 600;
+}
+.type-theam:hover {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 20%);
+}
+.type-theam span {
+    color: var(--bg-black-50) !important;
+    display: flex;
+    margin-left: 8px;
+}
+.change-pass i {
+    display: inline-block !important;
+    color: var(--skin-color);
+}
+.change-pass span {
+    display: inline-block !important;
+    margin: 10px;
+}
+.change-pass span:hover {
+    color: var(--skin-color) !important;
+}
+/* End Account Section */
+
+/* Start Edit Password */
+.contanier-prosess-change-pass {
+    background: var(--bg-black-900);
+    width: 400px;
+    position: relative;
+    margin: auto;
+    margin-top: 50px;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 3px 2px 8px rgba(0, 0, 0, .5);
+}
+.contanier-prosess-change-pass h3 {
+    margin: auto;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+    display: inline-block;
+}
+.contanier-prosess-change-pass h3 i {
+    color: var(--skin-color);
+}
+.contanier-prosess-change-pass h3 span {
+    color: var(--skin-color);
+    margin-left: 10px;
+}
+.contanier-prosess-change-pass .form h5 {
+    background: var(--bg-skin-color);
+    padding: 15px;
+    text-align: center;
+    color: var(--text-black-900);
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+.contanier-prosess-change-pass form {
+    border: 2px solid var(--bg-black-50);
+    padding: 20px;
+}
+.contanier-prosess-change-pass form .contnier-input {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 20px 0;
+}
+.contanier-prosess-change-pass form .contnier-input label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 13px;
+    font-family: ui-serif;
+    color: var(--bg-black-50);
+    pointer-events: none;
+    transition: all .3s ease-in-out;
+    width: 100%;
+    z-index: -10;
+    margin-bottom: 5px;
+}
+.contanier-prosess-change-pass form .contnier-input input {
+    padding: 10px 3px;
+    font-size: 15px;
+    color: var(--text-black-900);
+    margin-bottom: 23px;
+    margin-top: 5px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    outline: none;
+    border: 3px solid var(--bg-black-50);
+    background: transparent;
+}
+.contanier-prosess-change-pass form .contnier-input input:focus~label {
+    top: -30px;
+    left: 0;
+    font-size: 5px;
+    color: var(--text-black-900);
+    font-size: 1em;
+    border-radius: 1em;
+    z-index: 1;
+}
+.contanier-prosess-change-pass form input:last-child {
+    outline: none;
+    border: none;
+    background: var(--skin-color);
+    padding: 10px;
+    border-radius: 4px;
+    color: var(--text-black-700);
+}
+.contanier-prosess-change-pass form input:last-child:hover {
+    box-shadow: 3px 2px 8px rgba(0, 0, 0, .5);
+}
+/* End Edit Password */

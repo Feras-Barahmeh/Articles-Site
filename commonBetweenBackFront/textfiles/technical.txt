@@ -4,4 +4,5 @@ This file has all teqnolige can user add in profile
 -AJAX
 -XML
 -JSON
--SOLID Prinsale
+-SOLID
+-GraphQL
