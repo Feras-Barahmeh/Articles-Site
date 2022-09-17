@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2022 at 11:42 PM
+-- Generation Time: Sep 16, 2022 at 11:53 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -98,13 +98,17 @@ CREATE TABLE `users` (
   `langs` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
   `tools` text DEFAULT NULL,
   `permission` tinyint(11) NOT NULL,
-  `age` tinyint(4) NOT NULL,
+  `age` date NOT NULL,
   `githup` varchar(50) DEFAULT NULL,
   `facebook` varchar(50) DEFAULT NULL,
   `twitter` varchar(50) DEFAULT NULL,
   `linkedin` varchar(50) DEFAULT NULL,
+  `website` varchar(255) DEFAULT NULL,
   `nickname` varchar(50) DEFAULT NULL,
-  `gender` char(1) DEFAULT NULL,
+  `gender` varchar(6) DEFAULT NULL,
+  `location` varchar(60) DEFAULT NULL,
+  `education` text DEFAULT NULL,
+  `work` text DEFAULT NULL,
   `imageName` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
   `dataRegister` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -113,20 +117,20 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`IdUser`, `userName`, `password`, `email`, `fullName`, `aboutYou`, `langs`, `tools`, `permission`, `age`, `githup`, `facebook`, `twitter`, `linkedin`, `nickname`, `gender`, `imageName`, `dataRegister`) VALUES
-(12, 'feras', '$2y$10$Ci/KLHxpIAMOWOKqyEF1DuTyJBjxgYxKrrAP2wkuS/f6h6qHU85QO', 'ferasfadi345@gmail.com', 'Feras Barahmeh', 'I\'m Feras Barahmeh, study at ttu', 'cpp:50%, php:80%, python90%', 'Git  & Githup:40%,SOLID prinsiple:67%', 1, 21, NULL, NULL, NULL, NULL, NULL, NULL, 'download.png12_download.png', '2022-08-10'),
-(14, 'majd', '$2y$10$Ci/KLHxpIAMOWOKqyEF1DuTyJBjxgYxKrrAP2wkuS/f6h6qHU85QO', 'majdbarahmeh990@gmail.com', 'Majd Fadi Barahmeh', 'I\'m Majd Fadi', 'cpp:30%, python:90%', 'Git  & Githup:40%,SOLID prinsiple:67%', 0, 19, 'majdfadi', 'majd_fadi', 'da7loze', NULL, 'da7loz', NULL, '52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg14_52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg', '2022-08-10'),
-(17, 'fadi', '$2y$10$id1hH5sb8EeeOcxVNUu26.gKqBg146QkYjBdSQVBxkjc949w/TC1y', 'fedi@f.com', 'Fadi Barahmeh', 'study CS', 'CPP, VB', NULL, 2, 47, NULL, NULL, NULL, NULL, NULL, NULL, 'depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg_depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '2022-08-23'),
-(18, 'jojo', '$2y$10$yw5YQAxHZq7oD5LJiTrrEeEkvoUMF4Kfwkg7.witOw7f3SAjZkExe', 'j@j.com', 'Jenan', 'Saf 8', 'None', NULL, 1, 13, NULL, NULL, NULL, NULL, NULL, NULL, 'avatar-icon-of-girl-in-a-baseball-cap-vector-16225068.jpg18_avatar-icon-of-girl-in-a-baseball-cap-vector-16225068.jpg', '2022-08-23'),
-(20, 'ahmad', '$2y$10$l6MDWcjvy6c1d0pZ3WuCMuH3IxbyJTrvFqPA1ScAlWNtLWhPhY9f2', 'a@a.com', 'Ahmad Fadi', '', '', NULL, 2, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-08-24'),
-(25, 'fowze', '$2y$10$ejYzeGgEnenB2ggNPX2AYue5wxddr7sYcrqpiCFZ3kgH7bg1Pdojm', 'f@fa.com', 'Fawaz Ahmad', 'I\'m Fawaz', 'NULL', 'git', 2, 45, NULL, NULL, NULL, NULL, NULL, NULL, 'null_light-53585615fd723ba992bd2df7a10d10d1.png25_null_light-53585615fd723ba992bd2df7a10d10d1.png', '2022-08-25'),
-(28, 'fadiazmi', '$2y$10$lmr2/f3xtusQEY2R6ZJZsOkzIRpX2i/uPG9OaiAdDwbv1PZ5rQkfK', 'f@f.com', 'Fadi barha', '', '', NULL, 1, 50, NULL, NULL, NULL, NULL, NULL, NULL, 'download (5).jpg_download (5).jpg', '2022-08-25'),
-(36, 'amrdeab', '$2y$10$tyNaZvcnhARdOhO1ke5Reuhbi4EgC.4N3es25UKoATQPYpMC.rzzO', 'a@m.com', 'Amr Deab', '', NULL, NULL, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(37, 'naser', '$2y$10$ujbS72SIR2reIj66aO3SrundEKxLroIMKRHsfVOd2oZhiNuq9EWq.', 'n@n.com', 'Naser ', '', NULL, NULL, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(38, 'sadam', '$2y$10$IgqZNLAR4HgiYyKZjtx7OO0vxyE6BB/UtNb/np43AFb5druF7OPUm', 's@sd.com', 'Sadam Hussan', '', NULL, NULL, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(39, 'ferasahmad', '$2y$10$b5U25uPUYuSoxMjVkIwlsOL1J5bwObQY.gBI4OwyQ1eIlx9VPtzPu', 'fa@f.com', 'Feas Ahmad', '', NULL, NULL, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(40, 'yaelQase,', '$2y$10$9rhi.Kn2mzBdiF0ytnIgauVx9Dxl53CfyRb6kqwMSK39WCIlezjOm', 'q@y.com', 'Yaiel Qasem', '', NULL, NULL, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(41, 'feas', '$2y$10$eoHPd3Z68qenqlG3U9VN4.jAqvwnaJiBVUqT8h2GACIsE8iWL/nxu', 'f.f.b.feras@gmail.com', 'ferasfad', '', NULL, NULL, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00');
+INSERT INTO `users` (`IdUser`, `userName`, `password`, `email`, `fullName`, `aboutYou`, `langs`, `tools`, `permission`, `age`, `githup`, `facebook`, `twitter`, `linkedin`, `website`, `nickname`, `gender`, `location`, `education`, `work`, `imageName`, `dataRegister`) VALUES
+(12, 'feras', '$2y$10$Ci/KLHxpIAMOWOKqyEF1DuTyJBjxgYxKrrAP2wkuS/f6h6qHU85QO', 'ferasfadi345@gmail.com', 'Feras Barahmeh', 'I\'m Feras Barahmeh, study at ttu', 'cpp:50%, php:80%, python90%', 'Git  & Githup:40%,SOLID prinsiple:67%', 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download.png12_download.png', '2022-08-10'),
+(14, 'majd', '$2y$10$4ZlPqT1STYerP20oRYqTL.eNLlLAplkiQwVSFQ946J8IeXEQaE9sa', 'majdfadi44@gmail.com', 'Majd Fadi Barahmeh', 'Im Majd Fadi Barahmeh', 'cpp:30%, python:90%', 'git,JSON,githup', 0, '2003-07-09', 'majdfadi', 'majd_fadi', 'da7loze', NULL, NULL, 'da7loz', 'male', 'Zarqa- Jordan', 'HU, JU', NULL, '52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg14_52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg', '2022-08-10'),
+(17, 'fadi', '$2y$10$id1hH5sb8EeeOcxVNUu26.gKqBg146QkYjBdSQVBxkjc949w/TC1y', 'fedi@f.com', 'Fadi Barahmeh', 'study CS', 'CPP, VB', NULL, 2, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg_depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '2022-08-23'),
+(18, 'jojo', '$2y$10$yw5YQAxHZq7oD5LJiTrrEeEkvoUMF4Kfwkg7.witOw7f3SAjZkExe', 'j@j.com', 'Jenan', 'Saf 8', 'None', NULL, 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'avatar-icon-of-girl-in-a-baseball-cap-vector-16225068.jpg18_avatar-icon-of-girl-in-a-baseball-cap-vector-16225068.jpg', '2022-08-23'),
+(20, 'ahmad', '$2y$10$l6MDWcjvy6c1d0pZ3WuCMuH3IxbyJTrvFqPA1ScAlWNtLWhPhY9f2', 'a@a.com', 'Ahmad Fadi', '', '', NULL, 2, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-08-24'),
+(25, 'fowze', '$2y$10$ejYzeGgEnenB2ggNPX2AYue5wxddr7sYcrqpiCFZ3kgH7bg1Pdojm', 'f@fa.com', 'Fawaz Ahmad', 'I\'m Fawaz', 'NULL', 'git', 2, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'null_light-53585615fd723ba992bd2df7a10d10d1.png25_null_light-53585615fd723ba992bd2df7a10d10d1.png', '2022-08-25'),
+(28, 'fadiazmi', '$2y$10$lmr2/f3xtusQEY2R6ZJZsOkzIRpX2i/uPG9OaiAdDwbv1PZ5rQkfK', 'f@f.com', 'Fadi barha', '', '', NULL, 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download (5).jpg_download (5).jpg', '2022-08-25'),
+(36, 'amrdeab', '$2y$10$tyNaZvcnhARdOhO1ke5Reuhbi4EgC.4N3es25UKoATQPYpMC.rzzO', 'a@m.com', 'Amr Deab', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(37, 'naser', '$2y$10$ujbS72SIR2reIj66aO3SrundEKxLroIMKRHsfVOd2oZhiNuq9EWq.', 'n@n.com', 'Naser ', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(38, 'sadam', '$2y$10$IgqZNLAR4HgiYyKZjtx7OO0vxyE6BB/UtNb/np43AFb5druF7OPUm', 's@sd.com', 'Sadam Hussan', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(39, 'ferasahmad', '$2y$10$b5U25uPUYuSoxMjVkIwlsOL1J5bwObQY.gBI4OwyQ1eIlx9VPtzPu', 'fa@f.com', 'Feas Ahmad', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(40, 'yaelQase,', '$2y$10$9rhi.Kn2mzBdiF0ytnIgauVx9Dxl53CfyRb6kqwMSK39WCIlezjOm', 'q@y.com', 'Yaiel Qasem', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
+(41, 'feas', '$2y$10$eoHPd3Z68qenqlG3U9VN4.jAqvwnaJiBVUqT8h2GACIsE8iWL/nxu', 'f.f.b.feras@gmail.com', 'ferasfad', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00');
 
 --
 -- Indexes for dumped tables

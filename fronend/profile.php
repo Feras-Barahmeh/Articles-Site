@@ -10,7 +10,18 @@
 
     function SetMediaLinks() {
         $user = GetRequests::GetValueGet("user");
-        $userNams = Queries::FromTable("githup, facebook, twitter, linkedin", "users", "WHERE userName = '" . $user . "'", "fetch");
+        $userNams = Queries::FromTable(
+                                        "githup, facebook, twitter, linkedin, location, website",
+                                        "users",
+                                        "WHERE userName = '" . $user . "'", 
+                                        "fetch");
+
+        // Set Country
+        if (! empty($userNams['location'])) {
+            ?>
+                <li><a href=""><i class="fa-solid fa-location-dot"></i><?php echo $userNams["location"]  ?></a></li>
+            <?php
+        }
 
         // Set GitHup Account
     
@@ -38,12 +49,30 @@
                 <li><a href="https://www.linkedin.com/in/<?php echo $userNams["linkedin"] ?>"><i class="fa-brands fa-linkedin"></i><?php echo $userNams["linkedin"]  ?></a></li>
             <?php
         }
+
+        if (! empty($userNams["website"])) {
+            ?>
+                <li><a href="<?php echo $userNams["website"] ?>"><i class="fa-solid fa-browser"></i><?php echo $userNams["website"]  ?></a></li>
+            <?php
+        }
         
     }
 
     function PrepareSkilleAndRate($langs) : array{
         $lang = explode(",", $langs);
         return $lang;
+    }
+
+    
+    function SetProsses($to) {
+        if (!empty($to)) {
+            ?>
+                <div class="prosses">
+                    <div class="back" style="width: <?php echo $to ?>;"></div>
+                    <div class="rate"><?php echo $to ?></div>
+                </div>
+            <?php
+        }
     }
 
     function SetLanguges() {
@@ -54,36 +83,38 @@
             $langName = $lang[0];
             $langRate = $lang[1];
             
+            
             ?>
                 <li>
                     <div class="content-ul">
                         <label><?php echo $langName ?></label>
-                        <div class="prosses">
-                            <div class="back" style="width: <?php echo $langRate ?>;"></div>
-                            <div class="rate" ><?php echo $langRate ?></div>
-                        </div>
+                        <?php SetProsses($langRate) ?>
                     </div>
                 </li>
             <?php 
         }
     }
 
+
     function SetTools() {
         $toolsUser = Queries::FromTable("tools", "users", "WHERE IdUser = {$_SESSION['IdUser']}", "fetch")['tools'];
         $tools = PrepareSkilleAndRate($toolsUser);
         foreach ($tools as $tool) {
             $tool = explode(":", $tool);
+
             $toolName = $tool[0];
-            $toolRate = $tool[1];
+
+            if (isset($tool[1])) {
+                $toolRate = $tool[1];
+            } else {
+                $toolRate = "";
+            }
             
             ?>
                 <li>
                     <div class="content-ul">
                         <label><?php echo $toolName ?></label>
-                        <div class="prosses">
-                            <div class="back" style="width: <?php echo $toolRate ?>;"></div>
-                            <div class="rate"><?php echo $toolRate ?></div>
-                        </div>
+                        <?php SetProsses($toolRate) ?>
                     </div>
                 </li>
             <?php 

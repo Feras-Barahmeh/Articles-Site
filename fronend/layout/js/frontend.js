@@ -1,3 +1,28 @@
+// Start Navigation
+    const lisNav = document.querySelectorAll(".li-nav");
+    function removeActiveForAll() {
+        lisNav.forEach((li) => {
+            li.classList.remove("active");
+        });
+    }
+    lisNav.forEach((liNav) => {
+
+        liNav.addEventListener("click", () => {
+            window.localStorage.setItem("activeLink", liNav.innerHTML);
+            removeActiveForAll();
+            liNav.classList.add("active");
+        });
+    });
+
+    lisNav.forEach((a) => {
+        if (a.innerHTML === window.localStorage.activeLink) {
+            removeActiveForAll();
+            a.classList.add("active");
+        }
+    });
+// End Navigation
+
+
 // Toggel Btn
     const toggelBurgerMinu = document.querySelector(".nav-toggeler");
 

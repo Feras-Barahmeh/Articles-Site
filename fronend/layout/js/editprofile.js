@@ -224,10 +224,6 @@
                             });
                             
                         }
-                    //     // Show Data in page 
-                    // let skillesUser = this.responseText.split(",").reverse();
-                    // skillesUser.forEach((skilleUser)=>{
-                    // });
                     };
 
 
@@ -326,6 +322,4 @@
         });
     });
 
-
-
-// End Acount Edit 
+// End Acount Edit

@@ -16,6 +16,7 @@
                         <li><a href="#">Read Later</a></li>
                         <li><a href="#">Favarit Article</a></li>
                         <li><a href="editprofile.php?user=<?php echo $_SESSION['user'] ?>">Edit Profile</a></li>
+                        <li><a href="profile.php?user=<?php echo $_SESSION['user'] ?>">Profile</a></li>
                         <li><a href="#">Settings</a></li>
                         <li><a href="#">Membership request</a></li>
                         <li><a href="logout.php">Logout</a></li>
@@ -23,12 +24,11 @@
             </div>
 
             <ul>
-                <li><a href="../../index.php" class="active">Home</a></li>
-                <li><a href="#" >Articles</a></li>
-                <li><a href="#" >Problems</a></li>
-                <li><a href="#" >Solve Bugs</a></li>
-                <li><a href="#" >Queties</a></li>
-                
+                <li><a href="../../index.php" class="active li-nav">Home</a></li>
+                <li><a class="li-nav" href="..//articles.php" >Articles</a></li>
+                <li><a class="li-nav" href="#" >Problems</a></li>
+                <li><a class="li-nav" href="#" >Solve Bugs</a></li>
+                <li><a class="li-nav" href="#" >Queties</a></li>
             </ul>
 
         </div>
