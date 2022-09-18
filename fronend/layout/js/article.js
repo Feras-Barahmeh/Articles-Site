@@ -20,7 +20,7 @@
     const searchInput = document.getElementById("search-art");
     const searchBtn = document.getElementById("search-btn");
     
-    searchInput.addEventListener("keypress" , (e) => {
+    searchInput.addEventListener("keyup" , (e) => {
         getArticles(e.target.value);
     });
 
@@ -28,7 +28,7 @@
 // Show scroll To Up Btn
     const upBtn = document.getElementById("up-btn");
     window.onscroll = function () {
-        this.scrollY >= 200 ? upBtn.classList.add("show") : upBtn.classList.remove("show");
+        this.scrollY >= 600 ? upBtn.classList.add("show") : upBtn.classList.remove("show");
     }
 
     upBtn.onclick = function () {
@@ -37,3 +37,28 @@
             behavior: "smooth",
         });
     }
+
+
+// Search Categories
+    const cats = document.querySelectorAll(".cats");
+    const numberCats = Object.keys(cats).length;
+
+    const input = document.getElementById("search-cat");
+
+    input.addEventListener("keyup", (e)=> {
+        let val = e.target.value.toLowerCase();
+        cats.forEach((cat) => {
+            let nameCat = cat.getAttribute("name-cat").toLowerCase();
+            if (nameCat.search(val) == -1 ) {
+                cat.closest("li").style.display = "none";
+            } else {
+                cat.closest("li").style.display = "block";
+                cat.closest("li").style.borderBottom = "none";
+            }
+        });
+
+        // Remove Padding Bottom
+        const contanierCats = document.querySelector(".cats-contaniere");
+        contanierCats.style.paddingBottom = "unset";
+
+    });

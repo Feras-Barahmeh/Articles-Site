@@ -435,23 +435,25 @@
                     </div>
                 </div>
 
-                <section class="container edit-section">
-                    <div class="side-section-edit">
-                        <ul class="sidebar">
-                            <li id="global-info"    class="active level-edit" ><i class="fa-solid fa-microphone"></i><span>Global Info</span></li>
-                            <li id="account"        class="level-edit"><i class="fa-solid fa-gear"></i><span>Account</span></li>
-                            <!-- <li id="notification"   class="level-edit"><i class="fa-solid fa-bell"></i><span>Notification</span></li> -->
-                        </ul>
-                    </div>
+                <div class="background">
+                    <section class="container edit-section">
+                        <div class="side-section-edit">
+                            <ul class="sidebar">
+                                <li id="global-info"    class="active level-edit" ><i class="fa-solid fa-microphone"></i><span>Global Info</span></li>
+                                <li id="account"        class="level-edit"><i class="fa-solid fa-gear"></i><span>Account</span></li>
+                                <!-- <li id="notification"   class="level-edit"><i class="fa-solid fa-bell"></i><span>Notification</span></li> -->
+                            </ul>
+                        </div>
 
-                    <!-- Start Basic Info -->
-                        <?php basicInfoStructer($user) ?>
-                    <!-- End Basic Info -->
+                        <!-- Start Basic Info -->
+                            <?php basicInfoStructer($user) ?>
+                        <!-- End Basic Info -->
 
-                    <!-- Start Acount Section  -->
-                        <?php account($user) ?>
-                    <!-- End Account Section -->
-                </section>
+                        <!-- Start Acount Section  -->
+                            <?php account($user) ?>
+                        <!-- End Account Section -->
+                    </section>
+                </div>
             </div>
         <?php
     }

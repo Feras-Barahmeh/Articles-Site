@@ -84,6 +84,9 @@ a.active {
 .width {
     width: 100% !important;
 }
+.background {
+    background: var(--bg-black-100);
+}
 /* Start Simple Alert Massage */
 .mass {
     position: fixed;
@@ -347,7 +350,7 @@ aside .nav-toggeler {
     border-bottom: none !important;
 }
 .nav-front .contanier-options  .ul-dropdown li:hover {
-    background-color: #ddd;
+    background-color: var(--bg-black-50);
     transform: perspective(100px) translateZ(10px);
 }
 .nav-front .contanier-options  .ul-dropdown li a {
@@ -658,6 +661,7 @@ p {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background: var(--bg-black-900);
 }
 .main-contanier  .cards {
     justify-content: space-evenly;
@@ -756,6 +760,9 @@ p {
 .Statistics-section .inner-section .header span #up-queue-articles {
     display: none;
 }
+.Statistics-section .inner-section .header span i {
+    color: var(--skin-color);
+}
 .Statistics-section .inner-section ul {
     display: block;
 }
@@ -791,6 +798,7 @@ p {
     width: 40px;
     margin-right: 3px;
     text-align: center;
+    color: var(--text-black-700);
 }
 .Statistics-section .inner-section ul li:nth-child(even)  .btn-a {
     background: var(--bg-black-100);
@@ -1282,6 +1290,7 @@ p {
     width: 150px;
     overflow: hidden;
     font-size: 13px;
+    color: var(--text-black-700);
 }
 .aside-articles .contanier-articles .title-article li a {
     font-size: 14px;
@@ -1302,11 +1311,11 @@ p {
     height: auto;
     padding-top: 20px;
     display: flex;
+    flex-direction: row-reverse;
     gap: 15px;
     padding-right: 30px;
 }
 .contanier-padding .section-regritions {
-    left: 20px;
     position: relative;
     background: var(--bg-black-100);
     flex: 0 0 35%;
@@ -1318,6 +1327,9 @@ p {
     padding: 20px;
     background: var(--bg-black-50);
     margin: 20px;
+}
+.contanier-padding .section-regritions .cats-contaniere {
+    padding-bottom: unset;
 }
 .contanier-padding .section-regritions .main-part h4 {
     margin-top: 0;
@@ -1337,7 +1349,6 @@ p {
 .contanier-padding .section-regritions .main-part ul li {
     display: inline-block;
     width: 100%;
-    text-align: center;
     font-size: 14px;
     margin-bottom: 10px;
     border-bottom: 1px solid var(--bg-black-900);
@@ -1345,6 +1356,10 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: var(--text-black-700);
+}
+.contanier-padding .section-regritions .main-part ul li a {
+    color: var(--text-black-900);
 }
 .contanier-padding .section-regritions .main-part ul li:last-child {
     border-bottom: none;
@@ -1370,6 +1385,7 @@ p {
     width: 100%;
     display: inline-block;
     margin-bottom: 20px;
+    color: var(--text-black-700);
 }
 .contanier-padding .section-regritions .lpa img {
     max-width: 100%;
@@ -1379,7 +1395,27 @@ p {
     margin-top: 15px;
     max-height: 400px;
 }
-
+.contanier-padding .section-regritions .contanier-search-cat {
+    margin-bottom: 20px;
+    position: relative;
+}
+.contanier-padding .section-regritions .contanier-search-cat i {
+    display: inline-block;
+    position: absolute;
+    color: var(--skin-color);
+    top: 10px;
+    left: 4px;
+}
+.contanier-padding .section-regritions .contanier-search-cat input {
+    width: 100%;
+    display: inline-block;
+    outline: none;
+    border: 1px solid var(--skin-color);
+    padding: 10px 0 10px 25px;
+    background: transparent;
+    position: relative;
+    color: var(--text-black-900);
+}
 .contanier-padding .section-articles {
     flex: 0 0 65%;
     background: var(--bg-black-50);
@@ -1393,15 +1429,19 @@ p {
 .contanier-padding .section-articles .article img {
     width: 100%;
     max-width: 100%;
+    height: 300px;
+    position: relative;
 }
 .contanier-padding .section-articles .article .box {
 
 }
 .contanier-padding .section-articles .article .box a {
     font-size: 20px;
+    color: var(--text-black-900);
 }
 .contanier-padding .section-articles .article .box .excerpt {
     line-height: 2;
+    color: var(--text-black-700);
 }
 .contanier-padding .section-articles .article .box .info-article {
     margin-top: 20px;
@@ -1419,30 +1459,23 @@ p {
     margin-right: 10px;
 }
 .scroll-to-top {
-    width: 35px;
-    height: 35px;
     position: fixed;
-    right: -45px;
+    right: -60px;
     bottom: 25px;
     z-index: 9999;
     display: block;
-    animation: jump  ease-in-out .2s infinite ;
+    animation: jump ease-in-out .2s infinite;
     transition: .3s;
-}
-.scroll-to-top.show {
-    right: 25px;
-}
-.scroll-to-top span {
-    background: linear-gradient(to right, #1368cc 50%, var(--skin-color) 50%) no-repeat scroll right bottom/210% 100% var(--skin-color);
-    -webkit-transition: all ease 0.3s;
-    -moz-transition: all ease 0.3s;
-    transition: all ease 0.3s;
-    display: block;
-    width: 100%;
-    height: 100%;
-    color: #fff;
+    -webkit-transition: all ease-in-out 0.3s;
+    -moz-transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
     text-align: center;
     cursor: pointer;
+    font-size: 35px;
+    color: var(--skin-color);
+}
+.scroll-to-top.show {
+    right: 27px;
 }
 @keyframes jump {
     0% {

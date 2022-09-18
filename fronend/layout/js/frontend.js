@@ -8,7 +8,7 @@
     lisNav.forEach((liNav) => {
 
         liNav.addEventListener("click", () => {
-            window.localStorage.setItem("activeLink", liNav.innerHTML);
+            window.sessionStorage.setItem("activeLink", liNav.innerHTML);
             removeActiveForAll();
             liNav.classList.add("active");
         });
@@ -18,6 +18,8 @@
         if (a.innerHTML === window.localStorage.activeLink) {
             removeActiveForAll();
             a.classList.add("active");
+        } else {
+            removeActiveForAll();
         }
     });
 // End Navigation

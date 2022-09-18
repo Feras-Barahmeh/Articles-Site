@@ -36,7 +36,6 @@
                             id="search-art"
                             description="serach name article name feild"
                             placeholder="Search Articel">
-                        <!-- <button id="search-btn">Search</button> -->
                     </ul>
 
                     <ul class="title-article" id="contaniert-art-tit">
@@ -48,15 +47,41 @@
         <?php
     }
 
+    function MostPopularArticels() {
+        $mostArtsPub = Queries::FromTable("titleArticle", "articles", NULL, "fetchAll", "likes", "DESC", "LIMIT 5");
+        foreach ($mostArtsPub as $mostArtPub) {
+            ?>
+                <li><a href="readArticle.php"><?php echo $mostArtPub['titleArticle'] ?></a></li>
+            <?php
+        }
+    }
+
+    function LastArticle() {
+        $lastArt = Queries::FromTable("titleArticle, imageName", "articles", NULL, "fetch", "IdArticle", "DESC", "LIMIT 1");
+        ?>
+            <div class="main-part lpa">
+                <h4 class="title"><i class="fa-regular fa-clipboard"></i>Last Published Article</h4>
+                <a href="readArticle.php" target="_blank"><?php echo $lastArt['titleArticle'] ?></a>
+                <?php ShowImage::SetImg("../../commonBetweenBackFront/uploaded/articles/", $lastArt['imageName']) ?>
+            </div>
+        <?php
+    }
+
+    function Feilds() {
+        $categories = Queries::FromTable("titleCategory", "categories", NULL, "fetchAll");
+        foreach ($categories as $catregory) {
+            ?>
+                <li><span class="to"><i class="fa-solid fa-tag"></i><a href="#" class="cats" name-cat="<?php echo $catregory["titleCategory"] ?>"><?php echo $catregory["titleCategory"] ?></a></span></li>
+            <?php
+        }
+    }
+
     function SectionRegritions () {
         ?>
             <div class="main-part top-viewed">
-                <h4 class="title"><i class="fa-regular fa-star"></i>Top Viewed</h4>
+                <h4 class="title"><i class="fa-regular fa-star"></i>Most Popular</h4>
                 <ul>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit</li>
+                    <?php MostPopularArticels() ?>
                 </ul>
             </div>
 
@@ -64,53 +89,52 @@
             <div class="main-part statistics">
                 <h4 class="title"><i class="fa-regular fa-chart-bar"></i>Statistics</h4>
                 <ul>
-                    <li><span class="to"><i class="fa-regular fa-newspaper"></i>Articels</span><span class="val">11</span></li>
+                    <li><span class="to"><i class="fa-regular fa-newspaper"></i>Articels</span><span class="val"><?php echo Queries::Counter("IdArticle", "articles") ?></span></li>
                     <li><span class="to"><i class="fa fa-quote-right"></i>Quotes</span><span class="val">11</span></li>
                     <li><span class="to"><i class="fa-solid fa-bug"></i>Solved Bugs</span><span class="val">11</span></li>
-                    <li><span class="to"><i class="fa-solid fa-house-laptop"></i>Fields</span><span class="val">11</span></li>
+                    <li><span class="to"><i class="fa-solid fa-house-laptop"></i>Fields</span><span class="val"><?php echo Queries::Counter("IdCategory", "categories") ?></span></li>
                 </ul>
             </div>
             <!-- End Statistics -->
 
             <!-- Start last published article -->
-            <div class="main-part lpa">
-                <h4 class="title"><i class="fa-regular fa-chart-bar"></i>Last Published Article</h4>
-                <a href="#" target="_blank">Lorem ipsum dolor, sit amet consectetur</a>
-                <img src="../../commonBetweenBackFront/images/imagesProject/null_light.png" alt="">
-            </div>
+                <?php LastArticle() ?>
             <!-- End last published article -->
+
+            <!-- Start Statistics -->
+            <div class="main-part cats-contaniere">
+                <h4 class="title"><i class="fa fa-lines-leaning"></i>Fieldes</h4>
+                <ul class="">
+                    <ul id="sea-cat" class="contanier-search-cat">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="search" id="search-cat"  placeholder="Search Fielde">
+                    </ul>
+                    <?php Feilds() ?>
+                </ul>
+            </div>
+            <!-- End Statistics -->
         <?php
     }
 
     function ArticlesStructer() {
-        ?>
-            <div class="article">
-                <img src="../../commonBetweenBackFront/uploaded/articles/php-logo.svg.png20_php-logo.svg.png" alt="">
-                <div class="box">
-                    <a href="#">Title</a>
-                    <div class="excerpt">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </div>
-                    <div class="info-article">
-                        <span class="date"><i class="fa-regular fa-calendar"></i>22-5-2002</span>
-                        <span class="viwed"><i class="fa-regular fa-eye"></i>2342</span>
-                    </div>
-                </div>
-            </div>
-            <div class="article">
-                <img src="../../commonBetweenBackFront/uploaded/articles/php-logo.svg.png20_php-logo.svg.png" alt="">
-                <div class="box">
-                    <a href="#">Title</a>
-                    <div class="excerpt">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </div>
-                    <div class="info-article">
-                        <span class="date"><i class="fa-regular fa-calendar"></i>22-5-2002</span>
-                        <span class="viwed"><i class="fa-regular fa-eye"></i>2342</span>
+        $infoArticels = Queries::FromTable("*", "articles");
+        foreach($infoArticels as $infoArticel ) {
+            ?>
+                <div class="article">
+                    <?php ShowImage::SetImg("../../commonBetweenBackFront/uploaded/articles/", $infoArticel['imageName']) ?>
+                    <div class="box">
+                        <a href="readArticle.php?<?php echo str_replace(" ", "-", $infoArticel['titleArticle']) ?>" class="art-a" id=""><?php echo $infoArticel['titleArticle'] ;?></a>
+                        <div class="excerpt">
+                            <?php echo $infoArticel['excerpt'] ; ?>
+                        </div>
+                        <div class="info-article">
+                            <span class="date"><i class="fa-regular fa-calendar"></i><?php echo $infoArticel['additionDate'] ?></span>
+                            <span class="viwed"><i class="fa-solid fa-heart"></i><?php echo $infoArticel['likes'] ?></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php
+            <?php
+        }
     }
 
     function padding() {
@@ -122,7 +146,7 @@
                 <section class="section-articles">
                     <?php ArticlesStructer() ?>
                 </section>
-                <div class="scroll-to-top" id="up-btn" ><span></span></div>
+                <i class="fa fa-arrow-up scroll-to-top" id="up-btn" ></i>
             </div>
         <?php
     }

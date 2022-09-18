@@ -42,7 +42,7 @@
         
         if (isset($_SESSION['user']) && ! empty($_SESSION['user']) ) {
             ?>
-                <li><a href="#"><i class="fa-solid fa-newspaper"></i>Articles</a></li>
+                <li><a href="fronend//articles.php"><i class="fa-solid fa-newspaper"></i>Articles</a></li>
                 <li><a href="fronend//profile.php?user=<?php echo $_SESSION['user'] ?>"><i class="fa-solid fa-address-card"></i>Profile</a></li>
                 <li><a href="fronend//logout.php"><i class="fa-sharp fa-solid fa-arrow-right-to-bracket"></i>Logout</a></li>
             <?php

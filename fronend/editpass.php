@@ -97,6 +97,7 @@
 
     function confiremPassStructer() {
         ?>
+        <div class="background">
             <div class="contanier-prosess-change-pass" id="confirem-pass">
                 <h3><i class="fa-solid fa-lock"></i><span>change Password</span></h3>
                 <div class="form">
@@ -124,6 +125,7 @@
                 </div>
 
             </div>
+        </div>
         <?php
     }
     confiremPassStructer();
