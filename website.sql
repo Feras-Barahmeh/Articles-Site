@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2022 at 08:28 PM
+-- Generation Time: Sep 19, 2022 at 09:51 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -33,8 +33,9 @@ CREATE TABLE `articles` (
   `content` text NOT NULL,
   `excerpt` varchar(255) NOT NULL,
   `likes` int(11) NOT NULL DEFAULT 0,
-  `love` int(11) NOT NULL DEFAULT 0,
-  `disLike` int(11) NOT NULL DEFAULT 0,
+  `loves` int(11) NOT NULL DEFAULT 0,
+  `dislikes` int(11) NOT NULL DEFAULT 0,
+  `saveds` int(11) NOT NULL DEFAULT 0,
   `imageName` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
   `IdUser` int(11) NOT NULL,
   `categoryID` int(11) DEFAULT NULL,
@@ -45,14 +46,14 @@ CREATE TABLE `articles` (
 -- Dumping data for table `articles`
 --
 
-INSERT INTO `articles` (`IdArticle`, `titleArticle`, `content`, `excerpt`, `likes`, `love`, `disLike`, `imageName`, `IdUser`, `categoryID`, `additionDate`) VALUES
-(6, 'Why index start to zero', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\n', 'Lorem ipsum dolor sit amet consectetur', 258, 0, 0, 'null_light-53585615fd723ba992bd2df7a10d10d1.png6_null_light-53585615fd723ba992bd2df7a10d10d1.png', 12, 10, '2022-08-12'),
-(8, 'All you need to learn Git', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'Lorem ipsum dolor sit amet consectetur', 25, 0, 0, '1_omc83-7fb27k1ttmxdfraq (1).png8_1_omc83-7fb27k1ttmxdfraq (1).png', 12, 11, '2022-08-12'),
-(17, 'Best Way learn framework python', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'Lorem ipsum dolor sit amet consectetur', 458, 0, 0, '1_z7hxzx49ero8tfg6mzxrnw.jpeg17_1_z7hxzx49ero8tfg6mzxrnw.jpeg', 12, 1, '2022-08-18'),
-(21, 'How booting OS', 'LoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoream', 'Lorem ipsum dolor sit amet consectetur', 4525, 0, 0, 'r.jpg_r.jpg', 12, 5, '2022-08-27'),
-(22, 'backend Web Devalober', 'The Language To Backend Web develober PHP, Python, Rube', 'Lorem ipsum dolor sit amet consectetur', 152, 0, 0, 'backend-is.png_backend-is.png', 12, 4, '2022-08-29'),
-(24, 'The Difference between backslash n and endl in CPP', 'معلمة سريعه عن ++c\r\nالفرق بين n\\ و endl \r\nالاغلب بعرف الفرق ال n\\ لل string و ال endl لغير ال string \r\nوفعليا مش هاذا الاختلاف الجوهري بينهم \r\nطيب شو الاختلاف ؟\r\nالاختلاف بطريقة تخزين البينات قبل عرضها على الشاشة \r\nبمعنى \r\nلو عندك 1000 جملة cout تحت بعض \r\nال n\\ رح يحط ال 1000 جملة جوا buffer(خلينا نعتبرها جدول اول مكان لتخزين بشكل مؤقت ) بعدين يعرضهم على الشاشة \r\nطيب ال endl شو بسوي ؟؟ \r\nال endl كل جملة بحطها ب buffer بعدين بظهرها على الشاشة وبرجع بيوخذ ال cout البعدها \r\n\r\nطيب انا مين استخدم (انو اسرع) ؟؟ \r\nفعليا اسرع اشي انك تستخدمهم ال اثنين مع بعض \r\n\r\nكيف ؟؟ \r\nفرضا عندك 1000 جملة طباعة متتاليات \r\nاستخدم مثلا 99 جملة ب n\\ والجملة ال 100 endl \r\nهيك لا انتا استهلكت وقت اذا استخدمت endl (بعد كل جملة رح يروح ع ال buffer ويطبع ويرجع يفضيها )  ولا انتا اعطيت ال buffer اكبر من سعتها لو استخدمت n\\', 'Lorem ipsum dolor sit amet consectetur', 1583, 0, 0, 'images (1).jpg_images (1).jpg', 12, 4, '2022-08-30'),
-(25, 'Best Way to check if number odd or even', 'هل فيه طريقة احسن من \r\nif(num % 2 == 0) \r\nعشان تعرف هل الرقم زوجي ولا فردي ؟ ????\r\n\r\nالاجابه : \r\nبكل بساطه فيه طريقة وهي \r\nif(num & 1)\r\nازاي طب او ليه ؟\r\n\r\nاول حاجه هنرجع شوية ل ازاي الكمبيوتر بيعبر عن الارقام \r\nالكمبيوتر بيستخدم base 2 عشان يعبر عن الارقام وهو بيتكون من 0 و 1 بس والبالمناسبه اسمه binary\r\n\r\nطيب ازاي بردو ؟\r\n\r\nالرقم لو هنعبر عنه بال binary هنعبر عن رقم 8 بت مثلا تعالا نعد \r\nعشري = بايناري \r\n0 = 00000000\r\n1 = 00000001\r\n2 = 00000010\r\n3 = 00000011\r\n4 = 00000100\r\n5 = 00000101\r\n\r\nملاحظ حاجه ؟\r\n\r\nدايما لما الرقم زوجي اول بت من الرقم بيبقى 0 ولما الرقم بيبقى فردي اول بت بيبقى 1 \r\n\r\nوال & بكل بساطه بتشوف هل ال بت ده 0 ولا 1 وبالتالي بتعرف هل الرقم ده زوجي ولا فردي', 'Lorem ipsum dolor sit amet consectetur', 1423, 0, 0, 'imageseven.jpg_imageseven.jpg', 12, 15, '2022-08-30');
+INSERT INTO `articles` (`IdArticle`, `titleArticle`, `content`, `excerpt`, `likes`, `loves`, `dislikes`, `saveds`, `imageName`, `IdUser`, `categoryID`, `additionDate`) VALUES
+(6, 'Why index start to zero', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\n', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, 'null_light-53585615fd723ba992bd2df7a10d10d1.png6_null_light-53585615fd723ba992bd2df7a10d10d1.png', 12, 10, '2022-08-12'),
+(8, 'All you need to learn Git', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'Lorem ipsum dolor sit amet consectetur', 1, 0, 0, 0, '1_omc83-7fb27k1ttmxdfraq (1).png8_1_omc83-7fb27k1ttmxdfraq (1).png', 12, 11, '2022-08-12'),
+(17, 'Best Way learn framework python', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, '1_z7hxzx49ero8tfg6mzxrnw.jpeg17_1_z7hxzx49ero8tfg6mzxrnw.jpeg', 12, 1, '2022-08-18'),
+(21, 'How booting OS', 'LoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoream', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, 'r.jpg_r.jpg', 12, 5, '2022-08-27'),
+(22, 'backend Web Devalober', 'The Language To Backend Web develober PHP, Python, Rube', 'Lorem ipsum dolor sit amet consectetur', 21, 0, 0, 0, 'backend-is.png_backend-is.png', 12, 4, '2022-08-29'),
+(24, 'The Difference between backslash n and endl in CPP', 'معلمة سريعه عن ++c\r\nالفرق بين n\\ و endl \r\nالاغلب بعرف الفرق ال n\\ لل string و ال endl لغير ال string \r\nوفعليا مش هاذا الاختلاف الجوهري بينهم \r\nطيب شو الاختلاف ؟\r\nالاختلاف بطريقة تخزين البينات قبل عرضها على الشاشة \r\nبمعنى \r\nلو عندك 1000 جملة cout تحت بعض \r\nال n\\ رح يحط ال 1000 جملة جوا buffer(خلينا نعتبرها جدول اول مكان لتخزين بشكل مؤقت ) بعدين يعرضهم على الشاشة \r\nطيب ال endl شو بسوي ؟؟ \r\nال endl كل جملة بحطها ب buffer بعدين بظهرها على الشاشة وبرجع بيوخذ ال cout البعدها \r\n\r\nطيب انا مين استخدم (انو اسرع) ؟؟ \r\nفعليا اسرع اشي انك تستخدمهم ال اثنين مع بعض \r\n\r\nكيف ؟؟ \r\nفرضا عندك 1000 جملة طباعة متتاليات \r\nاستخدم مثلا 99 جملة ب n\\ والجملة ال 100 endl \r\nهيك لا انتا استهلكت وقت اذا استخدمت endl (بعد كل جملة رح يروح ع ال buffer ويطبع ويرجع يفضيها )  ولا انتا اعطيت ال buffer اكبر من سعتها لو استخدمت n\\', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, 'images (1).jpg_images (1).jpg', 12, 4, '2022-08-30'),
+(25, 'Best Way to check if number odd or even', 'هل فيه طريقة احسن من \nif(num % 2 == 0) \nعشان تعرف هل الرقم زوجي ولا فردي ؟ ????\n\nالاجابه : \nبكل بساطه فيه طريقة وهي \nif(num & 1)\nازاي طب او ليه ؟\n\nاول حاجه هنرجع شوية ل ازاي الكمبيوتر بيعبر عن الارقام \nالكمبيوتر بيستخدم base 2 عشان يعبر عن الارقام وهو بيتكون من 0 و 1 بس والبالمناسبه اسمه binary\n\nطيب ازاي بردو ؟\n\nالرقم لو هنعبر عنه بال binary هنعبر عن رقم 8 بت مثلا تعالا نعد \nعشري = بايناري \n0 = 00000000\n1 = 00000001\n2 = 00000010\n3 = 00000011\n4 = 00000100\n5 = 00000101\n\nملاحظ حاجه ؟\n\nدايما لما الرقم زوجي اول بت من الرقم بيبقى 0 ولما الرقم بيبقى فردي اول بت بيبقى 1 \n\nوال & بكل بساطه بتشوف هل ال بت ده 0 ولا 1 وبالتالي بتعرف هل الرقم ده زوجي ولا فردي', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, 'imageseven.jpg_imageseven.jpg', 12, 15, '2022-08-30');
 
 -- --------------------------------------------------------
 
@@ -85,6 +86,18 @@ INSERT INTO `categories` (`IdCategory`, `titleCategory`, `content`, `additionDat
 (13, 'PHP', 'ALl  You need to learn PHP To learn  Backend', '2022-08-24', 12),
 (14, 'Windows ', 'Windows ', '2022-08-27', 12),
 (15, 'Problems', 'This Category to update problem solving skills', '2022-08-30', 12);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `likes`
+--
+
+CREATE TABLE `likes` (
+  `IDLike` int(11) NOT NULL,
+  `IdUser` int(11) NOT NULL,
+  `IdArticle` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -123,18 +136,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`IdUser`, `userName`, `password`, `email`, `fullName`, `aboutYou`, `langs`, `tools`, `permission`, `age`, `githup`, `facebook`, `twitter`, `linkedin`, `website`, `nickname`, `gender`, `location`, `education`, `work`, `imageName`, `dataRegister`) VALUES
 (12, 'feras', '$2y$10$Ci/KLHxpIAMOWOKqyEF1DuTyJBjxgYxKrrAP2wkuS/f6h6qHU85QO', 'ferasfadi345@gmail.com', 'Feras Barahmeh', 'I\'m Feras Barahmeh, study at ttu', 'cpp:50%, php:80%, python90%', 'Git  & Githup:40%,SOLID prinsiple:67%', 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download.png12_download.png', '2022-08-10'),
-(14, 'majd', '$2y$10$4ZlPqT1STYerP20oRYqTL.eNLlLAplkiQwVSFQ946J8IeXEQaE9sa', 'majdfadi44@gmail.com', 'Majd Fadi Barahmeh', 'Im Majd Fadi Barahmeh', 'cpp:30%, python:90%', 'git,JSON,githup', 0, '2003-07-09', 'majdfadi', 'majd_fadi', 'da7loze', NULL, NULL, 'da7loz', 'male', 'Amman - Jordan', 'HU, JU', NULL, '52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg14_52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg', '2022-08-10'),
-(17, 'fadi', '$2y$10$id1hH5sb8EeeOcxVNUu26.gKqBg146QkYjBdSQVBxkjc949w/TC1y', 'fedi@f.com', 'Fadi Barahmeh', 'study CS', 'CPP, VB', NULL, 2, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg_depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '2022-08-23'),
-(18, 'jojo', '$2y$10$yw5YQAxHZq7oD5LJiTrrEeEkvoUMF4Kfwkg7.witOw7f3SAjZkExe', 'j@j.com', 'Jenan', 'Saf 8', 'None', NULL, 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'avatar-icon-of-girl-in-a-baseball-cap-vector-16225068.jpg18_avatar-icon-of-girl-in-a-baseball-cap-vector-16225068.jpg', '2022-08-23'),
-(20, 'ahmad', '$2y$10$l6MDWcjvy6c1d0pZ3WuCMuH3IxbyJTrvFqPA1ScAlWNtLWhPhY9f2', 'a@a.com', 'Ahmad Fadi', '', '', NULL, 2, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-08-24'),
-(25, 'fowze', '$2y$10$ejYzeGgEnenB2ggNPX2AYue5wxddr7sYcrqpiCFZ3kgH7bg1Pdojm', 'f@fa.com', 'Fawaz Ahmad', 'I\'m Fawaz', 'NULL', 'git', 2, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'null_light-53585615fd723ba992bd2df7a10d10d1.png25_null_light-53585615fd723ba992bd2df7a10d10d1.png', '2022-08-25'),
-(28, 'fadiazmi', '$2y$10$lmr2/f3xtusQEY2R6ZJZsOkzIRpX2i/uPG9OaiAdDwbv1PZ5rQkfK', 'f@f.com', 'Fadi barha', '', '', NULL, 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download (5).jpg_download (5).jpg', '2022-08-25'),
-(36, 'amrdeab', '$2y$10$tyNaZvcnhARdOhO1ke5Reuhbi4EgC.4N3es25UKoATQPYpMC.rzzO', 'a@m.com', 'Amr Deab', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(37, 'naser', '$2y$10$ujbS72SIR2reIj66aO3SrundEKxLroIMKRHsfVOd2oZhiNuq9EWq.', 'n@n.com', 'Naser ', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(38, 'sadam', '$2y$10$IgqZNLAR4HgiYyKZjtx7OO0vxyE6BB/UtNb/np43AFb5druF7OPUm', 's@sd.com', 'Sadam Hussan', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(39, 'ferasahmad', '$2y$10$b5U25uPUYuSoxMjVkIwlsOL1J5bwObQY.gBI4OwyQ1eIlx9VPtzPu', 'fa@f.com', 'Feas Ahmad', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(40, 'yaelQase,', '$2y$10$9rhi.Kn2mzBdiF0ytnIgauVx9Dxl53CfyRb6kqwMSK39WCIlezjOm', 'q@y.com', 'Yaiel Qasem', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00'),
-(41, 'feas', '$2y$10$eoHPd3Z68qenqlG3U9VN4.jAqvwnaJiBVUqT8h2GACIsE8iWL/nxu', 'f.f.b.feras@gmail.com', 'ferasfad', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00');
+(14, 'majd', '$2y$10$4ZlPqT1STYerP20oRYqTL.eNLlLAplkiQwVSFQ946J8IeXEQaE9sa', 'majdfadi44@gmail.com', 'Majd Fadi Barahmeh', 'Im Majd Fadi Barahmeh', 'cpp:30%, python:90%', 'git,JSON,githup', 0, '2003-07-09', 'majdfadi', 'majd_fadi', 'da7loze', NULL, NULL, 'da7loz', 'male', 'Amman - Jordan', 'HU, JU', NULL, '52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg14_52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg', '2022-08-10');
 
 --
 -- Indexes for dumped tables
@@ -156,6 +158,14 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`IdCategory`),
   ADD UNIQUE KEY `titleCategory` (`titleCategory`),
   ADD KEY `FK_AddBy` (`IDwriter`);
+
+--
+-- Indexes for table `likes`
+--
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`IDLike`),
+  ADD KEY `FK_User` (`IdUser`),
+  ADD KEY `FK_Article` (`IdArticle`);
 
 --
 -- Indexes for table `users`
@@ -181,6 +191,12 @@ ALTER TABLE `categories`
   MODIFY `IdCategory` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT for table `likes`
+--
+ALTER TABLE `likes`
+  MODIFY `IDLike` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -202,6 +218,13 @@ ALTER TABLE `articles`
 --
 ALTER TABLE `categories`
   ADD CONSTRAINT `FK_AddBy` FOREIGN KEY (`IDwriter`) REFERENCES `users` (`IdUser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `likes`
+--
+ALTER TABLE `likes`
+  ADD CONSTRAINT `FK_Article` FOREIGN KEY (`IdArticle`) REFERENCES `articles` (`IdArticle`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_User` FOREIGN KEY (`IdUser`) REFERENCES `users` (`IdUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

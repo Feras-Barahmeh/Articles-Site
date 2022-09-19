@@ -226,10 +226,6 @@
                         }
                     };
 
-
-                            
-                    
-
                     xmlhttprequest.open("POST", "../save edit/updateField.php", true);
                     xmlhttprequest.setRequestHeader (
                         "Content-Type",
@@ -282,7 +278,7 @@
 // End Global INfo
 /////////////////////////////////////////
 
-// Start Acount Edit 
+// Start Acount Edit
     function hiddenSections() {
         const containLevelsEdit = document.querySelectorAll(".cont-type-edit");
         containLevelsEdit.forEach((containLevelEdit) => { 
@@ -322,4 +318,20 @@
         });
     });
 
+
+    // Set Theam
+    const theamBtns = document.querySelectorAll(".type-theam");
+    let currentTheam = localStorage.getItem("theam") ;
+    const bodyCurr = document.querySelector("body");
+    let refr = true;
+
+    theamBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            localStorage.setItem("theam", btn.getAttribute("theam"));
+            const currentTheam = localStorage.getItem("theam");
+            // bodyCurr.style.transition = "2s";
+            bodyCurr.removeAttribute("class");
+            bodyCurr.classList.add(currentTheam);
+        });
+    });
 // End Acount Edit

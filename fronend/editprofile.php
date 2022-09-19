@@ -405,8 +405,8 @@
                             <div class="row-feild">
                                 <div class="name-feild">Theam</div>
                                 <div class="content-feild theams">
-                                    <span class="type-theam dark" id="dark"><i class="fa fa-moon"></i><span >Dark</span></span>
-                                    <span class="type-theam light" id="light"><i class="fa fa-sun"></i><span >Light</span></span>
+                                    <span class="type-theam dark" id="dark" theam="dark"><i class="fa fa-moon"></i><span >Dark</span></span>
+                                    <span class="type-theam light" id="light" theam="light"><i class="fa fa-sun"></i><span >Light</span></span>
                                 </div>
                             </div>
                         </div>
@@ -462,8 +462,6 @@
     globalInfo();
 
 // Footer Configration
+    ?><script src="layout/js/editprofile.js"></script><?php
     include ($tpl . "footer.php");
-    ?>
-        <script src="layout/js/editprofile.js"></script>
-    <?php
     ob_end_flush();

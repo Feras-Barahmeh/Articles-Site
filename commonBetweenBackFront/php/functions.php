@@ -61,20 +61,33 @@
             <?php
         }
 
+    
+        public static function ArrayToQuery ($array) {
+            $lenArr = count($array);
+            $query = "";
+            for ($i = 0; $i < $lenArr; $i++) {
+                $query .= $array[$i] . ",";
+            }
+    
+            return rtrim($query, ",");
+        }
+
     }
 
     class Queries {
         public static function Delete($table, $condition) {
             global $db;
             $obj = new GlobalFunctions();
-
             $stmt = $db->prepare("DELETE FROM $table WHERE $condition");
             $stmt->execute();
 
             if ($stmt->rowCount() > 0 ) {
-                $obj->AlertMassage("Sucssess Delete", 'success');
-                $obj->SitBackBtn();
-            } 
+                // $obj->AlertMassage("Sucssess Delete", 'success');
+                // $obj->SitBackBtn();
+                return true;
+            }  else {
+                return false;
+            }
         }
 
 
@@ -140,6 +153,18 @@
             $stmt->execute();
 
             if ($stmt->rowCount() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public static function Insert ($table, array $colNames, array $valCol) {
+
+            global $db;
+            $stmt = $db->prepare("INSERT INTO $table(" . GlobalFunctions::ArrayToQuery($colNames). ")" ." VALUES(" . GlobalFunctions::ArrayToQuery($valCol) . ")");
+            $stmt->execute();
+            if($stmt->rowCount() > 0) {
                 return true;
             } else {
                 return false;

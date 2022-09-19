@@ -54,6 +54,7 @@
     function Showcomment () {
         ?>
             <div class="comments background">
+                <h4>Comments</h4>
                 <div class="comment">
                     <div class="info-writer">
                         <img src="../../commonBetweenBackFront/images/imagesProject/defaultImg.jpg" alt="">
@@ -64,9 +65,9 @@
                         <div class="options">
                             <div class="reacts">
                                 <div class="smile">
-                                    <span class="react like" id="like-btn"><i class="fa fa-thumbs-up"></i></span>
-                                    <span class="react love" id="love-btn"><i class="fa fa-heart"></i></span>
-                                    <span class="react disloke" id="dislike-btn"><i class="fa fa-thumbs-down"></i></span>
+                                    <span class="react-btn like" id="like-btn" description="Like"><i class="fa fa-thumbs-up"></i></span>
+                                    <span class="react-btn love" id="love-btn" description="Love"><i class="fa fa-heart"></i></span>
+                                    <span class="react-btn disloke" id="dislike-btn" description="Dislike"><i class="fa fa-thumbs-down"></i></span>
                                 </div>
                             </div>
                             <div class="date">22-5-2022</div>
@@ -77,35 +78,103 @@
         <?php
     }
 
-    function article() {
+    function ImgInfoArt($infoArticle) {
         ?>
-            <div class="background constanier-article">
-                <h4 class="background title"><?php echo str_replace("-", " ",  array_key_first($_GET)) ?></h4>
+            <div class="art-img">
+                <?php ShowImage::SetImg("../../commonBetweenBackFront/uploaded/articles/", $infoArticle['imageName']); ?>
+                <div class="info-art">
+                    <h4><i class="fa-solid fa-sitemap"></i>Information Article</h4>
+                    <span class="writer"><span class="title">Writer:</span><?php echo $infoArticle["userName"] ?></span>
+                    <div class="feild"><span class="title">Article Feild:</span><?php echo $infoArticle["titleCategory"] ?></div>
+                    <span class="date"><span class="title">Date:</span><?php echo $infoArticle["additionDate"] ?></span>
+                    <div class="reacts-statistic">
+                        <span class="loves" description="number loves"><i class="fa fa-heart"></i><span class="num"><?php echo $infoArticle["loves"] ?></span></span>
+                        <span class="likes" description="number likes"><i class="fa fa-thumbs-up"></i><span class="num"><?php echo $infoArticle["likes"] ?></span></span>
+                        <span class="deslikes" description="number deslike"><i class="fa fa-thumbs-down"></i><span class="num"><?php echo $infoArticle["dislikes"] ?></span></span>
+                        <span class="saveds" description="number saved"><i class="fa fa-bookmark"></i><span class="num"><?php echo $infoArticle["saveds"] ?></span></span>
+                    </div>
+                </div>
+            </div>
+        <?php
+    }
+
+    function containtArticle($infoArticle) {
+        $P = $infoArticle["content"];
+        $lengthP = strlen($P);
+        $quarter =  floor($lengthP * 50/100);
+        $befReadMore = substr($P, 0, $quarter);
+        $threeThrees = substr($P, $quarter, $lengthP);
+        ?>
+            <div class="contanier-p">
+                <div class="befor-read-more">
+                    <?php echo $befReadMore  ?>
+                </div>
+                <div class="read-more hidden" id="read-more-p">
+                    <?php echo $threeThrees ?>
+                </div>
+                <span id="re-mo">Read More...</span>
+            </div>
+        <?php
+    }
+
+    function article() {
+        $nameArticle = str_replace("-", " ",  array_key_first($_GET));
+        $infoArticle = Queries::FromTable(
+                        "articles.*, users.userName, categories.titleCategory", 
+                        "articles, users, categories",
+                        "WHERE articles.titleArticle = '{$nameArticle}' AND users.IdUser = articles.IdUser AND categories.IdCategory = articles.categoryID", 
+                        "fetch");
+
+        ?>
+            <div class="background constanier-article" namearticle=<?php echo array_key_first($_GET) ?>>
+                <h4 class="background title"><?php echo $nameArticle ?></h4>
                 <div class="background continet-art">
-                    <div class="art-img"><img src="../../commonBetweenBackFront/images/imagesProject/defaultImg.jpg" alt=""></div>
+
+                    <!-- End Image And Information Article -->
+                        <?php ImgInfoArt($infoArticle) ?>
+                    <!-- Start Image And Information Article -->
+
                     <div class="art-box">
-                        <div class="contanier-p">
-                            <div class="befor-read-more">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae quos animi obcaecati?
-                            </div>
-                            <div class="read-more hidden" id="read-more-p">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni cumque, veniam ad blanditiis exercitationem harum impedit adipisci quam autem. Impedit provident vel ipsum id, ad tempora est itaque pariatur excepturi?
-                            </div>
-                            <span id="re-mo">Read More...</span>
-                        </div>
-                        
+                        <!-- Start Containt Article -->
+                            <?php containtArticle($infoArticle) ?>
+                        <!-- End Containt Article -->
+
                         <div class="options">
                             <div class="add-comm hidden" id="comm-box">
                                 <textarea name="" placeholder="Add comment" id="" ></textarea>
-                                <span class="share-btn"><i class="fa-sharp fa-solid fa-share"></i><span class="hint">Share</span></span>
+                                <span class="share-btn" description="Add"><i class="fa-sharp fa-solid fa-share"></i><span class="hint">Share</span></span>
                             </div>
 
                             <div class="reacts">
+                                <!-- Start Smiles -->
                                 <div class="smile">
-                                    <span class="react like" id="like-btn"><i class="fa fa-thumbs-up"></i></span>
-                                    <span class="react love" id="love-btn"><i class="fa fa-heart"></i></span>
-                                    <span class="react disloke" id="dislike-btn"><i class="fa fa-thumbs-down"></i></span>
+                                    <span 
+                                        class="react-btn like" 
+                                        id="likeart" 
+                                        description="like">
+                                        <i class="fa fa-thumbs-up"></i>
+                                    </span>
+                                    <span 
+                                        class="react-btn love" 
+                                        id="loveart" 
+                                        description="love">
+                                        <i class="fa fa-heart"></i>
+                                    </span>
+                                    <span 
+                                        class="react-btn disloke" 
+                                        id="dislikeart" 
+                                        description="dislike">
+                                        <i class="fa fa-thumbs-down"></i>
+                                    </span>
+                                    <span
+                                        class="react-btn save-art"
+                                        id="saveart"
+                                        description="save">
+                                        <i class="fa fa-bookmark"></i>
+                                    </span>
                                 </div>
+                                <!-- End Smiles -->
+
                                 <div class="add-comm-btn" id="share-comm"><i class="fa-solid fa-comment"></i><span class="comm">Comment</span></div>
                             </div>
                         </div>

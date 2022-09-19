@@ -1,3 +1,11 @@
+// // Staert Set Theam
+    const body = document.querySelector("body");
+    const theamSit = localStorage.getItem("theam");
+    body.removeAttribute("class");
+    body.setAttribute("class", theamSit);
+    
+// // End Set Theam
+
 // Start Navigation
     const lisNav = document.querySelectorAll(".li-nav");
     function removeActiveForAll() {
