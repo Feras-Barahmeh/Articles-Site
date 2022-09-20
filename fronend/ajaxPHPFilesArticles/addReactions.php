@@ -27,6 +27,8 @@
                     "countReaction" => --$currLikes,
                     "changeCountThisReaction" => "likes",
                     "idClickedBtn" => "likeart",
+                    "fillBtn" => "no",
+                    "idArt" => $idArt,
                 ]);
             }
         } else {
@@ -41,6 +43,8 @@
                     "countReaction" => ++$currLikes,
                     "changeCountThisReaction" => "likes",
                     "idClickedBtn" => "likeart",
+                    "fillBtn" => "yes",
+                    "idArt" => $idArt,
                 ]);
             } 
         }

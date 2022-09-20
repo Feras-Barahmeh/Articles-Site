@@ -46,7 +46,6 @@
         
         xml.onreadystatechange = function () {
             if (xml.readyState === 4 && xml.status === 200) {
-                
                 let result = JSON.parse(this.responseText);
 
                 const getClikedBtn = document.querySelector(`.${result.changeCountThisReaction}`).children[1];

@@ -105,7 +105,7 @@
         $befReadMore = substr($P, 0, $quarter);
         $threeThrees = substr($P, $quarter, $lengthP);
         ?>
-            <div class="contanier-p">
+            <article class="contanier-p">
                 <div class="befor-read-more">
                     <?php echo $befReadMore  ?>
                 </div>
@@ -113,7 +113,7 @@
                     <?php echo $threeThrees ?>
                 </div>
                 <span id="re-mo">Read More...</span>
-            </div>
+            </article>
         <?php
     }
 
