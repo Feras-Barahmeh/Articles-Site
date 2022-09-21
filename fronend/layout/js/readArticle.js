@@ -1,5 +1,6 @@
-    // Shoew Commint Box 
-    const shareCommBtn = document.getElementById("share-comm");
+
+// Shoew Commint Box 
+    const shareCommBtn = document.getElementById("add-comm-btn");
     const commBox = document.getElementById("comm-box");
     
     shareCommBtn.addEventListener("click", ()=> {
@@ -30,45 +31,70 @@
 
 
     // Add Sound Reaction Btns [Like | Love | Dislike | Save]
+
     var reactAudio = new Audio();
     reactAudio.src = "../../commonBetweenBackFront/sounds/reacts.mp3";
 
-    const reactBtns = document.querySelectorAll(".react-btn");
-    reactBtns.forEach((reactBtn) => {
+    const reactBtnsAudio = document.querySelectorAll(".react-btn");
+    reactBtnsAudio.forEach((reactBtn) => {
         reactBtn.addEventListener("click", () => {
             reactAudio.play();
         });
     });
 
-    // Add Reaction in DB
-    function addReactionToDb(express, namearticle) {
-        const xml = new XMLHttpRequest();
-        
-        xml.onreadystatechange = function () {
-            if (xml.readyState === 4 && xml.status === 200) {
-                let result = JSON.parse(this.responseText);
-
-                const getClikedBtn = document.querySelector(`.${result.changeCountThisReaction}`).children[1];
-                getClikedBtn.innerHTML = result.countReaction;
-
-                // Fill Btn Reaction
-
-            }
-        };
-
-        xml.open("POST", "../ajaxPHPFilesArticles/addReactions.php", false);
-        xml.setRequestHeader (
-            "Content-Type",
-            "application/x-www-form-urlencoded"
-        );
-        xml.send(`typeReact=${express}&namearticle=${namearticle}`);
-    }
-    const toExpress = document.querySelectorAll(".react-btn ");
-
-    toExpress.forEach((express) => {
-        express.addEventListener("click", () => {
-            addReactionToDb(express.getAttribute("description"), document.querySelector(".constanier-article").getAttribute("namearticle"));
-        });
+    let shareAudio =  new Audio();
+    const shareComment = document.getElementById("share-comment");
+    shareAudio.src = "../../commonBetweenBackFront/sounds/shareComment.mp3";
+    shareComment.addEventListener("click", () => {
+        shareAudio.play();
     });
 
-    
+    let addAudio =  new Audio();
+    const addComment = document.getElementById("add-comm-btn");
+    addAudio.src = "../../commonBetweenBackFront/sounds/dropdown.wav";
+    addComment.addEventListener("click", () => {
+        addAudio.play();
+    });
+
+    // Add Feadback Articles
+        function setReaction(attributeBtn) {
+            const xml = new XMLHttpRequest();
+            xml.onreadystatechange = function () {
+                if (xml.readyState === 4 && xml.status === 200) {
+                    let returnVal = JSON.parse(xml.responseText);
+                    const numberReactions = document.querySelectorAll(".num-reaction");
+
+                    numberReactions.forEach((showReactionsNubmber) => {
+                        if (showReactionsNubmber.getAttribute("typeReact") === returnVal.typeReact) {
+                            for (let i = 0; i < showReactionsNubmber.children.length; i++) {
+                                if (showReactionsNubmber.children[i].classList.contains("num")) {
+                                    showReactionsNubmber.children[i].innerHTML = returnVal.countReaction !== null ? returnVal.countReaction : 0;
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+
+            xml.open("POST", "../ajaxPHPFilesArticles/addReactionsArt.php", false);
+            xml.setRequestHeader (
+                "Content-Type",
+                "application/x-www-form-urlencoded"
+            );
+            xml.send(`idArticle=${attributeBtn[0]}&idUser=${attributeBtn[1]}&typeReact=${attributeBtn[2]}`);
+        }
+        const reactBtns = document.querySelectorAll(".react-btn");
+        reactBtns.forEach((reactBtn) => {
+            reactBtn.addEventListener("click", () => {
+                reactBtn.firstElementChild.classList.toggle("fa-regular");
+                reactBtn.firstElementChild.classList.toggle("fa");
+
+                setReaction( [
+                            reactBtn.getAttribute("id-article"),
+                            reactBtn.getAttribute("id_user"),
+                            reactBtn.getAttribute("type-react"),
+                        ]);
+            });
+        });
+
+

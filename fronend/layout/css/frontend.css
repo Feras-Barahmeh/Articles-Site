@@ -76,6 +76,9 @@ ul {
     background: rgb(126 198 255);
     color: var(--text-black-700);
 }
+.fill-btn {
+    color: var(--skin-color) !important;
+}
 a.active {
     color: var(--skin-color);
 }
@@ -384,12 +387,21 @@ aside  .logo {
     position: absolute;
     top: 50px;
     font-size: 25px;
-    text-transform: capitalize;
+}
+aside  .logo  a .part-one {
+    color: var(--skin-color);
+    font-size: 35px;
+    text-transform: UPPERCASE;
+}
+aside  .logo a .part-tow {
+    text-transform: none;
+    left: -2px;
+    position: relative;
 }
 aside  .logo::after {
     content: "";
     position: absolute;
-    width: 34px;
+    width: 45px;
     height: 2px;
     background-color: var(--skin-color);
     left: 0;
@@ -398,7 +410,7 @@ aside  .logo::after {
 aside  .logo::before {
     content: "";
     position: absolute;
-    width: 40px;
+    width: 60px;
     height: 2px;
     background-color: var(--skin-color);
     left: 0;
@@ -680,7 +692,7 @@ p {
     width: 200px;
     margin-bottom: 10px;
     height: 100px;
-    box-shadow: rgb(0 0 0 / 15%) 4.95px 4.95px 2.6px;
+    box-shadow: 1px 1px 5px var(--skin-color);
 }
 .main-contanier  .cards .card-statistics h4 {
     width: 100%;
@@ -717,6 +729,9 @@ p {
 .Statistics-section .inner-section {
     margin: 0 20px;
     transition: all .3s ease-in-out;
+}
+.Statistics-section .inner-section > div,
+.Statistics-section .inner-section ul > li {
     box-shadow: 12px 10px 8px rgb(0 0 0 / 8%);
 }
 .Statistics-section .inner-section .header {
@@ -1517,11 +1532,14 @@ p {
 }
 .constanier-article .continet-art .art-img {
     width: 300px;
-    height: 435px;
-    max-height: 435px;
+    height: 500px;
+    max-height: 500px;
     background: var(--bg-black-50);
-    padding: 20px;
+    padding: 0 20px;
     border: 1px solid var(--bg-black-100);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 .constanier-article .continet-art .art-img img {
     width: 100%;
@@ -1543,6 +1561,8 @@ p {
 .constanier-article .continet-art .art-img .info-art .title {
     margin-right: 10px;
     text-transform: capitalize;
+    font-weight: bold;
+    display: inline-block;
 }
 .constanier-article .continet-art .art-img .info-art > div,
 .constanier-article .continet-art .art-img .info-art > span {
@@ -1570,22 +1590,7 @@ p {
     display: inline-block;
     cursor: pointer;
 }
-.constanier-article .continet-art .art-img .info-art .reacts-statistic span:hover:before {
-    content: attr(description);
-    position: absolute;
-    font-size: 13px;
-    width: 100px;
-    height: auto;
-    display: block;
-    background-color: var(--bg-black-100);
-    top: 31px;
-    z-index: 10000;
-    box-shadow: 2px 1px 10px var(--bg-black-50);
-    text-align: center;
-    padding: 5px;
-    border-radius: 5px;
-    color: var(--text-black-700);
-}
+
 .constanier-article .continet-art .art-img .info-art .reacts-statistic span i {
     margin-right: 3px;
     color: var(--skin-color);
@@ -1652,21 +1657,6 @@ p {
 .constanier-article .continet-art .art-box .options .add-comm .share-btn:hover {
     box-shadow: 1px 1px 6px rgb(0 0 0 / 57%);
 }
-.constanier-article .continet-art .art-box .options .add-comm .share-btn:hover::before {
-    content: attr(description);
-    position: absolute;
-    width: auto;
-    height: auto;
-    display: block;
-    background-color: var(--bg-black-100);
-    top: 31px;
-    z-index: 10000;
-    box-shadow: 2px 1px 10px var(--bg-black-50);
-    text-align: center;
-    padding: 5px;
-    border-radius: 5px;
-    color: var(--text-black-700);
-}
 .constanier-article .continet-art .art-box .options .add-comm .share-btn  i {
     color: var(--skin-color);
     margin-right: 10px;
@@ -1705,31 +1695,27 @@ p {
 .constanier-article .continet-art .art-box .options .reacts .smile span:hover {
     background: var(--bg-black-900);
 }
-.constanier-article .continet-art .art-box .options .reacts .smile span:hover:before {
+.description:hover:before {
     content: attr(description);
     position: absolute;
-    width: 50px;
-    height: 20px;
+    width: auto;
+    height: auto;
     display: block;
     background-color: var(--bg-black-100);
-    top: 31px;
+    top: 40px;
     z-index: 10000;
     box-shadow: 2px 1px 10px var(--bg-black-50);
     text-align: center;
     padding: 5px;
     border-radius: 5px;
+    font-size: 14px;
     color: var(--text-black-700);
     text-transform: capitalize;
 }
 .constanier-article .continet-art .art-box .options .reacts .smile span i {
     font-size: 21px;
-}
-.constanier-article .continet-art .art-box .options .reacts .smile span  .fa {
-    color: gray;
-    transition: all .3s ease-in-out;
-}
-.constanier-article .continet-art .art-box .options .reacts .smile span:hover  .fa {
     color: var(--skin-color);
+    transition: all .3s ease-in-out;
 }
 .constanier-article .continet-art .art-box .options .reacts .add-comm-btn {
     background: var(--bg-black-50);
@@ -1772,6 +1758,7 @@ p {
     background: var(--bg-black-50);
     padding: 10px;
     align-items: center;
+    border-radius: 3px;
 }
 .constanier-article .continet-art .art-box .comment .info-writer img {
     width: 50px;

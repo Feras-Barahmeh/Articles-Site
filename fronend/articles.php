@@ -18,7 +18,10 @@
         ?>
             <aside id="" class="aside-articles">
                 <div class="logo">
-                    <a href="profile.php"><span><?php echo $_SESSION['user'][0] ?></span><span><?php echo substr($_SESSION['user'], 1) ?></span></a>
+                    <a href="profile.php">
+                        <span class="part-one"><?php echo $_COOKIE['userName'][0] ?></span>
+                        <span class="part-tow"><?php echo substr($_COOKIE['userName'], 1) ?></span>
+                    </a>
                 </div>
 
                 <!-- Toggel Start -->

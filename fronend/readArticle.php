@@ -2,7 +2,7 @@
 // Header Configration
     ob_start();
     session_start();
-    $TITLE =  "Articles";
+    $TITLE =  str_replace("-", " ", array_key_first($_GET));
     include ("init.php");
 
 // Fork Fucntion 
@@ -11,8 +11,19 @@
         $titles = Queries::FromTable("titleArticle", "articles", "", "fetchAll", "additionDate", 'ASC', "LIMIT 7" );
         foreach($titles as $title) {
             ?>
-                <li><span><?php echo $title['titleArticle'] ?></span><a href="readArticle.php?<?php echo str_replace(" ", "-", $title['titleArticle']) ?>">Read</a></li>
+                <li>
+                    <span><?php echo $title['titleArticle'] ?></span>
+                    <a href="readArticle.php?<?php echo str_replace(" ", "-", $title['titleArticle']) ?>">Read</a>
+                </li>
             <?php 
+        }
+    }
+
+    function setReactBtn($btnName, $searchTo, $table, $nameContanitCol, $idContanit, $nameUserCol) {
+        if (Queries::Counter($searchTo, $table, "WHERE $nameContanitCol = $idContanit AND $nameUserCol = {$_COOKIE['IdUser']}") === 0) {
+            ?> <i class="fa-regular <?php echo $btnName ?>"></i> <?php
+        } else {
+            ?> <i class="fa <?php echo $btnName ?>"></i> <?php 
         }
     }
 
@@ -22,7 +33,10 @@
         ?>
             <aside id="" class="aside-articles">
                 <div class="logo">
-                    <a href="profile.php"><span><?php echo $_SESSION['user'][0] ?></span><span><?php echo substr($_SESSION['user'], 1) ?></span></a>
+                    <a href="profile.php">
+                        <span class="part-one"><?php echo $_COOKIE['userName'][0] ?></span>
+                        <span class="part-two"><?php echo substr($_COOKIE['userName'], 1) ?></span>
+                    </a>
                 </div>
 
                 <!-- Toggel Start -->
@@ -65,9 +79,15 @@
                         <div class="options">
                             <div class="reacts">
                                 <div class="smile">
-                                    <span class="react-btn like" id="like-btn" description="Like"><i class="fa fa-thumbs-up"></i></span>
-                                    <span class="react-btn love" id="love-btn" description="Love"><i class="fa fa-heart"></i></span>
-                                    <span class="react-btn disloke" id="dislike-btn" description="Dislike"><i class="fa fa-thumbs-down"></i></span>
+                                    <!-- Like -->
+                                    <span class="react-btn description" description="like">
+                                        <i class="fa-regular fa-thumbs-up"></i>
+                                    </span>
+
+                                    <!-- Dislike -->
+                                    <span class="react-btn description" description="dislike">
+                                        <i class="fa-regular fa-thumbs-down"></i>
+                                    </span>
                                 </div>
                             </div>
                             <div class="date">22-5-2022</div>
@@ -88,10 +108,31 @@
                     <div class="feild"><span class="title">Article Feild:</span><?php echo $infoArticle["titleCategory"] ?></div>
                     <span class="date"><span class="title">Date:</span><?php echo $infoArticle["additionDate"] ?></span>
                     <div class="reacts-statistic">
-                        <span class="loves" description="number loves"><i class="fa fa-heart"></i><span class="num"><?php echo $infoArticle["loves"] ?></span></span>
-                        <span class="likes" description="number likes"><i class="fa fa-thumbs-up"></i><span class="num"><?php echo $infoArticle["likes"] ?></span></span>
-                        <span class="deslikes" description="number deslike"><i class="fa fa-thumbs-down"></i><span class="num"><?php echo $infoArticle["dislikes"] ?></span></span>
-                        <span class="saveds" description="number saved"><i class="fa fa-bookmark"></i><span class="num"><?php echo $infoArticle["saveds"] ?></span></span>
+                        <!-- like -->
+                        <span 
+                            class="num-reaction likes description" 
+                            typeReact="like" 
+                            description="likes">
+
+                            <i class="fa-regular fa-thumbs-up"></i>
+                            <span class="num"><?php echo $infoArticle["likes"] ?></span>
+                        </span>
+                        <!-- dislike -->
+                        <span 
+                            class="num-reaction deslikes description"
+                            typeReact="deslike" 
+                            description="deslike">
+                            <i class="fa-regular fa-thumbs-down"></i>
+                            <span class="num"><?php echo $infoArticle["dislikes"] ?></span>
+                        </span>
+                        <!-- Saved -->
+                        <span 
+                            class="num-reaction saveds description" 
+                            typeReact="saved" 
+                            description="saveds">
+                            <i class="fa-regular fa-bookmark"></i>
+                            <span class="num"><?php echo $infoArticle["saveds"] ?></span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -116,6 +157,7 @@
             </article>
         <?php
     }
+
 
     function article() {
         $nameArticle = str_replace("-", " ",  array_key_first($_GET));
@@ -142,40 +184,48 @@
                         <div class="options">
                             <div class="add-comm hidden" id="comm-box">
                                 <textarea name="" placeholder="Add comment" id="" ></textarea>
-                                <span class="share-btn" description="Add"><i class="fa-sharp fa-solid fa-share"></i><span class="hint">Share</span></span>
+                                <span class="share-btn description" description="Share">
+                                    <i class="fa-sharp fa-solid fa-share"></i>
+                                    <span class="hint" id="share-comment">Share</span>
+                                </span>
                             </div>
 
                             <div class="reacts">
                                 <!-- Start Smiles -->
                                 <div class="smile">
+                                    <!-- like -->
                                     <span 
-                                        class="react-btn like" 
-                                        id="likeart" 
+                                        class="react-btn description"
+                                        id-article="<?php echo  $infoArticle['IdArticle'] ?>"
+                                        type-react="<?php echo 'like' ?>"
+                                        id_user="<?php echo $_COOKIE["IdUser"] ?>"
                                         description="like">
-                                        <i class="fa fa-thumbs-up"></i>
+                                        <?php setReactBtn("fa-thumbs-up", "likeID", "likes", "IdContent", $infoArticle["IdArticle"], "IdUser") ?>
+                                        <!-- <i class="fa-regular fa-thumbs-up"></i> -->
                                     </span>
+
+                                    <!-- dislike -->
                                     <span 
-                                        class="react-btn love" 
-                                        id="loveart" 
-                                        description="love">
-                                        <i class="fa fa-heart"></i>
-                                    </span>
-                                    <span 
-                                        class="react-btn disloke" 
-                                        id="dislikeart" 
+                                        class="react-btn description" 
                                         description="dislike">
-                                        <i class="fa fa-thumbs-down"></i>
+                                        <i class="fa-regular fa-thumbs-down"></i>
                                     </span>
+
+                                    <!-- save -->
                                     <span
-                                        class="react-btn save-art"
-                                        id="saveart"
+                                        class="react-btn description"
                                         description="save">
-                                        <i class="fa fa-bookmark"></i>
+                                        <i class="fa-regular fa-bookmark"></i>
                                     </span>
                                 </div>
                                 <!-- End Smiles -->
 
-                                <div class="add-comm-btn" id="share-comm"><i class="fa-solid fa-comment"></i><span class="comm">Comment</span></div>
+                                <div class="add-comm-btn " 
+                                    id="add-comm-btn"
+                                    description="add comment">
+                                    <i class="fa-solid fa-comment"></i>
+                                    <span class="comm">Comment</span>
+                                </div>
                             </div>
                         </div>
                         <i class="fa fa-arrow-up scroll-to-top" id="up-btn" ></i>

@@ -6,17 +6,18 @@
         <div class="contaner-navigation-bar <?php if (isset($AllWidth)) echo "width-nav"; ?>">
             <div class="contanier-options">
                 <?php
+
                     ShowImage::SetImg(
                             "../../commonBetweenBackFront/uploaded/users/", 
-                            Queries::FromTable("imageName", "users", "WHERE IdUser = {$_SESSION['IdUser']}", "fetch")['imageName'],
+                            Queries::FromTable("imageName", "users", "WHERE IdUser = {$_COOKIE['IdUser']}", "fetch")['imageName'],
                             "profile-pictuer");
                 ?>
                 <div class="dropdown" id="deopdown-btn"><span>majd</span><i class="fa-sharp fa-solid fa-caret-down" id="down"></i><i class="fa-solid fa-caret-up" id="up"></i></div>
                 <ul class="ul-dropdown" id="ul-dropdown">
                         <li><a href="#">Read Later</a></li>
                         <li><a href="#">Favarit Article</a></li>
-                        <li><a href="editprofile.php?user=<?php echo $_SESSION['user'] ?>">Edit Profile</a></li>
-                        <li><a href="profile.php?user=<?php echo $_SESSION['user'] ?>">Profile</a></li>
+                        <li><a href="editprofile.php?user=<?php echo $_COOKIE['userName'] ?>">Edit Profile</a></li>
+                        <li><a href="profile.php?user=<?php echo $_COOKIE['userName'] ?>">Profile</a></li>
                         <li><a href="#">Settings</a></li>
                         <li><a href="#">Membership request</a></li>
                         <li><a href="logout.php">Logout</a></li>

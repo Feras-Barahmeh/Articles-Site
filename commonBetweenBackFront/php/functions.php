@@ -96,15 +96,14 @@
 
             if ($debend === 'string') {
                 $val = self::FromTable($selector, $table, 'WHERE ' . $selector . ' = \'' . $ValueSelector . '\'', 'fetch');
-
             } else {
                 $val = self::FromTable($selector, $table, 'WHERE ' . $selector . ' = ' . $ValueSelector, 'fetch')[$selector];
             }
 
             if (! empty($val)) {
-                return 1;
+                return true;
             } else {
-                return 0;
+                return false;
             }
         } 
 
@@ -131,13 +130,11 @@
 
         public static function Counter($columnName, $tableName, $where = NULL) {
             global $db;
-
             $stmt = $db->prepare("SELECT COUNT($columnName) FROM $tableName $where");
 
             $stmt->execute();
 
             $number = $stmt->fetch();
-
             if ($stmt->rowCount() > 0 ) {
                 return $number[0];
             } else {
@@ -160,7 +157,6 @@
         }
 
         public static function Insert ($table, array $colNames, array $valCol) {
-
             global $db;
             $stmt = $db->prepare("INSERT INTO $table(" . GlobalFunctions::ArrayToQuery($colNames). ")" ." VALUES(" . GlobalFunctions::ArrayToQuery($valCol) . ")");
             $stmt->execute();

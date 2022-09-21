@@ -8,6 +8,7 @@
 
     // Commone Funtion
     $functionsCommone = "../commonBetweenBackFront/php/functions.php";
+    $ImagesClass = "../commonBetweenBackFront/php/images.php";
 
     // Templates
     $tpl = "include//templates//";
@@ -20,6 +21,7 @@
 
     include ($functions . "frontendFunction.php");
     include  $functionsCommone;
+    include  $ImagesClass;
 
     include ($tpl . "header.php");
 

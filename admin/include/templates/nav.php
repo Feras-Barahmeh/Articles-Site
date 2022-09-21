@@ -17,7 +17,7 @@
                     </div>
 
                     <div class="options-user">
-                        <?php ShowImage::SetImg($commfilesuploaded.'users/', NameImag::GetNameImgFromDB('imageName', 'users', "Where IdUser = " .  Sessions::GetValueSessionDepKey('IdUser')), 'profile-pictuer') ?>
+                        <?php ShowImage::SetImg($commfilesuploaded.'users/', NameImag::GetNameImgFromDB('imageName', 'users', "Where IdUser = " .  $_COOKIE["IdUser"]), 'profile-pictuer') ?>
 
                         <div class="label-dropdown">
                             <div class="pull-right">

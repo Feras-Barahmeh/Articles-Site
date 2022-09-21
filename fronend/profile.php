@@ -81,7 +81,8 @@
         foreach ($langs as $lang) {
             $lang = explode(":", $lang);
             $langName = $lang[0];
-            $langRate = $lang[1];
+            $langRate  = isset($lang[1]) ? $lang[1] : "";
+            
             
             
             ?>
