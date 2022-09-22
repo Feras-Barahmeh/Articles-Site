@@ -8,8 +8,8 @@ abstract class MainMethods {
         $this->idArticle = $idArticle;
         $this->infoArticle = Queries::FromTable("titleArticle, likes, dislikes, saveds", "articles", "WHERE IdArticle = {$this->idArticle}", "fetch");
         $this->nameArticle = $this->infoArticle["titleArticle"];
-        $this->currentLikes = $this->infoArticle['likes'];
-        $this->currentDislikes = $this->infoArticle["dislikes"];
+        $this->currentLikes = Queries::Counter("likeID", "likes");
+        $this->currentDislikes = Queries::Counter("dislikeID", "dislikes");
         $this->currentSaveds = $this->infoArticle["saveds"];
         $this->idUser = $idUser;
     }

@@ -115,15 +115,15 @@
                             description="likes">
 
                             <i class="fa-regular fa-thumbs-up"></i>
-                            <span class="num"><?php echo $infoArticle["likes"] ?></span>
+                            <span class="num like"><?php echo $infoArticle["likes"] ?></span>
                         </span>
                         <!-- dislike -->
                         <span 
-                            class="num-reaction deslikes description"
-                            typeReact="deslike" 
+                            class="num-reaction deslike description"
+                            typeReact="dislike" 
                             description="deslike">
                             <i class="fa-regular fa-thumbs-down"></i>
-                            <span class="num"><?php echo $infoArticle["dislikes"] ?></span>
+                            <span class="num dislike"><?php echo $infoArticle["dislikes"] ?></span>
                         </span>
                         <!-- Saved -->
                         <span 
@@ -207,8 +207,12 @@
                                     <!-- dislike -->
                                     <span 
                                         class="react-btn description" 
+                                        id-article="<?php echo  $infoArticle['IdArticle'] ?>"
+                                        type-react="<?php echo 'dislike' ?>"
+                                        id_user="<?php echo $_COOKIE["IdUser"] ?>"
                                         description="dislike">
-                                        <i class="fa-regular fa-thumbs-down"></i>
+                                        <?php setReactBtn("fa-thumbs-down", "dislikeID", "dislikes", "IdContent", $infoArticle["IdArticle"], "IdUser") ?>
+                                        <!-- <i class="fa-regular fa-thumbs-down"></i> -->
                                     </span>
 
                                     <!-- save -->

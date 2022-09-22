@@ -67,7 +67,7 @@
                     numberReactions.forEach((showReactionsNubmber) => {
                         if (showReactionsNubmber.getAttribute("typeReact") === returnVal.typeReact) {
                             for (let i = 0; i < showReactionsNubmber.children.length; i++) {
-                                if (showReactionsNubmber.children[i].classList.contains("num")) {
+                                if (showReactionsNubmber.children[i].classList.contains(returnVal.typeReact)) {
                                     showReactionsNubmber.children[i].innerHTML = returnVal.countReaction !== null ? returnVal.countReaction : 0;
                                 }
                             }
@@ -76,7 +76,7 @@
                 }
             }
 
-            xml.open("POST", "../ajaxPHPFilesArticles/addReactionsArt.php", false);
+            xml.open("POST", "../ajaxPHPFilesArticles/ReactionArticles/addReactionsArt.php", false);
             xml.setRequestHeader (
                 "Content-Type",
                 "application/x-www-form-urlencoded"
@@ -85,6 +85,7 @@
         }
         const reactBtns = document.querySelectorAll(".react-btn");
         reactBtns.forEach((reactBtn) => {
+
             reactBtn.addEventListener("click", () => {
                 reactBtn.firstElementChild.classList.toggle("fa-regular");
                 reactBtn.firstElementChild.classList.toggle("fa");

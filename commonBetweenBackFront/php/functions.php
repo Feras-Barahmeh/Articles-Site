@@ -77,13 +77,10 @@
     class Queries {
         public static function Delete($table, $condition) {
             global $db;
-            $obj = new GlobalFunctions();
             $stmt = $db->prepare("DELETE FROM $table WHERE $condition");
             $stmt->execute();
 
             if ($stmt->rowCount() > 0 ) {
-                // $obj->AlertMassage("Sucssess Delete", 'success');
-                // $obj->SitBackBtn();
                 return true;
             }  else {
                 return false;
@@ -135,6 +132,7 @@
             $stmt->execute();
 
             $number = $stmt->fetch();
+
             if ($stmt->rowCount() > 0 ) {
                 return $number[0];
             } else {

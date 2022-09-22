@@ -3,21 +3,6 @@ include_once "MainMethods.php";
 
 
 class PrepareAddReactiosnMethods extends MainMethods {
-
-    protected function AppropriateReaction($tableReact) {
-        switch ($tableReact) {
-            case 'likes':
-                return $this->currentLikes;
-                break;
-            case "dislikes" :
-                return $this->currentDislikes;
-                break;
-            case "saveds":
-                return $this->currentSaveds;
-                break;
-        }
-    }
-
     public function __construct($idArticle, $idUser, $tableReact, $colReactName) {
 
         $this->tableReact = $tableReact;
@@ -41,17 +26,40 @@ class PrepareAddReactiosnMethods extends MainMethods {
         return $idLike;
     }
 
-    protected function currentReaction($prevReaction) {
-        return $prevReaction - 1 < 0 ?  0 : $prevReaction - 1; 
+    public function UpdateContanerReactions ($table, $column, $val) {
+        Queries::Update($table, $column, $val, "WHERE IdArticle = {$this->idArticle}");
+    }
+
+    protected function AppropriateReaction($tableReact) {
+        switch ($tableReact) {
+            case 'likes':
+                return Queries::Counter("likeID", "likes");
+                break;
+            case "dislikes" :
+                return Queries::Counter("dislikeID", "dislikes");
+                break;
+            case "saveds":
+                return $this->currentSaveds;
+                break;
+        }
     }
 
     public  function DecCountReaction() {
-        $updated = Queries::Update("articles", $this->tableReact, $this->currentReaction($this->AppropriateReaction($this->tableReact))  , "WHERE IdArticle = {$this->idArticle}");
+        $updated = Queries::Update(
+                                    "articles", 
+                                    $this->tableReact, 
+                                    $this->AppropriateReaction($this->tableReact) - 1, 
+                                    "WHERE IdArticle = {$this->idArticle}");
         return $updated;
     }
 
     public  function IncCountReaction() {
-        $updated = Queries::Update("articles", $this->tableReact, $this->AppropriateReaction($this->tableReact) + 1 , "WHERE IdArticle = {$this->idArticle}");
+
+        $updated = Queries::Update( 
+                                    "articles", 
+                                    $this->tableReact, 
+                                    $this->AppropriateReaction($this->tableReact) + 1 ,
+                                    "WHERE IdArticle = {$this->idArticle}");
         return $updated;
     }
 

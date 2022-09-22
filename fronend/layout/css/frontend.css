@@ -234,7 +234,7 @@ aside .nav-toggeler {
     float: right;
 }
 .aside-profile-page nav .edit-profile:hover {
-    box-shadow: 0px 2px 9.4px rgb(0 0 0 / 50%);
+    box-shadow: 0px 0px 7px rgb(0 0 0 / 15%);
 }
 .aside-profile-page nav  .contanier-section {
     border-bottom: 1px solid;
@@ -692,7 +692,7 @@ p {
     width: 200px;
     margin-bottom: 10px;
     height: 100px;
-    box-shadow: 1px 1px 5px var(--skin-color);
+    box-shadow: 2px 2px 19px rgb(0 0 0 / 10%);
 }
 .main-contanier  .cards .card-statistics h4 {
     width: 100%;
@@ -1448,9 +1448,6 @@ p {
     height: 300px;
     position: relative;
 }
-.contanier-padding .section-articles .article .box {
-
-}
 .contanier-padding .section-articles .article .box a {
     font-size: 20px;
     color: var(--text-black-900);
@@ -1722,6 +1719,10 @@ p {
     padding: 0 10px;
     cursor: pointer;
     border-radius: 3px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: auto;
 }
 .constanier-article .continet-art .art-box .options .reacts .add-comm-btn:hover {
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 20%);
