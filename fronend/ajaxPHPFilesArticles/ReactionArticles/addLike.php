@@ -2,6 +2,7 @@
 require_once "PrepareAddReactiosnMethods.php";
 include_once "conflicitingReactions.php";
 
+
 class AddLike extends PrepareAddReactiosnMethods {
     public function AddLike () {
 
@@ -12,8 +13,7 @@ class AddLike extends PrepareAddReactiosnMethods {
 
                 echo json_encode([
                     "operation" => $operation,
-                    "countReaction" => $this->currentLikes,
-                    "typeReact" => "like",
+                    "newCountReactions" => $this->GetReactionsNumber(),
                 ]);
             }
         } else {
@@ -25,12 +25,11 @@ class AddLike extends PrepareAddReactiosnMethods {
                 // add reactions
                 $this->InsertReaction();
                 $this->UpdateContanerReactions("articles", "dislikes", $this->currentDislikes);
-
                 $operation = "Setlike";
+
                 echo json_encode([
                     "operation" => $operation,
-                    "countReaction" => $this->currentLikes,
-                    "typeReact" => "like",
+                    "newCountReactions" => $this->GetReactionsNumber(),
                 ]);
             } 
         }

@@ -20,4 +20,11 @@ abstract class MainMethods {
     public  function IncCountReaction(){}
     public  function DeleteReaction() {}
     public  function InsertReaction() {}
+
+    public static function GetReactionsNumber () {
+        return [
+            "like" => Queries::Counter("likeID", "likes"),
+            "dislike" => Queries::Counter("dislikeID", "dislikes"),
+        ];
+    }
 }

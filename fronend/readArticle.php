@@ -111,7 +111,9 @@
                         <!-- like -->
                         <span 
                             class="num-reaction likes description" 
-                            typeReact="like" 
+                            type-react="like"
+                            id-article="<?php echo $infoArticle['IdArticle'] ?>"
+                            id_user="<?php echo $_COOKIE['IdUser'] ?>"
                             description="likes">
 
                             <i class="fa-regular fa-thumbs-up"></i>
@@ -120,8 +122,10 @@
                         <!-- dislike -->
                         <span 
                             class="num-reaction deslike description"
-                            typeReact="dislike" 
-                            description="deslike">
+                            type-react="dislike" 
+                            id-article="<?php echo $infoArticle['IdArticle'] ?>"
+                            id_user="<?php echo $_COOKIE['IdUser'] ?>"
+                            description="dislike">
                             <i class="fa-regular fa-thumbs-down"></i>
                             <span class="num dislike"><?php echo $infoArticle["dislikes"] ?></span>
                         </span>
@@ -129,6 +133,8 @@
                         <span 
                             class="num-reaction saveds description" 
                             typeReact="saved" 
+                            id-article="<?php echo $infoArticle['IdArticle'] ?>"
+                            id_user="<?php echo $_COOKIE['IdUser'] ?>"
                             description="saveds">
                             <i class="fa-regular fa-bookmark"></i>
                             <span class="num"><?php echo $infoArticle["saveds"] ?></span>
@@ -197,22 +203,20 @@
                                     <span 
                                         class="react-btn description"
                                         id-article="<?php echo  $infoArticle['IdArticle'] ?>"
-                                        type-react="<?php echo 'like' ?>"
+                                        type-react="like"
                                         id_user="<?php echo $_COOKIE["IdUser"] ?>"
                                         description="like">
                                         <?php setReactBtn("fa-thumbs-up", "likeID", "likes", "IdContent", $infoArticle["IdArticle"], "IdUser") ?>
-                                        <!-- <i class="fa-regular fa-thumbs-up"></i> -->
                                     </span>
 
                                     <!-- dislike -->
                                     <span 
                                         class="react-btn description" 
                                         id-article="<?php echo  $infoArticle['IdArticle'] ?>"
-                                        type-react="<?php echo 'dislike' ?>"
+                                        type-react="dislike"
                                         id_user="<?php echo $_COOKIE["IdUser"] ?>"
                                         description="dislike">
                                         <?php setReactBtn("fa-thumbs-down", "dislikeID", "dislikes", "IdContent", $infoArticle["IdArticle"], "IdUser") ?>
-                                        <!-- <i class="fa-regular fa-thumbs-down"></i> -->
                                     </span>
 
                                     <!-- save -->

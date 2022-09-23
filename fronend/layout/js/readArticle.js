@@ -59,20 +59,24 @@
     // Add Feadback Articles
         function setReaction(attributeBtn) {
             const xml = new XMLHttpRequest();
+
             xml.onreadystatechange = function () {
                 if (xml.readyState === 4 && xml.status === 200) {
                     let returnVal = JSON.parse(xml.responseText);
+
                     const numberReactions = document.querySelectorAll(".num-reaction");
 
-                    numberReactions.forEach((showReactionsNubmber) => {
-                        if (showReactionsNubmber.getAttribute("typeReact") === returnVal.typeReact) {
-                            for (let i = 0; i < showReactionsNubmber.children.length; i++) {
-                                if (showReactionsNubmber.children[i].classList.contains(returnVal.typeReact)) {
-                                    showReactionsNubmber.children[i].innerHTML = returnVal.countReaction !== null ? returnVal.countReaction : 0;
-                                }
+                    // Seet Numbers Reactions
+                    numberReactions.forEach((numberReaction) => {
+                        const getNumbers = returnVal.newCountReactions;
+
+                        for (let key in getNumbers) {
+                            if (key === numberReaction.getAttribute("type-react")) {
+                                numberReaction.lastElementChild.innerHTML = getNumbers[key];
                             }
                         }
                     });
+
                 }
             }
 
@@ -83,18 +87,39 @@
             );
             xml.send(`idArticle=${attributeBtn[0]}&idUser=${attributeBtn[1]}&typeReact=${attributeBtn[2]}`);
         }
-        const reactBtns = document.querySelectorAll(".react-btn");
-        reactBtns.forEach((reactBtn) => {
 
+        function removeCurrentReaction() {
+            const btnsReactions = document.querySelectorAll(".react-btn");
+            btnsReactions.forEach(btn => {
+                btn.firstElementChild.classList.remove("fa");
+                btn.firstElementChild.classList.add("fa-regular");
+            });
+        }
+
+        const reactBtns = document.querySelectorAll(".react-btn");
+
+        reactBtns.forEach((reactBtn) => {
             reactBtn.addEventListener("click", () => {
-                reactBtn.firstElementChild.classList.toggle("fa-regular");
-                reactBtn.firstElementChild.classList.toggle("fa");
+
+                // Cliked Btn
+                let icone = reactBtn.firstElementChild;
+
+                if (! icone.classList.contains("fa")) {
+                    removeCurrentReaction();
+                    icone.classList.add("fa");
+                    icone.classList.remove("fa-regular");
+                } else {
+                    icone.classList.remove("fa");
+                    icone.classList.add("fa-regular");
+                }
+
 
                 setReaction( [
                             reactBtn.getAttribute("id-article"),
                             reactBtn.getAttribute("id_user"),
                             reactBtn.getAttribute("type-react"),
-                        ]);
+                        ], );
+
             });
         });
 
