@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2022 at 08:11 PM
+-- Generation Time: Sep 23, 2022 at 09:32 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -118,7 +118,20 @@ CREATE TABLE `likes` (
 --
 
 INSERT INTO `likes` (`likeID`, `IdUser`, `IdContent`, `content`) VALUES
-(223, 14, 6, NULL);
+(331, 14, 6, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `saveds`
+--
+
+CREATE TABLE `saveds` (
+  `idSaved` int(11) NOT NULL,
+  `IdUser` int(11) NOT NULL,
+  `IdContent` int(11) NOT NULL,
+  `content` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -196,6 +209,12 @@ ALTER TABLE `likes`
   ADD KEY `FK_Article` (`IdContent`);
 
 --
+-- Indexes for table `saveds`
+--
+ALTER TABLE `saveds`
+  ADD PRIMARY KEY (`idSaved`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -222,13 +241,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `dislikes`
 --
 ALTER TABLE `dislikes`
-  MODIFY `dislikeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `dislikeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=224;
+  MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=332;
+
+--
+-- AUTO_INCREMENT for table `saveds`
+--
+ALTER TABLE `saveds`
+  MODIFY `idSaved` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `users`
