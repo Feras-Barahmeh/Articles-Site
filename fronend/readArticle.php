@@ -189,10 +189,15 @@
 
                         <div class="options">
                             <div class="add-comm hidden" id="comm-box">
-                                <textarea name="" placeholder="Add comment" id="" ></textarea>
-                                <span class="share-btn description" description="Share">
+                                <textarea name="" placeholder="Add comment" id="content-comment" ></textarea>
+                                <span 
+                                    class="share-btn description" 
+                                    id="share-comment"
+                                    id-article="<?php echo  $infoArticle['IdArticle'] ?>"
+                                    id_user="<?php echo $_COOKIE["IdUser"] ?>"
+                                    description="Share">
                                     <i class="fa-sharp fa-solid fa-share"></i>
-                                    <span class="hint" id="share-comment">Share</span>
+                                    <span class="hint" >Share</span>
                                 </span>
                             </div>
 

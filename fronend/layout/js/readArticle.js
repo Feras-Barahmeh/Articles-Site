@@ -128,3 +128,36 @@
         });
 
 
+    // Add Commment To Article
+
+    function addCommentArticle(comment) {
+        const xmlHR = new XMLHttpRequest();
+
+        xmlHR.onreadystatechange = function () {
+            if (xmlHR.readyState === 4 && xmlHR.status === 200) {
+                console.log(xmlHR.responseText);
+                if (JSON.stringify(comment).length === 0) {
+                    console.log("Cant Send Empty Comment");
+                }
+            }
+        }
+        const prepareDataComment = document.getElementById("share-comment");
+
+        xmlHR.open("POST", "../ajaxPHPFilesArticles/addCommentArticle/addComment.php", false);
+        xmlHR.setRequestHeader (
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+        );
+        xmlHR.send (`idArticle=${prepareDataComment.getAttribute("id-article")}&idUser=${prepareDataComment.getAttribute("id_user")}&comment=${comment}`);
+    }
+
+    const contentComment = document.getElementById("content-comment");
+    const addCommentBtn = document.getElementById("share-comment");
+
+    contentComment.addEventListener("keyup", (e)=> {
+        comment = e.target.value;
+    });
+    addCommentBtn.addEventListener("click", () => {
+        contentComment.value = "";
+        addCommentArticle(comment);
+    });
