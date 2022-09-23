@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2022 at 09:32 PM
+-- Generation Time: Sep 24, 2022 at 12:10 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -47,7 +47,7 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`IdArticle`, `titleArticle`, `content`, `excerpt`, `likes`, `loves`, `dislikes`, `saveds`, `imageName`, `IdUser`, `categoryID`, `additionDate`) VALUES
-(6, 'Why index start to zero', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'Lorem ipsum dolor sit amet consectetur', 1, 0, 0, 0, 'download.jpg6_download.jpg', 12, 10, '2022-08-12'),
+(6, 'Why index start to zero', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'Lorem ipsum dolor sit amet consectetur', 1, 0, 0, 1, 'download.jpg6_download.jpg', 12, 10, '2022-08-12'),
 (8, 'All you need to learn Git', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, '1_omc83-7fb27k1ttmxdfraq (1).png8_1_omc83-7fb27k1ttmxdfraq (1).png', 12, 11, '2022-08-12'),
 (17, 'Best Way learn framework python', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, '1_z7hxzx49ero8tfg6mzxrnw.jpeg17_1_z7hxzx49ero8tfg6mzxrnw.jpeg', 12, 1, '2022-08-18'),
 (21, 'How booting OS', 'LoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoream', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, 'r.jpg_r.jpg', 12, 5, '2022-08-27'),
@@ -86,6 +86,26 @@ INSERT INTO `categories` (`IdCategory`, `titleCategory`, `content`, `additionDat
 (13, 'PHP', 'ALl  You need to learn PHP To learn  Backend', '2022-08-24', 12),
 (14, 'Windows ', 'Windows ', '2022-08-27', 12),
 (15, 'Problems', 'This Category to update problem solving skills', '2022-08-30', 12);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `commentarticles`
+--
+
+CREATE TABLE `commentarticles` (
+  `commentID` int(11) NOT NULL,
+  `articelID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL,
+  `contentComment` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `commentarticles`
+--
+
+INSERT INTO `commentarticles` (`commentID`, `articelID`, `userID`, `contentComment`) VALUES
+(3, 6, 14, 'Nice Article');
 
 -- --------------------------------------------------------
 
@@ -132,6 +152,13 @@ CREATE TABLE `saveds` (
   `IdContent` int(11) NOT NULL,
   `content` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `saveds`
+--
+
+INSERT INTO `saveds` (`idSaved`, `IdUser`, `IdContent`, `content`) VALUES
+(44, 14, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -195,6 +222,14 @@ ALTER TABLE `categories`
   ADD KEY `FK_AddBy` (`IDwriter`);
 
 --
+-- Indexes for table `commentarticles`
+--
+ALTER TABLE `commentarticles`
+  ADD PRIMARY KEY (`commentID`),
+  ADD KEY `FK_User_ID` (`userID`),
+  ADD KEY `FK_Article_ID` (`articelID`);
+
+--
 -- Indexes for table `dislikes`
 --
 ALTER TABLE `dislikes`
@@ -238,6 +273,12 @@ ALTER TABLE `categories`
   MODIFY `IdCategory` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT for table `commentarticles`
+--
+ALTER TABLE `commentarticles`
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `dislikes`
 --
 ALTER TABLE `dislikes`
@@ -253,7 +294,7 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `saveds`
 --
 ALTER TABLE `saveds`
-  MODIFY `idSaved` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `idSaved` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -277,6 +318,13 @@ ALTER TABLE `articles`
 --
 ALTER TABLE `categories`
   ADD CONSTRAINT `FK_AddBy` FOREIGN KEY (`IDwriter`) REFERENCES `users` (`IdUser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `commentarticles`
+--
+ALTER TABLE `commentarticles`
+  ADD CONSTRAINT `FK_Article_ID` FOREIGN KEY (`articelID`) REFERENCES `articles` (`IdArticle`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_User_ID` FOREIGN KEY (`userID`) REFERENCES `users` (`IdUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `likes`
