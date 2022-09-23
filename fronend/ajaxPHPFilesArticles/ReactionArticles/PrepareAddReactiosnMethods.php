@@ -39,14 +39,14 @@ class PrepareAddReactiosnMethods extends MainMethods {
                 return Queries::Counter("dislikeID", "dislikes");
                 break;
             case "saveds":
-                return $this->currentSaveds;
+                return Queries::Counter("idSaved", "saveds");
                 break;
         }
     }
 
     public  function DecCountReaction() {
         $updated = Queries::Update(
-                                    "articles", 
+                                    "articles",
                                     $this->tableReact, 
                                     $this->AppropriateReaction($this->tableReact) - 1, 
                                     "WHERE IdArticle = {$this->idArticle}");
@@ -56,7 +56,7 @@ class PrepareAddReactiosnMethods extends MainMethods {
     public  function IncCountReaction() {
 
         $updated = Queries::Update( 
-                                    "articles", 
+                                    "articles",
                                     $this->tableReact, 
                                     $this->AppropriateReaction($this->tableReact) + 1 ,
                                     "WHERE IdArticle = {$this->idArticle}");

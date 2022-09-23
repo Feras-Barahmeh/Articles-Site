@@ -24,6 +24,7 @@ class AddLike extends PrepareAddReactiosnMethods {
 
                 // add reactions
                 $this->InsertReaction();
+                // Update Value After Change anather reactions
                 $this->UpdateContanerReactions("articles", "dislikes", $this->currentDislikes);
                 $operation = "Setlike";
 

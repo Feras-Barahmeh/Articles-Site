@@ -10,7 +10,7 @@ abstract class MainMethods {
         $this->nameArticle = $this->infoArticle["titleArticle"];
         $this->currentLikes = Queries::Counter("likeID", "likes");
         $this->currentDislikes = Queries::Counter("dislikeID", "dislikes");
-        $this->currentSaveds = $this->infoArticle["saveds"];
+        $this->currentSaveds = Queries::Counter("idSaved", "saveds");
         $this->idUser = $idUser;
     }
 
@@ -25,6 +25,7 @@ abstract class MainMethods {
         return [
             "like" => Queries::Counter("likeID", "likes"),
             "dislike" => Queries::Counter("dislikeID", "dislikes"),
+            "save" => Queries::Counter("idSaved", "saveds"),
         ];
     }
 }

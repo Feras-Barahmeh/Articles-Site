@@ -146,7 +146,6 @@
             global $db;
             $stmt = $db->prepare("UPDATE `$table` SET `$column` = '$value' $where");
             $stmt->execute();
-
             if ($stmt->rowCount() > 0) {
                 return true;
             } else {

@@ -1,13 +1,13 @@
 <?php
 require_once "PrepareAddReactiosnMethods.php";
-include_once "conflicitingReactions.php";
-class AddDislike extends PrepareAddReactiosnMethods {
-    public function AddDislike () {
 
+class AddSave extends PrepareAddReactiosnMethods {
+    public function AddSave () {
+        
         if ($this->ifReactionSet()) {
             if ($this->DecCountReaction()) {
                 $this->DeleteReaction();
-                $operation = "Unislike";
+                $operation = "Unsave";
 
                 echo json_encode([
                     "operation" => $operation,
@@ -16,14 +16,11 @@ class AddDislike extends PrepareAddReactiosnMethods {
             }
         } else {
 
-            $delConflict = new ConflicitingReactions(["likes"], ["likeID"], ["IdContent" => $this->idArticle, "IdUser" => $this->idUser]);
-            $delConflict->RemoveConflicting();
-
             if ($this->IncCountReaction()) {
+
+                // add reactions
                 $this->InsertReaction();
-                // Update Value After Change anather reactions
-                $this->UpdateContanerReactions("articles", "likes", $this->currentLikes);
-                $operation = "Setdislike";
+                $operation = "Setsave";
 
                 echo json_encode([
                     "operation" => $operation,

@@ -132,7 +132,7 @@
                         <!-- Saved -->
                         <span 
                             class="num-reaction saveds description" 
-                            typeReact="saved" 
+                            type-react="save" 
                             id-article="<?php echo $infoArticle['IdArticle'] ?>"
                             id_user="<?php echo $_COOKIE['IdUser'] ?>"
                             description="saveds">
@@ -221,9 +221,12 @@
 
                                     <!-- save -->
                                     <span
-                                        class="react-btn description"
+                                        class="save-art-btn  react-btn description"
+                                        id-article="<?php echo  $infoArticle['IdArticle'] ?>"
+                                        type-react="save"
+                                        id_user="<?php echo $_COOKIE["IdUser"] ?>"
                                         description="save">
-                                        <i class="fa-regular fa-bookmark"></i>
+                                        <?php setReactBtn("fa-bookmark", "idSaved", "saveds", "IdContent", $infoArticle["IdArticle"], "IdUser") ?>
                                     </span>
                                 </div>
                                 <!-- End Smiles -->

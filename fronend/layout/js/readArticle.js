@@ -73,7 +73,7 @@
                         for (let key in getNumbers) {
                             if (key === numberReaction.getAttribute("type-react")) {
                                 numberReaction.lastElementChild.innerHTML = getNumbers[key];
-                            }
+                            } 
                         }
                     });
 
@@ -101,19 +101,23 @@
         reactBtns.forEach((reactBtn) => {
             reactBtn.addEventListener("click", () => {
 
-                // Cliked Btn
-                let icone = reactBtn.firstElementChild;
+                if (reactBtn.getAttribute("type-react") !== "save") {
+                    // Cliked Btn
+                    let icone = reactBtn.firstElementChild;
 
-                if (! icone.classList.contains("fa")) {
-                    removeCurrentReaction();
-                    icone.classList.add("fa");
-                    icone.classList.remove("fa-regular");
+                    if (! icone.classList.contains("fa") ) {
+                        removeCurrentReaction();
+                        icone.classList.add("fa");
+                        icone.classList.remove("fa-regular");
+                    } else {
+                        icone.classList.remove("fa");
+                        icone.classList.add("fa-regular");
+                    }
                 } else {
-                    icone.classList.remove("fa");
-                    icone.classList.add("fa-regular");
+                    let icone = reactBtn.firstElementChild;
+                    icone.classList.toggle("fa");
+                    icone.classList.toggle("fa-regular");
                 }
-
-
                 setReaction( [
                             reactBtn.getAttribute("id-article"),
                             reactBtn.getAttribute("id_user"),

@@ -2,7 +2,7 @@
 
     $dsn = 'mysql:host=localhost;dbname=portfolio'; // Data Sourse name
     $user = 'root';
-    $password = '';
+    $password = ''; // brt75H7j
     $options = [
         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
     ];
