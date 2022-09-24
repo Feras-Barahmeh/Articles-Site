@@ -1,5 +1,8 @@
 <?php 
 // Header Configration
+
+use function PHPSTORM_META\type;
+
     ob_start();
     session_start();
     $TITLE =  str_replace("-", " ", array_key_first($_GET));
@@ -65,35 +68,112 @@
         <?php
     }
 
+    function SetDateComment($shardDate) {
+        date_default_timezone_set("Asia/Amman");
+        $preiveDate = strtotime($shardDate);
+        $currentDate  = strtotime(date("Y-m-d h:i:s"));
+        $period = $currentDate -  $preiveDate;
+        
+        if ($period < 60) {
+            return $period . " secund";
+        }
+        if ($period < 60 * 60 & $period > 60) {
+            return floor($period / 60) . " Minut";
+        }
+
+        if ($period < 60 * 60 * 24 && $period > 60 *60) {
+            return floor($period / (60 * 60) ) . " Houers";
+        }
+
+        if ($period < 60 * 60 * 24 * 7 && $period > 60 * 60 * 24) {
+            return floor($period / (60 * 60 * 24) ) . " Day";
+        }
+    } 
+
+    function SetEllipsisVertical($userAddComment) {
+        if ((string) $userAddComment === $_COOKIE["IdUser"]) {
+            ?> 
+                <i class="fa-solid fa-ellipsis-vertical ellipsis-vertical"></i>
+            <?php
+        }
+    }
+
+    function containetComment() {
+        $comments = Queries::InnerJoinQuery(
+            "*",
+            "commentarticles",
+            "users",
+            "users.IdUser = commentarticles.userID  ORDER BY commentID DESC",
+        );
+
+        if (! empty($comments)) {
+                foreach ($comments as $comment) {
+                    ?>
+                        <div class="comment">
+                            <div class="info-writer">
+                                <?php ShowImage::SetImg("../../commonBetweenBackFront/uploaded/users/", $comment["imageName"]) ?>
+                                <span class="name-user"><a href=""><?php echo $comment["userName"] ?></a></span>
+                            </div>
+                            <div class="containet-comment">
+                                <div class="comment-p" id="comment-p"><?php echo $comment["contentComment"] ?></div>
+                                <textarea  class="textarea-comment hidden" id="contaner-edit-comment"><?php echo $comment["contentComment"] ?></textarea>
+                                <div class="error-mas hidden" id="error-mas"></div>
+
+                                <span 
+                                    class="share-comment-btn save-edit-comment hidden description" 
+                                    id="save-edit-comment" 
+                                    id_comment="<?php echo $comment["commentID"] ?>"
+                                    description="edit">
+                                    <i class="fa-sharp fa-solid fa-share"></i>
+                                    <span class="hint">Edit</span>
+                                </span>
+
+                                <div class="options">
+                                    <div class="reacts">
+                                        <div class="smile">
+                                            <!-- Like -->
+                                            <span class="react-btn-comment description" description="like">
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                                <div class="num"><?php echo $comment["likes_count"] ?></div>
+                                            </span>
+
+                                            <!-- Dislike -->
+                                            <span class="react-btn-comment description" description="dislike">
+                                                <i class="fa-regular fa-thumbs-down"></i>
+                                                <div class="num"><?php echo $comment["dislikes_count"] ?></div>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Start Footer Comment -->
+                                    <div class="">
+                                        <div class="footer-options  description"  description="options">
+                                            <div class="date"><?php  echo SetDateComment($comment["dateComment"]) ?></div>
+                                            <?php SetEllipsisVertical($comment["userID"]) ?>
+                                            <ul class="listModify hidden modify-comment-option"  id="ul-comment-options">
+                                                <li class="edit-comment"><i class="fa fa-edit"></i> <span>Edit</span></li>
+                                                <li class="delete-comment" id_comment="<?php echo $comment["commentID"] ?>"><i class="fa-solid fa-trash"></i> <span>Delete</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- End Footer Comment -->
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                }
+        } else {
+            ?> <div class="error-mas info" id="error-mas">No Comment Yet</div> <?php
+        }
+    }
+
     function Showcomment () {
         ?>
             <div class="comments background">
                 <h4>Comments</h4>
-                <div class="comment">
-                    <div class="info-writer">
-                        <img src="../../commonBetweenBackFront/images/imagesProject/defaultImg.jpg" alt="">
-                        <span class="name-user"><a href="">Feras</a></span>
-                    </div>
-                    <div class="containet-comment">
-                        <div class="comment-p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse qui neque totam.</div>
-                        <div class="options">
-                            <div class="reacts">
-                                <div class="smile">
-                                    <!-- Like -->
-                                    <span class="react-btn description" description="like">
-                                        <i class="fa-regular fa-thumbs-up"></i>
-                                    </span>
-
-                                    <!-- Dislike -->
-                                    <span class="react-btn description" description="dislike">
-                                        <i class="fa-regular fa-thumbs-down"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="date">22-5-2022</div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Start Comments -->
+                <?php containetComment() ?>
+                <!-- EndComments -->
             </div>
         <?php
     }
@@ -189,9 +269,9 @@
 
                         <div class="options">
                             <div class="add-comm hidden" id="comm-box">
-                                <textarea name="" placeholder="Add comment" id="content-comment" ></textarea>
+                                <textarea class = "textarea-comment"name="" placeholder="Add comment" id="content-comment" ></textarea>
                                 <span 
-                                    class="share-btn description" 
+                                    class="share-comment-btn description" 
                                     id="share-comment"
                                     id-article="<?php echo  $infoArticle['IdArticle'] ?>"
                                     id_user="<?php echo $_COOKIE["IdUser"] ?>"

@@ -157,7 +157,127 @@
     contentComment.addEventListener("keyup", (e)=> {
         comment = e.target.value;
     });
+
     addCommentBtn.addEventListener("click", () => {
         contentComment.value = "";
+        contentComment.classList.add("hidden");
         addCommentArticle(comment);
+        window.location.replace(window.location.pathname + window.location.search + window.location.hash);
     });
+    // End Add Comment
+
+
+    // Show Ul modify comment
+    const iconModifyComment = document.querySelectorAll(".ellipsis-vertical");
+    iconModifyComment.forEach((icone) => {
+        icone.addEventListener("click", () => {
+            if (icone.nextElementSibling.classList.contains("hidden")) {
+                icone.nextElementSibling.classList.remove("hidden");
+            } else {
+                icone.nextElementSibling.classList.add("hidden");
+            }
+        });
+    });
+
+    // Edit And Delete Comment
+    function hiddeUlOptions() {
+        const ulOptions = document.getElementById("ul-comment-options");
+        ulOptions.classList.add("hidden");
+    }
+
+    function liveChangeComment(newComment) {
+        let priveComment = document.getElementById("comment-p");
+        priveComment.innerHTML = "";
+        priveComment.innerHTML = newComment
+    }
+
+
+    function doSelectedOption( targetFile, idComment, typeOparation, newComment=null) {
+        const xmlRequest = new XMLHttpRequest();
+
+        xmlRequest.onreadystatechange = function () {
+            if (xmlRequest.readyState === 4 && xmlRequest.status === 200) {
+
+                // If Opration Edit
+                if (newComment != null) {
+                    liveChangeComment(newComment);
+                }
+
+                // If Opration is Delete
+                if (newComment == null) {
+                    window.location.replace(window.location.pathname + window.location.search + window.location.hash);
+                }
+            }
+        }
+
+        xmlRequest.open("POST", "../ajaxPHPFilesArticles/editDeleteComment/" + targetFile, false);
+        xmlRequest.setRequestHeader (
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+        );
+        xmlRequest.send(`typeOparation=${typeOparation}&newComment=${newComment}&idComment=${idComment}`);
+    }
+
+    const deleteCommentBtn = document.querySelectorAll(".delete-comment");
+    const editCommentBtns = document.querySelectorAll(".edit-comment");
+    const priveComment = document.getElementById("comment-p");
+    const containsEditComment  = document.getElementById("contaner-edit-comment");
+    const saveEditBtn = document.getElementById("save-edit-comment");
+
+
+    if (editCommentBtns !== null) {
+        editCommentBtns.forEach((editCommentBtn) => {
+            editCommentBtn.addEventListener("click", ()=> {
+                // hidde Ul options list
+                hiddeUlOptions();
+        
+                // Hidden Preve Contanet Comemnt
+                // editCommentBtn.closest("comment-p").classList.add("hidden");
+                priveComment.classList.add("hidden");
+        
+                // Show Edit Comment Texteara
+                containsEditComment.classList.remove("hidden");
+                saveEditBtn.classList.remove("hidden");
+            });
+        });
+    }
+
+
+    // Get New Comment
+    let newComment = "";
+    if (containsEditComment !== null) {
+        containsEditComment.addEventListener("keyup", (e) => {
+            newComment = e.target.value;
+        });
+    }
+
+    if (saveEditBtn !== null ) {
+        // Creat Requerst To Reaet Data When Click in edit comemnt btn
+        saveEditBtn.addEventListener("click", () => {
+            // ceck if New Comment Not Empty
+            const errorMasBox = document.getElementById("error-mas");
+            if (newComment.length == 0) {
+                errorMasBox.classList.remove("hidden");
+                errorMasBox.innerHTML = "No Change In Comment";
+            } else {
+            // If New Comment Valid 
+                errorMasBox.classList.add("hidden");
+                doSelectedOption( "editComment.php", saveEditBtn.getAttribute("id_comment"), "edit", newComment);
+                // hidden Textarea edit comment & edit btn
+                containsEditComment.classList.add("hidden");
+                saveEditBtn.classList.add("hidden");
+        
+                // display new Comment
+                priveComment.classList.remove("hidden");
+            }
+    
+        });
+    }
+
+    if (deleteCommentBtn !== null) {
+        deleteCommentBtn.addEventListener("click", () => {
+            // Hidde ul Options
+            hiddeUlOptions();
+            doSelectedOption("deleteComment.php", deleteCommentBtn.getAttribute("id_comment"), "delete");
+        }) ;
+    }

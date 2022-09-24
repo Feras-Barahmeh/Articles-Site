@@ -73,7 +73,7 @@ ul {
     border: 1px solid var(--skin-color) !important;
 }
 .info {
-    background: rgb(126 198 255);
+    background: rgb(126 198 255) !important;
     color: var(--text-black-700);
 }
 .fill-btn {
@@ -1625,7 +1625,7 @@ p {
 .constanier-article .continet-art .art-box .options .add-comm {
     position: relative;
 }
-.constanier-article .continet-art .art-box .options .add-comm textarea {
+.textarea-comment  {
     outline: none;
     border: 1px solid var(--bg-black-50);
     width: 100%;
@@ -1638,7 +1638,7 @@ p {
     overflow-y: hidden;
     background: var(--bg-black-900);
 }
-.constanier-article .continet-art .art-box .options .add-comm .share-btn {
+.share-comment-btn {
     position: absolute;
     bottom: 10px;
     display: flex;
@@ -1651,14 +1651,14 @@ p {
     background: var(--bg-black-900);
     transition: .3s ease-in-out;
 }
-.constanier-article .continet-art .art-box .options .add-comm .share-btn:hover {
+.share-comment-btn:hover {
     box-shadow: 1px 1px 6px rgb(0 0 0 / 57%);
 }
-.constanier-article .continet-art .art-box .options .add-comm .share-btn  i {
+.share-comment-btn i {
     color: var(--skin-color);
     margin-right: 10px;
 }
-.constanier-article .continet-art .art-box .options .add-comm .share-btn .hint {
+.share-comment-btn .hint {
     color: var(--text-black-700);
 }
 .constanier-article .continet-art .art-box .options .reacts {
@@ -1692,6 +1692,9 @@ p {
 .constanier-article .continet-art .art-box .options .reacts .smile span:hover {
     background: var(--bg-black-900);
 }
+.constanier-article .continet-art .art-box .options .reacts .smile span i {
+    margin-right: 4px;
+}
 .description:hover:before {
     content: attr(description);
     position: absolute;
@@ -1713,6 +1716,9 @@ p {
     font-size: 21px;
     color: var(--skin-color);
     transition: all .3s ease-in-out;
+}   
+.constanier-article .continet-art .art-box .options .reacts .smile .replay i {
+    margin-left: 6px;
 }
 .constanier-article .continet-art .art-box .options .reacts .add-comm-btn {
     background: var(--bg-black-50);
@@ -1783,7 +1789,18 @@ p {
     font-size: 15px;
     width: 100%;
     word-break: break-all;
-
+}
+.error-mas {
+    background: var(--danger--900);
+    text-align: center;
+    color: var(--text-black-900);
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 4px;
+}
+.save-edit-comment {
+    top: 40px !important;
+    height: fit-content !important;
 }
 .constanier-article .continet-art .art-box .comment .containet-comment .options {
     flex-direction: row;
@@ -1801,7 +1818,67 @@ p {
 .constanier-article .continet-art .art-box .comment .containet-comment .options .reacts span i {
     font-size: 16px;
 }
-.constanier-article .continet-art .art-box .comment .containet-comment .options .date {
+.constanier-article .continet-art .art-box .comment .containet-comment .options  .date {
+    color: var(--text-black-700);
+    display: inline-block;
+    font-size: 13px;
+}
+
+.constanier-article .continet-art .art-box .comment .containet-comment .options .footer-options {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100px;
+}
+.constanier-article .continet-art .art-box .comment .containet-comment .options .footer-options  i:hover {
+    color: var(--skin-color);
+    cursor: pointer;
+}
+.constanier-article .continet-art .art-box .comment .containet-comment .options .footer-options .listModify {
+    background: var(--bg-black-900);
+    position: absolute;
+    top: 33px;
+    z-index: 10000;
+    right: 0;
+    padding: 15px 15px 4px 15px;
+    width: 150px;
+    box-shadow: 0 1px 10px rgb(0 0 0 / 20%);
+}
+.constanier-article .continet-art .art-box .comment .containet-comment .options .footer-options .listModify::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    border: 10px solid  var(--bg-black-900);
+    transform: rotate(45deg);
+    border-right: transparent;
+    border-bottom: transparent;
+    right: 5px;
+    top: -9px;
+}
+.constanier-article .continet-art .art-box .comment .containet-comment .options .footer-options .listModify li {
+    border-bottom: 1px solid var(--bg-black-50);
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.constanier-article .continet-art .art-box .comment .containet-comment .options .footer-options .listModify li:last-child {
+    border-bottom: unset !important;
+    padding-bottom: 0 !important;
+}
+.constanier-article .continet-art .art-box .comment .containet-comment .options .footer-options .listModify li:hover {
+    background: var(--bg-black-50);
+}
+.constanier-article .continet-art .art-box .comment .containet-comment .options .footer-options .listModify i {
+    left: 7px;
+    margin-right: 6px;
+    color: var(--skin-color);
+}
+.constanier-article .continet-art .art-box .comment .containet-comment .options .footer-options .listModify span {
     color: var(--text-black-700);
 }
 /* End Read Article */

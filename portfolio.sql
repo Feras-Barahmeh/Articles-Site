@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2022 at 12:10 AM
+-- Generation Time: Sep 24, 2022 at 10:26 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -97,15 +97,20 @@ CREATE TABLE `commentarticles` (
   `commentID` int(11) NOT NULL,
   `articelID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `contentComment` text NOT NULL
+  `contentComment` text NOT NULL,
+  `dateComment` datetime NOT NULL,
+  `likes_count` int(11) DEFAULT 0,
+  `dislikes_count` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `commentarticles`
 --
 
-INSERT INTO `commentarticles` (`commentID`, `articelID`, `userID`, `contentComment`) VALUES
-(3, 6, 14, 'Nice Article');
+INSERT INTO `commentarticles` (`commentID`, `articelID`, `userID`, `contentComment`, `dateComment`, `likes_count`, `dislikes_count`) VALUES
+(25, 6, 14, 'test relode', '2022-09-24 11:14:57', 0, 0),
+(27, 6, 14, 'Nice article', '2022-09-24 11:21:08', 0, 0),
+(28, 6, 14, 'thanks for sharing', '2022-09-24 11:21:33', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -138,7 +143,19 @@ CREATE TABLE `likes` (
 --
 
 INSERT INTO `likes` (`likeID`, `IdUser`, `IdContent`, `content`) VALUES
-(331, 14, 6, NULL);
+(332, 14, 6, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `like_comments_articles`
+--
+
+CREATE TABLE `like_comments_articles` (
+  `id_like` int(11) NOT NULL,
+  `id_Article` int(11) NOT NULL,
+  `id_User` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -158,7 +175,7 @@ CREATE TABLE `saveds` (
 --
 
 INSERT INTO `saveds` (`idSaved`, `IdUser`, `IdContent`, `content`) VALUES
-(44, 14, 6, NULL);
+(48, 14, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -244,6 +261,14 @@ ALTER TABLE `likes`
   ADD KEY `FK_Article` (`IdContent`);
 
 --
+-- Indexes for table `like_comments_articles`
+--
+ALTER TABLE `like_comments_articles`
+  ADD PRIMARY KEY (`id_like`),
+  ADD KEY `like_comments_articles_ibfk_1` (`id_User`),
+  ADD KEY `like_comments_articles_ibfk_2` (`id_Article`);
+
+--
 -- Indexes for table `saveds`
 --
 ALTER TABLE `saveds`
@@ -276,25 +301,31 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `commentarticles`
 --
 ALTER TABLE `commentarticles`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `dislikes`
 --
 ALTER TABLE `dislikes`
-  MODIFY `dislikeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+  MODIFY `dislikeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=332;
+  MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=333;
+
+--
+-- AUTO_INCREMENT for table `like_comments_articles`
+--
+ALTER TABLE `like_comments_articles`
+  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `saveds`
 --
 ALTER TABLE `saveds`
-  MODIFY `idSaved` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `idSaved` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -332,6 +363,13 @@ ALTER TABLE `commentarticles`
 ALTER TABLE `likes`
   ADD CONSTRAINT `FK_Article` FOREIGN KEY (`IdContent`) REFERENCES `articles` (`IdArticle`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_User` FOREIGN KEY (`IdUser`) REFERENCES `users` (`IdUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `like_comments_articles`
+--
+ALTER TABLE `like_comments_articles`
+  ADD CONSTRAINT `like_comments_articles_ibfk_1` FOREIGN KEY (`id_User`) REFERENCES `users` (`IdUser`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `like_comments_articles_ibfk_2` FOREIGN KEY (`id_Article`) REFERENCES `articles` (`IdArticle`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
