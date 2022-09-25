@@ -12,7 +12,7 @@
                             Queries::FromTable("imageName", "users", "WHERE IdUser = {$_COOKIE['IdUser']}", "fetch")['imageName'],
                             "profile-pictuer");
                 ?>
-                <div class="dropdown" id="deopdown-btn"><span>majd</span><i class="fa-sharp fa-solid fa-caret-down" id="down"></i><i class="fa-solid fa-caret-up" id="up"></i></div>
+                <div class="dropdown" id="deopdown-btn"><span><?php echo $_COOKIE["userName"] ?></span><i class="fa-sharp fa-solid fa-caret-down" id="down"></i><i class="fa-solid fa-caret-up" id="up"></i></div>
                 <ul class="ul-dropdown" id="ul-dropdown">
                         <li><a href="#">Read Later</a></li>
                         <li><a href="#">Favarit Article</a></li>

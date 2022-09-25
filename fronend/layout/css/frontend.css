@@ -1595,7 +1595,7 @@ p {
 .constanier-article .continet-art .art-box {
     padding: 30px;
     margin-right: 0;
-    height: auto;
+    min-height: 100vh;
     width: 100%;
     max-width: 100%;
     background: var(--bg-black-900);
@@ -1660,6 +1660,27 @@ p {
 }
 .share-comment-btn .hint {
     color: var(--text-black-700);
+}
+.cancel {
+    position: absolute;
+    right: 8px;
+    top: 0;
+    bottom: 0;
+    height: fit-content;
+    margin-top: 4px;
+    padding: 0 3px;
+    width: auto;
+    cursor: pointer;
+}
+.cancel i {
+    display: inline-block;
+    position: relative;
+    color: var(--danger--900);
+    margin-right: auto;
+    font-size: 17px;
+}
+.cancel span {
+    display: inline-block;
 }
 .constanier-article .continet-art .art-box .options .reacts {
     align-items: center;
@@ -1799,8 +1820,9 @@ p {
     border-radius: 4px;
 }
 .save-edit-comment {
-    top: 40px !important;
+    top: 50px !important;
     height: fit-content !important;
+    right: 0;
 }
 .constanier-article .continet-art .art-box .comment .containet-comment .options {
     flex-direction: row;
@@ -1829,7 +1851,11 @@ p {
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    width: 100px;
+    width: auto;
+}
+.constanier-article .continet-art .art-box .comment .containet-comment .options .footer-options  i {
+    font-size: 18px;
+    margin-left: 15px;
 }
 .constanier-article .continet-art .art-box .comment .containet-comment .options .footer-options  i:hover {
     color: var(--skin-color);

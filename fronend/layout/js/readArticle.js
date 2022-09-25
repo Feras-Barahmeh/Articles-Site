@@ -197,16 +197,6 @@
 
         xmlRequest.onreadystatechange = function () {
             if (xmlRequest.readyState === 4 && xmlRequest.status === 200) {
-
-                // If Opration Edit
-                if (newComment != null) {
-                    liveChangeComment(newComment);
-                }
-
-                // If Opration is Delete
-                if (newComment == null) {
-                    window.location.replace(window.location.pathname + window.location.search + window.location.hash);
-                }
             }
         }
 
@@ -218,66 +208,111 @@
         xmlRequest.send(`typeOparation=${typeOparation}&newComment=${newComment}&idComment=${idComment}`);
     }
 
-    const deleteCommentBtn = document.querySelectorAll(".delete-comment");
-    const editCommentBtns = document.querySelectorAll(".edit-comment");
-    const priveComment = document.getElementById("comment-p");
-    const containsEditComment  = document.getElementById("contaner-edit-comment");
-    const saveEditBtn = document.getElementById("save-edit-comment");
+    // Starrt Edit And Delete Comment
+    const ellipsisVertical = document.querySelectorAll(".ellipsis-vertical");
 
+        ellipsisVertical.forEach(ellipsis => {
+            ellipsis.addEventListener("click", () => {
 
-    if (editCommentBtns !== null) {
-        editCommentBtns.forEach((editCommentBtn) => {
-            editCommentBtn.addEventListener("click", ()=> {
-                // hidde Ul options list
-                hiddeUlOptions();
-        
-                // Hidden Preve Contanet Comemnt
-                // editCommentBtn.closest("comment-p").classList.add("hidden");
-                priveComment.classList.add("hidden");
-        
-                // Show Edit Comment Texteara
-                containsEditComment.classList.remove("hidden");
-                saveEditBtn.classList.remove("hidden");
+                const optionsList = ellipsis.nextElementSibling;
+                
+                // Get Contanier Comment
+                const grandfather = ellipsis.closest(".containet-comment");
+                
+
+                // Get Edit Btn
+                const editCommentBtn = optionsList.querySelector("#edit-comment");
+                editCommentBtn.addEventListener("click", () => {
+
+                    // Hidden Ul List
+                    optionsList.classList.add("hidden");
+
+                    // Hidde Current Comment
+                    const currentComment = grandfather.querySelector("#comment-p");
+                    currentComment.classList.add("hidden");
+
+                    // Show Edit Comment Box 
+                    const editCommentBox = grandfather.querySelector("#contaner-edit-comment");
+                    editCommentBox.classList.remove("hidden");
+
+                    // Show Edit Comment Btn
+                    const shareCommentBtn = grandfather.querySelector("#save-edit-comment");
+                    shareCommentBtn.classList.remove("hidden");
+
+                    // Show Cansle Edit Btn 
+                    const cansleBtn = grandfather.querySelector("#cancel");
+                    cansleBtn.classList.remove("hidden");
+                    
+                    // Hidden comment Edit Box When click Cansle
+                            cansleBtn.addEventListener("click", () => {
+                                // Show Current Comment
+                                currentComment.classList.remove("hidden");
+
+                                // Remove Comment Edit Box 
+                                editCommentBox.classList.add("hidden");
+
+                                // Remove Edit Comment Btn 
+                                shareCommentBtn.classList.add("hidden");
+
+                                // Remvoe Cansle Btn
+                                cansleBtn.classList.add("hidden");
+                            });
+                });
+
             });
         });
-    }
 
 
-    // Get New Comment
-    let newComment = "";
-    if (containsEditComment !== null) {
-        containsEditComment.addEventListener("keyup", (e) => {
-            newComment = e.target.value;
-        });
-    }
+        // Fetch New Comment From Box Edit Comment
 
-    if (saveEditBtn !== null ) {
-        // Creat Requerst To Reaet Data When Click in edit comemnt btn
-        saveEditBtn.addEventListener("click", () => {
-            // ceck if New Comment Not Empty
-            const errorMasBox = document.getElementById("error-mas");
+        function changeComment(newComment, commentBox) {
+
+            const errorMasBox = commentBox.querySelector("#error-mas");
+            // console.log(errorMasBox);
             if (newComment.length == 0) {
                 errorMasBox.classList.remove("hidden");
                 errorMasBox.innerHTML = "No Change In Comment";
-            } else {
-            // If New Comment Valid 
+            }
+
+            const saveEditBtn = commentBox.querySelector("#save-edit-comment");
+
+            saveEditBtn.addEventListener("click", () => {
                 errorMasBox.classList.add("hidden");
                 doSelectedOption( "editComment.php", saveEditBtn.getAttribute("id_comment"), "edit", newComment);
-                // hidden Textarea edit comment & edit btn
-                containsEditComment.classList.add("hidden");
-                saveEditBtn.classList.add("hidden");
-        
-                // display new Comment
-                priveComment.classList.remove("hidden");
-            }
-    
-        });
-    }
 
-    if (deleteCommentBtn !== null) {
-        deleteCommentBtn.addEventListener("click", () => {
-            // Hidde ul Options
-            hiddeUlOptions();
-            doSelectedOption("deleteComment.php", deleteCommentBtn.getAttribute("id_comment"), "delete");
-        }) ;
-    }
+                // hidden Textarea edit comment & edit btn
+                commentBox.querySelector("#contaner-edit-comment").classList.add("hidden");
+                saveEditBtn.classList.add("hidden");
+    
+                // display new Comment
+                commentBox.querySelector("#comment-p").classList.remove("hidden");
+                
+                // hidden cansel btn
+                commentBox.querySelector("#cancel").classList.add("hidden");
+
+                // Live Chabge comment
+                commentBox.querySelector("#comment-p").innerHTML = newComment;
+            });
+        }
+
+        const textareasNewComment = document.querySelectorAll("#contaner-edit-comment");
+
+        if (textareasNewComment !== null) {
+            textareasNewComment.forEach((area) => {
+                area.addEventListener("keyup", (e) => {
+                    let newComment = e.target.value;
+                    changeComment(newComment, area.closest(".containet-comment"));
+                });
+            });
+        }
+
+
+        // Start Delete Comment
+
+        const deleteCommentBtn = document.querySelectorAll("#delete-comment");
+        deleteCommentBtn.forEach((deleteBtn) => {
+            deleteBtn.addEventListener("click", () => {
+                doSelectedOption("deleteComment.php", deleteBtn.getAttribute("id_comment"), "delete");
+                window.location.replace(window.location.pathname + window.location.search + window.location.hash);
+            });
+        });

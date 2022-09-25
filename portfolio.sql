@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2022 at 10:26 PM
+-- Generation Time: Sep 25, 2022 at 04:08 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -47,7 +47,7 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`IdArticle`, `titleArticle`, `content`, `excerpt`, `likes`, `loves`, `dislikes`, `saveds`, `imageName`, `IdUser`, `categoryID`, `additionDate`) VALUES
-(6, 'Why index start to zero', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'Lorem ipsum dolor sit amet consectetur', 1, 0, 0, 1, 'download.jpg6_download.jpg', 12, 10, '2022-08-12'),
+(6, 'Why index start to zero', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 1, 'download.jpg6_download.jpg', 12, 10, '2022-08-12'),
 (8, 'All you need to learn Git', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, '1_omc83-7fb27k1ttmxdfraq (1).png8_1_omc83-7fb27k1ttmxdfraq (1).png', 12, 11, '2022-08-12'),
 (17, 'Best Way learn framework python', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, '1_z7hxzx49ero8tfg6mzxrnw.jpeg17_1_z7hxzx49ero8tfg6mzxrnw.jpeg', 12, 1, '2022-08-18'),
 (21, 'How booting OS', 'LoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoream', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, 'r.jpg_r.jpg', 12, 5, '2022-08-27'),
@@ -108,9 +108,9 @@ CREATE TABLE `commentarticles` (
 --
 
 INSERT INTO `commentarticles` (`commentID`, `articelID`, `userID`, `contentComment`, `dateComment`, `likes_count`, `dislikes_count`) VALUES
-(25, 6, 14, 'test relode', '2022-09-24 11:14:57', 0, 0),
-(27, 6, 14, 'Nice article', '2022-09-24 11:21:08', 0, 0),
-(28, 6, 14, 'thanks for sharing', '2022-09-24 11:21:33', 0, 0);
+(33, 6, 14, 'Nice Article, thanks', '2022-09-25 05:07:42', 0, 0),
+(34, 6, 14, 'thanks to sharing', '2022-09-25 05:06:43', 0, 0),
+(35, 6, 14, 'last test', '2022-09-25 05:07:29', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -137,13 +137,6 @@ CREATE TABLE `likes` (
   `IdContent` int(11) NOT NULL,
   `content` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `likes`
---
-
-INSERT INTO `likes` (`likeID`, `IdUser`, `IdContent`, `content`) VALUES
-(332, 14, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -215,7 +208,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`IdUser`, `userName`, `password`, `email`, `fullName`, `aboutYou`, `langs`, `tools`, `permission`, `age`, `githup`, `facebook`, `twitter`, `linkedin`, `website`, `nickname`, `gender`, `location`, `education`, `work`, `imageName`, `dataRegister`) VALUES
 (12, 'feras', '$2y$10$Ci/KLHxpIAMOWOKqyEF1DuTyJBjxgYxKrrAP2wkuS/f6h6qHU85QO', 'ferasfadi345@gmail.com', 'Feras Barahmeh', 'I\'m Feras Barahmeh, study at ttu', 'cpp:50%, php:80%, python90%', 'Git  & Githup:40%,SOLID prinsiple:67%', 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download.png12_download.png', '2022-08-10'),
 (14, 'majd', '$2y$10$4ZlPqT1STYerP20oRYqTL.eNLlLAplkiQwVSFQ946J8IeXEQaE9sa', 'majdfadi44@gmail.com', 'Majd Fadi Barahmeh', 'Im Majd Fadi Barahmeh', 'cpp:30%, python:90%', 'git,JSON,githup', 0, '2003-07-09', 'majdfadi', 'majd_fadi', 'da7loze', NULL, NULL, 'da7loz', 'male', 'Amman - Jordan', 'HU, JU', NULL, '52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg14_52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg', '2022-08-10'),
-(42, 'khaled', '$2y$10$8xLH.So0pq.j4Zg/VyuWr.DJmAC.pJcxUbIGCyDp0RqIb1kkOvFJa', 'kh@kha.com', 'Khaled Fadi', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg_depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '2022-09-20');
+(42, 'khaled', '$2y$10$8xLH.So0pq.j4Zg/VyuWr.DJmAC.pJcxUbIGCyDp0RqIb1kkOvFJa', 'kh@kha.com', 'Khaled Fadi', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg_depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '2022-09-20'),
+(43, 'belal', '$2y$10$sovxVyN0O0M.0zOp4lgk9uehT7WHmWJ6d5FgUherrdnvgQugxAu.a', 'b@b.com', 'Belal Fadi Barahemh', '', NULL, NULL, 2, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'khaled.jpg_khaled.jpg', '2022-09-25');
 
 --
 -- Indexes for dumped tables
@@ -301,7 +295,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `commentarticles`
 --
 ALTER TABLE `commentarticles`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `dislikes`
@@ -331,7 +325,7 @@ ALTER TABLE `saveds`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identify user number', AUTO_INCREMENT=43;
+  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identify user number', AUTO_INCREMENT=44;
 
 --
 -- Constraints for dumped tables

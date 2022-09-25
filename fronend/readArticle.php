@@ -120,13 +120,15 @@ use function PHPSTORM_META\type;
                                 <div class="error-mas hidden" id="error-mas"></div>
 
                                 <span 
-                                    class="share-comment-btn save-edit-comment hidden description" 
-                                    id="save-edit-comment" 
-                                    id_comment="<?php echo $comment["commentID"] ?>"
-                                    description="edit">
+                                class="share-comment-btn save-edit-comment hidden description" 
+                                id="save-edit-comment" 
+                                id_comment="<?php echo $comment["commentID"] ?>"
+                                description="edit">
                                     <i class="fa-sharp fa-solid fa-share"></i>
                                     <span class="hint">Edit</span>
                                 </span>
+
+                                <span class="cancel hidden" id="cancel"> <i class="fa-sharp fa-solid fa-xmark"></i></span>
 
                                 <div class="options">
                                     <div class="reacts">
@@ -151,8 +153,8 @@ use function PHPSTORM_META\type;
                                             <div class="date"><?php  echo SetDateComment($comment["dateComment"]) ?></div>
                                             <?php SetEllipsisVertical($comment["userID"]) ?>
                                             <ul class="listModify hidden modify-comment-option"  id="ul-comment-options">
-                                                <li class="edit-comment"><i class="fa fa-edit"></i> <span>Edit</span></li>
-                                                <li class="delete-comment" id_comment="<?php echo $comment["commentID"] ?>"><i class="fa-solid fa-trash"></i> <span>Delete</span></li>
+                                                <li class="edit-comment" id="edit-comment"><i class="fa fa-edit"></i> <span>Edit</span></li>
+                                                <li class="delete-comment" id="delete-comment" id_comment="<?php echo $comment["commentID"] ?>"><i class="fa-solid fa-trash"></i> <span>Delete</span></li>
                                             </ul>
                                         </div>
                                     </div>

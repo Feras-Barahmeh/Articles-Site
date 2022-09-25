@@ -79,6 +79,18 @@
         }
     }
 
+    function GetAdmins() {
+        $admins = Queries::FromTable("userName, permission", "users", "WHERE permission > 0", "fetchAll", "permission", "ASC"); 
+
+        foreach($admins as $admin) {
+            $rank = $admin["permission"] === 1 ? '<i class="fa-solid fa-crown"></i>' :  '<i class="fa-solid fa-chess-queen"></i>';
+            ?>
+                <li><span class="to"><?php echo $rank; echo $admin["userName"];  ?> </li> 
+            <?php
+        }
+
+    }
+
     function SectionRegritions () {
         ?>
             <div class="main-part top-viewed">
@@ -103,6 +115,15 @@
             <!-- Start last published article -->
                 <?php LastArticle() ?>
             <!-- End last published article -->
+
+            <!-- Admins Name Start -->
+            <div class="main-part statistics">
+                <h4 class="title"><i class="fa-solid fa-signature"></i>Name Admins</h4>
+                <ul>
+                    <?php GetAdmins() ?>
+                </ul>
+            </div>
+            <!-- Admins Name End -->
 
             <!-- Start Statistics -->
             <div class="main-part cats-contaniere">
