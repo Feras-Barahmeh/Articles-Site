@@ -77,7 +77,6 @@
     class Queries {
         public static function Delete($table, $condition) {
             global $db;
-            echo"DELETE FROM $table WHERE $condition";
             $stmt = $db->prepare("DELETE FROM $table WHERE $condition");
             $stmt->execute();
 
@@ -145,7 +144,6 @@
 
         public static function Update ($table, $column, $value, $where = NULL) {
             global $db;
-            echo "UPDATE `$table` SET `$column` = '$value' $where";
             $stmt = $db->prepare("UPDATE `$table` SET `$column` = '$value' $where");
             $stmt->execute();
             if ($stmt->rowCount() > 0) {

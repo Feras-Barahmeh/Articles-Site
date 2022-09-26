@@ -26,7 +26,7 @@ use function PHPSTORM_META\type;
         if (Queries::Counter($searchTo, $table, "WHERE $nameContanitCol = $idContanit AND $nameUserCol = {$_COOKIE['IdUser']}") === 0) {
             ?> <i class="fa-regular <?php echo $btnName ?>"></i> <?php
         } else {
-            ?> <i class="fa <?php echo $btnName ?>"></i> <?php 
+            ?> <i class="fa <?php echo $btnName ?>"></i> <?php
         }
     }
 
@@ -51,7 +51,7 @@ use function PHPSTORM_META\type;
                     <!-- Links Media -->
                     <ul id="links-media" class="search-feild">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input 
+                        <input
                             type="search"
                             name="selectarticle"
                             id="search-art"
@@ -71,7 +71,7 @@ use function PHPSTORM_META\type;
     function SetDateComment($shardDate) {
         date_default_timezone_set("Asia/Amman");
         $preiveDate = strtotime($shardDate);
-        $currentDate  = strtotime(date("Y-m-d h:i:s"));
+        $currentDate  = strtotime(date("Y-m-d H:i:s"));
         $period = $currentDate -  $preiveDate;
         
         if ($period < 60) {
@@ -98,13 +98,39 @@ use function PHPSTORM_META\type;
         }
     }
 
+    function SetLikeIcone( $idArticle, $idUser, $idComment) {
+        $icone = "fa-thumbs-up" ;
+
+        $ifExist = Queries::Counter("id_like", "like_comment_articles", "WHERE id_article = {$idArticle} AND id_user = {$idUser} AND id_comment = {$idComment}");
+        if ($ifExist > 0) {
+            ?> <i class="fa <?php echo $icone; ?>"></i> <?php
+        } else {
+            ?> <i class="fa-regular <?php echo $icone; ?>"></i> <?php
+        }
+    }
+
+    function SetDislikeIcone($idArticle, $idUser, $idComment) {
+        $icone = "fa-thumbs-down";
+
+        $ifExist = Queries::Counter("id_dislike", "dislike_comment_articles", "WHERE id_article = {$idArticle} AND id_user = {$idUser} AND id_comment = {$idComment}");
+        if ($ifExist > 0) {
+            ?> <i class="fa fa-thumbs-down"></i> <?php
+        } else {
+            ?> <i class="fa-regular fa-thumbs-down"></i> <?php
+        }
+    }
+
+
     function containetComment() {
         $comments = Queries::InnerJoinQuery(
             "*",
             "commentarticles",
             "users",
-            "users.IdUser = commentarticles.userID  ORDER BY commentID DESC",
+            "users.IdUser = commentarticles.userID  ORDER BY commentID DESC LIMIT 10",
         );
+
+        $nameArticle = str_replace("-", " ", array_key_first($_GET));
+        $idArticle = Queries::FromTable("IdArticle", "articles", "WHERE titleArticle = '" . $nameArticle . "'", "fetch")["IdArticle"];
 
         if (! empty($comments)) {
                 foreach ($comments as $comment) {
@@ -120,10 +146,10 @@ use function PHPSTORM_META\type;
                                 <div class="error-mas hidden" id="error-mas"></div>
 
                                 <span 
-                                class="share-comment-btn save-edit-comment hidden description" 
-                                id="save-edit-comment" 
-                                id_comment="<?php echo $comment["commentID"] ?>"
-                                description="edit">
+                                        class="share-comment-btn save-edit-comment hidden description" 
+                                        id="save-edit-comment" 
+                                        id_comment="<?php echo $comment["commentID"] ?>"
+                                        description="edit">
                                     <i class="fa-sharp fa-solid fa-share"></i>
                                     <span class="hint">Edit</span>
                                 </span>
@@ -133,16 +159,28 @@ use function PHPSTORM_META\type;
                                 <div class="options">
                                     <div class="reacts">
                                         <div class="smile">
-                                            <!-- Like -->
-                                            <span class="react-btn-comment description" description="like">
-                                                <i class="fa-regular fa-thumbs-up"></i>
-                                                <div class="num"><?php echo $comment["likes_count"] ?></div>
+                                            <!-- Like Comment -->
+                                            <span 
+                                                    class="react-btn-comment like-comment description"
+                                                    description="like"
+                                                    type="like"
+                                                    id_comment="<?php echo $comment["commentID"] ?>"
+                                                    id_article="<?php echo $idArticle ?>"
+                                                    id_user="<?php echo $_COOKIE["IdUser"] ?>">
+                                                <?php setLikeIcone($idArticle, $_COOKIE["IdUser"], $comment["commentID"]) ?>
+                                                <div class="num"><?php echo Queries::Counter("id_like", "like_comment_articles", "WHERE id_comment = {$comment['commentID']}") ?></div>
                                             </span>
 
-                                            <!-- Dislike -->
-                                            <span class="react-btn-comment description" description="dislike">
-                                                <i class="fa-regular fa-thumbs-down"></i>
-                                                <div class="num"><?php echo $comment["dislikes_count"] ?></div>
+                                            <!-- Dislike Comment -->
+                                            <span 
+                                                    class="react-btn-comment dislike-comment description" 
+                                                    type="dislike"
+                                                    id_comment="<?php echo $comment["commentID"] ?>"
+                                                    id_article="<?php echo $idArticle ?>"
+                                                    id_user="<?php echo $_COOKIE["IdUser"] ?>"
+                                                    description="dislike">
+                                                    <?php SetDislikeIcone($idArticle, $_COOKIE["IdUser"], $comment["commentID"]) ?>
+                                                <div class="num"><?php echo Queries::Counter("id_dislike", "dislike_comment_articles", "WHERE id_comment = {$comment['commentID']}") ?></div>
                                             </span>
                                         </div>
                                     </div>
@@ -220,6 +258,16 @@ use function PHPSTORM_META\type;
                             description="saveds">
                             <i class="fa-regular fa-bookmark"></i>
                             <span class="num"><?php echo $infoArticle["saveds"] ?></span>
+                        </span>
+
+                        <span 
+                            class="num-reaction description" 
+                            type-react="" 
+                            id-article=""
+                            id_user=""
+                            description="comments">
+                            <i class="fa-regular fa-comments"></i>
+                            <span class="num"><?php echo  Queries::Counter("commentID", "commentarticles") ?></span>
                         </span>
                     </div>
                 </div>

@@ -13,6 +13,6 @@ if (! Queries::IfExsist("contentComment", "commentarticles", $_REQUEST["comment"
                         $_REQUEST["idArticle"], 
                         $_REQUEST["idUser"],
                         "'" . $_REQUEST["comment"] . "'",
-                        "'" . date("Y-m-d h:i:s") . "'",
+                        "'" . date("Y-m-d H:i:s") . "'",
                 ]);
 }

@@ -1843,7 +1843,8 @@ p {
 .constanier-article .continet-art .art-box .comment .containet-comment .options  .date {
     color: var(--text-black-700);
     display: inline-block;
-    font-size: 13px;
+    font-size: 12px;
+    text-transform: lowercase;
 }
 
 .constanier-article .continet-art .art-box .comment .containet-comment .options .footer-options {

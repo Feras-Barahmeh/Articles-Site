@@ -181,8 +181,12 @@
 
     // Edit And Delete Comment
     function hiddeUlOptions() {
-        const ulOptions = document.getElementById("ul-comment-options");
-        ulOptions.classList.add("hidden");
+
+        const ListsModify = document.querySelectorAll(".listModify");
+
+        ListsModify.forEach(listModify => {
+            listModify.classList.add("hidden");
+        });
     }
 
     function liveChangeComment(newComment) {
@@ -207,6 +211,14 @@
         );
         xmlRequest.send(`typeOparation=${typeOparation}&newComment=${newComment}&idComment=${idComment}`);
     }
+
+
+    // Hidden List When Scroll
+
+    document.addEventListener("scroll", () => {
+            hiddeUlOptions();
+    });
+
 
     // Starrt Edit And Delete Comment
     const ellipsisVertical = document.querySelectorAll(".ellipsis-vertical");
@@ -314,5 +326,128 @@
             deleteBtn.addEventListener("click", () => {
                 doSelectedOption("deleteComment.php", deleteBtn.getAttribute("id_comment"), "delete");
                 window.location.replace(window.location.pathname + window.location.search + window.location.hash);
+            });
+        });
+
+
+        // Set Like In comment Article
+
+        function addReactionComment(info, excutionFile) {
+            const requestReactionComment = new XMLHttpRequest();
+            requestReactionComment.onreadystatechange = function () {
+                if (requestReactionComment.readyState === 4 && requestReactionComment.status === 200) {
+                    console.log(requestReactionComment.responseText);
+                }
+            }
+
+            requestReactionComment.open("POST", "../ajaxPHPFilesArticles/likeDislikeCommentArticles/" + excutionFile);
+            requestReactionComment.setRequestHeader (
+                "Content-Type",
+                "application/x-www-form-urlencoded"
+            );
+
+            requestReactionComment.send(`idComment=${info.idComment}&idArticle=${info.idArticle}&idUser=${info.idUser}&typeReaction=${info.typeReaction}&actionType=${info.actionType}`);
+        }
+
+        const likes = document.querySelectorAll(".like-comment");
+
+        likes.forEach(like => {
+            like.addEventListener("click", () => {
+                let info = new Object ();
+
+                let icone = like.querySelector("i");
+                let actionType = icone.classList.contains("fa") ? "unlike" : "like";
+                const numContanier = like.lastElementChild;
+
+                if (actionType === "like") {
+                    // fill Like
+                    icone.classList.toggle("fa-regular"); 
+                    icone.classList.toggle("fa");
+
+                    // Live Change Number
+                    numContanier.innerHTML = Number(numContanier.innerHTML) + 1;
+
+                    // Remove Dislike If Exist
+                    const dislike = like.nextElementSibling;
+
+                    if (dislike.firstElementChild.classList.contains("fa") ) {
+                        dislike.firstElementChild.classList.remove("fa");
+                        dislike.firstElementChild.classList.add("fa-regular");
+                        dislike.lastElementChild.innerHTML = Number(like.lastElementChild.innerHTML) - 1 >= 0 ? Number(like.lastElementChild.innerHTML) - 1 : 0;
+                    }
+
+
+                } else {
+                    // fill Like
+                    icone.classList.toggle("fa-regular"); 
+                    icone.classList.toggle("fa");
+
+                    // Live Change Number
+                    numContanier.innerHTML = Number(numContanier.innerHTML) - 1;
+                }
+
+
+                info = {
+                    "idComment": like.getAttribute("id_comment"),
+                    "idArticle" : like.getAttribute("id_article"),
+                    "idUser" : like.getAttribute("id_user"),
+                    "typeReaction" : "like",
+                    "actionType" :actionType,
+                };
+
+                addReactionComment(info, "addLike.php");
+            });
+        });
+
+
+        // Add Dislikes
+
+        const dislikes = document.querySelectorAll(".dislike-comment");
+
+        dislikes.forEach((dislike) => {
+            dislike.addEventListener("click", ()=> {
+                let info = new Object ();
+
+                let icone = dislike.querySelector("i");
+                let actionType = icone.classList.contains("fa") ? "undislike" : "dislike";
+                const numContanier = dislike.lastElementChild;
+
+                if (actionType === "dislike") {
+                    // fill Like
+                    icone.classList.toggle("fa-regular"); 
+                    icone.classList.toggle("fa");
+
+                    // Live Change Number
+                    numContanier.innerHTML = Number(numContanier.innerHTML) + 1;
+
+                    // Remove Dislike If Exist
+                    const like = dislike.previousElementSibling;
+
+                    if (like.firstElementChild.classList.contains("fa") ) {
+                        like.firstElementChild.classList.remove("fa");
+                        like.firstElementChild.classList.add("fa-regular");
+                        like.lastElementChild.innerHTML = Number(like.lastElementChild.innerHTML) - 1 >= 0 ? Number(like.lastElementChild.innerHTML) - 1 : 0;
+                    }
+
+
+                } else {
+                    // fill Like
+                    icone.classList.toggle("fa-regular"); 
+                    icone.classList.toggle("fa");
+
+                    // Live Change Number
+                    numContanier.innerHTML = Number(numContanier.innerHTML) - 1;
+                }
+
+
+                info = {
+                    "idComment": dislike.getAttribute("id_comment"),
+                    "idArticle" : dislike.getAttribute("id_article"),
+                    "idUser" : dislike.getAttribute("id_user"),
+                    "typeReaction" : "dislike",
+                    "actionType" :actionType,
+                };
+
+                addReactionComment(info, "addDislike.php");
             });
         });
