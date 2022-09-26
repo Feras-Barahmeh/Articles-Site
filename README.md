@@ -6,7 +6,7 @@
     <img width="50px" height="50px" margin-right="25px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnzPq-1GBQiKEBQT5hpPxj8c8gi8-oKI0bng&usqp=CAU" alt="">
     <img width="50px" height="50px" margin-right="25px" src="https://www.w3schools.com/whatis/img_ajax.jpg" alt="">
     <img width="100px" height="50px" margin-right="25px" src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2021/01/html5-css3.jpg?resize=498%2C249&ssl=1" alt="">
-    <img width="50px" height="45px" margin-right="25px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/800px-Unofficial_JavaScript_logo_2.svg.png" alt="">
+    <img width="50px" height="50px" margin-right="25px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/800px-Unofficial_JavaScript_logo_2.svg.png" alt="">
   </div>
 
 ---
