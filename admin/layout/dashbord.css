@@ -10,6 +10,7 @@
 }
 .deopdown-btn i {
     color: var(--skin-color);
+    transition: all 1s ease-in-out;
 }
 .list-dropdown {
     position: absolute;
@@ -141,6 +142,21 @@
     position: absolute;
     background-color: var(--danger--900);
 }
+.count-draft {
+    font-size: 10px !important;
+    color: var(--danger--900);
+    position: absolute;
+    background: var(--bg-black-50);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -17px;
+    right: -15px;
+}
 /* End Content */
 /* Start Title Page  */
 .dashbord h1 {
@@ -240,10 +256,10 @@
     height: 65px;
     border: 2px solid var(--skin-color);
     border-radius: 50%;
-    padding: 2px;
-    box-shadow: 0 0 5px #DDD;
+    box-shadow: 0 0 5px #ddd;
     margin-left: 20px;
-    margin-top: -35px;
+    left: -50%;
+    transform: translate(-50%, -50%);
 }
 
 /* End Welcome */
@@ -315,16 +331,16 @@
     border: none;
     padding-bottom: 0;
 }
-.article .info .data > p,
-.article .info .data > span {
+.article  .data > p,
+.article  .data > span {
     color: var(--text-black-700);
 }
-.article .info .data > p {
+.article  .data > p {
     color: var(--text-black-900);
     line-height: 15px;
     font-size: 17px;
 }
-.article .info .date {
+.article  .date {
     background: var(--skin-color);
     color: var(--text-black-700);
     width: 70px;
@@ -491,3 +507,77 @@
     transition:  all .3s ease-in-out;
 }
 /* End Projects */
+/* Start Show Drafts */
+.box-drafts  {
+    margin: auto;
+    max-width: 700px;
+}
+.box-drafts .heading {
+    background-color: var(--skin-color);
+}
+.box-drafts .heading  h5 {
+    color: var(--text-black-700);
+    font-size: 17px ;
+}
+.box-drafts .heading div .clear-btn,
+.box-drafts .heading div a {
+    background-color: var(--bg-black-100);
+    color: var(--text-black-700);
+    padding: 2px 10px;
+    border-radius: 3px;
+}
+.box-drafts .heading .clear-btn {
+    cursor: pointer;
+}
+.box-drafts .heading .clear-btn:hover,
+.box-drafts .heading div a:hover {
+    opacity: .6;
+}
+.box-drafts  ul {
+    min-height: 100vh;
+}
+.box-drafts  ul li {
+    cursor: pointer;
+}
+.box-drafts ul li .title {
+    background-color: var(--bg-black-100);
+    padding: 5px 10px;
+}
+.box-drafts ul li .title span i {
+    border: 1px solid gray;
+    width: fit-content;
+}
+.box-drafts ul li .title > .fa-trash {
+    color: var(--danger--900);
+    opacity: 0;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+.box-drafts ul li:hover .title > .fa-trash {
+    opacity: 1;
+}
+.box-drafts ul li .title .angle,
+.box-drafts ul li .title .check-box-draft {
+    color: var(--skin-color);
+    font-size: 18px;
+    transition: all 3s ease-in-out;
+}
+.box-drafts ul li .title span.fa-check {
+    width: fit-content;
+    height: fit-content;
+}
+.box-drafts ul li .title .check-box-draft {
+    color: var(--skin-color);
+    font-size: 18px;
+    padding: 2px;
+    margin-right: 8px;
+    width: 19px;
+    height: 19px;
+}
+.box-drafts ul li p {
+    color: var(--text-black-700);
+    background-color: var(--bg-black-50);
+    transition: all 2s ease-in-out;
+    min-height: 50px;
+}
+/* End Show Drafts */

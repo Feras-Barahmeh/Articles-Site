@@ -232,8 +232,11 @@
 .mr-10 {
     margin-right: 10px;
 }
+.mr-15 {
+    margin-right: 15px;
+}
 .mr-20 {
-    margin-left: 20px;
+    margin-right: 20px;
 }
 .mb-0 {
     margin-bottom: 0px;
@@ -255,6 +258,9 @@
 }
 .ml-10 {
     margin-left: 10px;
+}
+.ml-15 {
+    margin-left: 15px;
 }
 .ml-20 {
     margin-left: 20px;
@@ -362,7 +368,7 @@
 /* End Media  */
 /* Start Componants  */
 .center-ele {
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
 }
@@ -387,6 +393,7 @@
 }
 .btn-shape:hover {
     opacity: 9;
+    color: #FFF;
 }
 .btn-shape-skin {
     background-color: var(--skin-color);
@@ -462,3 +469,170 @@
     cursor: pointer;
 }
 /* End cursor */
+/* Start Aleart Massage */
+.alert-validation {
+    position: relative;
+    line-height: 17px;
+    color: white;
+    font-size: 13px;
+    text-align: center;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    width: 100%;
+    transition: all .3s ease-in-out;
+    padding: 4px;
+}
+.danger {
+    background: var(--danger--900);
+}
+.success {
+    border: 1px solid var(--skin-color) !important;
+}
+.info {
+    background: rgb(126 198 255) !important;
+    color: var(--text-black-700);
+}
+.fill-btn {
+    color: var(--skin-color) !important;
+}
+.alert {
+    text-align: center;
+    width: 360px;
+    position: relative;
+    left: 50%;
+    top: 11px;
+    transform: translate(-50%);
+    padding: 10px;
+    position: fixed;
+    z-index: 100;
+    display: flex;
+    justify-content: space-around;
+    color: #fff;
+}
+
+.alert i {
+    padding: 3px;
+    background: red;
+    text-align: center;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* End Aleart Massage */
+
+/* Start Puple Masage */
+/*
+        <div id="overlay" class="active"></div>
+        <div id="boxAlert" >
+            <div class="contanier">
+                <h2 class="">Confirem Massage</h2>
+                <p>Are you sure Delete All Drafts</p>
+                <button id="btn-boxAlert" type="button">OK</button>
+            </div>
+        </div>`
+*/
+#boxAlert {
+    width: 100%;
+    position: absolute;
+    transition-duration: 6s;
+    transition-timing-function: ease-in-out;
+    z-index: 200;
+}
+#boxAlert .contanier {
+    position: fixed;
+    left: 57%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    color: var(--text-black-700);
+    width: 400px;
+    max-width: 100%;
+    overflow: hidden;
+    background-color: var(--bg-black-900);
+} 
+#boxAlert .contanier h2 {
+    background: var(--skin-color);
+    padding: 5px 20px;
+    margin: 0;
+    width: 100%;
+    color: var(--text-black-700);
+}
+p {
+    font-weight: 600;
+    padding: 10px;
+}
+#boxAlert .contanier button {
+    width: 100px;
+    float: right;
+    bottom: 0;
+    right: 0;
+    margin: 0 5px 5px 0;
+    padding: 4px 0;
+    position: relative;
+    outline: none;
+    border: none;
+    border-radius: 40px;
+    background: var(--skin-color);
+    cursor: pointer;
+}
+#boxAlert .contanier button:hover {
+    box-shadow: 0px 3px 4px 3px rgba(48, 46, 77, 0.15);
+}
+#overlay {
+    background: rgba(0, 0, 0, .5);
+    z-index: 100;
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+/* End Puple Masage */
+
+
+/* Start Simple Alert Massage */
+.mass {
+    position: fixed;
+    right: 0;
+    top: 5px;
+    width: auto;
+    transition: all .3s ease;
+}
+.content-mass {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.content-mass p {
+    color: #4e3f3f;
+    font-size: 15px;
+}
+.content-mass span {
+    width: 24px;
+    height: 24px;
+    margin-right: 7px;
+    padding: 3px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    justify-content: center;
+    font-weight: 900;
+}
+.content-mass span:hover {
+    opacity: .6;
+}
+.success-mas {
+    background: rgb(137, 243, 137);
+}
+/* End Simple Alert Massage */

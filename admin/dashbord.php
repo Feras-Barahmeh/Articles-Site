@@ -7,9 +7,48 @@
 
 // Start Fork Functions
 
-function Page() {
-    ?>
 
+function FilterDraftInput() {
+
+    $title = filter_var($_POST["title-draft"], FILTER_UNSAFE_RAW);
+    $content = filter_var($_POST["content-draft"], FILTER_DEFAULT);
+    return [
+        "titleDraft" => $title,
+        "content" => $content,
+    ];
+}
+function IfValidDraft($dataDraft) {
+    $ifValid = true;
+    if (Queries::IfExsist("title_draft", "quick_draft", $dataDraft["titleDraft"], "string") ) {
+        $ifValid = false;
+    }
+    if (Queries::IfExsist("content_draft", "quick_draft", $dataDraft["content"], "string") ) {
+        $ifValid = false;
+    }
+    if (empty($dataDraft['content'])) {
+        $ifValid = false;
+    }
+    if (empty($dataDraft['titleDraft'])) {
+        $ifValid = false;
+    }
+
+    return $ifValid;
+}
+function AddDraft() {
+
+    if (isset($_POST["quick-draft"]) && !empty($_POST["quick-draft"])) {
+        $dataDraft = FilterDraftInput();
+        if (IfValidDraft($dataDraft)) {
+            Queries::Insert("quick_draft", 
+            ["id_user", "content_draft", "title_draft"], 
+            [$_SESSION["IdUser"], "'" . $dataDraft["content"] . "'", "'" . $dataDraft["titleDraft"] . "'"]) ;
+        }
+    }
+}
+
+function Page() {
+    AddDraft();
+    ?>
         <!-- Start Main Page  -->
         <div class="dashbord flex">
             <!-- Start Aside -->
@@ -17,7 +56,7 @@ function Page() {
                     <h3 class="relative txt-cn mt-0">Feras <span class="last-name">Barahmeh</span></h3>
                     <ul>
                         <li>
-                            <a class="active flex f-al-ce p-10 mb-5 rad-5 fs-14" href="index.html">
+                            <a class="active flex f-al-ce p-10 mb-5 rad-5 fs-14" href="dashbord.php">
                                 <i class="fa fa-chart-bar fa-fw mr-10"></i>
                                 <span class="hide-mobile">Dashbord</span>
                             </a>
@@ -59,9 +98,9 @@ function Page() {
                             </a>
                         </li>
                         <li>
-                            <a class="flex f-al-ce p-10 mb-5 rad-5 fs-14" href="plans.html">
-                                <i class="fa fa-book mr-10"></i>
-                                <span class="hide-mobile">quick Draft</span>
+                            <a class="flex f-al-ce p-10 mb-5 rad-5 fs-14" href="quickDraft.php">
+                                <i class="fa fa-book mr-10 relative"><?php CountDraft() ?></i>
+                                <span class="hide-mobile">quick Draft  </span>
                             </a>
                         </li>
                     </ul>
@@ -114,7 +153,7 @@ function Page() {
                         </div>
                     </div>
                     <!-- End Head -->
-                    <h1 class="ml-20 fs-20 relative">Dashbord</h1>
+                    <h1 class="ml-20 mb-20 fs-20 relative">Dashbord</h1>
                     <div class="wrapper boxs-contanier grid gap-20">
                         <div class="welcome p-20 pb-5 rad-10  txt-c-mobile block-mobile">
                             <div class="layout-box flex f-sp-between p-20">
@@ -128,19 +167,31 @@ function Page() {
                             <div class="body-box txt-cn flex p-20 mb-20 block-mobile gap-10">
                                 <div class="">Feras <span class="block fs-14 mt-10 white-bg-color">Enginnering</span></div>
                                 <div class="">10 <span class="block fs-14 mt-10 white-bg-color">Projects</span></div>
-                                <div class=""> $1000<span class="block fs-14 mt-10 white-bg-color">Salary</span></div>
+                                <div class="">$1000<span class="block fs-14 mt-10 white-bg-color">Salary</span></div>
                             </div>
                             <a href="profile.html" class="visit block fs-14 rad-5 w-fit mb-5 ptb-5 plr-10">Profile</a>
                         </div>
 
                         <!-- Start Quick draft -->
-                        <div class="quick-draft p-20 pb-10 rad-10  txt-c-mobile block-mobile">
+                        <div class="quick-draft p-20 pb-10 rad-10  txt-c-mobile block-mobile" id="quick-draft">
                             <h2 class="title-box m-0 mb-5">Quick Draft</h2>
                             <p class="black-txt-color">Write A Quick Draft</p>
-                            <form action="">
-                                <input class="ptb-5 plr-10 outline-none bor-no w-fu mb-20 gray-bg rad-5" type="text" placeholder="Title">
-                                <textarea class="w-fu no-resize outline-none bor-no p-20 gray-bg rad-3 server-txt-color" cols="30" rows="10" placeholder="What You Thought"></textarea>
-                                <input type="submit" value="Rember me pleas" class="btn-shape mt-15 fs-14 btn-shape-left">
+                            <form  action="<?php echo $_SERVER["PHP_SELF"] ?>" method="POST">
+                                <input 
+                                    class="ptb-5 plr-10 outline-none bor-no w-fu mb-20 gray-bg rad-5 " 
+                                    name="title-draft" 
+                                    id="title-draft"
+                                    type="text" 
+                                    required 
+                                    placeholder="Title">
+                                <textarea 
+                                        class="w-fu no-resize outline-none bor-no p-20 gray-bg rad-3 server-txt-color "
+                                        name="content-draft"
+                                        required 
+                                        cols="30" 
+                                        rows="10" 
+                                        placeholder="What You Thought"></textarea>
+                                <input type="submit" id="quick-draft" name="quick-draft" value="Rember me pleas" class="btn-shape mt-15 fs-14 btn-shape-left">
                             </form>
                         </div>
                         <!-- End Quick draft -->
@@ -202,7 +253,7 @@ function Page() {
                             <h4 class="title-box m-0 ">Last Articles</h4>
                             <div class="article flex f-al-ce mtb-15">
                                 <img class="s-rec-img mr-10 rad-5" src="images/articels/news-01.png" alt="">
-                                <div class="info flex flex-1 f-al-ce f-sp-between">
+                                <div class=" flex flex-1 f-al-ce f-sp-between">
                                     <div class="data">
                                         <p class="title-article m-0 pb-5">Lorem ipsum dolor sit amet.</p>
                                         <span class="binft fs-14">Lorem ipsum dolor sit.</span>
@@ -212,7 +263,7 @@ function Page() {
                             </div>
                             <div class="article flex f-al-ce mtb-15">
                                 <img class="s-rec-img mr-10 rad-5" src="images/articels/news-02.png" alt="">
-                                <div class="info flex flex-1 f-al-ce f-sp-between">
+                                <div class="flex flex-1 f-al-ce f-sp-between">
                                     <div class="data">
                                         <p class="title-article m-0 pb-5">Lorem ipsum dolor sit amet.</p>
                                         <span class="binft fs-14">Lorem ipsum dolor sit.</span>
@@ -222,7 +273,7 @@ function Page() {
                             </div>
                             <div class="article flex f-al-ce mtb-15">
                                 <img class="s-rec-img mr-10 rad-5" src="images/articels/news-03.png" alt="">
-                                <div class="info flex flex-1 f-al-ce f-sp-between">
+                                <div class="flex flex-1 f-al-ce f-sp-between">
                                     <div class="data">
                                         <p class="title-article m-0 pb-5">Lorem ipsum dolor sit amet.</p>
                                         <span class="binft fs-14">Lorem ipsum dolor sit.</span>
@@ -232,7 +283,7 @@ function Page() {
                             </div>
                             <div class="article flex f-al-ce mtb-15">
                                 <img class="s-rec-img mr-10 rad-5" src="images/articels/news-04.png" alt="">
-                                <div class="info flex flex-1 f-al-ce f-sp-between">
+                                <div class="flex flex-1 f-al-ce f-sp-between">
                                     <div class="data">
                                         <p class="title-article m-0 pb-5">Lorem ipsum dolor sit amet.</p>
                                         <span class="binft fs-14">Lorem ipsum dolor sit.</span>
@@ -244,7 +295,7 @@ function Page() {
                         <!-- End Last Artiles -->
 
                         <!-- Start Statistics -->
-                        <div class="statistics box-sh-op10-clwh p-20 rad-10">
+                        <div class="statistics box-sh-op10-clwh p-20 rad-10" id="statistics">
                             <h2 class="title-box">General Statistics</h2>
                             <div class="boxs grid wrapper-150 gap-10 w-fu">
                                 <div class="box p-10 center-ele sort-col">
@@ -553,10 +604,6 @@ function Page() {
 
     <?php
 }
-
-
-
-
 
 
 

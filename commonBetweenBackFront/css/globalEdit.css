@@ -259,8 +259,8 @@ table tr td {
         width: 1170px;
     }
 }  */
-/* 
-.alert {
+
+/* .alert {
     text-align: center;
     width: 360px;
     position: relative;
@@ -277,25 +277,7 @@ table tr td {
 .alert i {
     width: 17px;
     padding: 3px;
-}
-
-.danger {
-    background-color: var(--danger);
-}
-
-.info {
-    background-color: var(--info);
-    color: black;
-}
-
-.success {
-    background-color: var(--success);
-}
-
-.text-center {
-    text-align: center;
-}
-
+} */
 .back-btn {
     position: relative;
     display: inline-block;
@@ -315,6 +297,26 @@ table tr td {
     color: #fff;
     background: var(--main-cat-tow);
 }
+
+/*
+.danger {
+    background-color: var(--danger);
+}
+
+.info {
+    background-color: var(--info);
+    color: black;
+}
+
+.success {
+    background-color: var(--success);
+}
+
+.text-center {
+    text-align: center;
+}
+
+
 
 
 

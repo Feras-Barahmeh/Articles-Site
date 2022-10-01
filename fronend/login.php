@@ -30,7 +30,7 @@
 
         if (!empty($_SESSION)) {
             ?>
-                <li><a href="profile.php?<?php echo  $_SESSION['user'] ?>"><i class="fa-solid fa-user"></i>Profile</a></li>
+                <!-- <li><a href="profile.php?<?php echo  $_SESSION['user'] ?>"><i class="fa-solid fa-user"></i>Profile</a></li> -->
                 <li><a href="#"><i class="fa-solid fa-newspaper"></i>Articles</a></li>
                 <li><a href="#"><i class="fa-solid fa-tag"></i>Categories</a></li>
                 <li><a href="#"><i class="fa-solid fa-quote-right"></i>Quotes</a></li>
