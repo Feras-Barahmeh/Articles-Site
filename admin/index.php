@@ -30,7 +30,7 @@
 // main Function
     function LoginStructure() {
         ?>
-            <div class="login-box">
+            <div class="login-box rad-5 box-sh-op10-clwh">
                 <h2>Login</h2>
                 <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
                     <div class="user-box">
@@ -41,7 +41,7 @@
                         <input type="password" name="password" required="">
                         <label for="password">Password</label>
                     </div>
-                    <input type="submit" value="Login" class="btn-submit">
+                    <input type="submit" value="Login" class="btn-shape">
 
                     </a>
                 </form>
