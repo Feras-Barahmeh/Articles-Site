@@ -49,21 +49,23 @@ if (removeAlterMassage !== null) {
 
     // If Massage dange exist
     if (AlertMassage !== null) {
-        const cross = document.getElementById("del-mass");
+        const cross = document.querySelector("#alert-mass #del-mass");
         cross.addEventListener("click", ()=> {
-            AlertMassage.style.display = "none";
+            AlertMassage.remove();
         });
 
         // Set Color Masssage
+
         if (AlertMassage.classList.contains("danger")) {  // If Error
-            AlertMassage.style.background = "#ff6c6c";
-            AlertMassage.style.borderLeft = "5px solid #fc2222";
-            AlertMassage.children[0].children[1].style.background = "red";
+            AlertMassage.style.background = "#ff6c6c !important";
+            AlertMassage.style.borderLeft = "5px solid #fc2222 !important";
+            AlertMassage.children[0].children[1].style.background = "red !important";
 
         } else if (AlertMassage.classList.contains("done")) { // If Success
-            AlertMassage.style.background = "#93e468";
-            AlertMassage.style.borderLeft = "5px solid #48a903";
-            AlertMassage.children[0].children[1].style.background = "#48a903";
+            AlertMassage.classList.add("success-mas");
+            AlertMassage.style.background = "#93e468 !important";
+            AlertMassage.style.borderLeft = "5px solid #48a903 !important";
+            AlertMassage.children[0].children[1].style.background = "#48a903 !important";
         }
     }
 // End Simple Alter Massage

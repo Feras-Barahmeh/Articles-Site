@@ -45,6 +45,11 @@
 .list-dropdown li:hover {
     background-color: rgb(255, 255, 255);
 }
+@media(max-width: 767px) {
+    .deopdown-btn {
+        margin: 0 5px !important;
+    }
+}
 /* End Deobdown */
 .dashbord {
     min-height: 100vh;

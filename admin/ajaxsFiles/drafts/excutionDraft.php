@@ -28,7 +28,7 @@ if (isset($_REQUEST)
     
     if (Queries::Delete("quick_draft", "id_user = 12")) {
         ?>
-            <div id="alert-mass" class="mass done success">
+            <div id="alert-mass" class="mass done">
                 <div class="content-mass">
                     <p>Success Delete Drafts</p>
                     <span id="del-mass"><i class="fa-solid fa-x"></i></span>
@@ -38,10 +38,10 @@ if (isset($_REQUEST)
     } else {
         ?>
         <div id="alert-mass" class="mass danger" >
-                    <div class="content-mass">
-                        <p>Not Sucssess Delete All Drafts Try Agane later</p>
-                        <span id="del-mass"><i class="fa-solid fa-x"></i></span>
-                    </div>
+            <div class="content-mass">
+                <p>Not Sucssess Delete All Drafts Try Agane later</p>
+                <span id="del-mass"><i class="fa-solid fa-x"></i></span>
+            </div>
         </div>
         <?php
     }

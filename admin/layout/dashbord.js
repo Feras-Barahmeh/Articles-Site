@@ -239,9 +239,11 @@ function actionProcessDraft(idDraft, currentStatusDraft, typeRequest) {
 
             // Remove Masage When Click X 
             const mass = document.getElementById("del-mass");
-            mass.addEventListener("click", () => {
-                mass.closest("#alert-mass").remove();
-            });
+            if (mass !== null) {
+                mass.addEventListener("click", () => {
+                    mass.closest("#alert-mass").remove();
+                });
+            }
         }
     }
 
@@ -251,26 +253,15 @@ function actionProcessDraft(idDraft, currentStatusDraft, typeRequest) {
         "application/x-www-form-urlencoded",
     );
     xml.send(`id_draft=${idDraft}&current_Status=${currentStatusDraft}&typeRequest=${typeRequest}`);
+    xml.abort();
 }
 function fillCheckBox(checkBoxDraft) {
-    checkBoxDraft.addEventListener("click", () => {
-        checkBoxDraft.classList.toggle("fa-check");
-        checkBoxDraft.closest(".draft").lastElementChild.classList.toggle("hidden");
-
-        // Update in darabase
-        let currentStatus = checkBoxDraft.classList.contains("fa-check") == false ? 0 : 1;
-        actionProcessDraft(checkBoxDraft.getAttribute("id_draft"), currentStatus, "chngeStatusDraft");
-    });
+    // Update in database
+    let currentStatus = checkBoxDraft.classList.contains("fa-check") == false ? 0 : 1;
+    actionProcessDraft(checkBoxDraft.getAttribute("id_draft"), currentStatus, "chngeStatusDraft");
 }
 
-const checkBoxsDraft = document.querySelectorAll(".check-box-draft");
 
-if (checkBoxsDraft !== null) {
-    // Fill box when click
-    checkBoxsDraft.forEach(checkBoxDraft => {
-        fillCheckBox(checkBoxDraft);
-    });
-}
 // Delete Draft
 const delDraftBtn = document.querySelectorAll(".delete-draft");
 if (delDraftBtn !== null ) {
@@ -311,9 +302,7 @@ if (clearDraftsBtn !== null) {
             document.getElementById("overlay").remove();
             actionProcessDraft(null, null, "deleteAll");
 
-            if (document.getElementById("listdrafts").children.length == 0) {
-                document.getElementById("listdrafts").innerHTML = `<div class="alter info m-20 p-15">No Drafts Yet</div>`;
-            }
+            document.getElementById("listdrafts").innerHTML = `<div class="alter info m-20 p-15">No Drafts Yet</div>`;
         });
 
         // User dosen't need delete drafts
@@ -333,7 +322,7 @@ if (drafts !== null) {
         draft.addEventListener("click", () => {
             draft.lastElementChild.classList.toggle("hidden");
             // switch arrow
-            const angles = draft.firstElementChild.querySelectorAll(".angle ");
+            const angles = draft.firstElementChild.querySelectorAll(".angle");
             angles.forEach(angle => {
                 angle.classList.toggle("hidden");
             });
@@ -341,4 +330,16 @@ if (drafts !== null) {
     });
 }
 
+const checkBoxsDraft = document.querySelectorAll(".check-box-draft");
 
+if (checkBoxsDraft !== null) {
+    // Fill box when click
+    checkBoxsDraft.forEach(checkBoxDraft => {
+        checkBoxDraft.addEventListener("click", () => {
+            checkBoxDraft.classList.toggle("fa-check");
+
+            checkBoxDraft.closest(".draft").lastElementChild.classList.toggle("hidden");
+            fillCheckBox(checkBoxDraft);
+        });
+    });
+}

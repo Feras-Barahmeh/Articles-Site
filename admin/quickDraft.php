@@ -6,9 +6,9 @@
 
 function SetCheckBox($infoDraft) {
     if ($infoDraft["if_executed"] === 0) {
-        ?> <i id="excute-draft" class="fa-solid check-box-draft center-ele"  id_draft="<?php echo $infoDraft["id_draft"] ?>"></i><?php
+        ?> <i class="fa-solid check-box-draft center-ele" id_draft="<?php echo $infoDraft["id_draft"] ?>"></i><?php
     } else {
-        ?> <i id="excute-draft" class="fa-solid fa-check check-box-draft center-ele"  id_draft="<?php echo $infoDraft["id_draft"] ?>"></i> <?php
+        ?> <i class="fa-solid fa-check check-box-draft center-ele" id_draft="<?php echo $infoDraft["id_draft"] ?>"></i> <?php
     }
 }
 function setDrafts() {

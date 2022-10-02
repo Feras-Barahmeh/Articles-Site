@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2022 at 03:19 PM
+-- Generation Time: Oct 01, 2022 at 11:16 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -111,7 +111,8 @@ INSERT INTO `commentarticles` (`commentID`, `articelID`, `userID`, `contentComme
 (33, 6, 14, 'Nice Article, thanks', '2022-09-25 05:07:42', 0, 0),
 (34, 6, 14, 'thanks to sharing', '2022-09-25 05:06:43', 0, 0),
 (35, 6, 14, 'good information', '2022-09-25 22:21:54', 0, 0),
-(36, 6, 14, 'thanks sar', '2022-09-25 22:22:30', 0, 0);
+(36, 6, 14, 'Thanks sar', '2022-09-27 13:12:21', 0, 0),
+(49, 6, 14, 'Woooo, great', '2022-09-27 13:12:46', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -151,7 +152,7 @@ CREATE TABLE `dislike_comment_articles` (
 --
 
 INSERT INTO `dislike_comment_articles` (`id_dislike`, `id_article`, `id_user`, `id_comment`) VALUES
-(21, 6, 14, 36);
+(24, 6, 14, 49);
 
 -- --------------------------------------------------------
 
@@ -191,7 +192,22 @@ CREATE TABLE `like_comment_articles` (
 --
 
 INSERT INTO `like_comment_articles` (`id_like`, `id_article`, `id_user`, `id_comment`) VALUES
-(40, 6, 14, 35);
+(40, 6, 14, 35),
+(41, 6, 14, 36);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quick_draft`
+--
+
+CREATE TABLE `quick_draft` (
+  `id_draft` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `content_draft` varchar(255) NOT NULL,
+  `title_draft` varchar(255) NOT NULL,
+  `if_executed` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -311,6 +327,13 @@ ALTER TABLE `like_comment_articles`
   ADD KEY `FK_comment` (`id_comment`);
 
 --
+-- Indexes for table `quick_draft`
+--
+ALTER TABLE `quick_draft`
+  ADD PRIMARY KEY (`id_draft`),
+  ADD KEY `FK_draft_user` (`id_user`);
+
+--
 -- Indexes for table `saveds`
 --
 ALTER TABLE `saveds`
@@ -343,7 +366,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `commentarticles`
 --
 ALTER TABLE `commentarticles`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `dislikes`
@@ -355,7 +378,7 @@ ALTER TABLE `dislikes`
 -- AUTO_INCREMENT for table `dislike_comment_articles`
 --
 ALTER TABLE `dislike_comment_articles`
-  MODIFY `id_dislike` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_dislike` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `likes`
@@ -367,7 +390,13 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `like_comment_articles`
 --
 ALTER TABLE `like_comment_articles`
-  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT for table `quick_draft`
+--
+ALTER TABLE `quick_draft`
+  MODIFY `id_draft` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `saveds`
@@ -417,6 +446,12 @@ ALTER TABLE `likes`
 --
 ALTER TABLE `like_comment_articles`
   ADD CONSTRAINT `FK_comment` FOREIGN KEY (`id_comment`) REFERENCES `commentarticles` (`commentID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `quick_draft`
+--
+ALTER TABLE `quick_draft`
+  ADD CONSTRAINT `FK_draft_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`IdUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

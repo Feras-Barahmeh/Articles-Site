@@ -67,7 +67,7 @@
                         <li>
                             <a class="flex f-al-ce p-10 mb-5 rad-5 fs-14" href="cursess.html">
                                 <i class="fa fa-graduation-cap fa-fw mr-10"></i>
-                                <span class="hide-mobile">Cursers</span>
+                                <span class="hide-mobile">Articles</span>
                             </a>
                         </li>
                         <li>
@@ -79,7 +79,7 @@
                         <li>
                             <a class="flex f-al-ce p-10 mb-5 rad-5 fs-14" href="files.html">
                                 <i class="fa fa-file fa-fw mr-10"></i>
-                                <span class="hide-mobile">Files</span>
+                                <span class="hide-mobile">Felieds</span>
                             </a>
                         </li>
                         <li>
