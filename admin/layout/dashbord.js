@@ -12,13 +12,16 @@ function hiddenWhenScroll(elementTarget) {
 const dropdownBtn = document.getElementById("dropdoen-btn");
 const list = document.getElementById("list-dropdown");
 
-hiddenWhenScroll(list);
+// hiddenWhenScroll(list);
+
 if(dropdownBtn !== null) {
     dropdownBtn.addEventListener("click", () => {
-        list.classList.toggle("hidden");
-        const iconsUpDown = document.querySelectorAll(".deopdown-btn i");
+        list.classList.toggle("opacity-low");
+        list.classList.toggle("opacity-full");
+        const iconsUpDown = document.querySelectorAll(".deopdown-btn > i");
         iconsUpDown.forEach(icone => {
-            icone.classList.toggle("hidden");
+            icone.classList.toggle("opacity-low");
+            icone.classList.toggle("opacity-full");
         });
     });
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2022 at 11:16 PM
+-- Generation Time: Oct 03, 2022 at 10:23 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -209,6 +209,14 @@ CREATE TABLE `quick_draft` (
   `if_executed` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `quick_draft`
+--
+
+INSERT INTO `quick_draft` (`id_draft`, `id_user`, `content_draft`, `title_draft`, `if_executed`) VALUES
+(28, 12, 'last draft', 'last draft', 0),
+(30, 12, 'Testing Check Box ', 'New Draft', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -396,7 +404,7 @@ ALTER TABLE `like_comment_articles`
 -- AUTO_INCREMENT for table `quick_draft`
 --
 ALTER TABLE `quick_draft`
-  MODIFY `id_draft` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_draft` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `saveds`

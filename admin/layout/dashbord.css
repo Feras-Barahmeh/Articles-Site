@@ -21,6 +21,13 @@
     width: 170px;
     top: 55px;
     z-index: 1000;
+    transition: opacity .4s ease-in-out;
+}
+.list-dropdown.opacity-full {
+    z-index: 10;
+}
+.list-dropdown.opacity-low {
+    z-index: -10;
 }
 .list-dropdown::before {
     content: '';

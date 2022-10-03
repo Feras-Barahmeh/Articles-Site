@@ -80,9 +80,9 @@ function Page() {
                             </a>
                         </li>
                         <li>
-                            <a class="flex f-al-ce p-10 mb-5 rad-5 fs-14" href="cursess.html">
-                                <i class="fa fa-graduation-cap fa-fw mr-10"></i>
-                                <span class="hide-mobile">Cursers</span>
+                            <a class="flex f-al-ce p-10 mb-5 rad-5 fs-14" href="articlesV2.php">
+                                <i class="fa-solid fa-newspaper  fa-fw mr-10"></i>
+                                <span class="hide-mobile">Articles</span>
                             </a>
                         </li>
                         <li>
@@ -123,8 +123,8 @@ function Page() {
 
                             <button id="dropdoen-btn" class="deopdown-btn relative ml-10 mr-10 p-10 rad-5 cursor-pointer">
                                     <span class="hide-mobile"><?php echo $_SESSION['adminName'] ?></span> 
-                                    <i class="fa-solid fa-caret-down " aria-hidden="true"></i><i class="fa-solid fa-caret-up hidden" aria-hidden="true"></i>
-                                    <ul id="list-dropdown" class="list-dropdown hidden">
+                                    <i class="fa-solid fa-caret-down " aria-hidden="true"></i><i class="fa-solid fa-caret-up opacity-low" aria-hidden="true"></i>
+                                    <ul id="list-dropdown" class="list-dropdown opacity-low">
                                         <li class="mb-10 p-5 w-fu mb-10 pb-10 rad-5">
                                             <a class="between-ele ptb-5 plr-10 rad-5" href="profile.php?<?php echo Sessions::GetValueSessionDepKey('adminName') ?>"><i class="fa-solid fa-user icone-drobdown" aria-hidden="true" ></i>Profile</a>
                                             

@@ -1,146 +1,149 @@
-// Start Dashbord
+// Start Articles
+function hiddenAllUl(constanersUls, currentClickEvent) {
+    constanersUls.forEach( constanerUls => {
+        // Change arrowes direction
+        if (currentClickEvent !== constanerUls) {
+            if (constanerUls.querySelector("ul").classList.contains("active")) {
+                constanerUls.querySelectorAll(".angle").forEach(arrow => {
+                    if (arrow.classList.contains("fa-angle-up")) {
+                        arrow.classList.remove("active");
+                    } else {
+                        arrow.classList.add("active");
+                    }
+            });
 
-// // Start Dropdowmn
-//     /* When the user clicks on the button,
-//     toggle between hiding and showing the dropdown content */
-//     function myFunction() {
-//         document.getElementById("myDropdown").classList.toggle("show");
-//     }
-
-//     // Close the dropdown menu if the user clicks outside of it
-//     window.onclick = function(event) {
-//     if (!event.target.matches('.dropbtn')) {
-//         var dropdowns = document.getElementsByClassName("dropdown-content");
-//         var i;
-//         for (i = 0; i < dropdowns.length; i++) {
-//             var openDropdown = dropdowns[i];
-//             if (openDropdown.classList.contains('show')) {
-//                 openDropdown.classList.remove('show');
-//             }
-//         }
-//     }
-//     }
-
-// Search Article
-    function FilterArticles() {
-        let SearchValue = document.getElementById('SearchValue').value;
-        let SerarchList = document.getElementsByClassName('box-article');
-        
-        for (let i of SerarchList) {
-            if (i.childNodes[3].childNodes[1].innerHTML.search(SearchValue) == -1) {
-                i.style.display = "none";
-            } else {
-                i.style.display = "block";
+                // hidden opend ul
+                constanerUls.querySelector("ul").classList.remove("active");
             }
         }
-    }
 
-// Serch In Articles At This Categoryes
-    function FilterArticlesInThisCat() {
-        let SearchValue = document.getElementById('SearchValue').value;
-        let SearchList = document.getElementsByClassName('list-search');
+    });
+}
+function outClickHiddenUl(filterArticleBtn) {
+    let ifDone ;
+    document.addEventListener("click", (e) => {
+        const ifDropdownBtn = e.target.matches("[btn-deopdown]") ;
 
-        for (let li = 0; li < SearchList.length; li++) {
-            if (SearchList[li].innerHTML.search(SearchValue) == -1) {
-                SearchList[li].style.display = "none";
-            } else {
-                SearchList[li].style.display = "block";
-            }
+        if (!ifDropdownBtn && ! e.target.matches(".content-minu .search-li") ) {
+            filterArticleBtn.forEach(dropdown => {
+                
+                // Reset sutable angle
+                if (dropdown.querySelector("ul").classList.contains("active")) {
+                    dropdown.querySelectorAll(".angle").forEach(arrow => {
+                        arrow.classList.toggle("active");
+                    });
+                }
+
+                dropdown.querySelector("ul").classList.remove("active");
+                ifDone = false;
+            });
+        } else {
+            ifDone = true;
         }
-    }
+    });
+
+    return ifDone;
+}
+const filterArticleBtn = document.querySelectorAll(".dropdown-minu");
+
+if (filterArticleBtn !== null) {
+    filterArticleBtn.forEach(filterBtn => {
+
+        // Hidden ul whene scroll
+        window.addEventListener("scroll", () => {
+            filterBtn.querySelector(".fa-angle-up").classList.remove("active");
+            filterBtn.querySelector(".fa-angle-down").classList.add("active");
+            filterBtn.querySelector("ul").classList.remove("active");
+        });
+
+        filterBtn.addEventListener ("click", (e) => {
+            // hidden all opend list
+            hiddenAllUl(filterArticleBtn, filterBtn);
+
+            // Hidden Drobdown When click in random position in page
+            outClickHiddenUl(filterArticleBtn);
+
+            // Show Clicked dorbdown
+            if (e.target.matches("[btn-deopdown]") )
+                filterBtn.querySelector("ul").classList.toggle("active");
+
+            // Chane angels
+            const angels = filterBtn.querySelectorAll(".angle");
+            angels.forEach(angle => {
+                angle.classList.toggle("active");
+            });
 
 
+        });
+    });
+}
 
-// Filter By Cat In Profile Page
+// Serach Article depnded title
 
-    function fetchLettersWhenSearch() {
-        let litters = document.getElementById("search-cats").value.toLowerCase();
+const searchArticleInput = document.getElementById("search-article-name");
+const articels = document.querySelectorAll(".article");
 
-        // Get Elemnts Has Name Careggory
-        let categoriesName = document.querySelectorAll("#cat-name");
-        
-        for (let li of categoriesName) {
-            if (li.innerHTML.toLocaleLowerCase().search(litters) == -1) {
+searchArticleInput.addEventListener("keyup", (e) => {
+    articels.forEach(article => {
+        if (article.querySelector("h4").innerHTML.toLowerCase().search(e.target.value.toLowerCase()) == -1) {
+            article.style.opacity = "0";
+            setTimeout (function () {
+                article.style.display = "none";
+            }, 300); // to hidden smothe mode (time is a .3s time in css transion)
+        } else {
+            article.style.opacity = "1";
+            setTimeout (function () {
+                article.style.display = "block";
+            }, 300);
+        }
+    });
+});
+
+// Filter Article by name in articels page
+const inputSearch = document.querySelectorAll(".search-li");
+
+inputSearch.forEach(inputSearch => {
+    const lis = inputSearch.closest("ul").querySelectorAll("li:not(li:first-child)");
+
+    inputSearch.addEventListener("keyup", (e) => {
+        lis.forEach(li => {
+            if (li.innerHTML.toLowerCase().search(e.target.value.toLowerCase()) === -1) {
                 li.style.display = "none";
             } else {
                 li.style.display = "block";
             }
-        }
-    }
+        });
+    });
+});
+// Filter Article by filters type
 
-    function creatImg(inClass, desine=null) {
-        // Where We Set Img
-        let contanier = document.getElementsByClassName(inClass);
+function filterByType(li, typeFilter) {
 
-        const image = document.createElement("img");
-        image.src = "../commonBetweenBackFront/images/imagesProject/null_light.png";
-        image.alt = "NULL Contant";
-        image.classList.add(desine);
-        contanier[0].appendChild(image);
+    // Reset angle
+    /**
+     * I used parent Elemenet in the event that change dropdown-minu name we will it causes problem 
+     * but in parent element the ul rarely out in in this parent class
+     */
+    li.parentElement.parentElement.querySelector("button").querySelectorAll("i").forEach(angle => {
+        angle.classList.toggle("active");
+    });
 
-    }
+    // Get All Articles
+    articels.forEach(article => {
 
-    function hiddenImage(inClass) {
-        let contanier = document.getElementsByClassName(inClass);
-    }
+        // Get All Type Of Filter Depended to Class element name
+        article.querySelectorAll(`.${typeFilter}`).forEach(content => {
 
+            // get Value of type filter
+            content.querySelectorAll(".target-type").forEach(target => {
 
-    function whenClickCategpry() {
-        // Get ID Category
-        let categoryID = event.target.getAttribute("idcat");
-
-        // Get Name Articel
-        let nameArticles = document.getElementsByClassName("name-articel");
-
-        for (let nameArticle of nameArticles ) {
-            if (nameArticle.getAttribute("idcat") !== categoryID) {
-                nameArticle.style.display = "none";
-            } else {
-                nameArticle.style.display = "flex";
-            }
-        }
-
-        // Desiply ul when choose category
-        const showContent = document.getElementById("padding-dropdown");
-        showContent.style.display = "none";
-
-        // Add NULL image if No Article in This Category 
-        // if (counter == -1 * (nameArticles.length)) {
-        //     creatImg("articles", "null-img");
-        // } else {
-        //     hiddenImage("articles");
-        // }
-
-    }
-
-    // Open ul when click
-    function openList() {
-
-        // Get Info Btn
-        const btnShowUl = document.querySelector(".categoreis-dropdown");
-
-        // Get Content btn
-        const showContent = document.getElementById("padding-dropdown");
-
-        // Change Display content
-        if (showContent.style.display == "block") {
-            showContent.style.display = "none";
-
-            // Show caret-down icone
-            btnShowUl.children[0].children[0].style.display = "inline-block";
-
-            // hidden caret-up icone
-            btnShowUl.children[0].children[1].style.display = "none";
-        } else {
-            showContent.style.display = "block";
-
-            // Hidden caret-down icone
-            btnShowUl.children[0].children[1].style.display = "inline-block";
-
-            // Show caret-up icone
-            btnShowUl.children[0].children[0].style.display = "none";
-        }
-    }
-
-
-// Serch Language Tage In Edit Profile Page
+                // Check if content li equal conteitn in article
+                if (target.innerHTML !== li.innerHTML) {
+                    target.closest(".article").classList.add("hidden")
+                } else {
+                    target.closest(".article").classList.remove("hidden");
+                }
+            });
+        });
+    });
+}

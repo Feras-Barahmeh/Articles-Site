@@ -8,7 +8,7 @@
     // Articles
     include($FunArticles . 'article.php');
     include($FunArticles . 'queries.php');
-    SetNav();
+    // SetNav();
 
 // Fork Functions
 

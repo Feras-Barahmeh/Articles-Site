@@ -29,6 +29,9 @@
 .f-sp-between {
     justify-content: space-between;
 }
+.space-evenly {
+    justify-content: space-evenly;
+}
 .flex-1 {
     flex: 1;
 }
@@ -229,6 +232,9 @@
 .mt-20 {
     margin-top: 20px;
 }
+.mr-5 {
+    margin-right: 5px;
+}
 .mr-10 {
     margin-right: 10px;
 }
@@ -377,7 +383,6 @@
     align-items: center;
     justify-content: space-between;
 }
-
 .btn-shape {
     padding: 5px 10px 5px 10px;
     width: fit-content;
@@ -443,7 +448,11 @@
     width: 100px;
     height: 60px;
 }
-
+.m-rec-img {
+    width: 400px;
+    max-width: 400px;
+    max-height: 250px;
+}
 /* End Images */
 
 /* Start Buttons */
@@ -656,3 +665,85 @@ p {
     background-color: red;
 }
 /* End Simple Alert Massage */
+/* Srart opasite */
+.opacity-full {
+    opacity: 1;
+}
+.opacity-low {
+    opacity: 0;
+}
+/* End opasite */
+/* Start description */
+.description {
+    position: relative;
+}
+.description:hover:before {
+    content: attr(description);
+    position: absolute;
+    width: auto;
+    height: auto;
+    display: block;
+    background-color: black;
+    top: 40px;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    z-index: 10000;
+    box-shadow: 2px 1px 10px var(--bg-black-50);
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #FFF;
+    text-transform: capitalize;
+}
+.description-top-10:hover:before {
+    top: 10px !important;
+}
+.description-top-15:hover:before {
+    top: 15px !important;
+}
+.description-top-20:hover:before {
+    top: 20px !important;
+}
+.description-top-25:hover:before {
+    top: 25px !important;
+}
+.description-top-30:hover:before {
+    top: 30px !important;
+}
+.description-top-35:hover:before {
+    top: 35px !important;
+}
+.description-left-10:hover:before {
+    left: 10px !important;
+}
+.description-left-15:hover:before {
+    left: 15px !important;
+}
+.description-left-20:hover:before {
+    left: 20px !important;
+}
+.description-left-25:hover:before {
+    left: 25px !important;
+}
+.description-left-30:hover:before {
+    left: 30px !important;
+}
+.description-left-35:hover:before {
+    left: 35px !important;
+}
+.description-bg-white:hover:before {
+    background-color: #fff;
+}
+.description-p-10:hover:before {
+    padding: 10px;
+}
+.description-plr-5:hover:before {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.description-plr-10:hover:before {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+/* End description */
