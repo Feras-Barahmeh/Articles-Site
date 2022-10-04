@@ -5,10 +5,10 @@ session_start();
 $TITLE = 'Articles';
 include ('init.php');
 
-
 // Articles
 include($FunArticles . 'article.php');
 include($FunArticles . 'queries.php');
+
 // Start Forck Functions 
 function articles () {
     $articles = Queries::FromTable(
@@ -51,12 +51,10 @@ function articles () {
                                     <i class="fa fa-edit mr-10 "></i>
                                 </span>
                             </a>
-                            
-                            <a href="articles.php?delete&IdArticle=<?php echo $article['IdArticle'] ?>">
-                                <span class="del cursor-pointer relative description" description="delete">
-                                    <i class="fa fa-trash"></i>
-                                </span>
-                            </a>
+                            <span class="del cursor-pointer relative description" description="delete" 
+                                    onclick="return confirem('Delete Article', 'Are you sure deleted', `?delete&IdArticle=<?php echo $article['IdArticle'] ?>`)">
+                                <i class="fa fa-trash"></i>
+                            </span>
                         </div>
                         <div class="arow description cursor-pointer" description="Read">
                             <a href="showarticle.php?<?php echo str_replace(" ", '-', $article['titleArticle']) ?>"><i class="fa fa-book-open-reader"></i></a>
@@ -214,7 +212,29 @@ function IfUpdating() {
 
 function IfDeleting() {
     if (GetRequests::IfSetValue('delete')) {
-            Queries::Delete('articles', "IdArticle = " . GetRequests::GetValueGet('IdArticle'));
+            if(Queries::Delete('articles', "IdArticle = " . GetRequests::GetValueGet('IdArticle')) ) {
+                header("Location: http://localhost/Portfolio/admin/articles.php" );
+                ?>
+                    <div id="alert-mass" class="mass success">
+                        <div class="content-mass">
+                            <p>Success Delete Article</p>
+                            <span id="del-mass"><i class="fa-solid fa-x"></i></span>
+                        </div>
+                    </div>
+                <?php
+            } else {
+                header("Location: http://localhost/Portfolio/admin/articles.php" );
+                ?>
+                    <div id="alert-mass" class="mass danger">
+                        <div class="content-mass">
+                            <p>unSuccess Delete Article</p>
+                            <span id="del-mass"><i class="fa-solid fa-x"></i></span>
+                        </div>
+                    </div>
+                <?php
+
+            }
+
     }
 }
 // End Fork Function

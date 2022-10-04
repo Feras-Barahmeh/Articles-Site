@@ -149,3 +149,45 @@ function filterByType(li, typeFilter) {
         });
     });
 }
+
+// Confirem Delete Article
+function removePuple(btn) {
+    btn.parentElement.classList.add("hidden");
+    document.getElementById("overlay").classList.add("hidden");
+}
+function ifOk(id, link=null) {
+    const btn= document.getElementById(id);
+    if (id === "btn-boxAlert") {
+        btn.addEventListener("click", () => {
+            removePuple(btn);
+            // Direct to delete page
+            location.href = location.pathname + link;
+        });
+    } 
+}
+function isCancel(id) {
+    const btn= document.getElementById(id);
+    if (id === "cancel") {
+        btn.addEventListener("click", () => {
+            removePuple(btn)
+        });
+    } 
+}
+function confirem(title, mas, link=null) {
+    document.querySelector("body").innerHTML += `
+                <div id="overlay" class="active"></div>
+                <div id="boxAlert" >
+                    <div class="contanier">
+                        <h2 class="">${title}</h2>
+                        <p>${mas}</p>
+                        <button id="btn-boxAlert" type="button">OK</button>
+                        <button id="cancel" type="button">cancel</button>
+                    </div>
+                </div>
+    `;
+
+    if (link !== null) {
+        ifOk("btn-boxAlert", link)
+        isCancel("cancel");
+    } 
+}

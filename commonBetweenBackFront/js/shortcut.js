@@ -77,3 +77,4 @@ if (xBtn !== null) {
         xBtn.parentElement.classList.add("hidden");
     });
 }
+
