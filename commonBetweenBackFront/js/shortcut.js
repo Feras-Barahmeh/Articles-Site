@@ -69,3 +69,11 @@ if (removeAlterMassage !== null) {
         }
     }
 // End Simple Alter Massage
+
+// Remoe Alter
+const xBtn = document.getElementById("X");
+if (xBtn !== null) {
+    xBtn.addEventListener("click", () => {
+        xBtn.parentElement.classList.add("hidden");
+    });
+}

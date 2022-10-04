@@ -497,6 +497,7 @@
 }
 .success {
     border: 1px solid var(--skin-color) !important;
+    background-color: #98e760;
 }
 .info {
     background: rgb(126 198 255) !important;
@@ -507,7 +508,7 @@
 }
 .alert {
     text-align: center;
-    width: 360px;
+    width: auto;
     position: relative;
     left: 50%;
     top: 11px;
@@ -530,6 +531,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 10px;
+    cursor: pointer;  
 }
 /* End Aleart Massage */
 

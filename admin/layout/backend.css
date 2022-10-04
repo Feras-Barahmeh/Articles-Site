@@ -150,7 +150,7 @@
 }
 
 option {
-    background: #00000073;
+    background: var(--bg-black-900);
 }
 
 .btn-submit {
@@ -295,11 +295,13 @@ option {
 }
 
 .input-edit-feild {
-    width: 300px;
+    min-width: 300px;
     padding: 10px;
     border-radius: 2px;
     outline: none;
     margin-left: 10px;
+    border: 1px solid var(--skin-color);
+    background-color: var(--bg-black-900);
 }
 
 .file-input {
@@ -681,79 +683,39 @@ option {
 }
 
 /* Start Add Artical */
-.body-add-article {
-    height: inherit;
-    display: grid;
-    grid-template-columns: 100px 2fr 1fr 100px;
-    grid-template-rows: 30px 1fr 30px;
-    align-items: center;
-}
-.body-add-article img {
-    grid-column: 3 / 4;
-    grid-row: 2 / 3;
-}
-
-.body-add-article   form {
-    grid-column: 2/3;
-    grid-row: 2 / 3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.body-add-article   form div {
-    display: inline;
-    margin: 10px 0 10px 0;
-}
-
-.body-add-article  form div:last-child {
+.contaner-form-add-article {
     width: 100%;
 }
-
-.body-add-article  form div .file {
-    background-color: white;
+.add-article-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }
-
-.body-add-article  form div textarea {
-    width: 90%;
-    margin-left: 30px;
+.add-article-form .input {
+    min-width: 300px;
+    outline: none;
+    margin-bottom: 15px;
+    background-color: transparent;
+    border: 1px solid var(--skin-color);
+    color: var(--text-black-700);
 }
-
-.body-add-article  form div label {
-    display: block;
-    width: fit-content;
-    position: relative;
-    left: 40px;
-    margin-bottom: 5px;
+.add-article-form .input:not(textarea) {
+    padding: 10px 0px 10px 30px;
 }
-
-.body-add-article   form div i {
-    
-    position: relative;
-    left: 93%;
-    color: black;
-    opacity: .6;
-
+.add-article-form .area-article {
+    padding: 10px;
 }
-
-@media(max-width: 767px) {
-    .body-add-article {
-        grid-template-rows: 30px 192px 1fr;
-        grid-template-columns: 200px 1fr 100px;
-        align-items: self-start;
-    }
-
-    .body-add-article img {
-        grid-column: 2 / 3;
-        margin: 0;
-        transform: translateX(50%);
-    }
-
-    .body-add-article   form  {
-        grid-row: 3 / 4;
-    }
+.add-article-form  i {
+    position: absolute;
+    transform: translateY( 50%);
+    color: var(--skin-color);
+    left: 6px;
+    top: 4px;
 }
-
+.add-article-form input[type="submit"] {
+    width: 100px;
+}
 /* End Add Artical */
 
 
@@ -816,10 +778,6 @@ option {
     display: flex;
     justify-content: space-between;
 }
-
-
-
-
 /* Add */
 .body-add-category {
     height: 100%;

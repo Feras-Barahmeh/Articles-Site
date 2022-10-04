@@ -80,7 +80,7 @@ function Page() {
                             </a>
                         </li>
                         <li>
-                            <a class="flex f-al-ce p-10 mb-5 rad-5 fs-14" href="articlesV2.php">
+                            <a class="flex f-al-ce p-10 mb-5 rad-5 fs-14" href="articles.php">
                                 <i class="fa-solid fa-newspaper  fa-fw mr-10"></i>
                                 <span class="hide-mobile">Articles</span>
                             </a>

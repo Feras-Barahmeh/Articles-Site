@@ -46,7 +46,7 @@
             foreach ($errors as $error) {
                 GlobalFunctions::AlertMassage($error);
             }
-            GlobalFunctions::SitBackBtn();
+            // GlobalFunctions::SitBackBtn();
         }
 
         public static function Search($NameJSFilterFunct='filter()', $position=NULL) {

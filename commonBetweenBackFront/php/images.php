@@ -1,7 +1,7 @@
 <?php 
 
     interface IImageValidation {
-        public static function IfValidImage();
+        public static function IfValidImage(&$ERRORS);
     }
 
     interface IImageUplode {
@@ -70,7 +70,7 @@
 
     class ValidationInputWhenAdd implements IImageValidation{
 
-        public static function IfValidImage() {
+        public static function IfValidImage(&$ERRORS) {
             $info = ImagePost::FileInfo();
 
             // name
@@ -84,14 +84,14 @@
 
             // size
                 if ($info['size'] > 51194 * 3) {
-                    array_push($ERRORS, 'Large Image Size Must be less Than' . 51194 * 3);
+                    array_push($ERRORS, 'Large Image Size Must be less Than ' . floor(51194 * 3 / 1000) . " Byte");
                 }
         }
 
     }
 
     class ValidationInputWhenEdit implements IImageValidation{
-        public static function IfValidImage() {
+        public static function IfValidImage(&$ERRORS) {
             $info = ImagePost::FileInfo();
             // name
                 if ( ! ValidExtension::ValidExtension($info['name']) && ! empty($info['name'])) {

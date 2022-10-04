@@ -25,6 +25,14 @@
                     array_push($errors, "Title Artical Can't Be Empty");
                 }
 
+                if (Queries::Counter("titleArticle", "articles", "WHERE content = '{$info['titleArticle']}'") >= 1) {
+                    array_push($errors, "This Title arady used");
+                }
+
+                if (Queries::Counter("content", "articles", "WHERE content = '{$info['content']}'") >= 1) {
+                    array_push($errors, "This article alrady used");
+                }
+
                 if ( empty($info['content']) ) {
                     array_push($errors, "Content Artical Can't Be Empty");
                 }

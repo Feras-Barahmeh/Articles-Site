@@ -83,21 +83,23 @@ if (filterArticleBtn !== null) {
 const searchArticleInput = document.getElementById("search-article-name");
 const articels = document.querySelectorAll(".article");
 
-searchArticleInput.addEventListener("keyup", (e) => {
-    articels.forEach(article => {
-        if (article.querySelector("h4").innerHTML.toLowerCase().search(e.target.value.toLowerCase()) == -1) {
-            article.style.opacity = "0";
-            setTimeout (function () {
-                article.style.display = "none";
-            }, 300); // to hidden smothe mode (time is a .3s time in css transion)
-        } else {
-            article.style.opacity = "1";
-            setTimeout (function () {
-                article.style.display = "block";
-            }, 300);
-        }
+if (searchArticleInput !== null) {
+    searchArticleInput.addEventListener("keyup", (e) => {
+        articels.forEach(article => {
+            if (article.querySelector("h4").innerHTML.toLowerCase().search(e.target.value.toLowerCase()) == -1) {
+                article.style.opacity = "0";
+                setTimeout (function () {
+                    article.style.display = "none";
+                }, 300); // to hidden smothe mode (time is a .3s time in css transion)
+            } else {
+                article.style.opacity = "1";
+                setTimeout (function () {
+                    article.style.display = "block";
+                }, 300);
+            }
+        });
     });
-});
+}
 
 // Filter Article by name in articels page
 const inputSearch = document.querySelectorAll(".search-li");
