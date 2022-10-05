@@ -36,8 +36,11 @@
                 if ( empty($info['content']) ) {
                     array_push($errors, "Content Artical Can't Be Empty");
                 }
-
                 // Chenk To Image
+                
+                if (empty(ImagePost::FileInfo()['name'])) {
+                    array_push($errors, "Must Add Image To article");
+                }
                 if (! empty(ImagePost::FileInfo()['name'])) {
                     ValidationInputWhenAdd::IfValidImage($errors);
                 }

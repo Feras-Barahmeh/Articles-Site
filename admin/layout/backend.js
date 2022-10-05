@@ -161,7 +161,13 @@ function ifOk(id, link=null) {
         btn.addEventListener("click", () => {
             removePuple(btn);
             // Direct to delete page
-            location.href = location.pathname + link;
+            
+            let path = location.pathname.toString().split("/");
+            // path[0] = '/';
+            path[path.length-1] = link;
+            path = path.join('/');
+
+            location.href = location.origin + path;
         });
     } 
 }

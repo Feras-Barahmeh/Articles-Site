@@ -52,7 +52,7 @@ function articles () {
                                 </span>
                             </a>
                             <span class="del cursor-pointer relative description" description="delete" 
-                                    onclick="return confirem('Delete Article', 'Are you sure deleted', `?delete&IdArticle=<?php echo $article['IdArticle'] ?>`)">
+                                    onclick="return confirem('Delete Article', 'Are you sure deleted', `articles.php?delete&IdArticle=<?php echo $article['IdArticle'] ?>`)">
                                 <i class="fa fa-trash"></i>
                             </span>
                         </div>
@@ -212,8 +212,9 @@ function IfUpdating() {
 
 function IfDeleting() {
     if (GetRequests::IfSetValue('delete')) {
+
             if(Queries::Delete('articles', "IdArticle = " . GetRequests::GetValueGet('IdArticle')) ) {
-                header("Location: http://localhost/Portfolio/admin/articles.php" );
+                header("Location: articles.php" );
                 ?>
                     <div id="alert-mass" class="mass success">
                         <div class="content-mass">
@@ -223,7 +224,7 @@ function IfDeleting() {
                     </div>
                 <?php
             } else {
-                header("Location: http://localhost/Portfolio/admin/articles.php" );
+                header("Location: articles.php" );
                 ?>
                     <div id="alert-mass" class="mass danger">
                         <div class="content-mass">
@@ -278,7 +279,7 @@ function MainStructer() {
         </div>
 
     <?php
-}   
+}
 
 function Controller() {
     switch (GetRequests::GetValueGet('articleAction')) {
@@ -296,7 +297,7 @@ function Controller() {
             break;
     }
 }
-// Controller Part 
+// Controller Part
 Controller();
 include ($tpl . 'footer.php');
 ob_end_flush();

@@ -34,7 +34,7 @@
         }
 
         public static function SitBackBtn() {
-            ?> <a href="<?php echo $_SERVER['HTTP_REFERER']?>"  class="btn-submit">Back</a> <?php
+            ?> <a href="<?php echo $_SERVER['HTTP_REFERER']?>"  class="btn-shape">Back</a> <?php
         }
 
         public static function AlertMassage($mass, $typeAlert= 'danger') {

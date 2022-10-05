@@ -78,7 +78,7 @@
                     array_push($ERRORS, 'Unvalid Extension Permissible jpeg, jpg, png, gif extensions');
                 }
 
-                if ( empty($info['name']) )  {
+                if ( empty($info['name']) || !isset($info['name']))  {
                     array_push($ERRORS, "Must Enter Pictuer");
                 }
 

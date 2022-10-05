@@ -37,7 +37,7 @@
                                 <div class="option-article flex f-sp-between  w-fu mb-5">
                                         <div class="">
                                             <a href="articles.php?articleAction=edit&IdArticle=<?php echo $InfoArticle ['IdArticle']?>" class="process-btn description mr-10" description="Edit"><i class="fa-solid fa-edit"></i></a>
-                                            <span class="process-btn description" description="Delete" onclick="return confirem('Delete Article', 'Are you sure deleted', `?delete&IdArticle=<?php echo $InfoArticle['IdArticle'] ?>`, true)"  ><i class="fa-solid fa-trash-can"></i></span>
+                                            <span class="process-btn description" description="Delete" onclick="return confirem('Delete Article', 'Are you sure deleted', `articles.php?delete&IdArticle=<?php echo $InfoArticle['IdArticle'] ?>`, true)"  ><i class="fa-solid fa-trash-can"></i></span>
                                         </div>
                                         <span class="date"><?php echo $InfoArticle['additionDate'] ?></span>
                                 </div>
