@@ -11,7 +11,7 @@
         $ArticlesAtSameCats = Queries::FromTable('titleArticle', 'articles', "Where categoryID = '" . $InfoArticle . "'");
         foreach($ArticlesAtSameCats as $ArticleAtSameCats) {
         ?>
-            <li class="list-search"><a href="showarticle.php?<?php echo str_replace(" ", '-', $ArticleAtSameCats['titleArticle']) ?>"><?php echo $ArticleAtSameCats['titleArticle'] ?> </a></li>
+            <li class="list-search mb-15"><a href="showarticle.php?<?php echo str_replace(" ", '-', $ArticleAtSameCats['titleArticle']) ?>"><?php echo $ArticleAtSameCats['titleArticle'] ?> </a></li>
         <?php }
     }
 
@@ -27,7 +27,7 @@
                     <aside class="relative flex sort-col">
                         <div class="contaner-search-input relative">
                             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                            <input type="search" class="search-input" placeholder="Article at same feild">
+                            <input type="search" id="search-article-by-feild" class="search-input" placeholder="Article at same feild">
                         </div>
                         <ul>
                                 <?php  PrintNameArticlesAtSameCat($InfoArticle['categoryID']) ?>
