@@ -103,13 +103,13 @@ function AddStructer() {
             <h3 class="title p-20">Add Article</h3>
             <form action="articles.php?articleAction=add&insert" method="POST" enctype="multipart/form-data" class="add-article-form p-20 ">
                     <div class="relative">
-                        <i class="fa-solid fa-heading"></i>
+                        <i class="fa-solid fa-heading i-form-input"></i>
                         <!-- <label for="title" class="label">Title</label> -->
                         <input type="text" name="titleArticle" id="title"   placeholder="Title" class="input relative">
                     </div>
 
                     <div class="relative">
-                        <i class="fa-solid fa-feather"></i>
+                        <i class="fa-solid fa-feather i-form-input"></i>
                         <!-- <label for="writer" class="label">writer</label> -->
                         <select name="IdUser" id="writer" class="input relative">
                             <?php Printer::PrintWriters() ?>
@@ -117,14 +117,14 @@ function AddStructer() {
                     </div>
 
                     <div class="relative">
-                        <i class="fa-solid fa-image"></i>
+                        <i class="fa-solid fa-image i-form-input"></i>
                         <input type="file" name="imageName" id="img" class="input relative file">
                         <!-- <label for="img" class="label">Image</label> -->
                     </div>
 
                     <div class="relative">
                         <!-- <label for="categoryID" class="label">Category</label> -->
-                        <i class="fa-solid fa-feather"></i>
+                        <i class="fa-solid fa-feather i-form-input"></i>
                         <select name="categoryID" id="categoryID" class="input relative" required>
                             <?php PrintCategories() ?>
                         </select>
@@ -148,49 +148,53 @@ function EditStructer() {
     $info = Queries::FromTable("titleArticle, imageName, content, categoryID", 'articles', "WHERE IdArticle = " . $IdArticle, 'fetch');
     $catname  = Queries::FromTable("titleCategory", 'categories', "WHERE IdCategory = " . $info['categoryID'], 'fetch')['titleCategory'];
     ?>
-        <div class="body-add-article">
-                <?php ShowImage::SetImg($commfilesuploaded . 'articles/', $info['imageName'], 'img-user-aside') ?>
+        <div class="dashbord flex">
+            <?php AsideHeaderStructer() ?>
+            <!-- class="body-add-article p-20 " -->
+            <div  class="p-20 body-add-article ">
+                    <?php ShowImage::SetImg($commfilesuploaded . 'articles/', $info['imageName'], 'img-user-aside') ?>
 
-                <form action="articles.php?articleAction=edit&IdArticle=<?php echo $IdArticle ?>&update" method="POST" enctype="multipart/form-data">
+                    <form action="articles.php?articleAction=edit&IdArticle=<?php echo $IdArticle ?>&update" method="POST" enctype="multipart/form-data">
 
-                    <div class="">
-                        <label for="title" class="label">Title</label>
-                        <i class="fa-solid fa-heading"></i>
-                        <input type="text" name="titleArticle" id="title"  value="<?php echo $info['titleArticle'] ?>"  placeholder="Title" class="input-edit-feild">
-                    </div>
+                        <div class="relative">
+                            <!-- <label for="title" class="label">Title</label> -->
+                            <i class="fa-solid fa-heading i-form-input"></i>
+                            <input type="text" name="titleArticle" id="title"  value="<?php echo $info['titleArticle'] ?>"  placeholder="Title" class="input">
+                        </div>
 
-                    <div class="">
-                        <label for="writer" class="label">writer</label>
-                        <i class="fa-solid fa-feather"></i>
-                        <select name="IdUser" id="writer" class="input-edit-feild">
-                            <?php Printer::PrintWriters() ?>
+                        <div class="relative">
+                            <!-- <label for="writer" class="label">writer</label> -->
+                            <i class="fa-solid fa-feather i-form-input"></i>
+                            <select name="IdUser" id="writer" class="input">
+                                <?php Printer::PrintWriters() ?>
+                            </select>
+                        </div>
+
+                        <div class="relative">
+                            <!-- <label for="img" class="label">Image</label> -->
+                            <i class="fa-solid fa-image i-form-input"></i>
+                            <input type="file" name="imageName" id="img" class="input file">
+                        </div>
+
+                    <div class="relative">
+                        <!-- <label for="categoryID" class="label">Category</label> -->
+                        <i class="fa-solid fa-feather i-form-input"></i>
+                        <select name="categoryID" id="categoryID" class="input" required>
+                            <option value="<?php echo $info['categoryID'] ?>"><?php echo $catname ?></option>
+                            <?php PrintCategories() ?>
                         </select>
                     </div>
 
-                    <div class="">
-                        <label for="img" class="label">Image</label>
-                        <i class="fa-solid fa-image"></i>
-                        <input type="file" name="imageName" id="img" class="input-edit-feild file">
-                    </div>
+                        <div class="">
+                            <!-- <label for="article" class="label">Article</label> -->
+                            <textarea name="content" id="article" class="input"><?php echo $info['content'] ?></textarea>
+                            
+                        </div>
 
-                <div class="">
-                    <label for="categoryID" class="label">Category</label>
-                    <i class="fa-solid fa-feather"></i>
-                    <select name="categoryID" id="categoryID" class="input-edit-feild" required>
-                        <option value="<?php echo $info['categoryID'] ?>"><?php echo $catname ?></option>
-                        <?php PrintCategories() ?>
-                    </select>
-                </div>
+                        <input type="submit" name="submit" class="btn-shape" value="Edit">
+                    </form>
 
-                    <div class="">
-                        <label for="article" class="label">Article</label>
-                        <textarea name="content" id="article"  cols="80" rows="10" class="input-edit-feild"><?php echo $info['content'] ?></textarea>
-                        
-                    </div>
-
-                    <input type="submit" name="submit" class="btn-submit" value="Edit">
-                </form>
-
+            </div>
         </div>
     <?php
 }
