@@ -197,3 +197,22 @@ function confirem(title, mas, link=null) {
         isCancel("cancel");
     } 
 }
+
+// Read Article Page
+// Search Article
+const inputSearchArticle = document.getElementById("search-article-by-feild");
+
+if (inputSearchArticle !== null) {
+    inputSearchArticle.addEventListener("keyup", (e) => {
+
+        const lis = inputSearchArticle.closest("aside").querySelector("ul").querySelectorAll("li");
+
+        lis.forEach(li => {
+            if (li.innerHTML.toLocaleLowerCase().search(e.target.value.toLocaleLowerCase()) === -1) {
+                li.classList.add("hidden")
+            } else {
+                li.classList.remove("hidden");
+            }
+        });
+    });
+}

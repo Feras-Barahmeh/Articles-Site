@@ -27,7 +27,7 @@
                     <aside class="relative flex sort-col">
                         <div class="contaner-search-input relative">
                             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                            <input type="search" class="search-input" placeholder="Article at same feild">
+                            <input type="search" id="search-article-by-feild" class="search-input" placeholder="Article at same feild">
                         </div>
                         <ul>
                                 <?php  PrintNameArticlesAtSameCat($InfoArticle['categoryID']) ?>

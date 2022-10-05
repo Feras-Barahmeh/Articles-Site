@@ -87,7 +87,6 @@ function ControllerInsert() {
         InsertArticle::Insert();
     }
 }
-
 function PrintCategories() {
     $data = Queries::FromTable("IdCategory, titleCategory", 'categories');
 
@@ -138,13 +137,11 @@ function AddStructer() {
         </div>
     <?php
 }
-
 function IfInsert() {
     if (isset($_POST['submit']) && isset($_GET['insert'])) {
             ControllerInsert();
     }
 }
-
 function EditStructer() {
     global $commfilesuploaded;
     $IdArticle = GetRequests::GetValueGet('IdArticle');
@@ -209,7 +206,6 @@ function IfUpdating() {
         ControllerUpdate();
     } 
 }
-
 function IfDeleting() {
     if (GetRequests::IfSetValue('delete')) {
 
@@ -280,7 +276,6 @@ function MainStructer() {
 
     <?php
 }
-
 function Controller() {
     switch (GetRequests::GetValueGet('articleAction')) {
         case 'add':
