@@ -374,7 +374,7 @@
 /* End Media  */
 /* Start Componants  */
 .center-ele {
-    display: flex !important;
+    display: flex ;
     align-items: center;
     justify-content: center;
 }
@@ -654,7 +654,12 @@ p {
 .mass.done {
     background: #93e468;
     border-left: 5px solid #48a903 ;
-
+}
+.X-success {
+    background-color: #48a903;
+}
+.X-falid {
+    background-color: rgb(228, 113, 113);
 }
 .mass.done p {
     background-color: #48a903;

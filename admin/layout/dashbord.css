@@ -171,22 +171,27 @@
 }
 /* End Content */
 /* Start Title Page  */
-.dashbord h1 {
+.dashbord h1,
+.dashbord .title {
     color: var(--text-black-900);
 }
 .dashbord h1::before,
-.dashbord h1::after {
+.dashbord h1::after,
+.dashbord .title::before
+.dashbord .title::after {
     content: "";
     background: var(--skin-color);
     position: absolute;
     height: 2px;
     left: 0px;
 }
-.dashbord h1::before {
+.dashbord h1::before,
+.dashbord .title::before {
     width: 40px;
     top: 30px;
 }
-.dashbord h1::after {
+.dashbord h1::after,
+.dashbord .title::after {
     width: 60px;
     top: 35px;
 }
@@ -474,6 +479,14 @@
     color: var(--text-black-900);
     background-color: var(--bg-black-100);
     transition: all 3s ease-in-out;
+    padding: 7px;
+    color: var(--text-black-900);
+    background-color: var(--bg-black-100);
+    transition: all 3s ease-in-out;
+    white-space: nowrap;
+    overflow-x: auto;
+    text-align: center;
+    transition: color .1s ease-in-out;
 }
 .show-projects table tbody {
     transition: all 3s ease-in-out;
@@ -481,7 +494,6 @@
 }
 .show-projects table tbody tr:hover td {
     background-color: var(--bg-black-50);
-    transition: color .3s ease-in-out;
 }
 .show-projects table tbody td {
     border-left: 1px solid var(--bg-black-50);

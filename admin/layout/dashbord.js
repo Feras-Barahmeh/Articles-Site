@@ -36,9 +36,10 @@ if (table !== null) {
     const nextBtn = document.getElementById("next-btn");
     const prevBtn = document.getElementById("previous-btn");
 
+    // Hidden partition table par if Less 4 rowa
     const countRowaShow = 4;
-    if (rowsCount < 4) {
-        document.querySelector(".pointer").classList.add("hidden");
+    if (rowsCount < countRowaShow) {
+        document.querySelector("#pointer-slide").classList.add("hidden");
     }
 
     function creatNodeNumber (number) {

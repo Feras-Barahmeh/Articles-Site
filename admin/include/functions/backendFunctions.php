@@ -71,9 +71,9 @@
                             </a>
                         </li>
                         <li>
-                            <a class="flex f-al-ce p-10 mb-5 rad-5 fs-14" href="frinds.html">
+                            <a class="flex f-al-ce p-10 mb-5 rad-5 fs-14" href="users.php?show=users">
                                 <i class="fa fa-user-group fa-fw mr-10"></i>
-                                <span class="hide-mobile">Frinds</span>
+                                <span class="hide-mobile">Users</span>
                             </a>
                         </li>
                         <li>
@@ -85,7 +85,7 @@
                         <li>
                             <a class="flex f-al-ce p-10 mb-5 rad-5 fs-14" href="quickDraft.php">
                                 <i class="fa fa-book mr-10 relative"><?php CountDraft() ?></i>
-                                <span class="hide-mobile">quick Draft  </span>
+                                <span class="hide-mobile">quick Draft</span>
                             </a>
                         </li>
                     </ul>
