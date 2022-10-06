@@ -83,3 +83,21 @@ if (tdsHead !== null ){
         });
     });
 }
+
+// Start Search users id user in show users page
+const searchUser = document.getElementById("search-id-userName");
+if (searchUser !== null) {
+    searchUser.addEventListener("keyup", (e) => {
+        const tdsUserName = tbody.querySelectorAll("tr [user-name]");
+
+        // Search User Name
+        tdsUserName.forEach(td => {
+
+            if(td.innerHTML.toLocaleLowerCase().search(e.target.value.toLocaleLowerCase()) == -1) {
+                td.closest("tr").classList.add("hidden");
+            } else {
+                td.closest("tr").classList.remove("hidden");
+            }
+        });
+    });
+}

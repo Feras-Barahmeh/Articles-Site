@@ -249,7 +249,7 @@ function PrintDataUser() {
             <tr>
                 <td><?php echo $info['IdUser'] ?></td>
                 <td><?php ShowImage::SetImg($commfilesuploaded. 'users/', $info['imageName'], "vs-img") ?></td>
-                <td><?php echo $info['userName'] ?></td>
+                <td user-name="<?php echo $info['userName'] ?>"><?php echo $info['userName'] ?></td>
                 <td><?php echo $info['email'] ?></td>
                 <td><?php echo $info['aboutYou'] ?></td>
                 <td><?php SetNamePermission($info['permission']) ?></td>
@@ -361,7 +361,7 @@ function StructerPage() {
                 <header class="additions relative between-ele p-20">
                         <div class="input-search-contanier relative">
                             <i class="fa fa-magnifying-glass search-icon"></i>
-                            <input type="search" name="" id="" class="search-input" placeholder="search User">
+                            <input type="search" name="" id="search-id-userName" class="search-input" placeholder="search User Name Or ID">
                         </div>
                         <button class="users-statistics relative" id="users-statistics">
                             <span class="angels">Statistics <i class="fa fa-angle-down ml-5 show"></i> <i class="fa fa-angle-up ml-5"></i></span>
