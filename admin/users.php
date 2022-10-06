@@ -212,10 +212,10 @@ function SetColoumByPermistionTbody($info) {
         ?>
             <td>
                 <a href="users.php?actionMember=edit&IdUser=<?php echo $info['IdUser'] ?>" class="process-btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                <span class="process-btn"
+                <span class="process-btn  cursor-pointer"
                 onclick="return confirem('Delete Article', 'Are you sure deleted', `users.php?show=<?php echo GetRequests::GetValueGet('show') ?>&IdUser=<?php echo $info['IdUser'] ?>&delete`)" ><i class="fa-solid fa-trash-can"></i></span>
             </td>
-            <td class="long-text"><?php echo $info['password'] ?></td>
+            <td><?php echo $info['password'] ?></td>
         <?php
     }
 
@@ -224,10 +224,10 @@ function SetColoumByPermistionTbody($info) {
         ?>
             <td>
                 <a href="users.php?actionMember=edit&IdUser=<?php echo $info['IdUser'] ?>" class="process-btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                <span class="process-btn"
+                <span class="process-btn cursor-pointer"
                 onclick="return confirem('Delete Article', 'Are you sure deleted', `users.php?show=<?php echo GetRequests::GetValueGet('show') ?>&IdUser=<?php echo $info['IdUser'] ?>&delete`)" ><i class="fa-solid fa-trash-can"></i></span>
             </td>
-            <td class="long-text"><?php echo $info['password'] ?></td>
+            <td><?php echo $info['password'] ?></td>
         <?php
     }
 }
@@ -248,7 +248,7 @@ function PrintDataUser() {
         ?>
             <tr>
                 <td><?php echo $info['IdUser'] ?></td>
-                <td class=""><?php ShowImage::SetImg($commfilesuploaded. 'users/', $info['imageName'], "vs-img") ?></td>
+                <td><?php ShowImage::SetImg($commfilesuploaded. 'users/', $info['imageName'], "vs-img") ?></td>
                 <td><?php echo $info['userName'] ?></td>
                 <td><?php echo $info['email'] ?></td>
                 <td><?php echo $info['aboutYou'] ?></td>
@@ -365,7 +365,7 @@ function StructerPage() {
                         </div>
                         <button class="users-statistics relative" id="users-statistics">
                             <span class="angels">Statistics <i class="fa fa-angle-down ml-5 show"></i> <i class="fa fa-angle-up ml-5"></i></span>
-                            <ul class="links box-sh-op10-clwh relative"> <!-- opacity-low hidden -->
+                            <ul class="links box-sh-op10-clwh relative">
                                 <li>
                                     <a href="users.php?show=users" class="header-users-btn">
                                         <div class="number-users add-btn">
@@ -408,16 +408,16 @@ function StructerPage() {
                         <table class="w-fu fs-15">
                             <thead>
                                 <tr>
-                                    <td class="cursor-pointer">ID</td>
-                                    <td class="cursor-pointer">image</td>
-                                    <td class="cursor-pointer">User Name</td>
-                                    <td class="cursor-pointer">email</td>
-                                    <td class="cursor-pointer">aboutYou</td>
-                                    <td class="cursor-pointer">permission</td>
-                                    <td class="cursor-pointer">langs</td>
-                                    <td class="cursor-pointer">tools</td>
-                                    <td class="cursor-pointer">age</td>
-                                    <td class="cursor-pointer">dataRegister</td>
+                                    <td class="cursor-pointer head-table-td">ID</td>
+                                    <td class="cursor-pointer head-table-td">image</td>
+                                    <td class="cursor-pointer head-table-td">User Name</td>
+                                    <td class="cursor-pointer head-table-td">email</td>
+                                    <td class="cursor-pointer head-table-td">aboutYou</td>
+                                    <td class="cursor-pointer head-table-td">permission</td>
+                                    <td class="cursor-pointer head-table-td">langs</td>
+                                    <td class="cursor-pointer head-table-td">tools</td>
+                                    <td class="cursor-pointer head-table-td">age</td>
+                                    <td class="cursor-pointer head-table-td">dataRegister</td>
                                     <!-- Options Password -->
                                     <?php SetColoumByPermistionHeader() ?>
                                 </tr>

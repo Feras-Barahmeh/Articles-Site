@@ -966,13 +966,16 @@ input[type="submit"] {
     display: flex;
     flex-direction: row-reverse;
 }
-.content-page-read-article  .option-article{
+.content-page-read-article  .option-article {
     background-color: var(--bg-black-900);
     padding: 10px;
 }
 .content-page-read-article  .option-article .process-btn {
     cursor: pointer;
     color: var(--skin-color);
+}
+.content-page-read-article  .option-article .date {
+    color: var(--text-black-700);
 }
 .content-page-read-article .info-article  img {
     flex: 2;

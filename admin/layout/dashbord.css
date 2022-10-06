@@ -502,6 +502,9 @@
 .show-projects table tbody tr td:last-child {
     border-right: 1px solid var(--bg-black-50);
 }
+.show-projects table tbody td i {
+    color: var(--skin-color);
+}
 .show-projects table td img {
     width: 32px;
     height: 32px;
