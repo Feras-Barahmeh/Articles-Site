@@ -1,11 +1,7 @@
 <?php
-    /*
-        |============================================================|
-        |----- This file to ADD | Delete | Edit Information user-----|
-        |============================================================|
-    */
 
 // Start Gloabal Difination
+
     ob_start();
     session_start();
     $TITLE = 'users';
@@ -14,9 +10,6 @@
     // Users
     include($FunUsers . 'user.php');
     include($FunUsers . 'queries.php');
-    // SetNav();
-
-
 
 // Stasrt Fork Functions
 
@@ -192,70 +185,59 @@ function WhoShowed () {
 function SetColoumByPermistionHeader() {
     $currentShowUser = GetRequests::GetValueGet("show");
     $permitiomUser = Queries::FromTable("permission", "users", "WHERE IdUser = " . $_SESSION["IdUser"], "fetch")["permission"];
-    switch ($currentShowUser) {
-        case 'admins':
-            if ($permitiomUser == 1) {
-                ?>
-                    <td>Options</td>
-                    <td>password</td>
-                <?php
-            }
-            break;
-        case 'prog':
-            if ($permitiomUser == 1) {
-                ?>
-                    <td>Options</td>
-                    <td>password</td>
-                <?php
-            }
-            break;
-        case "users":
-            if ($permitiomUser >= 1) {
-                ?>
-                    <td>Options</td>
-                    <td>password</td>
-                <?php
-            }
+    
+    // Set All Permition to admin (Leader)
+    if ($permitiomUser === 1 ) {
+        ?>
+            <td>Options</td>
+            <td>password</td>
+        <?php
     }
+
+    if ($permitiomUser === 2 && $currentShowUser === "users") {
+        ?>
+            <td>Options</td>
+            <td>password</td>
+        <?php
+    }
+
 }
 function SetColoumByPermistionTbody($info) {
     $currentShowUser = GetRequests::GetValueGet("show");
     $permitiomUser = Queries::FromTable("permission", "users", "WHERE IdUser = " . $_SESSION["IdUser"], "fetch")["permission"];
-    switch ($currentShowUser) {
-        case 'admins':
-            if ($permitiomUser == 1) {
-                ?>
-                    <td>
-                        <a href="users.php?actionMember=edit&IdUser=<?php echo $info['IdUser'] ?>" class="process-btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <span class="process-btn"
-                        onclick="return confirem('Delete Article', 'Are you sure deleted', `users.php?show=<?php echo GetRequests::GetValueGet('show') ?>&IdUser=<?php echo $info['IdUser'] ?>&delete`)" ><i class="fa-solid fa-trash-can"></i></span>
-                    </td>
-                    <td class="long-text"><?php echo $info['password'] ?></td>
-                <?php
-            }
-            break;
-        case "prog":
-            if ($permitiomUser >= 1) {
-                ?>
-                    <td>
-                        <a href="users.php?actionMember=edit&IdUser=<?php echo $info['IdUser'] ?>" class="process-btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <span class="process-btn"
-                        onclick="return confirem('Delete Article', 'Are you sure deleted', `users.php?show=<?php echo GetRequests::GetValueGet('show') ?>&IdUser=<?php echo $info['IdUser'] ?>&delete`)" ><i class="fa-solid fa-trash-can"></i></span>
-                    </td>
-                    <td class="long-text"><?php echo $info['password'] ?></td>
-                <?php
-            }
-        case "users":
-            if ($permitiomUser >= 1) {
-                ?>
-                    <td>
-                        <a href="users.php?actionMember=edit&IdUser=<?php echo $info['IdUser'] ?>" class="process-btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <span class="process-btn"
-                        onclick="return confirem('Delete Article', 'Are you sure deleted', `users.php?show=<?php echo GetRequests::GetValueGet('show') ?>&IdUser=<?php echo $info['IdUser'] ?>&delete`)" ><i class="fa-solid fa-trash-can"></i></span>
-                    </td>
-                    <td class="long-text"><?php echo $info['password'] ?></td>
-                <?php
-            }
+    
+
+    // Set All Permition to admin (Leader)
+    if ($permitiomUser === 1 ) {
+        ?>
+            <td>
+                <a href="users.php?actionMember=edit&IdUser=<?php echo $info['IdUser'] ?>" class="process-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                <span class="process-btn"
+                onclick="return confirem('Delete Article', 'Are you sure deleted', `users.php?show=<?php echo GetRequests::GetValueGet('show') ?>&IdUser=<?php echo $info['IdUser'] ?>&delete`)" ><i class="fa-solid fa-trash-can"></i></span>
+            </td>
+            <td class="long-text"><?php echo $info['password'] ?></td>
+        <?php
+    }
+
+    // Get Permitions Col-leader To Users just
+    if ($permitiomUser === 2 && $currentShowUser === "users") {
+        ?>
+            <td>
+                <a href="users.php?actionMember=edit&IdUser=<?php echo $info['IdUser'] ?>" class="process-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                <span class="process-btn"
+                onclick="return confirem('Delete Article', 'Are you sure deleted', `users.php?show=<?php echo GetRequests::GetValueGet('show') ?>&IdUser=<?php echo $info['IdUser'] ?>&delete`)" ><i class="fa-solid fa-trash-can"></i></span>
+            </td>
+            <td class="long-text"><?php echo $info['password'] ?></td>
+        <?php
+    }
+}
+function SetNamePermission($permission) {
+    if ($permission === 1) {
+        echo "Leader";
+    } elseif ($permission === 2) {
+        echo "Co-Leader";
+    } else {
+        echo "Member";
     }
 }
 function PrintDataUser() {
@@ -270,7 +252,7 @@ function PrintDataUser() {
                 <td><?php echo $info['userName'] ?></td>
                 <td><?php echo $info['email'] ?></td>
                 <td><?php echo $info['aboutYou'] ?></td>
-                <td><?php echo $info['permission'] ?></td>
+                <td><?php SetNamePermission($info['permission']) ?></td>
                 <td><?php echo $info['langs'] ?></td>
                 <td><?php echo $info['tools'] ?></td>
                 <td><?php echo $info['age'] ?></td>
@@ -360,7 +342,7 @@ function AddStructure() {
                             <option value="2">Programer</option>
                         </select>
                     </div>
-                <input type="submit" name="submit" value="Add member" class="btn-submit">
+                <input type="submit" name="submit" value="Add member" class="btn-shape">
             </form>
         </div>
     <?php
@@ -426,16 +408,16 @@ function StructerPage() {
                         <table class="w-fu fs-15">
                             <thead>
                                 <tr>
-                                    <td>ID</td>
-                                    <td>image</td>
-                                    <td>User Name</td>
-                                    <td>email</td>
-                                    <td>aboutYou</td>
-                                    <td>permission</td>
-                                    <td>langs</td>
-                                    <td>tools</td>
-                                    <td>age</td>
-                                    <td>dataRegister</td>
+                                    <td class="cursor-pointer">ID</td>
+                                    <td class="cursor-pointer">image</td>
+                                    <td class="cursor-pointer">User Name</td>
+                                    <td class="cursor-pointer">email</td>
+                                    <td class="cursor-pointer">aboutYou</td>
+                                    <td class="cursor-pointer">permission</td>
+                                    <td class="cursor-pointer">langs</td>
+                                    <td class="cursor-pointer">tools</td>
+                                    <td class="cursor-pointer">age</td>
+                                    <td class="cursor-pointer">dataRegister</td>
                                     <!-- Options Password -->
                                     <?php SetColoumByPermistionHeader() ?>
                                 </tr>
@@ -458,7 +440,6 @@ function StructerPage() {
         </div>
     <?php 
 }
-
 
 
 // Start controlled Function
