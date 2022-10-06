@@ -31,6 +31,416 @@ class EditInfoUser {
         <?php }
 
     }
+    protected static function BasicInformation() {
+        ?>
+                <!-- Start Basic Info -->
+                    <div class="basic-info mt-20">
+                        <h3 class="title">Basic Info</h3>
+                        <!-- Start Name -->
+                            <div class="contanier-feild mtb-15 p-10 rad-5">
+                                <div class="row-feild flex">
+                                    <div class="name-feild">Name</div>
+                                    <div class="content-feild">
+                                        <span class="containt-reg-db">Feras</span>
+                                        <!-- Start input Feils -->
+                                            <div class="contanier-proccess kick-out">
+                                                <div class="contanier-input">
+                                                    <input
+                                                    value=""
+                                                    type="text"
+                                                    class="snippet-input"
+                                                    placeholder="Your Full Name">
+                                                    <div class="error-mas kick-out"></div>
+                                                    <div class="btns">
+                                                            <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                            <button class="cancel" id="cancel">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <!-- End Input Feils -->
+                                    </div>
+                                    <span class="edit-btn">Edit</span>
+                                </div>
+                            </div>
+                        <!-- End name -->
+
+                        <!-- Start Gender -->
+                            <div class="contanier-feild mtb-15 p-10 rad-5">
+                                <div class="row-feild flex">
+                                    <div class="name-feild">Gender</div>
+                                    <div class="content-feild">
+                                        <span class="containt-reg-db">Male</span>
+                                        <!-- Start input Feils -->
+                                            <div class="contanier-proccess kick-out">
+                                                <div class="contanier-input">
+                                                    <select name="" id="" class="snippet-input">
+                                                        <option value="">Malie</option>
+                                                        <option value="male">Male</option>
+                                                        <option value="female">Female</option>
+                                                    </select>
+
+                                                    <div class="error-mas kick-out"></div>
+                                                    <div class="btns">
+                                                            <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                            <button class="cancel" id="cancel">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <!-- End Input Feils -->
+                                    </div>
+                                    <span class="edit-btn">Edit</span>
+                                </div>
+                            </div>
+                        <!-- End Gender -->
+
+                        <!-- Start Location -->
+                        <div class="contanier-feild mtb-15 p-10 rad-5">
+                            <div class="row-feild flex">
+                                <div class="name-feild">Location</div>
+                                <div class="content-feild">
+                                    <span class="containt-reg-db">Jordan-Amman</span>
+                                    <!-- Start input Feils -->
+                                        <div class="contanier-proccess kick-out">
+                                            <div class="contanier-input">
+                                                <input
+                                                value=""
+                                                type="text"
+                                                class="snippet-input"
+                                                placeholder="Your Full Name">
+                                                <div class="error-mas kick-out"></div>
+                                                <div class="btns">
+                                                        <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                        <button class="cancel" id="cancel">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- End Input Feils -->
+                                </div>
+                                <span class="edit-btn">Edit</span>
+                            </div>
+                        </div>
+                        <!-- End Location -->
+
+                        <!-- Start Birthday -->
+                        <div class="contanier-feild mtb-15 p-10 rad-5">
+                            <div class="row-feild flex">
+                                <div class="name-feild">Birthday</div>
+                                <div class="content-feild">
+                                    <span class="containt-reg-db">11-6-2002</span>
+                                    <!-- Start input Feils -->
+                                        <div class="contanier-proccess kick-out">
+                                            <div class="contanier-input">
+                                                <input
+                                                value=""
+                                                type="date"
+                                                class="snippet-input"
+                                                placeholder="Your Full Name">
+                                                <div class="error-mas kick-out"></div>
+                                                <div class="btns">
+                                                        <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                        <button class="cancel" id="cancel">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- End Input Feils -->
+                                </div>
+                                <span class="edit-btn">Edit</span>
+                            </div>
+                        </div>
+                        <!-- End Birthday -->
+
+                        <!-- Start Brief -->
+                        <div class="contanier-feild mtb-15 p-10 rad-5">
+                            <div class="row-feild flex">
+                                <div class="name-feild">Brief</div>
+                                <div class="content-feild">
+                                    <span class="containt-reg-db">Im Feras Fadi Barahmeh</span>
+                                    <!-- Start input Feils -->
+                                        <div class="contanier-proccess kick-out">
+                                            <div class="contanier-input">
+                                                <textarea name="" class="snippet-input" id=""></textarea>
+                                                <div class="error-mas kick-out"></div>
+                                                <div class="btns">
+                                                        <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                        <button class="cancel" id="cancel">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- End Input Feils -->
+                                </div>
+                                <span class="edit-btn">Edit</span>
+                            </div>
+                        </div>
+                        <!-- End Brief -->
+
+                        <!-- Start Website -->
+                            <div class="contanier-feild mtb-15 p-10 rad-5">
+                                <div class="row-feild flex">
+                                    <div class="name-feild">Website</div>
+                                    <div class="content-feild">
+                                        <span class="containt-reg-db">Your website | Blog</span>
+                                        <!-- Start input Feils -->
+                                            <div class="contanier-proccess kick-out">
+                                                <div class="contanier-input">
+                                                    <input
+                                                    value=""
+                                                    type="text"
+                                                    class="snippet-input"
+                                                    placeholder="Your Full Name">
+                                                    <div class="error-mas kick-out"></div>
+                                                    <div class="btns">
+                                                            <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                            <button class="cancel" id="cancel">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <!-- End Input Feils -->
+                                    </div>
+                                    <span class="edit-btn">Edit</span>
+                                </div>
+                            </div>
+                    <!-- End Website -->
+
+                    <!-- Start Githup -->
+                        <div class="contanier-feild mtb-15 p-10 rad-5">
+                            <div class="row-feild flex">
+                                <div class="name-feild">Githup</div>
+                                <div class="content-feild">
+                                    <span class="containt-reg-db">Githup Acount</span>
+                                    <!-- Start input Feils -->
+                                        <div class="contanier-proccess kick-out">
+                                            <div class="contanier-input">
+                                                <input
+                                                value=""
+                                                type="text"
+                                                class="snippet-input"
+                                                placeholder="Your Full Name">
+                                                <div class="error-mas kick-out"></div>
+                                                <div class="btns">
+                                                        <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                        <button class="cancel" id="cancel">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- End Input Feils -->
+                                </div>
+                                <span class="edit-btn">Edit</span>
+                            </div>
+                        </div>
+                    <!-- End Githup -->
+
+                    <!-- Start Twitter -->
+                        <div class="contanier-feild mtb-15 p-10 rad-5">
+                            <div class="row-feild flex">
+                                <div class="name-feild">Twitter</div>
+                                <div class="content-feild">
+                                    <span class="containt-reg-db">Twitter Acount</span>
+                                    <!-- Start input Feils -->
+                                        <div class="contanier-proccess kick-out">
+                                            <div class="contanier-input">
+                                                <input
+                                                value=""
+                                                type="text"
+                                                class="snippet-input"
+                                                placeholder="Your Full Name">
+                                                <div class="error-mas kick-out"></div>
+                                                <div class="btns">
+                                                        <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                        <button class="cancel" id="cancel">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- End Input Feils -->
+                                </div>
+                                <span class="edit-btn">Edit</span>
+                            </div>
+                        </div>
+                    <!-- End Twitter -->
+
+                    <!-- Start Linkedin -->
+                        <div class="contanier-feild mtb-15 p-10 rad-5">
+                            <div class="row-feild flex">
+                                <div class="name-feild">Linkedin</div>
+                                <div class="content-feild">
+                                    <span class="containt-reg-db">Linkedin Acount</span>
+                                    <!-- Start input Feils -->
+                                        <div class="contanier-proccess kick-out">
+                                            <div class="contanier-input">
+                                                <input
+                                                value=""
+                                                type="text"
+                                                class="snippet-input"
+                                                placeholder="Your Full Name">
+                                                <div class="error-mas kick-out"></div>
+                                                <div class="btns">
+                                                        <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                        <button class="cancel" id="cancel">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- End Input Feils -->
+                                </div>
+                                <span class="edit-btn">Edit</span>
+                            </div>
+                        </div>
+                    <!-- End Linkedin -->
+        <?php
+    }
+    public static function ExperienceInformation () {
+        ?>
+            <div class="experience-info mt-20">
+                <h3 class="title">Experience</h3>
+                <!-- Start Education -->
+                    <div class="contanier-feild mtb-15 p-10 rad-5">
+                        <div class="row-feild flex">
+                            <div class="name-feild">Education</div>
+                            <div class="content-feild">
+                                <span class="containt-reg-db">TTU</span>
+                                <!-- Start input Feils -->
+                                    <div class="contanier-proccess kick-out">
+                                        <div class="contanier-input">
+                                            <textarea name="" class="snippet-input" id=""></textarea>
+                                            <div class="error-mas kick-out"></div>
+                                            <div class="btns">
+                                                    <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                    <button class="cancel" id="cancel">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!-- End Input Feils -->
+                            </div>
+                            <span class="edit-btn">Edit</span>
+                        </div>
+                    </div>
+                <!-- End Education -->
+
+                <!-- Start Work -->
+                    <div class="contanier-feild mtb-15 p-10 rad-5">
+                        <div class="row-feild flex">
+                            <div class="name-feild">Work</div>
+                            <div class="content-feild">
+                                <span class="containt-reg-db">Freelancer</span>
+                                <!-- Start input Feils -->
+                                    <div class="contanier-proccess kick-out">
+                                        <div class="contanier-input">
+                                            <textarea name="" class="snippet-input" id=""></textarea>
+                                            <div class="error-mas kick-out"></div>
+                                            <div class="btns">
+                                                    <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                    <button class="cancel" id="cancel">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!-- End Input Feils -->
+                            </div>
+                            <span class="edit-btn">Edit</span>
+                        </div>
+                    </div>
+                <!-- End Work -->
+            </div>
+        <?php
+    }
+    public static function TechnicalSkills () {
+        ?>
+            <div class="technical-skills-info mt-20">
+                <h3 class="title">Experience</h3>
+                <!-- Start skills -->
+                    <div class="contanier-feild mtb-15 p-10 rad-5">
+                        <div class="row-feild flex">
+                            <div class="name-feild">skills</div>
+                            <div class="content-feild">
+                                <span class="containt-reg-db">TTU</span>
+                                <!-- Start input Feils -->
+                                    <div class="contanier-proccess kick-out">
+                                        <div class="contanier-input">
+                                        <input
+                                            value=""
+                                            type="text"
+                                            class="snippet-input"
+                                            placeholder="Skiles">
+                                            <div class="error-mas kick-out"></div>
+                                            <div class="btns">
+                                                    <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                    <button class="cancel" id="cancel">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!-- End Input Feils -->
+                            </div>
+                            <span class="edit-btn">Edit</span>
+                        </div>
+                    </div>
+                <!-- End skills -->
+
+                <!-- Start percentage skills -->
+                    <div class="contanier-feild mtb-15 p-10 rad-5">
+                        <div class="row-feild flex">
+                            <div class="name-feild">percentage skills</div>
+                            <div class="content-feild">
+                                <span class="containt-reg-db">TTU</span>
+                                <!-- Start input Feils -->
+                                    <div class="contanier-proccess kick-out">
+                                        <div class="contanier-input">
+                                        <input
+                                            value=""
+                                            type="text"
+                                            class="snippet-input"
+                                            placeholder="percentage Skiles">
+                                            <div class="error-mas kick-out"></div>
+                                            <div class="btns">
+                                                    <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                    <button class="cancel" id="cancel">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!-- End Input Feils -->
+                            </div>
+                            <span class="edit-btn">Edit</span>
+                        </div>
+                    </div>
+                <!-- End percentage skills -->
+            </div>
+        <?php 
+    }
+    public static function EditStucter () {
+        ?>
+            <div class="dashbord flex">
+                <?php AsideHeaderStructer() ?>
+                <h1 class="title p-20"><i class="fa fa-edit mr-15"></i> Edit Profile</h1>
+                <header class="layout-edit-profile relative flex p-20">
+                    <div class="opacity"></div>
+                    <div class="image relative">
+                        <img class="rad-c" src="images/Avatares/avatar-1.jpg" alt="">
+                        <div class="change-image"><i class="fa-solid fa-camera fa-lg"></i></div>
+                    </div>
+                    <div class="name flex sort-col">
+                        <span class="name">Feras Barahmeh</span>
+                        <span class="id-name"><span>User Name: </span><span >feras</span></span>
+                    </div>
+                </header>
+                <div class="edit-user-structer flex p-20">
+                    <aside class="">
+                        <ul>
+                            <li class="active"><i class="fa-solid fa-microphone mr-15 ml-5"></i> Global Edit</li>
+                            <li><i class="fa fa-gear mr-15 ml-5"></i> Advanice Edit</li>
+                        </ul>
+                    </aside>
+                    <section class="global-edit relative" id="global-info-section">
+                        <!-- Start Basic Info -->
+                            <?php self::BasicInformation() ?>
+                        <!-- End Basic Info -->
+
+                        <!-- Start Experience -->
+                            <?php self::ExperienceInformation() ?>
+                        <!-- End Experience -->
+                        <!-- Start Technical Skills -->
+                            <?php self::TechnicalSkills() ?>
+                        <!-- End Technical Skills -->
+                    </section>
+                </div>
+            </div>
+        <?php 
+    }
 
     public static function StructerEdit() {
         global $commfilesuploaded;
@@ -299,7 +709,6 @@ function IfDelete() {
         }
     } 
 }
-
 function AddStructure() {
     ?>
         <div class="contanier-form">
@@ -507,7 +916,7 @@ function StructerPage() {
                 break;
 
             case 'edit':
-                EditInfoUser::StructerEdit();
+                EditInfoUser::EditStucter();
                 IfUpdate();
                 break;
 

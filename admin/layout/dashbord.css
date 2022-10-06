@@ -512,6 +512,7 @@
     width: 32px;
     height: 32px;
     background-color: var(--bg-black-50);
+    border-radius: 50%;
 }
 .show-projects table td img:not(:first-child) {
     margin-left: -20px;

@@ -101,3 +101,49 @@ if (searchUser !== null) {
         });
     });
 }
+
+// Start Edit Profile
+function hiddenSnippetInputContaniers(snippetBtn) {
+    document.querySelectorAll(".contanier-proccess").forEach(contanier => {
+        if (contanier !== snippetBtn) {
+            contanier.classList.add("kick-out");
+        }
+    });
+    document.querySelectorAll(".containt-reg-db").forEach(contanier => {
+        contanier.classList.remove("kick-out");
+    });
+}
+const snippetEditBtns = document.querySelectorAll(".edit-btn");
+
+
+if (snippetEditBtns !== null) {
+    snippetEditBtns.forEach(snippetBtn => {
+        snippetBtn.addEventListener("click", () => {
+            const  target = snippetBtn.previousElementSibling.lastElementChild;
+            const currentValue = snippetBtn.previousElementSibling.firstElementChild;
+
+            // Hidden all current open
+            hiddenSnippetInputContaniers(target);
+
+            if (target.classList.contains("kick-out")) {
+                target.classList.remove("kick-out");
+                currentValue.classList.add("kick-out");
+            } else {
+                target.classList.add("kick-out");
+                currentValue.classList.remove("kick-out");
+            }
+        });
+    });
+}
+
+// hidden snippet target 
+const canselBtn = document.querySelectorAll("#cancel");
+if (canselBtn !== null) {
+    canselBtn.forEach(btn => {
+        btn.addEventListener("click", () => {
+            hiddenSnippetInputContaniers();
+            btn.closest(".contanier-proccess").classList.add("kick-out");
+            btn.closest(".content-feild").firstElementChild.classList.remove("kick-out");
+        });
+    });
+}

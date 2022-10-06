@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2022 at 10:23 PM
+-- Generation Time: Oct 06, 2022 at 10:49 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -47,13 +47,7 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`IdArticle`, `titleArticle`, `content`, `excerpt`, `likes`, `loves`, `dislikes`, `saveds`, `imageName`, `IdUser`, `categoryID`, `additionDate`) VALUES
-(6, 'Why index start to zero', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'Lorem ipsum dolor sit amet consectetur', 1, 0, 0, 1, 'download.jpg6_download.jpg', 12, 10, '2022-08-12'),
-(8, 'All you need to learn Git', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 1, 0, '1_omc83-7fb27k1ttmxdfraq (1).png8_1_omc83-7fb27k1ttmxdfraq (1).png', 12, 11, '2022-08-12'),
-(17, 'Best Way learn framework python', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quod odit cupiditate saepe dolore nisi, eligendi nesciunt, itaque distinctio delectus doloribus doloremque, officiis et ullam exercitationem repellat facilis nam officia?\r\n', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, '1_z7hxzx49ero8tfg6mzxrnw.jpeg17_1_z7hxzx49ero8tfg6mzxrnw.jpeg', 12, 1, '2022-08-18'),
-(21, 'How booting OS', 'LoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoreamLoream', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, 'r.jpg_r.jpg', 12, 5, '2022-08-27'),
-(22, 'backend Web Devalober', 'The Language To Backend Web develober PHP, Python, Rube', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, 'backend-is.png_backend-is.png', 12, 4, '2022-08-29'),
-(24, 'The Difference between backslash n and endl in CPP', 'معلمة سريعه عن ++c\r\nالفرق بين n\\ و endl \r\nالاغلب بعرف الفرق ال n\\ لل string و ال endl لغير ال string \r\nوفعليا مش هاذا الاختلاف الجوهري بينهم \r\nطيب شو الاختلاف ؟\r\nالاختلاف بطريقة تخزين البينات قبل عرضها على الشاشة \r\nبمعنى \r\nلو عندك 1000 جملة cout تحت بعض \r\nال n\\ رح يحط ال 1000 جملة جوا buffer(خلينا نعتبرها جدول اول مكان لتخزين بشكل مؤقت ) بعدين يعرضهم على الشاشة \r\nطيب ال endl شو بسوي ؟؟ \r\nال endl كل جملة بحطها ب buffer بعدين بظهرها على الشاشة وبرجع بيوخذ ال cout البعدها \r\n\r\nطيب انا مين استخدم (انو اسرع) ؟؟ \r\nفعليا اسرع اشي انك تستخدمهم ال اثنين مع بعض \r\n\r\nكيف ؟؟ \r\nفرضا عندك 1000 جملة طباعة متتاليات \r\nاستخدم مثلا 99 جملة ب n\\ والجملة ال 100 endl \r\nهيك لا انتا استهلكت وقت اذا استخدمت endl (بعد كل جملة رح يروح ع ال buffer ويطبع ويرجع يفضيها )  ولا انتا اعطيت ال buffer اكبر من سعتها لو استخدمت n\\', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, 'images (1).jpg_images (1).jpg', 12, 4, '2022-08-30'),
-(25, 'Best Way to check if number odd or even', 'هل فيه طريقة احسن من \nif(num % 2 == 0) \nعشان تعرف هل الرقم زوجي ولا فردي ؟ ????\n\nالاجابه : \nبكل بساطه فيه طريقة وهي \nif(num & 1)\nازاي طب او ليه ؟\n\nاول حاجه هنرجع شوية ل ازاي الكمبيوتر بيعبر عن الارقام \nالكمبيوتر بيستخدم base 2 عشان يعبر عن الارقام وهو بيتكون من 0 و 1 بس والبالمناسبه اسمه binary\n\nطيب ازاي بردو ؟\n\nالرقم لو هنعبر عنه بال binary هنعبر عن رقم 8 بت مثلا تعالا نعد \nعشري = بايناري \n0 = 00000000\n1 = 00000001\n2 = 00000010\n3 = 00000011\n4 = 00000100\n5 = 00000101\n\nملاحظ حاجه ؟\n\nدايما لما الرقم زوجي اول بت من الرقم بيبقى 0 ولما الرقم بيبقى فردي اول بت بيبقى 1 \n\nوال & بكل بساطه بتشوف هل ال بت ده 0 ولا 1 وبالتالي بتعرف هل الرقم ده زوجي ولا فردي', 'Lorem ipsum dolor sit amet consectetur', 0, 0, 0, 0, 'imageseven.jpg_imageseven.jpg', 12, 15, '2022-08-30');
+(37, 'creat file in linux', 'touch command touch <fileName>\r\nfor example touch editFile.php', '', 0, 0, 0, 0, 'r.jpg_r.jpg', 12, 5, '2022-10-05');
 
 -- --------------------------------------------------------
 
@@ -102,17 +96,6 @@ CREATE TABLE `commentarticles` (
   `likes_count` int(11) DEFAULT 0,
   `dislikes_count` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `commentarticles`
---
-
-INSERT INTO `commentarticles` (`commentID`, `articelID`, `userID`, `contentComment`, `dateComment`, `likes_count`, `dislikes_count`) VALUES
-(33, 6, 14, 'Nice Article, thanks', '2022-09-25 05:07:42', 0, 0),
-(34, 6, 14, 'thanks to sharing', '2022-09-25 05:06:43', 0, 0),
-(35, 6, 14, 'good information', '2022-09-25 22:21:54', 0, 0),
-(36, 6, 14, 'Thanks sar', '2022-09-27 13:12:21', 0, 0),
-(49, 6, 14, 'Woooo, great', '2022-09-27 13:12:46', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -167,13 +150,6 @@ CREATE TABLE `likes` (
   `content` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `likes`
---
-
-INSERT INTO `likes` (`likeID`, `IdUser`, `IdContent`, `content`) VALUES
-(333, 14, 6, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -186,14 +162,6 @@ CREATE TABLE `like_comment_articles` (
   `id_user` int(11) NOT NULL,
   `id_comment` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `like_comment_articles`
---
-
-INSERT INTO `like_comment_articles` (`id_like`, `id_article`, `id_user`, `id_comment`) VALUES
-(40, 6, 14, 35),
-(41, 6, 14, 36);
 
 -- --------------------------------------------------------
 
@@ -214,8 +182,8 @@ CREATE TABLE `quick_draft` (
 --
 
 INSERT INTO `quick_draft` (`id_draft`, `id_user`, `content_draft`, `title_draft`, `if_executed`) VALUES
-(28, 12, 'last draft', 'last draft', 0),
-(30, 12, 'Testing Check Box ', 'New Draft', 1);
+(28, 12, 'last draft', 'last draft', 1),
+(30, 12, 'Testing Check Box ', 'New Draft', 0);
 
 -- --------------------------------------------------------
 
@@ -274,9 +242,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`IdUser`, `userName`, `password`, `email`, `fullName`, `aboutYou`, `langs`, `tools`, `permission`, `age`, `githup`, `facebook`, `twitter`, `linkedin`, `website`, `nickname`, `gender`, `location`, `education`, `work`, `imageName`, `dataRegister`) VALUES
 (12, 'feras', '$2y$10$Ci/KLHxpIAMOWOKqyEF1DuTyJBjxgYxKrrAP2wkuS/f6h6qHU85QO', 'ferasfadi345@gmail.com', 'Feras Barahmeh', 'I\'m Feras Barahmeh, study at ttu', 'cpp:50%, php:80%, python90%', 'Git  & Githup:40%,SOLID prinsiple:67%', 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download.png12_download.png', '2022-08-10'),
-(14, 'majd', '$2y$10$4ZlPqT1STYerP20oRYqTL.eNLlLAplkiQwVSFQ946J8IeXEQaE9sa', 'majdfadi44@gmail.com', 'Majd Fadi Barahmeh', 'Im Majd Fadi Barahmeh', 'cpp:30%, python:90%', 'git,JSON,githup', 0, '2003-07-09', 'MajdBarahmeh', 'majd_fadi', 'da7loze', NULL, NULL, 'da7loz', 'male', 'Amman - Jordan', 'HU, JU', NULL, '52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg14_52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg', '2022-08-10'),
-(42, 'khaled', '$2y$10$8xLH.So0pq.j4Zg/VyuWr.DJmAC.pJcxUbIGCyDp0RqIb1kkOvFJa', 'kh@kha.com', 'Khaled Fadi', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg_depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '2022-09-20'),
-(43, 'belal', '$2y$10$sovxVyN0O0M.0zOp4lgk9uehT7WHmWJ6d5FgUherrdnvgQugxAu.a', 'b@b.com', 'Belal Fadi Barahemh', '', NULL, NULL, 2, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'khaled.jpg_khaled.jpg', '2022-09-25');
+(14, 'majd', '$2y$10$4ZlPqT1STYerP20oRYqTL.eNLlLAplkiQwVSFQ946J8IeXEQaE9sa', 'majdfadi44@gmail.com', 'Majd Fadi Barahmeh', 'Im Majd Fadi Barahmeh', 'cpp:30%, python:90%', 'git,JSON,githup,ajax', 0, '2003-07-09', 'MajdBarahmeh', 'majd_fadi', 'da7loze', NULL, NULL, 'da7loz', 'male', 'Amman - Jordan', 'HU, JU', NULL, '52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg14_52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg', '2022-08-10'),
+(42, 'khaled', '$2y$10$8xLH.So0pq.j4Zg/VyuWr.DJmAC.pJcxUbIGCyDp0RqIb1kkOvFJa', 'kh@kha.com', 'Khaled Fadi', '', NULL, NULL, 2, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg_depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '2022-09-20'),
+(43, 'belal', '$2y$10$sovxVyN0O0M.0zOp4lgk9uehT7WHmWJ6d5FgUherrdnvgQugxAu.a', 'b@b.com', 'Belal Fadi Barahemh', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'khaled.jpg_khaled.jpg', '2022-09-25'),
+(48, 'fadi', '$2y$10$ASuMI/g9TPObgyumOKzasOL0y0IXQPMkm3LYgAPSApGECITRXyqam', 'fadi@azmin', 'Fadi Azmin', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '76729750.jpg_76729750.jpg', '2022-10-06'),
+(49, '283467y32048y', '$2y$10$u03qQD945Ybe75XSmOxTXOOiKTOB9MOF/jGjANZ.eb9I1vEFFv226', 'faajdi@d.com', 'feas', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download (2).jpg_download (2).jpg', '2022-10-06'),
+(50, 'king', '$2y$10$03YSw4upS/waBmZ6nl2lvOXOGzXmPTP/LteKjfVFfSO8lfID3o5GW', 'king@king.com', 'King ', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'avatar-5.png_avatar-5.png', '2022-10-06');
 
 --
 -- Indexes for dumped tables
@@ -362,7 +333,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `IdArticle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `IdArticle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -416,7 +387,7 @@ ALTER TABLE `saveds`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identify user number', AUTO_INCREMENT=44;
+  MODIFY `IdUser` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identify user number', AUTO_INCREMENT=51;
 
 --
 -- Constraints for dumped tables
