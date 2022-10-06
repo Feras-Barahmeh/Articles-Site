@@ -38,7 +38,7 @@ if (table !== null) {
 
     // Hidden partition table par if Less 4 rowa
     const countRowaShow = 4;
-    if (rowsCount < countRowaShow) {
+    if (rowsCount <= countRowaShow) {
         document.querySelector("#pointer-slide").classList.add("hidden");
     }
 

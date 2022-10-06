@@ -48,6 +48,14 @@
                     array_push($ERRORS, 'This User Name used');
                 }
 
+                if (is_numeric($info['userName'])) {
+                    array_push($ERRORS, "Un Valid all user name numbers");
+                }
+
+                if (self::CounterNumbers($info["userName"]) >= 4) {
+                    array_push($ERRORS, "User Name Con't contain more than 4 numbers");
+                }
+
                 if (strlen(strtolower($info['userName'])) <= 3) {
                     array_push($ERRORS, 'User Name Must Be Grater Than 3');
                 }
@@ -73,6 +81,15 @@
 
                 // Print Error If Founded
                 return PrintErrors::IfNoError($ERRORS);
+            }
+            protected static function CounterNumbers($text) {
+                $counter = 0;
+                for ($char=0; $char < strlen($text); $char++) { 
+                    if (is_numeric($text[$char])) {
+                        $counter++;
+                    }
+                }
+                return $counter;
             }
         }
 

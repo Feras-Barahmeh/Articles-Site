@@ -347,7 +347,62 @@ function AddStructure() {
         </div>
     <?php
 }
+function AddStructer() {
+    ?>
+        <div class="dashbord flex">
+            <?php AsideHeaderStructer() ?>
+            <h1 class="title p-20"><i class="fa fa-user mr-15"></i> Add User </h1>
+            <div class="form-add-user p-20">
+                <form action="users.php?actionMember=add&insert" method="POST" enctype="multipart/form-data">
+                    <!-- User Name -->
+                        <div class="relative">
+                            <i class="fa fa-user"></i>
+                            <input type="text" name="userName" id="userName" class="input-add-user" required="" autocomplete="off" placeholder="User Name">
+                            <label for="userName" class="label">User Name</label>
+                        </div>
 
+                    <!-- Password -->
+                        <div class="relative">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" name="password" id="password"  class="input-add-user" required="" autocomplete="off" placeholder="password">
+                            <label for="password" class="label">password</label>
+                        </div>
+
+                    <!-- Email -->
+                        <div class="relative">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" name="email" id="email"  class="input-add-user" required="" autocomplete="off" placeholder="Email">
+                            <label for="email" class="label">Email</label>
+                        </div>
+
+                    <!-- Full Name -->
+                        <div class="relative">
+                            <i class="fa-solid fa-signature"></i>
+                            <input type="text" name="fullName" id="fullName"  class="input-add-user" required="" autocomplete="off" placeholder="Full Name">
+                            <label for="fullName" class="label">Full Name</label>
+                        </div>
+
+                    <!-- Pictuer -->
+                        <div class="relative">
+                            <i class="fa-solid fa-image-portrait"></i>
+                            <input type="file" name="imageName" id="imageName"  class="input-add-user" required="" autocomplete="no">
+                        </div>
+
+                    <!-- Start permission -->
+                        <div class="relative">
+                            <i class="fa-solid fa-ranking-star"></i>
+                            <select name="permission" id="permission" class="input-add-user" required="" autocomplete="off" placeholder="Rank">
+                                <option value="0">Member</option>
+                                <option value="1">Admin</option>
+                                <option value="2">Programer</option>
+                            </select>
+                        </div>
+                    <input type="submit" name="submit" value="Add member" class="btn-shape">
+                </form>
+            </div>
+        </div>
+    <?php
+}
 // End Fork Fucntions
 
 // Main Function 
@@ -361,7 +416,7 @@ function StructerPage() {
                 <header class="additions relative between-ele p-20">
                         <div class="input-search-contanier relative">
                             <i class="fa fa-magnifying-glass search-icon"></i>
-                            <input type="search" name="" id="search-id-userName" class="search-input" placeholder="search User Name Or ID">
+                            <input type="search" name="" id="search-id-userName" class="search-input" placeholder="Search User Name">
                         </div>
                         <button class="users-statistics relative" id="users-statistics">
                             <span class="angels">Statistics <i class="fa fa-angle-down ml-5 show"></i> <i class="fa fa-angle-up ml-5"></i></span>
@@ -447,7 +502,7 @@ function StructerPage() {
         switch (GetRequests::GetValueGet('actionMember')) {
 
             case 'add':
-                AddStructure();
+                AddStructer();
                 IfInsert();
                 break;
 

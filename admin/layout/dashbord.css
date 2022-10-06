@@ -195,6 +195,9 @@
     width: 60px;
     top: 35px;
 }
+.dashbord .title i {
+    color: var(--skin-color);
+}
 /* End Title Page  */
 /* Start Welcome */
 @media(max-width: 767px) {

@@ -102,70 +102,41 @@
 
 
 /* Start Add User  */
-.contanier-form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 60px;
-    background: linear-gradient(45deg, black, transparent);
-}
-.contanier-form .input-box {
+.form-add-user  {
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
     position: relative;
-    width: 100%;
 }
-.contanier-form .input-box .input,.select {
-    padding: 10px 0;
-    font-size: 15px;
-    color: #fff;
-    margin-bottom: 28px;
-    width: 100%;
+.form-add-user form > div i {
+    position: absolute;
+    top: 27%;
+    transform: translateY(-50%);
+    left: 8px;
+    color: var(--skin-color);
+}
+.form-add-user .input-add-user {
+    min-width: 300px;
     outline: none;
-    border: none;
-    border-bottom: 1px solid #fff;
-    background: transparent;
+    margin-bottom: 30px;
+    background-color: transparent;
+    border: 1px solid var(--skin-color);
+    color: var(--text-black-700);
+    padding: 10px 10px 10px 30px;
 }
-.contanier-form .input-box .file-label {
+.form-add-user label {
     position: absolute;
-    top: -13px;
     left: 0;
+    color: transparent;
+    transition: all .3s ease-in-out;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
 }
-.contanier-form .input-box .label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px 0 ;
-    pointer-events: none;
-    transition: .5s;
-}
-.contanier-form .input-box input:focus~.label,
-.contanier-form .input-box input:valid~.label {
+.form-add-user .input-add-user:focus ~ label {
     top: -20px;
-    color: var(--main-cat-tow);
+    color: var(--text-black-700);
 }
-option {
-    background: var(--bg-black-900);
-}
-.btn-submit {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    color: #1da4f2;
-    font-size: 16px;
-    text-transform: uppercase;
-    overflow: hidden;
-    transition: 0.5s;
-    margin-top: 4px;
-    letter-spacing: 4px;
-    text-align: center;
-    align-items: center;
-}
-
-.btn-submit:hover {
-    color: #fff;
-    background: var(--main-cat-tow);
-}
-
 /* End Add User  */
 
 /* Start Edit User */

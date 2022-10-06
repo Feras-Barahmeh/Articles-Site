@@ -71,10 +71,12 @@ if (removeAlterMassage !== null) {
 // End Simple Alter Massage
 
 // Remoe Alter
-const xBtn = document.getElementById("X");
+const xBtn = document.querySelectorAll("#X"); // Use Query all to remover all alter
 if (xBtn !== null) {
-    xBtn.addEventListener("click", () => {
-        xBtn.parentElement.classList.add("hidden");
+    xBtn.forEach(x => {
+        x.addEventListener("click", () => {
+            x.closest(".alert").remove();
+        });
     });
 }
 
