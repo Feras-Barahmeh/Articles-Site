@@ -31,6 +31,33 @@ class EditInfoUser {
         <?php }
 
     }
+    private static function PrintTechnicals () {
+        $techs = self::GetTechnicals();
+        foreach ($techs as $tech) {
+            ?>
+                <option id="skile-name" value="<?php echo $tech ?>"><?php echo $tech ?></option>
+            <?php
+        }
+
+    }
+    private static function GetTechnicals () {
+        $handelFile = fopen("../commonBetweenBackFront/textfiles/technical.txt", "r");
+
+        // Get First Line
+        $firstLine = fgets($handelFile);
+        
+        // Set cursore after first line
+        fseek($handelFile, mb_strlen($firstLine . "\r\n", "8bit") - 1);
+
+        // Read Lines
+        $lines = fread($handelFile, 1024);
+
+        // Split - from technials
+        $tech = explode('-', $lines);
+
+        return $tech;
+
+    }
     protected static function BasicInformation() {
         ?>
                 <!-- Start Basic Info -->
@@ -349,16 +376,30 @@ class EditInfoUser {
                         <div class="row-feild flex">
                             <div class="name-feild">skills</div>
                             <div class="content-feild">
-                                <span class="containt-reg-db">TTU</span>
+                                <div id="current-skiles" class="containt-reg-db flex">
+                                    <!-- Show Skiles -->
+                                </div>
                                 <!-- Start input Feils -->
                                     <div class="contanier-proccess kick-out">
                                         <div class="contanier-input">
-                                        <input
-                                            value=""
-                                            type="text"
-                                            class="snippet-input"
-                                            placeholder="Skiles">
-                                            <div class="error-mas kick-out"></div>
+                                            <div class="contaner-skiels flex w-fu f-al-ce">
+
+                                                <input
+                                                value=""
+                                                type="text"
+                                                id="technical-input"
+                                                class="add-skile-input block mb-15 mt-10"
+                                                placeholder="Skiles">
+                                            
+                                            </div>
+                                            <!-- Start Technicals -->
+                                            <select name="" id="technical-list" class="hidden mt-15 mb-15 box-sh-op10-clwh">
+                                                <option value="NULL"><?php echo "Chosse From This Technicals" ?></option>
+                                                <?php self::PrintTechnicals() ?>
+                                            </select>
+                                            <!-- End Technicals -->
+
+                                            <div class="error-mas"></div>
                                             <div class="btns">
                                                     <button class="save" name="save-edit" id="save-edit">Update</button>
                                                     <button class="cancel" id="cancel">Cancel</button>

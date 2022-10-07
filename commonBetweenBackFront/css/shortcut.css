@@ -35,6 +35,12 @@
 .flex-1 {
     flex: 1;
 }
+.f-wrap {
+    flex-wrap: wrap;
+}
+.f-wrap-rev {
+    flex-wrap: wrap-reverse;
+}
 .grid {
     display: grid;
 }

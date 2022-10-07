@@ -147,3 +147,133 @@ if (canselBtn !== null) {
         });
     });
 }
+
+// Remove Skile
+const removeSkileBtns = document.querySelectorAll("#remove-skile");
+function removeSkiles() {
+    let contantRemoved = null;
+    if (removeSkileBtns !== null) {
+        removeSkileBtns.forEach(removeSkileBtn => {
+            removeSkileBtn.addEventListener("click", () => {
+                contantRemoved = removeSkileBtn.querySelector(".name-skile").innerHTML;
+                removeSkileBtn.closest(".skile").remove();
+            });
+        });
+    }
+}
+
+function creatSkileStructer(skile) {
+    let div = document.createElement("div");
+    div.classList.add("skile");
+    div.classList.add("flex");
+    div.classList.add("f-al-ce");
+    div.classList.add("mr-15");
+
+    let innerDiv = document.createElement("div");
+    innerDiv.classList.add("name-skile");
+    innerDiv.classList.add("mr-15");
+    innerDiv.innerHTML = skile;
+
+    let i = document.createElement("i");
+    i.classList.add("fa");
+    i.classList.add("fa-xmark");
+    i.setAttribute("id", "remove-skile");
+
+    // Add element to main div
+    div.append(innerDiv);
+    div.append(i);
+
+    i.addEventListener("click", () => {
+        div.remove();
+    });
+
+    return div;
+
+}
+function getCurrentTechs() {
+    const containerSkilesStructer = document.querySelector(".containt-reg-db");
+    const skiles = containerSkilesStructer.querySelectorAll(".skile");
+
+    let nameSkiles = new Array();
+    skiles.forEach(skile => {
+        nameSkiles.push(skile.firstElementChild.innerHTML.trim("\n"));
+    });
+
+    return nameSkiles;
+}
+
+function getTechs() {
+    const validSkiles = document.querySelectorAll("#skile-name");
+    let skiles = new Array();
+    validSkiles.forEach(skile => {
+        skiles.push(skile.innerHTML.trim("\n").toLocaleLowerCase());
+    });
+    return skiles;
+}
+
+function suggistingTechs() {
+    const addTechInput = document.getElementById("technical-input");
+    const selection = document.getElementById("technical-list");
+    const containerSkilesStructer = document.querySelector(".contaner-skiels");
+
+    selection.addEventListener("change", () => {
+        containerSkilesStructer.prepend(creatSkileStructer(selection.value));
+        addTechInput.innerHTML = "";
+    });
+
+    return selection.value;
+}
+function ifExistTech(prevTech, currentTech, massBox) {
+    if (! prevTech.includes(currentTech)) {
+        massBox.innerHTML = "";
+        massBox.style.position = "absolute";
+        massBox.style.left = "103%";
+        return true;
+    } else {
+        massBox.innerHTML = "This Technical is Exist alrady";
+        massBox.style.position = "relative";
+        massBox.style.left = "0";
+    }
+}
+const addTechInput = document.getElementById("technical-input");
+const selection = document.getElementById("technical-list");
+const validTechs = getTechs();
+const containerSkilesStructer = document.querySelector(".contaner-skiels");
+let registerTechinalsContanier = document.getElementById("current-skiles");;
+let lastTechnical = new Array();
+
+if (addTechInput !== null) {
+    addTechInput.addEventListener("keyup", (e) => {
+        if(e.key === "Enter" || e.keyCode === 13) {
+
+            const valueSkile = e.target.value.toLocaleLowerCase();
+            if(! validTechs.includes(valueSkile)) {
+                // selection
+                selection.classList.remove("hidden");
+
+                if (ifExistTech(lastTechnical, valueSkile, addTechInput.closest(".contanier-input").querySelector(".error-mas"))) {
+                    lastTechnical.push(suggistingTechs());
+                    addTechInput.value = "";
+                }
+            } else {
+                if (ifExistTech(lastTechnical, valueSkile, addTechInput.closest(".contanier-input").querySelector(".error-mas"))) {
+                    containerSkilesStructer.prepend(creatSkileStructer(valueSkile));
+                    lastTechnical.push(valueSkile);
+                    e.target.value = "";
+                }
+            }
+        }
+        // Chane techs Live
+        lastTechnical.forEach(tech => {
+            console.log(registerTechinalsContanier);
+            registerTechinalsContanier.prepend(creatSkileStructer(tech));
+        });
+    });
+}
+
+// When click X btn
+removeSkiles();
+
+
+
+
