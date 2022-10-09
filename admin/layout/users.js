@@ -151,12 +151,20 @@ if (canselBtn !== null) {
 // Remove Skile
 const removeSkileBtns = document.querySelectorAll("#remove-skile");
 function removeSkiles() {
+
     let contantRemoved = null;
     if (removeSkileBtns !== null) {
         removeSkileBtns.forEach(removeSkileBtn => {
+            console.log(removeSkileBtn);
             removeSkileBtn.addEventListener("click", () => {
+
                 contantRemoved = removeSkileBtn.querySelector(".name-skile").innerHTML;
                 removeSkileBtn.closest(".skile").remove();
+                console.log(contantRemoved);
+                if (lastTechnical.includes(contantRemoved)) {
+                    
+                    console.log(lastTechnical.indexOf(contantRemoved));
+                }
             });
         });
     }
@@ -211,36 +219,56 @@ function getTechs() {
     return skiles;
 }
 
-function suggistingTechs() {
+function suggistingTechs(massBox) {
     const addTechInput = document.getElementById("technical-input");
     const selection = document.getElementById("technical-list");
     const containerSkilesStructer = document.querySelector(".contaner-skiels");
-
     selection.addEventListener("change", () => {
-        containerSkilesStructer.prepend(creatSkileStructer(selection.value));
-        addTechInput.innerHTML = "";
+
+        // If This technical Not Exist
+        if (getSkilesFromContanierSkiles().includes(selection.value)) {
+            containerSkilesStructer.prepend(creatSkileStructer(selection.value));
+            addTechInput.innerHTML = "";
+        } else {
+            massBox.innerHTML = "This Technical Skile alrady exist";
+            massBox.style.position = "relative";
+            massBox.style.left = "0";
+        }
     });
 
     return selection.value;
 }
+function getSkilesFromContanierSkiles() {
+    let skile = [];
+
+    containerSkilesStructer.querySelectorAll(".skile").forEach(skileBox => {
+        console.log(skileBox);
+        skile.push(skileBox.querySelector(".name-skile").innerHTML);
+    });
+    return skile;
+}
 function ifExistTech(prevTech, currentTech, massBox) {
+
     if (! prevTech.includes(currentTech)) {
         massBox.innerHTML = "";
         massBox.style.position = "absolute";
         massBox.style.left = "103%";
         return true;
     } else {
-        massBox.innerHTML = "This Technical is Exist alrady";
+        massBox.innerHTML = "This Technical Skile alrady exist";
         massBox.style.position = "relative";
         massBox.style.left = "0";
+
     }
 }
-const addTechInput = document.getElementById("technical-input");
+
+var addTechInput = document.getElementById("technical-input");
 const selection = document.getElementById("technical-list");
 const validTechs = getTechs();
-const containerSkilesStructer = document.querySelector(".contaner-skiels");
-let registerTechinalsContanier = document.getElementById("current-skiles");;
-let lastTechnical = new Array();
+var containerSkilesStructer = document.querySelector(".contaner-skiels");
+const registerTechinalsContanier = document.getElementById("current-skiles");
+
+var lastTechnical = new Array();
 
 if (addTechInput !== null) {
     addTechInput.addEventListener("keyup", (e) => {
@@ -251,29 +279,21 @@ if (addTechInput !== null) {
                 // selection
                 selection.classList.remove("hidden");
 
-                if (ifExistTech(lastTechnical, valueSkile, addTechInput.closest(".contanier-input").querySelector(".error-mas"))) {
-                    lastTechnical.push(suggistingTechs());
+                let errorBox = addTechInput.closest(".contanier-input").querySelector(".error-mas");
+
+                if (ifExistTech(getSkilesFromContanierSkiles(), valueSkile, errorBox)) {
+                    lastTechnical.push(suggistingTechs(errorBox));
                     addTechInput.value = "";
                 }
             } else {
-                if (ifExistTech(lastTechnical, valueSkile, addTechInput.closest(".contanier-input").querySelector(".error-mas"))) {
+                if (ifExistTech(getSkilesFromContanierSkiles(), valueSkile, addTechInput.closest(".contanier-input").querySelector(".error-mas"))) {
                     containerSkilesStructer.prepend(creatSkileStructer(valueSkile));
                     lastTechnical.push(valueSkile);
                     e.target.value = "";
                 }
             }
-        }
-        // Chane techs Live
-        lastTechnical.forEach(tech => {
-            console.log(registerTechinalsContanier);
-            registerTechinalsContanier.prepend(creatSkileStructer(tech));
-        });
+        } 
     });
 }
 
-// When click X btn
 removeSkiles();
-
-
-
-
