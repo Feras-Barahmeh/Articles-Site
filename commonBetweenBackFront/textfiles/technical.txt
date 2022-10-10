@@ -6,3 +6,15 @@ This file has all teqnolige can user add in profile
 -JSON
 -SOLID
 -GraphQL
+-PHP
+-C/CPP
+-C/C++
+-CPP
+-C++
+-C
+-HTML
+-Python
+-java
+-javascript
+-js
+-React

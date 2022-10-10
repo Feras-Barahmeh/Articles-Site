@@ -378,6 +378,7 @@ class EditInfoUser {
                             <div class="content-feild">
                                 <div id="current-skiles" class="containt-reg-db flex">
                                     <!-- Show Skiles -->
+                                    <div class="skile flex f-al-ce mr-15"><div class="name-skile mr-15">Solid</div><i class="fa fa-xmark" id="remove-skile"></i></div>
                                 </div>
                                 <!-- Start input Feils -->
                                     <div class="contanier-proccess kick-out">
@@ -414,30 +415,29 @@ class EditInfoUser {
                 <!-- End skills -->
 
                 <!-- Start percentage skills -->
-                    <div class="contanier-feild mtb-15 p-10 rad-5">
-                        <div class="row-feild flex">
-                            <div class="name-feild">percentage skills</div>
-                            <div class="content-feild">
-                                <span class="containt-reg-db">TTU</span>
-                                <!-- Start input Feils -->
-                                    <div class="contanier-proccess kick-out">
-                                        <div class="contanier-input">
-                                        <input
-                                            value=""
-                                            type="text"
-                                            class="snippet-input"
-                                            placeholder="percentage Skiles">
-                                            <div class="error-mas kick-out"></div>
-                                            <div class="btns">
-                                                    <button class="save" name="save-edit" id="save-edit">Update</button>
-                                                    <button class="cancel" id="cancel">Cancel</button>
+                    <div class="percentage-skills contanier-feild mtb-15 p-10 rad-5">
+                            <div class="header between-ele">
+                                <div class="name-feild">percentage skills</div>
+                                <span class="cursor-pointer" id="edit-percentage-skiles">Edit</span>
+                            </div>
+                            <div class="skiles-percentage kick-out">
+                                <div class="containt-reg-db">
+                                    <div class="skile mtb-15">
+                                        <span class="name-skile">Solid</span>
+                                        <label for="">Percantage Skile</label>
+                                        <input type="range" min="0" max="100" name="" id="percantage-bar">
+                                        <div class="percentage-container relative red-5">
+                                            <div class="percentage-circular rad-c center-ele relative"> 
+                                                <div class="value rad-c relative">60%</div>
                                             </div>
                                         </div>
                                     </div>
-                                <!-- End Input Feils -->
+                                </div>
+                                <div class="btns">
+                                        <button class="save cursor-pointer" name="save-edit" id="save-percentage-skile">Update</button>
+                                        <button class="cancel cursor-pointer" id="cansel-percentage-skile">Cancel</button>
+                                </div>
                             </div>
-                            <span class="edit-btn">Edit</span>
-                        </div>
                     </div>
                 <!-- End percentage skills -->
             </div>

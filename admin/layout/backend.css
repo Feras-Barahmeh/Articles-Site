@@ -294,6 +294,11 @@
 .edit-user-structer .contanier-feild .contanier-proccess .btns button:hover {
     color: var(--bg-black-900);
 }
+.kick-out {
+    position: absolute;
+    opacity: 0;
+    right: -100%;
+}
 .edit-user-structer .contanier-feild .contanier-proccess.kick-out,
 .edit-user-structer .contanier-feild .containt-reg-db.kick-out {
     position: absolute;
@@ -357,6 +362,85 @@
     position: absolute;
     transition: all .3s ease-in-out;
 }
+/* Start percentage skills */
+.percentage-skills .header {
+    background-color: var(--bg-black-900);
+    padding: 5px 5px;
+}
+#edit-percentage-skiles {
+    background-color: var(--skin-color);
+    color: var(--text-black-700);
+    padding: 2px 5px;
+    border-radius: 3px;
+    transition: color .3s ease-in-out;
+}
+#edit-percentage-skiles:hover {
+    box-shadow: 2px 2px 10px rgba(10, 10, 10, .1);
+    color: #ffff;
+}
+.percentage-skills .header .name-feild {
+    color: var(--text-black-700);
+}
+.percentage-skills .header .edit-btn {
+    background-color: var(--skin-color);
+    color: var(--text-black-700);
+    padding: 0 7px;
+    border-radius: 4px;
+}
+.percentage-skills  .skiles-percentage {
+    transition: opacity .3s ease-in-out;
+}
+.percentage-skills  .skiles-percentage .skile {
+    background-color: var(--bg-black-900);
+    width: 100%;
+    align-items: center;
+}
+.percentage-skills  .skiles-percentage .skile label {
+    color: var(--text-black-700);
+}
+.percentage-skills  .skiles-percentage .skile input[type='range'] {
+    accent-color: var(--skin-color);
+}
+.percentage-skills  .skiles-percentage .skile input[type='range']:focus {
+    outline: none;
+}
+.percentage-skills  .skiles-percentage .skile .percentage-container {
+    width: 70px;
+    height: 70px;
+    display: grid;
+    place-items: center;
+}
+.percentage-skills  .skiles-percentage .skile .percentage-circular {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.percentage-skills  .skiles-percentage .skile .percentage-container .percentage-circular::before {
+    content: "";
+    border-radius: 50%;
+    width: 85%;
+    height: 85%;
+    background-color: var(--bg-black-100);
+    position: absolute;
+}
+.percentage-skills  .skiles-percentage .skile .percentage-circular .value {
+    color: var(--text-black-700);
+}
+.percentage-skills  .skiles-percentage .btns  button {
+    outline: none;
+    border: unset;
+    margin-right: 5px;
+    color: var(--text-black-700);
+    padding: 2px 5px;
+    border-radius: 3px;
+    background-color: var(--skin-color);
+    transition: color .3s ease-in-out;
+}
+.percentage-skills  .skiles-percentage .btns  button:hover {
+    box-shadow: 2px 2px 10px rgba(10, 10, 10, .1);
+    color: #ffff;
+}
+/* End percentage skills */
 /* End skiles section */
 /* End Edit User */
 

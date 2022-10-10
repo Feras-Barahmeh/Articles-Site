@@ -7,6 +7,7 @@
     --text-black-700 : #504e70;
     --danger--900: #fb6262;
     --skin-color: #37b182;
+    --skin-alt-color: #a0e5cb;
 }
 body.dark {
     --bg-black-900: #151515;

@@ -151,20 +151,11 @@ if (canselBtn !== null) {
 // Remove Skile
 const removeSkileBtns = document.querySelectorAll("#remove-skile");
 function removeSkiles() {
-
     let contantRemoved = null;
     if (removeSkileBtns !== null) {
         removeSkileBtns.forEach(removeSkileBtn => {
-            console.log(removeSkileBtn);
             removeSkileBtn.addEventListener("click", () => {
-
-                contantRemoved = removeSkileBtn.querySelector(".name-skile").innerHTML;
                 removeSkileBtn.closest(".skile").remove();
-                console.log(contantRemoved);
-                if (lastTechnical.includes(contantRemoved)) {
-                    
-                    console.log(lastTechnical.indexOf(contantRemoved));
-                }
             });
         });
     }
@@ -218,7 +209,14 @@ function getTechs() {
     });
     return skiles;
 }
+function getSkilesFromContanierSkiles() {
+    let skile = [];
 
+    containerSkilesStructer.querySelectorAll(".skile").forEach(skileBox => {
+        skile.push(skileBox.querySelector(".name-skile").innerHTML);
+    });
+    return skile;
+}
 function suggistingTechs(massBox) {
     const addTechInput = document.getElementById("technical-input");
     const selection = document.getElementById("technical-list");
@@ -238,15 +236,7 @@ function suggistingTechs(massBox) {
 
     return selection.value;
 }
-function getSkilesFromContanierSkiles() {
-    let skile = [];
 
-    containerSkilesStructer.querySelectorAll(".skile").forEach(skileBox => {
-        console.log(skileBox);
-        skile.push(skileBox.querySelector(".name-skile").innerHTML);
-    });
-    return skile;
-}
 function ifExistTech(prevTech, currentTech, massBox) {
 
     if (! prevTech.includes(currentTech)) {
@@ -258,11 +248,10 @@ function ifExistTech(prevTech, currentTech, massBox) {
         massBox.innerHTML = "This Technical Skile alrady exist";
         massBox.style.position = "relative";
         massBox.style.left = "0";
-
     }
 }
 
-var addTechInput = document.getElementById("technical-input");
+const addTechInput = document.getElementById("technical-input");
 const selection = document.getElementById("technical-list");
 const validTechs = getTechs();
 var containerSkilesStructer = document.querySelector(".contaner-skiels");
@@ -293,7 +282,72 @@ if (addTechInput !== null) {
                 }
             }
         } 
+        removeSkiles();
     });
 }
 
 removeSkiles();
+
+// Percantage Skiles
+// Show Percantage When Click Edit
+const editPercantage = document.getElementById("edit-percentage-skiles");
+
+editPercantage.addEventListener("click", () => {
+    document.querySelector(".skiles-percentage").classList.toggle("kick-out");
+});
+
+var percantageBars = document.querySelectorAll("#percantage-bar");
+percantageBars.forEach(percantageBar => {
+    let valueBox = 
+        percantageBar.nextElementSibling.querySelector(".value");
+    percantageBar.addEventListener("change", () => {
+        // Set Value Percentage When Chage Range input
+        valueBox.textContent = percantageBar.value + '%';
+
+        // Change Circule
+        let percentageCircular = percantageBar.nextElementSibling.querySelector(".percentage-circular");
+        percentageCircular.style.background = `conic-gradient(
+            var(--skin-color) ${percantageBar.value * 3.6 }deg,
+            var(--skin-alt-color) ${percantageBar.value * 3.6 }deg
+        )`;
+    });
+});
+
+// Set Value input
+percantageBars.forEach(percantageBar => {
+
+    let valueBox = 
+        percantageBar.nextElementSibling.querySelector(".value");
+    const value = valueBox.innerHTML.split('%').join('');
+    const rangeInput = valueBox.closest(".percentage-container").previousElementSibling;
+    rangeInput.value = value;
+});
+
+// Set Animation Change Bar
+percantageBars.forEach(percantageBar => {
+    window.addEventListener("scroll", () => {
+            if (window.innerHeight >= percantageBar.getBoundingClientRect().top) {
+                let containerPercantage = percantageBar.nextElementSibling.querySelector(".percentage-circular");
+
+                let valueBox = 
+                    percantageBar.nextElementSibling.querySelector(".value");
+                let persantageValue = 0;
+                const endValue = percantageBar.value;
+                const speed = 20;
+        
+                let animation = setInterval ( () => {
+                    persantageValue++;
+                    valueBox.textContent = persantageValue + '%';
+        
+                    containerPercantage.style.background = `conic-gradient(
+                        var(--skin-color) ${persantageValue * 3.6 }deg,
+                        var(--skin-alt-color) ${persantageValue * 3.6 }deg
+                    )`;
+                    if (persantageValue == endValue) {
+                        clearInterval(animation);
+                    }
+                }, speed);
+            }
+
+    });
+});
