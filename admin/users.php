@@ -499,7 +499,7 @@ class EditInfoUser {
                         <div class="change-image"><i class="fa-solid fa-camera fa-lg"></i></div>
                     </div>
                     <div class="name flex sort-col">
-                        <span class="name">Feras Barahmeh</span>
+                        <span class="name" id="name-user-layout">Feras Barahmeh</span>
                         <span class="id-name"><span>User Name: </span><span >feras</span></span>
                     </div>
                 </header>

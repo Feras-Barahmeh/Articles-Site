@@ -370,6 +370,11 @@ function editUserFeild(targetFile, data, btn) {
 
                 // Show Layout Box
                 showBox.classList.remove("kick-out");
+
+                // Live Change Full Name In Layout
+                if (data.nameCol === "fullName") {
+                    document.getElementById("name-user-layout").innerHTML = data.newValue;
+                }
             }
         }
     };
