@@ -31,6 +31,13 @@ class EditInfoUser {
         <?php }
 
     }
+    private static function IfNull($var, $alliesText) {
+        if (empty($var)) {
+            echo $alliesText;
+        } else {
+            echo $var;
+        }
+    }
     private static function PrintTechnicals () {
         $techs = self::GetTechnicals();
         foreach ($techs as $tech) {
@@ -58,7 +65,8 @@ class EditInfoUser {
         return $tech;
 
     }
-    protected static function BasicInformation() {
+    protected static function BasicInformation($user) {
+        $idUser = GetRequests::GetValueGet("IdUser");
         ?>
                 <!-- Start Basic Info -->
                     <div class="basic-info mt-20">
@@ -68,12 +76,14 @@ class EditInfoUser {
                                 <div class="row-feild flex">
                                     <div class="name-feild">Name</div>
                                     <div class="content-feild">
-                                        <span class="containt-reg-db">Feras</span>
+                                        <span class="containt-reg-db"><?php echo $user['fullName'] ?></span>
                                         <!-- Start input Feils -->
                                             <div class="contanier-proccess kick-out">
                                                 <div class="contanier-input">
                                                     <input
-                                                    value=""
+                                                    value="<?php echo $user['fullName'] ?>"
+                                                    name-col-db="fullName"
+                                                    id_user="<?php echo $idUser ?>"
                                                     type="text"
                                                     class="snippet-input"
                                                     placeholder="Your Full Name">
@@ -96,12 +106,15 @@ class EditInfoUser {
                                 <div class="row-feild flex">
                                     <div class="name-feild">Gender</div>
                                     <div class="content-feild">
-                                        <span class="containt-reg-db">Male</span>
+                                        <span class="containt-reg-db"><?php self::IfNull( $user["gender"], "Your gender" ) ?></span>
                                         <!-- Start input Feils -->
                                             <div class="contanier-proccess kick-out">
                                                 <div class="contanier-input">
-                                                    <select name="" id="" class="snippet-input">
-                                                        <option value="">Malie</option>
+                                                    <select 
+                                                            name-col-db="gender"
+                                                            id_user="<?php echo $idUser ?>"
+                                                            class="snippet-input">
+                                                        <option value="<?php echo $user["gender"] ?>"><?php self::IfNull($user["gender"], "Gender")?></option>
                                                         <option value="male">Male</option>
                                                         <option value="female">Female</option>
                                                     </select>
@@ -125,15 +138,17 @@ class EditInfoUser {
                             <div class="row-feild flex">
                                 <div class="name-feild">Location</div>
                                 <div class="content-feild">
-                                    <span class="containt-reg-db">Jordan-Amman</span>
+                                    <span class="containt-reg-db"><?php self::IfNull($user["location"], "Location") ?></span>
                                     <!-- Start input Feils -->
                                         <div class="contanier-proccess kick-out">
                                             <div class="contanier-input">
                                                 <input
-                                                value=""
-                                                type="text"
-                                                class="snippet-input"
-                                                placeholder="Your Full Name">
+                                                    value="<?php echo $user["location"] ?>"
+                                                    name-col-db="location"
+                                                    id_user="<?php echo $idUser ?>"
+                                                    type="text"
+                                                    class="snippet-input"
+                                                    placeholder="Your Location">
                                                 <div class="error-mas kick-out"></div>
                                                 <div class="btns">
                                                         <button class="save" name="save-edit" id="save-edit">Update</button>
@@ -153,15 +168,17 @@ class EditInfoUser {
                             <div class="row-feild flex">
                                 <div class="name-feild">Birthday</div>
                                 <div class="content-feild">
-                                    <span class="containt-reg-db">11-6-2002</span>
+                                    <span class="containt-reg-db"><?php echo $user["age"] == "0000-00-00" ?  "Brthday" : $user["age"] ?></span>
                                     <!-- Start input Feils -->
                                         <div class="contanier-proccess kick-out">
                                             <div class="contanier-input">
                                                 <input
-                                                value=""
+                                                value="<?php echo $user["age"] == "0000-00-00" ?  date("Y-m-d") : $user["age"] ?>"
+                                                name-col-db="age"
+                                                id_user="<?php echo $idUser ?>"
                                                 type="date"
                                                 class="snippet-input"
-                                                placeholder="Your Full Name">
+                                                placeholder="Your Birthday">
                                                 <div class="error-mas kick-out"></div>
                                                 <div class="btns">
                                                         <button class="save" name="save-edit" id="save-edit">Update</button>
@@ -181,11 +198,15 @@ class EditInfoUser {
                             <div class="row-feild flex">
                                 <div class="name-feild">Brief</div>
                                 <div class="content-feild">
-                                    <span class="containt-reg-db">Im Feras Fadi Barahmeh</span>
+                                    <span class="containt-reg-db fs-14"><?php self::IfNull($user["aboutYou"], "Brif to You") ?></span>
                                     <!-- Start input Feils -->
                                         <div class="contanier-proccess kick-out">
                                             <div class="contanier-input">
-                                                <textarea name="" class="snippet-input" id=""></textarea>
+                                                <textarea
+                                                        value="<?php echo $user["aboutYou"] ?>"
+                                                        name-col-db="aboutYou"
+                                                        id_user="<?php echo $idUser ?>"
+                                                        class="snippet-input" ><?php  echo $user["aboutYou"] ?></textarea>
                                                 <div class="error-mas kick-out"></div>
                                                 <div class="btns">
                                                         <button class="save" name="save-edit" id="save-edit">Update</button>
@@ -205,15 +226,17 @@ class EditInfoUser {
                                 <div class="row-feild flex">
                                     <div class="name-feild">Website</div>
                                     <div class="content-feild">
-                                        <span class="containt-reg-db">Your website | Blog</span>
+                                        <span class="containt-reg-db"><a href="<?php echo $user["website"] ?>"><?php self::IfNull($user["website"], "Your Site") ?></a></span>
                                         <!-- Start input Feils -->
                                             <div class="contanier-proccess kick-out">
                                                 <div class="contanier-input">
                                                     <input
-                                                    value=""
-                                                    type="text"
-                                                    class="snippet-input"
-                                                    placeholder="Your Full Name">
+                                                        value="<?php echo $user["website"] ?>"
+                                                        name-col-db="website"
+                                                        id_user="<?php echo $idUser ?>"
+                                                        type="text"
+                                                        class="snippet-input"
+                                                        placeholder="Your Site">
                                                     <div class="error-mas kick-out"></div>
                                                     <div class="btns">
                                                             <button class="save" name="save-edit" id="save-edit">Update</button>
@@ -233,15 +256,17 @@ class EditInfoUser {
                             <div class="row-feild flex">
                                 <div class="name-feild">Githup</div>
                                 <div class="content-feild">
-                                    <span class="containt-reg-db">Githup Acount</span>
+                                    <span class="containt-reg-db"><a href="<?php echo $user["githup"] ?>"><?php $val = explode("/", $user["githup"]); self::IfNull(end($val), "Githup Account"); ?></a></span>
                                     <!-- Start input Feils -->
                                         <div class="contanier-proccess kick-out">
                                             <div class="contanier-input">
                                                 <input
-                                                value=""
+                                                    value="https://github.com/<?php echo $user["githup"] ?>"
+                                                    name-col-db="githup"
+                                                    id_user="<?php echo $idUser ?>"
                                                 type="text"
                                                 class="snippet-input"
-                                                placeholder="Your Full Name">
+                                                placeholder="https://github.com/(GitHup user Name)">
                                                 <div class="error-mas kick-out"></div>
                                                 <div class="btns">
                                                         <button class="save" name="save-edit" id="save-edit">Update</button>
@@ -261,15 +286,17 @@ class EditInfoUser {
                             <div class="row-feild flex">
                                 <div class="name-feild">Twitter</div>
                                 <div class="content-feild">
-                                    <span class="containt-reg-db">Twitter Acount</span>
+                                    <span class="containt-reg-db"><a href="<?php echo $user["twitter"] ?>"><?php $val = explode("/", $user["twitter"]); self::IfNull(end($val), "https://twitter.com/"); ?></a></span>
                                     <!-- Start input Feils -->
                                         <div class="contanier-proccess kick-out">
                                             <div class="contanier-input">
                                                 <input
-                                                value=""
+                                                value="https://twitter.com/<?php echo $user["twitter"] ?>"
+                                                name-col-db="twitter"
+                                                id_user="<?php echo $idUser ?>"
                                                 type="text"
                                                 class="snippet-input"
-                                                placeholder="Your Full Name">
+                                                placeholder="https://twitter.com/(userName)">
                                                 <div class="error-mas kick-out"></div>
                                                 <div class="btns">
                                                         <button class="save" name="save-edit" id="save-edit">Update</button>
@@ -289,12 +316,14 @@ class EditInfoUser {
                             <div class="row-feild flex">
                                 <div class="name-feild">Linkedin</div>
                                 <div class="content-feild">
-                                    <span class="containt-reg-db">Linkedin Acount</span>
+                                    <span class="containt-reg-db"><a href="<?php echo $user["linkedin"] ?>"><?php $val = explode("/", $user["linkedin"]); self::IfNull(end($val), "https://www.linkedin.com/in/"); ?></a></span>
                                     <!-- Start input Feils -->
                                         <div class="contanier-proccess kick-out">
                                             <div class="contanier-input">
                                                 <input
-                                                value=""
+                                                value="https://www.linkedin.com/in/<?php echo $user["linkedin"] ?>"
+                                                name-col-db="linkedin"
+                                                id_user="<?php echo $idUser ?>"
                                                 type="text"
                                                 class="snippet-input"
                                                 placeholder="Your Full Name">
@@ -313,7 +342,8 @@ class EditInfoUser {
                     <!-- End Linkedin -->
         <?php
     }
-    public static function ExperienceInformation () {
+    public static function ExperienceInformation ($values) {
+        $idUser = GetRequests::GetValueGet("IdUser");
         ?>
             <div class="experience-info mt-20">
                 <h3 class="title">Experience</h3>
@@ -322,11 +352,16 @@ class EditInfoUser {
                         <div class="row-feild flex">
                             <div class="name-feild">Education</div>
                             <div class="content-feild">
-                                <span class="containt-reg-db">TTU</span>
+                                <span class="containt-reg-db"><?php self::IfNull( $values["education"], "Your Education") ?></span>
                                 <!-- Start input Feils -->
                                     <div class="contanier-proccess kick-out">
                                         <div class="contanier-input">
-                                            <textarea name="" class="snippet-input" id=""></textarea>
+                                            <textarea 
+                                                    class="snippet-input"
+                                                    value="<?php echo $values["education"] ?>"
+                                                    placeholder="Your Education"
+                                                    name-col-db="education"
+                                                    id_user="<?php echo $idUser ?>"><?php echo $values["education"] ?></textarea>
                                             <div class="error-mas kick-out"></div>
                                             <div class="btns">
                                                     <button class="save" name="save-edit" id="save-edit">Update</button>
@@ -346,11 +381,16 @@ class EditInfoUser {
                         <div class="row-feild flex">
                             <div class="name-feild">Work</div>
                             <div class="content-feild">
-                                <span class="containt-reg-db">Freelancer</span>
+                                <span class="containt-reg-db"><?php self::IfNull( $values["work"], "Work Experience") ?></span>
                                 <!-- Start input Feils -->
                                     <div class="contanier-proccess kick-out">
                                         <div class="contanier-input">
-                                            <textarea name="" class="snippet-input" id=""></textarea>
+                                            <textarea 
+                                                class="snippet-input"
+                                                name-col-db="work"
+                                                value="<?php echo $values["work"] ?>"
+                                                id_user="<?php echo $idUser ?>"
+                                                placeholder="Work Experience"><?php echo $values["work"] ?></textarea>
                                             <div class="error-mas kick-out"></div>
                                             <div class="btns">
                                                     <button class="save" name="save-edit" id="save-edit">Update</button>
@@ -367,10 +407,10 @@ class EditInfoUser {
             </div>
         <?php
     }
-    public static function TechnicalSkills () {
+    public static function TechnicalSkills ($values) {
         ?>
             <div class="technical-skills-info mt-20">
-                <h3 class="title">Experience</h3>
+                <h3 class="title">Skiles</h3>
                 <!-- Start skills -->
                     <div class="contanier-feild mtb-15 p-10 rad-5">
                         <div class="row-feild flex">
@@ -444,6 +484,9 @@ class EditInfoUser {
         <?php 
     }
     public static function EditStucter () {
+        global $commfilesuploaded;
+        $id = GetRequests::GetValueGet('IdUser');
+        $values = Queries::FromTable('*', 'users', 'WHERE IdUser = ' .  $id, 'fetch');
         ?>
             <div class="dashbord flex">
                 <?php AsideHeaderStructer() ?>
@@ -451,7 +494,8 @@ class EditInfoUser {
                 <header class="layout-edit-profile relative flex p-20">
                     <div class="opacity"></div>
                     <div class="image relative">
-                        <img class="rad-c" src="images/Avatares/avatar-1.jpg" alt="">
+                    <?php ShowImage::SetImg($commfilesuploaded . 'users//',
+                                NameImag::GetNameImgFromDB('imageName', 'users', "WHERE IdUser = " . GetRequests::GetValueGet("IdUser")), "rad-c"); ?>
                         <div class="change-image"><i class="fa-solid fa-camera fa-lg"></i></div>
                     </div>
                     <div class="name flex sort-col">
@@ -468,14 +512,14 @@ class EditInfoUser {
                     </aside>
                     <section class="global-edit relative" id="global-info-section">
                         <!-- Start Basic Info -->
-                            <?php self::BasicInformation() ?>
+                            <?php self::BasicInformation($values) ?>
                         <!-- End Basic Info -->
 
                         <!-- Start Experience -->
-                            <?php self::ExperienceInformation() ?>
+                            <?php self::ExperienceInformation($values) ?>
                         <!-- End Experience -->
                         <!-- Start Technical Skills -->
-                            <?php self::TechnicalSkills() ?>
+                            <?php self::TechnicalSkills($values) ?>
                         <!-- End Technical Skills -->
                     </section>
                 </div>

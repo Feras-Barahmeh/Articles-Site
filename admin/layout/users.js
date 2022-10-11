@@ -351,3 +351,54 @@ percantageBars.forEach(percantageBar => {
 
     });
 });
+
+// API Edit Profile
+
+function editUserFeild(targetFile, data, btn) {
+    const xml = new XMLHttpRequest();
+    xml.onreadystatechange = function () {
+        if (xml.status === 200 && xml.readyState === 4) {
+            if (xml.responseText === "Done") {
+                const showBox = btn.closest(".content-feild").querySelector(".containt-reg-db");
+
+                // Hidden Edit Box
+                const ContanierInput = btn.closest(".contanier-proccess");
+                ContanierInput.classList.add("kick-out")
+
+                // Change Live Value
+                showBox.innerHTML = data.newValue.replace("\\'", "'");
+
+                // Show Layout Box
+                showBox.classList.remove("kick-out");
+            }
+        }
+    };
+
+    xml.open("POST", "ajaxsFiles/editProfiles/" + targetFile);
+    xml.setRequestHeader(
+        "Content-Type",
+        "application/x-www-form-urlencoded"
+    );
+    xml.send(`nameCol=${data.nameCol}&newValue=${data.newValue}&idUser=${data.idUser}`);
+}
+
+const saveEditBtns = document.querySelectorAll("#save-edit");
+
+if (saveEditBtns !== null) {
+    saveEditBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+
+            // Prepare Data
+            const inputFeild = btn.parentElement.parentElement.firstElementChild;
+            const idUser = inputFeild.getAttribute("id_user");
+            const nameColDB = inputFeild.getAttribute("name-col-db");
+            const newValue = inputFeild.value.replace("'", "\\'");
+
+            editUserFeild("main.php", {
+                nameCol : nameColDB,
+                newValue : newValue,
+                idUser : idUser,
+            }, btn);
+        });
+    });
+}
