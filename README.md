@@ -14,6 +14,10 @@
 ## Current Features
   ## Admins 👑
 
+  ### Dashbord
+  * Quick Draft
+  * Projects Table
+
   #### Users 👤
 
   * Add User
