@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2022 at 10:49 PM
+-- Generation Time: Nov 02, 2022 at 09:57 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -208,6 +208,27 @@ INSERT INTO `saveds` (`idSaved`, `IdUser`, `IdContent`, `content`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `technicals`
+--
+
+CREATE TABLE `technicals` (
+  `id_technical` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `name_technical` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `technicals`
+--
+
+INSERT INTO `technicals` (`id_technical`, `id_user`, `name_technical`) VALUES
+(1, 12, 'ajax'),
+(2, 12, 'PHP\n'),
+(3, 12, 'githup\n');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -218,8 +239,10 @@ CREATE TABLE `users` (
   `email` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
   `fullName` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
   `aboutYou` varchar(255) NOT NULL,
+  `salary` int(11) DEFAULT NULL,
   `langs` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
   `tools` text DEFAULT NULL,
+  `technicals` varchar(255) DEFAULT NULL,
   `permission` tinyint(11) NOT NULL,
   `age` date NOT NULL,
   `githup` varchar(50) DEFAULT NULL,
@@ -240,14 +263,14 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`IdUser`, `userName`, `password`, `email`, `fullName`, `aboutYou`, `langs`, `tools`, `permission`, `age`, `githup`, `facebook`, `twitter`, `linkedin`, `website`, `nickname`, `gender`, `location`, `education`, `work`, `imageName`, `dataRegister`) VALUES
-(12, 'feras', '$2y$10$Ci/KLHxpIAMOWOKqyEF1DuTyJBjxgYxKrrAP2wkuS/f6h6qHU85QO', 'ferasfadi345@gmail.com', 'Feras Barahmeh', 'I\'m Feras Barahmeh, study at ttu', 'cpp:50%, php:80%, python90%', 'Git  & Githup:40%,SOLID prinsiple:67%', 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download.png12_download.png', '2022-08-10'),
-(14, 'majd', '$2y$10$4ZlPqT1STYerP20oRYqTL.eNLlLAplkiQwVSFQ946J8IeXEQaE9sa', 'majdfadi44@gmail.com', 'Majd Fadi Barahmeh', 'Im Majd Fadi Barahmeh', 'cpp:30%, python:90%', 'git,JSON,githup,ajax', 0, '2003-07-09', 'MajdBarahmeh', 'majd_fadi', 'da7loze', NULL, NULL, 'da7loz', 'male', 'Amman - Jordan', 'HU, JU', NULL, '52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg14_52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg', '2022-08-10'),
-(42, 'khaled', '$2y$10$8xLH.So0pq.j4Zg/VyuWr.DJmAC.pJcxUbIGCyDp0RqIb1kkOvFJa', 'kh@kha.com', 'Khaled Fadi', '', NULL, NULL, 2, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg_depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '2022-09-20'),
-(43, 'belal', '$2y$10$sovxVyN0O0M.0zOp4lgk9uehT7WHmWJ6d5FgUherrdnvgQugxAu.a', 'b@b.com', 'Belal Fadi Barahemh', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'khaled.jpg_khaled.jpg', '2022-09-25'),
-(48, 'fadi', '$2y$10$ASuMI/g9TPObgyumOKzasOL0y0IXQPMkm3LYgAPSApGECITRXyqam', 'fadi@azmin', 'Fadi Azmin', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '76729750.jpg_76729750.jpg', '2022-10-06'),
-(49, '283467y32048y', '$2y$10$u03qQD945Ybe75XSmOxTXOOiKTOB9MOF/jGjANZ.eb9I1vEFFv226', 'faajdi@d.com', 'feas', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download (2).jpg_download (2).jpg', '2022-10-06'),
-(50, 'king', '$2y$10$03YSw4upS/waBmZ6nl2lvOXOGzXmPTP/LteKjfVFfSO8lfID3o5GW', 'king@king.com', 'King ', '', NULL, NULL, 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'avatar-5.png_avatar-5.png', '2022-10-06');
+INSERT INTO `users` (`IdUser`, `userName`, `password`, `email`, `fullName`, `aboutYou`, `salary`, `langs`, `tools`, `technicals`, `permission`, `age`, `githup`, `facebook`, `twitter`, `linkedin`, `website`, `nickname`, `gender`, `location`, `education`, `work`, `imageName`, `dataRegister`) VALUES
+(12, 'feras', '$2y$10$Ci/KLHxpIAMOWOKqyEF1DuTyJBjxgYxKrrAP2wkuS/f6h6qHU85QO', 'ferasfadi345@gmail.com', 'Feras Barahmeh', 'I\'m Feras Barahmeh, study at TTU, Backend', 2000, 'cpp:50%, php:80%, python90%', 'Git  & Githup:40%,SOLID prinsiple:67%', 'git:40,', 1, '2002-06-11', 'https://github.com/Feras-Barahmeh', 'https://www.facebook.com/ferasF.barahmeh', 'https://twitter.com/ferasBarahmeh', 'https://www.linkedin.com/in/feras-barahmeh', 'http://localhost/Portfolio', NULL, 'male', 'Jordan-Amman', 'TTU', 'freelancer', 'download.png12_download.png', '2022-08-10'),
+(14, 'majd', '$2y$10$4ZlPqT1STYerP20oRYqTL.eNLlLAplkiQwVSFQ946J8IeXEQaE9sa', 'majdfadi44@gmail.com', 'Majd Fadi Barahmeh', 'Im Majd Fadi Barahmeh', NULL, 'cpp:30%, python:90%', 'git,JSON,githup,ajax', '', 0, '2003-07-09', 'MajdBarahmeh', 'majd_fadi', 'da7loze', NULL, NULL, 'da7loz', 'male', 'Amman - Jordan', 'HU, JU', NULL, '52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg14_52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg', '2022-08-10'),
+(42, 'khaled', '$2y$10$8xLH.So0pq.j4Zg/VyuWr.DJmAC.pJcxUbIGCyDp0RqIb1kkOvFJa', 'kh@kha.com', 'Khaled Fadi', '', NULL, NULL, NULL, '', 2, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg_depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg', '2022-09-20'),
+(43, 'belal', '$2y$10$sovxVyN0O0M.0zOp4lgk9uehT7WHmWJ6d5FgUherrdnvgQugxAu.a', 'b@b.com', 'Belal Fadi Barahmeh', '', NULL, NULL, NULL, '', 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'khaled.jpg_khaled.jpg', '2022-09-25'),
+(48, 'fadi', '$2y$10$ASuMI/g9TPObgyumOKzasOL0y0IXQPMkm3LYgAPSApGECITRXyqam', 'fadi@azmin', 'Fadi Azmin', '', NULL, NULL, NULL, '', 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '76729750.jpg_76729750.jpg', '2022-10-06'),
+(49, '283467y32048y', '$2y$10$u03qQD945Ybe75XSmOxTXOOiKTOB9MOF/jGjANZ.eb9I1vEFFv226', 'faajdi@d.com', 'feas', '', NULL, NULL, NULL, '', 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'download (2).jpg_download (2).jpg', '2022-10-06'),
+(50, 'king', '$2y$10$03YSw4upS/waBmZ6nl2lvOXOGzXmPTP/LteKjfVFfSO8lfID3o5GW', 'king@king.com', 'King ', '', NULL, NULL, NULL, '', 0, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'avatar-5.png_avatar-5.png', '2022-10-06');
 
 --
 -- Indexes for dumped tables
@@ -319,6 +342,13 @@ ALTER TABLE `saveds`
   ADD PRIMARY KEY (`idSaved`);
 
 --
+-- Indexes for table `technicals`
+--
+ALTER TABLE `technicals`
+  ADD PRIMARY KEY (`id_technical`),
+  ADD KEY `FK_id_user` (`id_user`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -384,6 +414,12 @@ ALTER TABLE `saveds`
   MODIFY `idSaved` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
+-- AUTO_INCREMENT for table `technicals`
+--
+ALTER TABLE `technicals`
+  MODIFY `id_technical` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -431,6 +467,12 @@ ALTER TABLE `like_comment_articles`
 --
 ALTER TABLE `quick_draft`
   ADD CONSTRAINT `FK_draft_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`IdUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `technicals`
+--
+ALTER TABLE `technicals`
+  ADD CONSTRAINT `FK_id_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`IdUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

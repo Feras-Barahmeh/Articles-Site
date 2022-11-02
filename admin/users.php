@@ -2,6 +2,8 @@
 
 // Start Gloabal Difination
 
+use function PHPSTORM_META\map;
+
     ob_start();
     session_start();
     $TITLE = 'users';
@@ -163,6 +165,36 @@ class EditInfoUser {
                         </div>
                         <!-- End Location -->
 
+                        <!-- Start Salary -->
+                        <div class="contanier-feild mtb-15 p-10 rad-5">
+                            <div class="row-feild flex">
+                                <div class="name-feild">Salary</div>
+                                <div class="content-feild">
+                                    <span class="containt-reg-db"><?php self::IfNull($user["salary"], "Salary") ?></span>
+                                    <!-- Start input Feils -->
+                                        <div class="contanier-proccess kick-out">
+                                            <div class="contanier-input">
+                                                <input
+                                                    value="$<?php echo $user["salary"] ?>"
+                                                    name-col-db="salary"
+                                                    id_user="<?php echo $idUser ?>"
+                                                    type="text"
+                                                    class="snippet-input"
+                                                    placeholder="$">
+                                                <div class="error-mas kick-out"></div>
+                                                <div class="btns">
+                                                        <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                        <button class="cancel" id="cancel">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- End Input Feils -->
+                                </div>
+                                <span class="edit-btn">Edit</span>
+                            </div>
+                        </div>
+                        <!-- End Salary -->
+
                         <!-- Start Birthday -->
                         <div class="contanier-feild mtb-15 p-10 rad-5">
                             <div class="row-feild flex">
@@ -311,6 +343,36 @@ class EditInfoUser {
                         </div>
                     <!-- End Twitter -->
 
+                    <!-- Start facebook -->
+                        <div class="contanier-feild mtb-15 p-10 rad-5">
+                            <div class="row-feild flex">
+                                <div class="name-feild">Facebook</div>
+                                <div class="content-feild">
+                                    <span class="containt-reg-db"><a href="<?php echo $user["facebook"] ?>"><?php $val = explode("/", $user["facebook"]); self::IfNull(end($val), "https://www.facebook.com/"); ?></a></span>
+                                    <!-- Start input Feils -->
+                                        <div class="contanier-proccess kick-out">
+                                            <div class="contanier-input">
+                                                <input
+                                                value="https://www.facebook.com/<?php echo $user["facebook"] ?>"
+                                                name-col-db="facebook"
+                                                id_user="<?php echo $idUser ?>"
+                                                type="text"
+                                                class="snippet-input"
+                                                placeholder="https://www.facebook.com/(userName)">
+                                                <div class="error-mas kick-out"></div>
+                                                <div class="btns">
+                                                        <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                        <button class="cancel" id="cancel">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- End Input Feils -->
+                                </div>
+                                <span class="edit-btn">Edit</span>
+                            </div>
+                        </div>
+                    <!-- End facebook -->
+
                     <!-- Start Linkedin -->
                         <div class="contanier-feild mtb-15 p-10 rad-5">
                             <div class="row-feild flex">
@@ -407,7 +469,28 @@ class EditInfoUser {
             </div>
         <?php
     }
-    public static function TechnicalSkills ($values) {
+    private function GetNameSkiles() {
+
+        $skiles = Queries::FromTable("name_technical", "technicals", "WHERE id_user = " . GetRequests::GetValueGet("IdUser"), "fetch");
+
+        return $skiles;
+    }
+
+    private function PrintSkiles() {
+
+        $skiles = $this->GetNameSkiles();
+
+        foreach($skiles as $skile) {
+            ?>
+                <div class="skile  mr-15">
+                    <div class="name-skile"><?php echo $skile ?></div>
+                </div>
+            <?php
+        }
+
+    }
+    public static function TechnicalSkills () {
+        $idUser = GetRequests::GetValueGet("IdUser");
         ?>
             <div class="technical-skills-info mt-20">
                 <h3 class="title">Skiles</h3>
@@ -418,15 +501,14 @@ class EditInfoUser {
                             <div class="content-feild">
                                 <div id="current-skiles" class="containt-reg-db flex">
                                     <!-- Show Skiles -->
-                                    <div class="skile flex f-al-ce mr-15"><div class="name-skile mr-15">Solid</div><i class="fa fa-xmark" id="remove-skile"></i></div>
+                                    <?php (new self)->PrintSkiles(); ?>
                                 </div>
                                 <!-- Start input Feils -->
                                     <div class="contanier-proccess kick-out">
                                         <div class="contanier-input">
-                                            <div class="contaner-skiels flex w-fu f-al-ce">
+                                            <div class="contaner-skiels gap-10 f-wrap flex w-fu f-al-ce">
 
                                                 <input
-                                                value=""
                                                 type="text"
                                                 id="technical-input"
                                                 class="add-skile-input block mb-15 mt-10"
@@ -435,14 +517,14 @@ class EditInfoUser {
                                             </div>
                                             <!-- Start Technicals -->
                                             <select name="" id="technical-list" class="hidden mt-15 mb-15 box-sh-op10-clwh">
-                                                <option value="NULL"><?php echo "Chosse From This Technicals" ?></option>
+                                                <option value="NULL" class="cursor-no-drop"><?php echo "Chosse From This Technicals" ?></option>
                                                 <?php self::PrintTechnicals() ?>
                                             </select>
                                             <!-- End Technicals -->
 
                                             <div class="error-mas"></div>
                                             <div class="btns">
-                                                    <button class="save" name="save-edit" id="save-edit">Update</button>
+                                                    <button class="save" name="save-edit" id="save-edit-skiles" id_user="<?php echo $idUser ?>">Update</button>
                                                     <button class="cancel" id="cancel">Cancel</button>
                                             </div>
                                         </div>
@@ -483,6 +565,7 @@ class EditInfoUser {
             </div>
         <?php 
     }
+
     public static function EditStucter () {
         global $commfilesuploaded;
         $id = GetRequests::GetValueGet('IdUser');
@@ -499,8 +582,8 @@ class EditInfoUser {
                         <div class="change-image"><i class="fa-solid fa-camera fa-lg"></i></div>
                     </div>
                     <div class="name flex sort-col">
-                        <span class="name" id="name-user-layout">Feras Barahmeh</span>
-                        <span class="id-name"><span>User Name: </span><span >feras</span></span>
+                        <span class="name" id="name-user-layout"><?php echo $values["fullName"] ?></span>
+                        <span class="id-name"><span>User Name: </span><span ><?php echo $values["userName"] ?></span></span>
                     </div>
                 </header>
                 <div class="edit-user-structer flex p-20">
@@ -508,6 +591,7 @@ class EditInfoUser {
                         <ul>
                             <li class="active"><i class="fa-solid fa-microphone mr-15 ml-5"></i> Global Edit</li>
                             <li><i class="fa fa-gear mr-15 ml-5"></i> Advanice Edit</li>
+                            <li><i class="fa-solid fa-diagram-project mr-15 ml-5"></i> Add Projects</li>
                         </ul>
                     </aside>
                     <section class="global-edit relative" id="global-info-section">
@@ -519,7 +603,7 @@ class EditInfoUser {
                             <?php self::ExperienceInformation($values) ?>
                         <!-- End Experience -->
                         <!-- Start Technical Skills -->
-                            <?php self::TechnicalSkills($values) ?>
+                            <?php self::TechnicalSkills() ?>
                         <!-- End Technical Skills -->
                     </section>
                 </div>

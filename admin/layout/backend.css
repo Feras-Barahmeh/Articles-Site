@@ -350,7 +350,6 @@
     background-color: transparent;
     outline: none;
     border: none;
-    width: 100%;
 }
 .edit-user-structer .contanier-feild .error-mas {
     background: var(--danger--900);

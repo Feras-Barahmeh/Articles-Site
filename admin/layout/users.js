@@ -221,10 +221,11 @@ function suggistingTechs(massBox) {
     const addTechInput = document.getElementById("technical-input");
     const selection = document.getElementById("technical-list");
     const containerSkilesStructer = document.querySelector(".contaner-skiels");
+
     selection.addEventListener("change", () => {
 
         // If This technical Not Exist
-        if (getSkilesFromContanierSkiles().includes(selection.value)) {
+        if (! getSkilesFromContanierSkiles().includes(selection.value)) {
             containerSkilesStructer.prepend(creatSkileStructer(selection.value));
             addTechInput.innerHTML = "";
         } else {
@@ -399,11 +400,71 @@ if (saveEditBtns !== null) {
             const nameColDB = inputFeild.getAttribute("name-col-db");
             const newValue = inputFeild.value.replace("'", "\\'");
 
-            editUserFeild("main.php", {
+            editUserFeild("globalEdit.php", {
                 nameCol : nameColDB,
-                newValue : newValue,
+                newValue : newValue.replace('$', ''),
                 idUser : idUser,
             }, btn);
+        });
+    });
+}
+
+// Save Edit Skiels Btn
+function editSkiles(targetFile, data) {
+    const editSkilesRequest  = new XMLHttpRequest();
+
+    editSkilesRequest.onreadystatechange = function () {
+        if (editSkilesRequest.readyState === 4 && editSkilesRequest.status === 200) {
+
+            const contanierProccess = editSkilesBtn.closest(".contanier-proccess");
+
+            const newSkiles = contanierProccess.querySelectorAll(".name-skile");
+            let namNewSkiles = new Array();
+
+            // Get New Skiles
+            newSkiles.forEach(skile => {
+                namNewSkiles.push((skile.textContent).trimEnd("\n"));
+            });
+
+            if (editSkilesRequest.responseText === "Done") {
+                // Hidden Add Skiles Box
+                contanierProccess.classList.add("kick-out");
+
+                // Change Skiles Live
+                const containerNewSkiles = editSkilesBtn.closest(".content-feild").querySelector("#current-skiles");
+                containerNewSkiles.classList.remove("kick-out");
+
+                namNewSkiles.forEach(skile => {
+                    containerNewSkiles.innerHTML += 
+                                                    `
+                                                        <div class="skile mr-15">
+                                                            <div class="name-skile">${skile}</div>
+                                                        </div>
+                                                    `;
+                });
+            }
+
+        }
+    };
+
+    editSkilesRequest.open("POST", "ajaxsFiles/editProfiles/" + targetFile);
+    editSkilesRequest.setRequestHeader(
+        "Content-Type",
+        "application/x-www-form-urlencoded"
+    );
+    editSkilesRequest.send(`newValue=${data.newValues}&idUser=${data.idUser}&oldSkiles=${data.oldSkiles}`);
+}
+
+const editSkilesBtn = document.getElementById("save-edit-skiles");
+
+if (editSkilesBtn !== null) {
+    editSkilesBtn.addEventListener("click", () => {
+
+        const newSkiles = getSkilesFromContanierSkiles();
+
+        editSkiles("editSkiles.php", {
+            newValues : newSkiles,
+            idUser : editSkilesBtn.getAttribute("id_user"),
         });
     });
 }

@@ -483,6 +483,9 @@
 .cursor-pointer {
     cursor: pointer;
 }
+.cursor-no-drop {
+    cursor: no-drop;
+}
 /* End cursor */
 /* Start Aleart Massage */
 .alert-validation {
