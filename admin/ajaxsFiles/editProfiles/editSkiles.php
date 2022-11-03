@@ -27,11 +27,13 @@ class EditSkiles  {
 
         foreach($newSkiles as $newSkile) {
             if (! $this->IfAradyExist($newSkile, $currentTech)) {
-                echo "Done";
-                // Queries::Insert(
-                //     "technicals",
-                //     ["name_technical", "id_user"],
-                //     [ "'" . $newSkile . "'", $_REQUEST["idUser"]]);
+                if (Queries::Insert(
+                        "technicals",
+                        ["name_technical", "id_user"],
+                        [ "'" . $newSkile . "'", $_REQUEST["idUser"]])) 
+                    {
+                        echo "Done";
+                    } 
             } 
 
         }

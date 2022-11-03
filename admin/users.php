@@ -469,23 +469,32 @@ class EditInfoUser {
             </div>
         <?php
     }
-    private function GetNameSkiles() {
+    private static function GetNameSkiles() {
 
-        $skiles = Queries::FromTable("name_technical", "technicals", "WHERE id_user = " . GetRequests::GetValueGet("IdUser"), "fetch");
+        $skiles = Queries::FromTable("name_technical", "technicals", "WHERE id_user = " . GetRequests::GetValueGet("IdUser"));
+        
+
 
         return $skiles;
     }
 
     private function PrintSkiles() {
 
-        $skiles = $this->GetNameSkiles();
-
-        foreach($skiles as $skile) {
-            ?>
-                <div class="skile  mr-15">
-                    <div class="name-skile"><?php echo $skile ?></div>
-                </div>
-            <?php
+        $skiles = self::GetNameSkiles();
+        if ($skiles) {
+            foreach($skiles as $skile) {
+                foreach($skile as $key => $nameSkile) {
+                    if (gettype($key) === "string") {
+                        ?>
+                            <div class="skile  mr-15">
+                                <div class="name-skile"><?php echo $nameSkile ?></div>
+                            </div>
+                        <?php
+                    }
+                }
+            }
+        } else {
+            echo "No Skiles Yet";
         }
 
     }
