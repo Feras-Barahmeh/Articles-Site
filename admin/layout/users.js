@@ -426,7 +426,6 @@ function editSkiles(targetFile, data) {
                 namNewSkiles.push((skile.textContent).trimEnd("\n"));
             });
 
-            if (editSkilesRequest.responseText === "Done") {
                 // Hidden Add Skiles Box
                 contanierProccess.classList.add("kick-out");
 
@@ -434,15 +433,18 @@ function editSkiles(targetFile, data) {
                 const containerNewSkiles = editSkilesBtn.closest(".content-feild").querySelector("#current-skiles");
                 containerNewSkiles.classList.remove("kick-out");
 
+                // Remove Repated Skiles
+                namNewSkiles = [...new Set(namNewSkiles)]
+
+                containerNewSkiles.textContent = '';
                 namNewSkiles.forEach(skile => {
-                    containerNewSkiles.innerHTML += 
+                    containerNewSkiles.innerHTML +=
                                                     `
                                                         <div class="skile mr-15">
                                                             <div class="name-skile">${skile}</div>
                                                         </div>
                                                     `;
                 });
-            }
 
         }
     };
@@ -466,5 +468,6 @@ if (editSkilesBtn !== null) {
             newValues : newSkiles,
             idUser : editSkilesBtn.getAttribute("id_user"),
         });
+
     });
 }
