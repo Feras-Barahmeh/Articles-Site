@@ -1,10 +1,17 @@
 <?php 
 require_once "configuration.php";
 
-
 class EditSkiles  {
     private function GetCurrentSkiles () {
-        $currentTech = Queries::FromTable("name_technical", "technicals", "WHERE id_user = " . $_REQUEST["idUser"], "fetch");
+        $techs = Queries::FromTable("name_technical", "technicals", "WHERE id_user = " . $_REQUEST["idUser"]);
+        $currentTech = [];
+        foreach ($techs as $tech) {
+            foreach ($tech as $key => $nameTech) {
+                if (gettype($key) === "string") {
+                    array_push($currentTech, $nameTech);
+                }
+            }
+        }
         return $currentTech;
     }
 
@@ -12,13 +19,11 @@ class EditSkiles  {
         return explode(',', $_REQUEST["newValue"]);
     }
 
-    private function IfAradyExist($newSkile, $currentSkiles) {
-        foreach($currentSkiles as $skile) {
-            if ($skile === $newSkile) {
-                return true;
-            }
+    private function removedSkiles($removedSkiles) {
+
+        foreach($removedSkiles as $skileRemoved) {
+            Queries::Delete("technicals", "name_technical = '$skileRemoved' AND id_user = " . $_REQUEST["idUser"]);
         }
-        return false;
     }
 
     public function EditProcedures () {
@@ -26,22 +31,21 @@ class EditSkiles  {
         $newSkiles = $this->newValue();
 
         foreach($newSkiles as $newSkile) {
-            if (! $this->IfAradyExist($newSkile, $currentTech)) {
+            if (! in_array($newSkile, $currentTech) ) {
                 if (Queries::Insert(
                         "technicals",
                         ["name_technical", "id_user"],
                         [ "'" . $newSkile . "'", $_REQUEST["idUser"]])) 
                     {
                         echo "Done";
-                    } 
-            } 
-
+                    }
+            }
         }
 
+        $getRemovedSkiles = array_diff($currentTech, $newSkiles);
+        $this->removedSkiles($getRemovedSkiles);
     }
 
-
-    
 }
 
 $skileEdit = new EditSkiles ;

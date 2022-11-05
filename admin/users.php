@@ -469,27 +469,32 @@ class EditInfoUser {
             </div>
         <?php
     }
-    private static function GetNameSkiles() {
-
+    private  function GetNameSkiles() {
         $skiles = Queries::FromTable("name_technical", "technicals", "WHERE id_user = " . GetRequests::GetValueGet("IdUser"));
-        
-
-
         return $skiles;
     }
 
-    private function PrintSkiles() {
+    private function PrintSkiles($from="show") {
 
-        $skiles = self::GetNameSkiles();
+        $skiles = $this->GetNameSkiles();
         if ($skiles) {
             foreach($skiles as $skile) {
                 foreach($skile as $key => $nameSkile) {
-                    if (gettype($key) === "string") {
-                        ?>
-                            <div class="skile  mr-15">
-                                <div class="name-skile"><?php echo $nameSkile ?></div>
-                            </div>
-                        <?php
+                    if (gettype($key) === "string" ) {
+                        if ($from == "show") {
+                            ?>
+                                <div class="skile  mr-15">
+                                    <div class="name-skile"><?php echo $nameSkile ?></div>
+                                </div>
+                            <?php
+                        } elseif($from === "edit") {
+                            ?>
+                                <div class="skile flex f-al-ce mr-15">
+                                    <div class="name-skile mr-15"><?php echo $nameSkile ?></div>
+                                    <i class="fa fa-xmark" id="remove-skile"></i>
+                                </div>
+                            <?php
+                        }
                     }
                 }
             }
@@ -498,8 +503,12 @@ class EditInfoUser {
         }
 
     }
+
+
+
     public static function TechnicalSkills () {
         $idUser = GetRequests::GetValueGet("IdUser");
+        
         ?>
             <div class="technical-skills-info mt-20">
                 <h3 class="title">Skiles</h3>
@@ -510,12 +519,14 @@ class EditInfoUser {
                             <div class="content-feild">
                                 <div id="current-skiles" class="containt-reg-db flex">
                                     <!-- Show Skiles -->
-                                    <?php (new self)->PrintSkiles(); ?>
+                                    <?php (new self)->PrintSkiles("show"); ?>
                                 </div>
                                 <!-- Start input Feils -->
                                     <div class="contanier-proccess kick-out">
                                         <div class="contanier-input">
                                             <div class="contaner-skiels gap-10 f-wrap flex w-fu f-al-ce">
+                                                <!-- Print Current Skiles if Exist -->
+                                                <?php (new self) -> PrintSkiles("edit") ?>
 
                                                 <input
                                                 type="text"
