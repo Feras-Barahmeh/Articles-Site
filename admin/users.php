@@ -504,6 +504,26 @@ class EditInfoUser {
 
     }
 
+    private function PrintPercentage () {
+        $skiles = Queries::FromTable("*", "percentage", "INNER JOIN technicals on percentage.id_skile = technicals.id_technical AND technicals.id_user = " . GetRequests::GetValueGet("IdUser"));
+        
+        foreach($skiles as $skile) {
+            ?>
+                <div class="containt-reg-db">
+                    <div class="skile mtb-15">
+                        <span class="name-skile"><?php echo $skile["name_technical"] ?></span>
+                        <input type="range" min="0" max="100" name="" id="percantage-bar" onchange="changePercentage(this   )"  value="<?php echo $skile["value_skile"] ?>">
+                        <div class="percentage-container relative red-5">
+                            <div class="percentage-circular rad-c center-ele relative"> 
+                                <div class="value rad-c relative"><?php echo $skile["value_skile"] ?>%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php
+        }
+    }
+
 
 
     public static function TechnicalSkills () {
@@ -557,30 +577,21 @@ class EditInfoUser {
                 <!-- End skills -->
 
                 <!-- Start percentage skills -->
-                    <div class="percentage-skills contanier-feild mtb-15 p-10 rad-5">
+                    <!-- <div class="percentage-skills contanier-feild mtb-15 p-10 rad-5">
                             <div class="header between-ele">
                                 <div class="name-feild">percentage skills</div>
                                 <span class="cursor-pointer" id="edit-percentage-skiles">Edit</span>
                             </div>
+
+                            // Skiles
                             <div class="skiles-percentage kick-out">
-                                <div class="containt-reg-db">
-                                    <div class="skile mtb-15">
-                                        <span class="name-skile">Solid</span>
-                                        <label for="">Percantage Skile</label>
-                                        <input type="range" min="0" max="100" name="" id="percantage-bar">
-                                        <div class="percentage-container relative red-5">
-                                            <div class="percentage-circular rad-c center-ele relative"> 
-                                                <div class="value rad-c relative">60%</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php // (new self)->PrintPercentage() ?>
                                 <div class="btns">
                                         <button class="save cursor-pointer" name="save-edit" id="save-percentage-skile">Update</button>
                                         <button class="cancel cursor-pointer" id="cansel-percentage-skile">Cancel</button>
                                 </div>
                             </div>
-                    </div>
+                    </div> -->
                 <!-- End percentage skills -->
             </div>
         <?php 

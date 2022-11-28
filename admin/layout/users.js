@@ -291,69 +291,20 @@ removeSkiles();
 
 // Percantage Skiles
 // Show Percantage When Click Edit
-const editPercantage = document.getElementById("edit-percentage-skiles");
+var editPercantage = document.getElementById("edit-percentage-skiles");
+var percentageBars = document.querySelectorAll("#percantage-bar");
 
 editPercantage.addEventListener("click", () => {
     document.querySelector(".skiles-percentage").classList.toggle("kick-out");
 });
 
-var percantageBars = document.querySelectorAll("#percantage-bar");
-percantageBars.forEach(percantageBar => {
-    let valueBox = 
-        percantageBar.nextElementSibling.querySelector(".value");
-    percantageBar.addEventListener("change", () => {
-        // Set Value Percentage When Chage Range input
-        valueBox.textContent = percantageBar.value + '%';
+// Change Percentage Bar
+function changePercentage(e) {
+    e.nextElementSibling.firstElementChild.querySelector(".value").innerHTML = e.value + '%';
+    console.log(e.nextElementSibling.querySelector(".percentage-circular"));
+    e.nextElementSibling.querySelector(".percentage-circular").style.background = `repeating-linear-gradient(${e.value}deg, var(--skin-color), transparent 100px);`
+}
 
-        // Change Circule
-        let percentageCircular = percantageBar.nextElementSibling.querySelector(".percentage-circular");
-        percentageCircular.style.background = `conic-gradient(
-            var(--skin-color) ${percantageBar.value * 3.6 }deg,
-            var(--skin-alt-color) ${percantageBar.value * 3.6 }deg
-        )`;
-    });
-});
-
-// Set Value input
-percantageBars.forEach(percantageBar => {
-
-    let valueBox = 
-        percantageBar.nextElementSibling.querySelector(".value");
-    const value = valueBox.innerHTML.split('%').join('');
-    const rangeInput = valueBox.closest(".percentage-container").previousElementSibling;
-    rangeInput.value = value;
-});
-
-// Set Animation Change Bar
-percantageBars.forEach(percantageBar => {
-    window.addEventListener("scroll", () => {
-            if (window.innerHeight >= percantageBar.getBoundingClientRect().top) {
-                let containerPercantage = percantageBar.nextElementSibling.querySelector(".percentage-circular");
-
-                let valueBox = 
-                    percantageBar.nextElementSibling.querySelector(".value");
-                let persantageValue = 0;
-                const endValue = percantageBar.value;
-                const speed = 20;
-        
-                let animation = setInterval ( () => {
-                    persantageValue++;
-                    valueBox.textContent = persantageValue + '%';
-        
-                    containerPercantage.style.background = `conic-gradient(
-                        var(--skin-color) ${persantageValue * 3.6 }deg,
-                        var(--skin-alt-color) ${persantageValue * 3.6 }deg
-                    )`;
-                    if (persantageValue == endValue) {
-                        clearInterval(animation);
-                    }
-                }, speed);
-            }
-
-    });
-});
-
-// API Edit Profile
 
 function editUserFeild(targetFile, data, btn) {
     const xml = new XMLHttpRequest();
