@@ -1,10 +1,10 @@
 <?php
-// Start Gloabal Difination
+// Start Global Divination
     ob_start();
     session_start();
     $TITLE = 'Profile';
     include ('init.php');
-    SetNav();
+    navPage();
 
 // Fork Function
 
@@ -61,6 +61,7 @@
 
 // Main Functions
     function StructerProfiel () {
+        
         global $commfilesuploaded;
         $queries = new Queries;
         $idUser = Sessions::GetValueSessionDepKey('IdUser');
@@ -72,7 +73,9 @@
             $numberCat =  $queries->Counter("IdCategory", 'categories', "WHERE IDwriter = $idUser");
         ?>
             <div class="content-profile">
-                <aside class="aside-profile">
+                
+                <aside class="aside-profile"  id="profile-user">
+                    <div class="X-info hidden" id="X-info">X</div>
                     <div class="header">
                         <div class="name-user">
                             <div class="img"><?php ShowImage::SetImg($commfilesuploaded . "users/", $imgname) ?></div>
@@ -116,12 +119,17 @@
 
                 <section class="contant-section">
                     <div class="header-contaner">
-                        <div class="categoreis-dropdown" onclick="openList()">
+                        <div class="categoreis-dropdown" >
                             Categories
                             <span><i class="fa-solid fa-caret-down" aria-hidden="true"></i><i class="fa-solid fa-caret-up"></i></span>
                             <!-- Search Feild -->
-
+                            <span class="hidden err-mass">Not Avalibel Now <span class="X" id="X-info">X</span> </span>
                         </div>
+
+                        <div class="showStatistics" id="showInfo">
+                            <span>Information <i class="fa-solid fa-caret-down ml-5" aria-hidden="true"></i></span>
+                        </div>
+
                         <ul id="padding-dropdown">
                                 <li for="search-cats" ><input onkeyup="fetchLettersWhenSearch()" type="text" id="search-cats" placeholder="Search Category"><i class="fa-solid fa-magnifying-glass"></i></li>
                                 <?php GetCats() ?>
@@ -132,7 +140,7 @@
                         <div class="cats">
                             <ul id="if-no-val">
                                 <?php PrintArticlesName() ?>
-                            </uli>
+                            </ul>
                         </div>
                     </div>
                 </section>
@@ -142,6 +150,8 @@
 
 
 // Last Page
+    
     StructerProfiel();
-    include ($tpl . 'footer.php');
+
+include ($tpl . 'footer.php');
     ob_end_flush();

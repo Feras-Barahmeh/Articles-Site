@@ -216,3 +216,45 @@ if (inputSearchArticle !== null) {
         });
     });
 }
+
+
+// Profile User
+const showInfo = document.getElementById("showInfo");
+const xInfo = document.getElementById("X-info");
+const barInfo = document.getElementById("profile-user");
+const categoreisDropdown = document.querySelector(".categoreis-dropdown");
+const errMass = document.querySelector(".err-mass");
+
+if (showInfo != null) {
+    showInfo.addEventListener("click", () => {
+        if (barInfo.style.display.value == null) {
+            barInfo.classList.add("layout");
+            xInfo.classList.remove("hidden");
+        }
+    });
+}
+
+if (xInfo != null) {
+    xInfo.addEventListener("click", () => {
+        if (barInfo.style.display.value == null) {
+
+            if (barInfo.classList.contains("layout")) {
+                barInfo.classList.remove("layout");
+            }
+            
+        }
+    });
+}
+
+if (categoreisDropdown != null) {
+    categoreisDropdown.addEventListener("click", () => {
+        errMass.classList.remove("hidden");
+    });
+}
+if (errMass != null) {
+    errMass.addEventListener("click", (e) => {
+        console.log(e.target);
+        e.target.classList.add("hidden");
+        e.stopPropagation();
+    });
+}
